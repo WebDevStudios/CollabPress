@@ -1,0 +1,124 @@
+/****************/
+/* ADMIN STYLES */
+/****************/
+
+table.group-collabpress-options {
+	margin-bottom: 15px;
+}
+	table.group-collabpress-options th {
+		width: 300px;
+		text-align: left;
+	}
+
+/*****************/
+/* HEADERS       */
+/*****************/
+
+.cp-bp-header {
+	background: url(../images/collabpress-page-icon.png) no-repeat scroll -10px -5px transparent;
+	padding-left: 45px;
+	min-height: 40px;
+}
+
+
+/*******************/
+/* FAUX META BOXES */
+/*******************/
+
+.cp-meta-box {
+	border: 2px solid #ddd;
+	margin: 15px 45px;
+	border-radius: 3px;
+}
+	.cp-meta-box.cp-new-project {
+		margin: 15px 0;
+	}
+
+
+.cp-meta-box h4 {
+	background-color: #f1f1f1;
+	padding: 4px 8px;
+	margin: 0;
+	cursor: pointer;
+}
+
+.cp-new-project h4,
+.cp-add-task-list h4,
+.cp-add-task h4 {
+	background: #f1f1f1 url(../images/add_16.png) no-repeat 8px 6px;
+	padding-left: 30px;
+}
+
+.cp-meta-box .handlediv {
+	width: 27px;
+	height: 30px;
+	float: right;
+	cursor: pointer;
+}
+
+.cp-meta-box:hover .handlediv {
+	background: url("../images/arrows.png") no-repeat scroll 6px 7px transparent;
+}
+
+.cp-meta-box .inside {
+	border-top: 2px solid #ddd;
+	padding: 10px 15px;
+}
+
+.cp-meta-box .inside h4 {
+	background: none;
+}
+
+.cp-meta-box table tr th {
+	text-align: left;
+}
+
+.cp_task_summary {
+	margin: 15px 0;
+}
+
+.cp_task_summary p {
+	margin: 0;
+}
+
+.cp_task_summary img {
+	margin-right: 7px;
+}
+
+/*******************/
+/* CALENDAR	   */
+/*******************/
+
+#cp-calendar-wrap {
+	padding: 10px;
+}
+#cp-calendar-wrap h3 {
+	font-size: 1.5em;
+	font: italic 24px/35px Georgia,"Times New Roman","Bitstream Charter",Times,serif;
+}
+.cp_previous_month {float: left; padding: 10px 0;}
+.cp_next_month {float: right; padding: 10px 0;}
+table.calendar { border-left:1px solid #f1f1f1; width: 100%; background: #fff;}
+
+table tr td.calendar-day {
+	vertical-align: top;
+}
+
+tr.calendar-row	{}
+td.calendar-day	{ min-height:80px; font-size:11px; position:relative; } * html div.calendar-day { height:80px; }
+td.calendar-day:hover { background:#eceff5; }
+td.calendar-day-np { background:#eee; min-height:80px; } * html div.calendar-day-np { height:80px; }
+
+td.calendar-day p {
+	clear: both;
+	overflow: visible;
+}
+
+td.calendar-day img.avatar {
+	margin-bottom: 15px;
+}
+
+td.calendar-day-head { background:#F5F5F5; font-weight:bold; text-align:center; width:120px; padding:5px; border-bottom:1px solid #f1f1f1; border-top:1px solid #f1f1f1; border-right:1px solid #f1f1f1; }
+div.day-number { background:#f1f1f1; padding:5px; color:#21759B; font-weight:bold; float:right; margin:-5px -5px 0 0; width:20px; text-align:center; }
+td.calendar-day, td.calendar-day-np { width:120px; padding:5px; border-bottom:1px solid #f1f1f1; border-right:1px solid #f1f1f1; }
+

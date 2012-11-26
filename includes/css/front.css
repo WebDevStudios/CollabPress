@@ -1,0 +1,262 @@
+/* CollabPress FrontEnd CSS */
+#collabpress * {
+    margin: 0;
+    padding: 0;
+}
+#collabpress * img {
+	border:0 none;
+}
+
+
+#collabpress { font: normal 15px/20px "Palatino Linotype", Palatino, Palladio, "URW Palladio L", "Book Antiqua", Baskerville, "Bookman Old Style", "Bitstream Charter", "Nimbus Roman No9 L", Garamond, "Apple Garamond", "ITC Garamond Narrow", "New Century Schoolbook", "Century Schoolbook", "Century Schoolbook L", Georgia, serif; }
+
+#collabpress input[type="button"], #collabpress input[type="submit"], #collabpress .button { padding: 7px 13px; float: right; }
+#collabpress table { border-collapse: collapse; }
+#collabpress table th, #collabpress table td { padding: 8px; }
+
+#collabpress .faux-link { cursor: pointer; }
+
+#collabpress .updated { 
+	background-color: #FDF5D9;
+	padding: 15px;
+	margin: 5px;
+	border-color: #FCEEC1;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	border-width: 1px;
+	border-style: solid;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+}
+#collabpress ul { margin-left: 16px; }
+#collabpress ul li { padding: 0 0 0 15px; }
+
+#collabpress h1, #collabpress h2, #collabpress h3, #collabpress h4, #collabpress h5, #collabpress h6 { font-family:Frutiger, "Frutiger Linotype", Univers, Calibri, "Gill Sans", "Gill Sans MT", "Myriad Pro", Myriad, "DejaVu Sans Condensed", "Liberation Sans", "Nimbus Sans L", Tahoma, Geneva, "Helvetica Neue", Helvetica, Arial, sans-serif; }
+
+#collabpress h2, #collabpress h2 a  { color: #5D676F; font-size:28px; line-height:36px; }
+#collabpress h2 a:hover { color: #4F4F4F; }
+
+#collabpress .cp_project_name {  padding: 0 0 0 25px; background:url('../images/cp-task-icons.png') no-repeat left -99px;  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; font-size:18px; }
+#collabpress a { color: #5D676F; text-decoration:none; }
+#collabpress a:hover { color: #4F4F4F; text-decoration:underline !important ; }
+
+#collabpress h4.cp_tl_title { margin: 10px 0 15px 0 !important; color:#5A676E !important; text-decoration:underline; font: normal 20px/26px arial, sans-serif; }
+
+#collabpress .cp_task_summary { padding:5px; margin: 5px 0; }
+#collabpress .cp_task_summary.odd { background: #F8F7F7 }
+#collabpress .cp_task_summary input { margin:0 5px 0 0; }
+#collabpress .cp_task_summary .cp_task_name { text-decoration:none; color: #333; font-size:15px; }
+#collabpress .cp_task_summary .cp_task_meta { color: #aaa; font: normal 13px/16px arial, sans-serif;}
+#collabpress .cp_task_summary .cp_task_meta img { vertical-align: middle; padding: 5px; }
+
+#collabpress .cp_task_summary form.add-time { padding: 10px; margin: 5px 0 0 0; }
+#collabpress .cp_task_summary form.add-time th { text-align: right; }
+#collabpress .cp_task_summary form.add-time input[type="submit"] { float: none; }
+#collabpress .cp_task_summary .time-icon { background: url("../images/cp-task-icons.png") no-repeat scroll left -128px transparent; margin: 0 0 0 5px; padding: 0 0 0 25px; cursor: pointer; }
+
+#collabpress p.description, .cp_none { font: italic 14px/24px georgia, serif; }
+#collabpress .cp_none { color:#777; }
+#collabpress .cp_task_summary .edit-del-links, #collabpress ul.cp_tl li .edit-del-links,  #collabpress #project-list .cp-project-item .edit-del-links {  visibility: hidden; }
+#collabpress .cp_task_summary:hover .edit-del-links, #collabpress ul.cp_tl li:hover .edit-del-links, #collabpress #project-list .cp-project-item:hover .edit-del-links { visibility: visible; }
+#collabpress .edit-del-links { font-size: 12px; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; border: 1px solid #EEEEEE; margin:0 0 0 15px; padding:5px; -moz-border-radius:15px; -webkit-border-radius:15px; border-radius:15px; background:#fff; }
+
+#collabpress a.cp_task_edit, #collabpress a.cp_tl_edit, #collabpress a.cp_project_edit { padding: 0 0 0 25px; background:url('../images/cp-task-icons.png') no-repeat left top; }
+#collabpress a.cp_task_del, #collabpress a.cp_tl_del, #collabpress a.cp_project_del { padding: 0 0 0 25px; background:url('../images/cp-task-icons.png') no-repeat left -29px; }
+
+#collabpress .cp_task_comm {     background: url("../images/cp-task-icons.png") no-repeat scroll left -54px transparent; margin: 0 0 0 5px; padding: 1px 0 1px 25px; }
+
+
+#collabpress .updated { padding:3px; margin:0 0 10px 0; font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; background: #FDE794; border:1px solid #F7C039; text-align:center; font-size:12px; }
+#collabpress .updated p { margin: 0 !important; padding:0 !important; }
+
+#cp_task_comments_wrap .cp_task_comment { 
+	clear: both;
+	overflow: hidden;
+	margin: 15px;
+	padding: 5px;
+}
+#cp_task_comments_wrap .cp_task_comment.even {
+	background: #F8F7F7;
+}
+#cp_task_comments_wrap .cp_task_comment img.avatar { 
+	float: left;
+	margin: 0 15px 0 0;
+	padding: 5px;
+	border: solid 1px #EEE;
+}
+img.avatar-16 {
+	background: none transparent;
+	border 0 none;
+}
+#collabpress .cp_task_comment_content {
+	margin: 0 0 0 95px;
+}
+#collabpress .cp_comment_author {
+	font-weight: bold;
+}
+
+/* CP Breadcrumb */
+#collabpress #cp_breadcrumb {
+    background-color:#E6E5E5;
+    clear: both;
+    display: block;
+    font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+    font-size: 11px;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
+}
+#collabpress #page_header {
+	background: #EEE;
+	padding: 10px;
+	margin: 0 0 15px 0;
+	border-bottom: 5px solid #5D676F;
+	white-space: pre-line;
+}
+#collabpress #page_header h2 {
+	padding: 0 25px;
+}
+#collabpress #page_header p {
+	border: 1px solid #DDD;
+	margin: 16px 10px;
+	background: white;
+	border-bottom: 2px solid #BBB;
+	border-right: 2px solid #CCC;
+	padding: 10px;
+}
+#collabpress #cp_breadcrumb ul {
+	margin:0;
+	padding:0;
+	overflow: hidden;
+}
+#collabpress #cp_breadcrumb ul li {
+    background: none repeat scroll 0 0 transparent;
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    }
+#collabpress #cp_breadcrumb ul li span {
+	padding:5px 20px 4px 10px;
+	color: #555555;
+	}
+#collabpress #cp_breadcrumb a {
+	background:#444343;
+	color: #fff;
+	padding: 5px;
+	position: relative;
+	}
+#collabpress #cp_breadcrumb .dash-crumb a, #collabpress #cp_breadcrumb .dash-crumb span {
+	background: url("../images/dashboard-bc-bg.png") no-repeat scroll right 0 transparent;
+	padding:5px 20px 4px 10px;
+    z-index: 9;
+    color:#fff;
+	}
+#collabpress #cp_breadcrumb .proj-crumb a {
+	background: url("../images/project-bc-bg.png") no-repeat scroll right 0 transparent;
+	padding:5px 20px 4px 15px;
+    z-index: 8;
+    margin-left: -10px;
+	}
+#collabpress #cp_breadcrumb .list-crumb a {
+	background: url("../images/project-bc-bg.png") no-repeat scroll right 0 transparent;
+	padding:5px 20px 4px 15px;
+    z-index: 7;
+    margin-left: -10px;
+	}
+/* Add new project form */
+
+#collabpress form p {
+	width: 95%;
+	margin: 0 auto;
+	padding: 5px;
+}
+
+#collabpress .form-table, #collabpress .form-table input, #collabpress .form-table textarea {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+#collabpress .form-table {
+    border-collapse: collapse;
+    clear: both;
+    margin-bottom: -8px;
+    margin-top: 0.5em;
+    width: 100%;
+    text-align: left;
+}
+#collabpress .form-table td {
+    font-size: 11px;
+    line-height: 20px;
+    margin-bottom: 9px;
+    padding: 8px 10px;
+    border: 0 none !important;
+}
+#collabpress .form-table th {
+    font-weight: normal;
+    text-shadow: 0 1px 0 #FFFFFF;
+}
+#collabpress .form-table th {
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+    width: 200px;
+}
+#collabpress .form-table th.th-full {
+    width: auto;
+}
+#collabpress .form-table input.tog {
+    float: left;
+    margin-right: 2px;
+    margin-top: 2px;
+}
+#collabpress input.large-text, #collabpress textarea.large-text {
+    width: 99%;
+}
+#collabpress .form-table input.regular-text, #adduser .form-field input {
+    width: 25em;
+}
+#collabpress .form-table input.small-text {
+    width: 50px;
+}
+#collabpress .form-table .pre {
+    margin: 0;
+    padding: 8px;
+}
+#collabpress .pre {
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+table#collabpress .form-table td .updated {
+    font-size: 13px;
+}
+#collabpress .form-wrap label {
+    display: block;
+    font-size: 12px;
+    padding: 2px;
+}
+#collabpress .form-field input, #collabpress .form-field textarea {
+    border-style: solid;
+    border-width: 1px;
+    width: 95%;
+}
+
+#collabpress .form-table fieldset {
+    border: 0 none;
+    margin: 0;
+    padding: 0;
+}
+#collabpress .form-table p {
+	margin: 0 !important;
+}
+
+#collabpress form {
+	background: #F8F7F7;
+	border: 2px solid #EEE;
+	padding: 15px;
+	overflow: hidden;
+	margin: 35px 0 0 0;
+}
+#collabpress form h2 {
+	font-size: 18px;
+	border-bottom: 5px solid #5D676F;
+}
