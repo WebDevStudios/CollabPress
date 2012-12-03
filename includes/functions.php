@@ -1489,17 +1489,23 @@ function cp_get_url( $ID = NULL, $type = NULL ) {
 
 // Retrieve all tasks in a task list with a specific status
 function cp_get_tasks( $task_list_id, $status ) {
-    global $wpdb;
-
+	$task_list_id = absint( $task_list_id );
+	$status = esc_attr( $status );
     if ( $task_list_id && $status ) {
-		$sql = " SELECT wposts.* FROM $wpdb->posts wposts
-		    INNER JOIN $wpdb->postmeta key1 ON wposts.ID = key1.post_id AND key1.meta_key = '_cp-task-list-id'
-		    INNER JOIN $wpdb->postmeta key2 ON wposts.ID = key2.post_id AND key2.meta_key = '_cp-task-status'
-		    WHERE key1.meta_value = %d AND key2.meta_value = %s
-		    AND wposts.post_status = 'publish' AND wposts.post_type = 'cp-tasks'
-		    ORDER BY wposts.post_date DESC ";
-		$tasks_query = $wpdb->get_results( $wpdb->prepare( $sql, absint( $task_list_id ), esc_html( $status ) ) );
-		return $tasks_query;
+		$tasks = get_posts( array( 
+			'post_type' => 'cp-tasks',
+			'meta_query' => array( 
+				array( 
+					'key' => '_cp-task-list-id',
+					'value' => $task_list_id,
+				),
+				array( 
+					'key' => '_cp-task-status',
+					'value' => $status,
+				)
+			)
+		) );
+		return $tasks;
     }
 }
 
