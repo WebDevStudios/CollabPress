@@ -1196,13 +1196,19 @@ function cp_user_page() {
 			<h3><?php _e('Recent Activity', 'collabpress') ?></h3>
 			<?php
 			// Get Task Lists
-			$sql = " SELECT wposts.* FROM $wpdb->posts wposts
-			INNER JOIN $wpdb->postmeta key1 ON wposts.ID = key1.post_id AND key1.meta_key = '_cp-meta-type'
-			INNER JOIN $wpdb->postmeta key2 ON wposts.ID = key2.post_id AND key2.meta_key = '_cp-activity-author'
-			WHERE key1.meta_value = %d AND key2.meta_value = %s
-			AND wposts.post_status = 'publish' AND wposts.post_type = 'cp-meta-data'
-			ORDER BY wposts.post_date DESC ";
-		    $tasks_query = $wpdb->get_results( $wpdb->prepare( $sql, 'activity', $cp_user->id ) );
+		    $tasks_query = get_posts( array(
+		    	'post_type' => 'cp-meta-data',
+		    	'meta_query' => array(
+		    		array( 
+		    			'key' => '_cp-meta-type',
+		    			'value' => 'activity',
+		    		),
+		    		array( 
+		    			'key' => '_cp-activity-author',
+		    			'value' => $cp_user->id,
+		    		)	
+		    	)
+		    ) );
 
 			// WP_Query();
 		    if ($tasks_query) :
