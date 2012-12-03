@@ -305,12 +305,11 @@ function cp_projects() {
 
 // List CollabPress Users
 function cp_users( $limit='yes' ) {
-	global $wpdb;
 
 	//using a custom query for now
 	//will update with WP_User_Query when WP 3.1 is released
 	//http://wpdevel.wordpress.com/2010/10/07/wp_user_search-has-been-replaced-by-wp_u/
-	$users = $wpdb->get_results( $wpdb->prepare( "SELECT ID from $wpdb->users ORDER BY ID" ) );
+	$users = get_users();
 	$cp_users_count = count( $users );
 
 	//load num users setting
