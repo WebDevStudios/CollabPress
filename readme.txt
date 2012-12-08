@@ -26,6 +26,10 @@ Features include:
 
 Works with WordPress, Multisite, and BuddyPress!
 
+= Get Involved =
+
+CollabPress is an Open Source project. If you are a developer, make sure to check out and contribute to CollabPress on the [CollabPress GitHub Repository](https://github.com/WebDevStudios/CollabPress/ "CollabPress GitHub Repository").
+
 == Screenshots ==
 
 1. CollabPress Dashboard showing recent activity, users, overview, and more
