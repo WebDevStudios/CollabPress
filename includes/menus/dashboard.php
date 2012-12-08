@@ -42,19 +42,9 @@ class collabpress_dashboard_page {
 
 	// Constructor
 	function collabpress_dashboard_page() {
-		// Screen Layout
-		add_filter('screen_layout_columns', array(&$this, 'on_screen_layout_columns'), 10, 2);
 		// Callbacks
 		add_action('admin_menu', array(&$this, 'on_admin_menu')); 
 		add_action('admin_post_save_howto_metaboxes_general', array(&$this, 'on_save_changes'));
-	}
-	
-	// Column Amount
-	function on_screen_layout_columns($columns, $screen) {
-		if ($screen == $this->pagehook) {
-			$columns[$this->pagehook] = 2;
-		}
-		return $columns;
 	}
 	
 	// Add Menus
@@ -327,7 +317,7 @@ class collabpress_dashboard_page {
 		
 			<?php $data = array(); ?>
 		
-			<div id="poststuff" class="metabox-holder<?php echo 2 == $screen_layout_columns ? ' has-right-sidebar' : ''; ?>">
+			<div id="poststuff" class="metabox-holder has-right-sidebar">
 				<div id="side-info-column" class="inner-sidebar">
 					<?php
 					
