@@ -46,6 +46,7 @@ CollabPress is an Open Source project. If you are a developer, make sure to chec
 * Fixed issue with screen options and missing columns
 * Hardened security
 * WordPress 3.5 support
+* Use bundled jQuery UI and Datepicker instead of Google's
 
 = 1.2.1 =
 * Fixed bug when adding tasks without BuddyPress installed
@@ -126,6 +127,9 @@ CollabPress is an Open Source project. If you are a developer, make sure to chec
 = 1.2.2 =
 * Calls to $wpdb have been replaced with calls to the WP APIs
 * Fixed issue with screen options and missing columns
+* Hardened security
+* WordPress 3.5 support
+* Use bundled jQuery UI and Datepicker instead of Google's
 
 = 1.2.1 =
 * Fixed bug when adding tasks without BuddyPress installed
