@@ -99,10 +99,6 @@ class collabpress_dashboard_page {
 	function cp_admin_scripts() {
 		// Register Scripts
 		wp_register_script('cp_admin', CP_PLUGIN_URL . 'includes/js/admin.js');
-		if ( is_ssl() )
-			wp_register_script('jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.3/jquery-ui.min.js');
-		else
-			wp_register_script('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.3/jquery-ui.min.js');
 		wp_register_script('cp_upload', CP_PLUGIN_URL . 'includes/js/cp_uploader.js', array('jquery','media-upload','thickbox'));
 		wp_register_script('cp_post', CP_PLUGIN_URL . 'includes/js/cp_post.js');
 		wp_register_script('cp_fancybox', CP_PLUGIN_URL . 'includes/tools/fancybox/jquery.fancybox-1.3.4.pack.js', array('jquery'));
@@ -110,6 +106,7 @@ class collabpress_dashboard_page {
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('cp_admin');
 		wp_enqueue_script('jquery-ui');
+		wp_enqueue_script('jquery-ui-datepicker');
 		wp_enqueue_script('media-upload');
 		wp_enqueue_script('thickbox');
 		wp_enqueue_script('cp_upload');
