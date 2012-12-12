@@ -690,9 +690,6 @@ function cp_task() {
 	    global $cp_task_list;
 	    global $post;
 
-		//capture task time entered
-		cp_track_task_time();
-
 	    //get open tasks
 	    $tasks_query = cp_get_tasks( $cp_task_list->id, 'open' );
 
@@ -742,29 +739,6 @@ function cp_task() {
 			}
 
 			echo '</p>';
-
-			//time tracking
-			?>
- 			<span class="time-icon open" rel="#add_time_block_<?php echo get_the_ID(); ?>">Add Time</span>
-			<form method="post" id="add_time_block_<?php echo get_the_ID(); ?>" style="display: none;">
-				<input type="hidden" name="cp_task_id" value="<?php echo get_the_ID(); ?>" />
-				<table>
-					<tr>
-						<th>Time</th>
-						<td><input type="text" name="cp_task_time" value="" size="3" />
-					</tr>
-					<tr>
-						<th>Description</th>
-						<td><input type="text" name="cp_task_time_description" value="" size="20" />
-					</tr>
-						<td colspan="2">
-							<input type="submit" name="cp_task_time_submit" value="Add to Log" /> or <span rel="#add_time_block_<?php echo get_the_ID(); ?>" class="close faux-link">Cancel</span>
-						</td>
-					</tr>
-				</table>
-			</form>
-
-			<?php
 
 			echo '<p>Priority: ' .esc_html( $task_priority );
 
@@ -1616,32 +1590,6 @@ function cp_get_options() {
 	}
 
 	return apply_filters( 'cp_get_options', $options, $saved_options );
-}
-
-function cp_track_task_time() {
-	global $post;
-
-	//save time entry
-	if ( isset( $_POST['cp_task_time_submit'] ) ) {
-		global $current_user;
-		get_currentuserinfo();
-
-		$cp_task_id = absint( $_POST['cp_task_id'] );
-		$cp_task_time = floatval( $_POST['cp_task_time'] );
-		$cp_task_time_desc = strip_tags( $_POST['cp_task_time_description'] );
-
-		$task_meta = array();
-		$task_meta['task_id'] = $cp_task_id;
-		$task_meta['user_id'] = $current_user->ID;
-		$task_meta['time'] = $cp_task_time;
-		$task_meta['desc'] = $cp_task_time_desc;
-
-		add_post_meta( $post->ID, '_cp_task_time', $task_meta, false );
-
-		do_action( 'cp_add_time', $cp_task_id, $cp_task_time );
-
-	}
-
 }
 
 //limit string length function
