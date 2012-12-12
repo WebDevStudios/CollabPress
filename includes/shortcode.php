@@ -300,9 +300,6 @@ function cp_sc_task() {
 		//verify user has permission to access the project
 		if ( cp_check_project_permissions( $current_user->ID, $cp_project->id ) ) {
 
-			//capture task time entered
-			cp_track_task_time();
-
 			//get open tasks
 			$tasks_query = cp_get_tasks( $cp_task_list->id, 'open' );
 			$cp_count = 0;
@@ -366,32 +363,10 @@ function cp_sc_task() {
 						echo '<span class="cp_assign_due">'.__( 'Assigned to:', 'collabpress' ) .'' .get_avatar( $task_user_id, 16 ). '' . $user_name . ' - ' .__('Due: ', 'collabpress') . $task_due_date .' - ' .__('Priority: ', 'collabpress') .$task_priority.'</span>';
 						if ( $num_comments > 0 ) echo '<span class="cp_task_comm">'.$num_comments. '</span>';
 						
-						echo '<span class="time-icon open" rel="#add_time_block_' . get_the_ID() . '">Add Time</span>';
 						//check if user can view edit/delete links
 						if ( cp_check_permissions( 'settings_user_role' ) ) {
 							echo '<span class="edit-del-links"><a class="cp_task_edit" href="'.$cp_edit_link.'">' .__('edit', 'collabpress'). '</a> &middot; <a class="cp_task_del" href="'. $cp_del_link .'" style="color:red;" onclick="javascript:check=confirm(\'' . __('WARNING: This will delete the selected task.\n\nChoose [Cancel] to Stop, [OK] to delete.\n', 'collabpress' ) .'\');if(check==false) return false;">' .__( 'delete', 'collabpress' ). '</a></span>';
 						}
-
-						//time tracking
-						?>		
-						<form method="post" class="add-time" id="add_time_block_<?php echo get_the_ID(); ?>" style="display: none;">
-							<input type="hidden" name="cp_task_id" value="<?php echo get_the_ID(); ?>" />
-							<table>
-								<tr>
-									<th>Time</th>
-									<td><input type="text" name="cp_task_time" value="" size="3" />
-								</tr>
-								<tr>
-									<th>Description</th>
-									<td><input type="text" name="cp_task_time_description" value="" size="20" />
-								</tr>
-									<td colspan="2">
-										<input type="submit" name="cp_task_time_submit" value="Add to Log" /> or <span rel="#add_time_block_<?php echo get_the_ID(); ?>" class="close faux-link">Cancel</span>
-									</td>
-								</tr>
-							</table>
-						</form>
-						<?php
 
 					echo '</div>';
 
