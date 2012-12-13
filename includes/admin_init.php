@@ -66,10 +66,6 @@ function cp_frontend_init() {
 
 		// Register Scripts
 		wp_register_script('cp_frontend', CP_PLUGIN_URL . 'includes/js/frontend.js', array('jquery'));
-		if ( is_ssl() )
-			wp_register_script('jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.7.3/jquery-ui.min.js', array('jquery'));
-		else
-			wp_register_script('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.3/jquery-ui.min.js', array('jquery'));
 	endif;
 }
 
@@ -83,6 +79,7 @@ function collabpress_frontend_styles() {
 add_action( 'wp_print_scripts', 'collabpress_frontend_scripts' );
 function collabpress_frontend_scripts() {
 	wp_enqueue_script('jquery-ui');
+	wp_enqueue_script('jquery-ui-datepicker');
 	wp_enqueue_script('cp_frontend');
 	?>
 	<script language="JavaScript">

@@ -44,6 +44,7 @@ function cp_using_shortcode($posts) {
     wp_enqueue_style('cp_frontend_css');
     
     wp_register_script('cp_frontend_js', $js_src );
+	wp_enqueue_script('jquery');  
     wp_enqueue_script('cp_frontend_js');    
 	}
 	
