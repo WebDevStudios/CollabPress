@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_i
 Tags: task, management, basecamp, to do, projects, lists, team, planning, tracking, reporting, shortcode, widget, multisite, buddypress
 Requires at least: 3.0
 Tested up to: 3.5
-Stable tag: 1.2.2
+Stable tag: 1.2.3
 
 Project management and task tracking software for WordPress
 
@@ -40,6 +40,9 @@ CollabPress is an Open Source project. If you are a developer, make sure to chec
 6. BuddyPress Group integration
 
 == Changelog ==
+
+= 1.2.3 =
+* Removed remaining Google Hosted jQuery
 
 = 1.2.2 =
 * Calls to $wpdb have been replaced with calls to the WP APIs
@@ -123,6 +126,9 @@ CollabPress is an Open Source project. If you are a developer, make sure to chec
 * First beta release
 
 == Upgrade Notice ==
+
+= 1.2.3 =
+* Removed remaining Google Hosted jQuery
 
 = 1.2.2 =
 * Calls to $wpdb have been replaced with calls to the WP APIs
