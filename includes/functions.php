@@ -126,7 +126,12 @@ function cp_get_breadcrumb() {
 	// Task page
 	echo '<div id="cp_breadcrumb">';
 		echo '<ul>';
-		if ( $cp_project_page ) :
+		
+		if ( $cp_calendar_page || $cp_view_projects ) :
+			
+			echo '<li class="dash-crumb"><a href="' .CP_DASHBOARD. '">'.__('Dashboard', 'collabpress').'</a></li>';
+		
+		elseif ( $cp_project_page ) :
 
 			echo '<li class="dash-crumb"><a href="' .CP_DASHBOARD. '">'.__('Dashboard', 'collabpress').'</a></li><li class="proj-crumb"><span>' .get_the_title( $cp_project->id ) .'</span></li>';
 
@@ -150,6 +155,7 @@ function cp_get_breadcrumb() {
 			echo '<li class="dash-crumb"><span>'.__('Dashboard', 'collabpress').'</span></li>';
 
 		endif;
+		
 		echo '</ul>';
 	echo '</div>';
 }
