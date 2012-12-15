@@ -84,14 +84,11 @@ class collabpress_dashboard_page {
 	function cp_admin_styles() {
 		// Register Styles
 		wp_register_style('cp_admin', CP_PLUGIN_URL . 'includes/css/admin.css');
-		if ( is_ssl() )
-			wp_register_style('jquery-ui', 'https://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css');
-		else
-			wp_register_style('jquery-ui', 'http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css');
+		wp_register_style('cp_jquery-ui', CP_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css');
 		wp_register_style('cp_fancybox', CP_PLUGIN_URL . 'includes/tools/fancybox/jquery.fancybox-1.3.4.css');
 		
 		wp_enqueue_style('cp_admin');
-		wp_enqueue_style('jquery-ui');
+		wp_enqueue_style('cp_jquery-ui');
 		wp_enqueue_style('thickbox');
 		wp_enqueue_style('cp_fancybox');
 	}
