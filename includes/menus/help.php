@@ -22,10 +22,11 @@ if ( cp_check_permissions( 'settings_user_role' ) ) {
             <img alt="" border="0" src="https://www.paypal.com/en_US/i/scr/pixel.gif" width="1" height="1">
             </form>
         </p>
+		
+		<?php /*
         <h3><?php _e( 'Latest CollabPress News', 'collabpress' ); ?></h3>
         <?php
         echo '<div class="cp-rss-widget">';
-
         wp_widget_rss_output( array(
             'url' => esc_url( CP_RSS_URL ),
             'title' => __( 'CollabPress News', 'collabpress' ),
@@ -34,10 +35,9 @@ if ( cp_check_permissions( 'settings_user_role' ) ) {
             'show_author' => 0,
             'show_date' => 1 
         ) );
+        echo '</div>';
+		*/
 
-        echo '</div>';	
-        ?>
-<?php
     echo '<hr />';
     cp_footer();
 }
