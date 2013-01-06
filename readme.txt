@@ -43,6 +43,7 @@ CollabPress is an Open Source project. If you are a developer, make sure to chec
 
 = 1.2.3 =
 * Removed remaining Google Hosted jQuery
+* Show comments and comment form while viewing a task in BuddyPress on the front-end
 
 = 1.2.2 =
 * Calls to $wpdb have been replaced with calls to the WP APIs
@@ -129,6 +130,7 @@ CollabPress is an Open Source project. If you are a developer, make sure to chec
 
 = 1.2.3 =
 * Removed remaining Google Hosted jQuery
+* Show comments and comment form while viewing a task in BuddyPress on the front-end
 
 = 1.2.2 =
 * Calls to $wpdb have been replaced with calls to the WP APIs
