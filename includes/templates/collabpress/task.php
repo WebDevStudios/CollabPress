@@ -16,7 +16,12 @@ global $cp_page, $cp_bp_integration;
 		<?php $cp_page->cp_edit_task_meta() ?>
 	</div>
 </div>
-
+<div class="cp-meta-box cp-task-overview">
+	<h4 class="hndle"><span><?php _e( 'Task Comments', 'collabpress' ) ?></span></h4>
+	<div class="inside">
+		<?php cp_task_comments(); ?>
+	</div>
+</div>
 <?php /* Files are disabled for the moment */ ?>
 <?php /*
 <div class="cp-meta-box cp-files hide-on-load">
