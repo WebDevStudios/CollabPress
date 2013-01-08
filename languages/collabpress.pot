@@ -852,3 +852,23 @@ msgstr ""
 msgid "opened"
 msgstr ""
 
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:986
+msgid "Check All"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:987
+msgid "Uncheck All"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:13
+msgid "FAQ"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:987
+msgid "Q: Why isn&apos;t CollabPress working with BuddyPress?"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:987
+msgid "A: CollabPress requires BuddyPress v1.5 or higher to work.  You can download a copy on the <a href="http://buddypress.org/blog/" target="_blank">BuddyPress site</a>"
+msgstr ""
+
