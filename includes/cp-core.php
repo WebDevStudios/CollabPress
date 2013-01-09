@@ -34,9 +34,9 @@ do_action( 'cp_after_widgets' );
 add_action( 'bp_include', 'cp_load_bp_functions' );
 
 // Add "View CollabPress Dashboard" link on plugins page
-add_filter( 'plugin_action_links_' . CP_BASENAME, 'filter_plugin_actions' );
+add_filter( 'plugin_action_links_' . CP_BASENAME, 'cp_filter_plugin_actions' );
 
-function filter_plugin_actions ( $links ) {
+function cp_filter_plugin_actions( $links ) {
 	$settings_link = '<a href="'.CP_DASHBOARD.'">'.__('View Dashboard', 'collabpress').'</a>';
 	array_unshift ( $links, $settings_link );
 	return $links;
