@@ -359,21 +359,29 @@ function cp_overview() {
 	// Project Count
 	$projectCount = wp_count_posts('cp-projects');
 	$projectCount = $projectCount->publish;
-	echo '<p><span class="overview-count">'.$projectCount.'</span> '.__('Project', 'collabpress').(($projectCount == 1) ? '' : 's').'</p>';
+	echo '<p>';
+	echo sprintf( _n('<span class="overview-count">%d</span> Project', '<span class="overview-count">%d</span> Projects', 'collabpress', $projectCount ), $projectCount );
+	echo '</p>';
 
 	// Task Lists Count
 	$taskListCount = wp_count_posts('cp-task-lists');
 	$taskListCount = $taskListCount->publish;
-	echo '<p><span class="overview-count">'.$taskListCount.'</span> '.__('Task List', 'collabpress').(($taskListCount == 1) ? '' : 's').'</p>';
+	echo '<p>';
+	echo sprintf( _n('<span class="overview-count">%d</span> Task List', '<span class="overview-count">%d</span> Task Lists', 'collabpress', $taskListCount ), $taskListCount );
+	echo '</p>';
 
 	// Tasks Count
 	$taskCount = wp_count_posts('cp-tasks');
 	$taskCount = $taskCount->publish;
-	echo '<p><span class="overview-count">'.$taskCount.'</span> '.__('Task', 'collabpress').(($taskCount == 1) ? '' : 's').'</p>';
+	echo '<p>';
+	echo sprintf( _n('<span class="overview-count">%d</span> Task', '<span class="overview-count">%d</span> Tasks', 'collabpress', $taskCount ), $taskCount );
+	echo '</p>';
 
 	// User Count
 	$result = count_users();
-	echo '<p><span class="overview-count">' .$result['total_users'] .'</span> '.__('User', 'collabpress') .( ( $result['total_users'] == 1 ) ? '' : 's' ) .'</p>';
+	echo '<p>';
+	echo sprintf( _n('<span class="overview-count">%d</span> Task', '<span class="overview-count">%d</span> Tasks', 'collabpress', $result['total_users'] ), $result['total_users'] );
+	echo '</p>';
 
 	echo '</div>';
 }
