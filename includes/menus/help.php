@@ -11,8 +11,8 @@ if ( cp_check_permissions( 'settings_user_role' ) ) {
         <h3><?php _e( 'Support and Info', 'collabpress' ); ?></h3>
         <p><?php _e('Visit the', 'collabpress'); ?> <a href="<?php echo esc_url( 'http://collabpress.org/support/forum/' ); ?>" target="_blank"><?php _e('CollabPress Support Forum', 'collabpress'); ?></a> &middot; <a href="http://twitter.com/collabpress" target="_blank"><?php _e( 'Follow on Twitter', 'collabpress' ); ?></a> &middot; <a href="http://collabpress.org/stay-informed/" target="_blank"><?php _e( 'Subscribe via Email', 'collabpress' ); ?></a></p>
         <h3><?php _e( 'FAQ', 'collabpress' ); ?></h3>
-		<p><strong>Q: Why isn't CollabPress working with BuddyPress?</strong></p>
-		<p>A: CollabPress requires BuddyPress v1.5 or higher to work.  You can download a copy on the <a href="http://buddypress.org/blog/" target="_blank">BuddyPress site</a>.</p>
+		<p><strong><?php _e( 'Q: Why isn&apos;t CollabPress working with BuddyPress?', 'collabpress' ); ?></strong></p>
+		<p><?php _e( 'A: CollabPress requires BuddyPress v1.5 or higher to work.  You can download a copy on the <a href="http://buddypress.org/blog/" target="_blank">BuddyPress site</a>', 'collabpress' ); ?>.</p>
 		<h3><?php _e( 'Donate', 'collabpress' ); ?></h3>
         <p><?php _e('Please donate to the development of CollabPress:', 'collabpress'); ?>
             <form action="https://www.paypal.com/cgi-bin/webscr" method="post">
