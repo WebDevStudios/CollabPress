@@ -104,7 +104,11 @@ function collabpress_frontend_scripts() {
 <?php
 }
 
-// CollabPress Init
+/**
+ * CollabPress Init
+ * 
+ * Register Custom Post Types
+ */
 add_action( 'init', 'collabpress_init', 5 );
 function collabpress_init() {
 
@@ -114,7 +118,7 @@ function collabpress_init() {
 	// Check if debug mode is enabled
 	$cp_debug_mode = ( $cp_options['debug_mode'] == 'enabled' ) ? true : false;
 
-	// Custom Post Types
+	// Register Custom Post Types
 
 	// Projects
 	$args_projects = array(
