@@ -44,6 +44,10 @@ define( 'CP_DASHBOARD', $cp_dashboard );
 // CollabPress Core
 require_once( 'includes/cp-core.php' );
 
+/**
+ * Returns the query string of CollabPress values
+ * e.g. task=3&task-list=4
+ */
 function cp_frontend_querystrings() {
 
 	// grab any query strings that exist
