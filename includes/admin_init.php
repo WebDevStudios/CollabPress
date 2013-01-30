@@ -1,16 +1,21 @@
 <?php
 
-// Initialize CollabPress settings
+
 add_action( 'admin_init', 'cp_admin_init' );
+
+// Initialize CollabPress settings
 function cp_admin_init() {
-	
+
 	// Register CollabPress options
 	register_setting( 'cp_options_group', 'cp_options' );
-	
+
 	//add CP user capabilities to the built in accounts
 	global $wp_roles;
 
 	// add capabilities to Client user role
+	// TODO: use get_role() instead of global $wp_roles
+	// TODO: review roles and capabilities in CP. Why should a subscriber be able to add projects
+
 	$wp_roles->add_cap( 'administrator', 'cp_add_projects' );
 	$wp_roles->add_cap( 'administrator', 'cp_edit_projects' );
 	$wp_roles->add_cap( 'administrator', 'cp_add_task_lists' );
@@ -57,13 +62,16 @@ function cp_translation() {
 // Frontend Init
 add_action( 'init', 'cp_frontend_init' );
 function cp_frontend_init() {
-	if ( !is_admin() ) :
-		// Register Styles
-		wp_register_style('cp_jquery-ui', CP_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css');
-		
-		// Register Scripts
-		wp_register_script('cp_frontend', CP_PLUGIN_URL . 'includes/js/frontend.js', array('jquery'));
-	endif;
+
+	// Only for the front-end
+	if ( is_admin() )
+		return;
+	
+	// Register Styles
+	wp_register_style('cp_jquery-ui', CP_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css');
+	
+	// Register Scripts
+	wp_register_script('cp_frontend', CP_PLUGIN_URL . 'includes/js/frontend.js', array('jquery'));
 }
 
 // Print Styles
