@@ -117,42 +117,43 @@ function collabpress_init() {
 	// Custom Post Types
 
 	// Projects
-	$args_projects = array('label' => __('Projects', 'collabpress'),
-								'description' => __('Custom Post Type for CollabPress Projects', 'collabpress'),
-								'public' => $cp_debug_mode,
-								'supports' => array('title','author','thumbnail','comments','custom-fields'),
-								'exclude_from_search' => true
-								);
+	$args_projects = array(
+		'label' => __( 'Projects', 'collabpress' ),
+		'description' => __( 'Custom Post Type for CollabPress Projects', 'collabpress' ),
+		'public' => $cp_debug_mode,
+		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+		'exclude_from_search' => true
+	);
 	// Register Projects Custom Post Type
 	register_post_type( 'cp-projects', $args_projects );
 
 	// Task Lists
 	$args_task_lists = array('label' => __('Task Lists', 'collabpress'),
-								'description' => __('Custom Post Type for CollabPress Task Lists', 'collabpress'),
-								'public' => $cp_debug_mode,
-								'supports' => array('title','author','thumbnail','comments','custom-fields'),
-								'exclude_from_search' => true
-								);
+		'description' => __('Custom Post Type for CollabPress Task Lists', 'collabpress'),
+		'public' => $cp_debug_mode,
+		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+		'exclude_from_search' => true
+		);
 	// Register Task List Custom Post Type
 	register_post_type( 'cp-task-lists', $args_task_lists );
 
 	// Tasks
 	$args_tasks = array('label' => __('Tasks', 'collabpress'),
-							'description' => __('Custom Post Type for CollabPress Tasks', 'collabpress'),
-							'public' => $cp_debug_mode,
-							'supports' => array('title','author','thumbnail','comments','custom-fields'),
-							'exclude_from_search' => true
-							);
+		'description' => __('Custom Post Type for CollabPress Tasks', 'collabpress'),
+		'public' => $cp_debug_mode,
+		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+		'exclude_from_search' => true
+		);
 	// Register Tasks Custom Post Type
 	register_post_type( 'cp-tasks', $args_tasks );
 
 	// Meta Data
 	$args_tasks = array('label' => __('Meta Data', 'collabpress'),
-							'description' => __('Custom Post Type for CollabPress Meta Data', 'collabpress'),
-							'public' => $cp_debug_mode,
-							'supports' => array('title','author','thumbnail','comments','custom-fields'),
-							'exclude_from_search' => true
-							);
+		'description' => __('Custom Post Type for CollabPress Meta Data', 'collabpress' ),
+		'public' => $cp_debug_mode,
+		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+		'exclude_from_search' => true
+	);
 	// Register CollabPress Meta Data
 	register_post_type( 'cp-meta-data', $args_tasks );
 	
