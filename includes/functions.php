@@ -234,15 +234,18 @@ function cp_user_notice($data) {
 
 }
 
-// Add Activity
+/**
+ * Create a new CollabPress activity post.
+ * 
+ */
 function cp_add_activity( $action = NULL, $type = NULL, $author = NULL, $ID = NULL ) {
 	$add_activity = array(
-						'post_title' => __( 'Activity', 'collabpress' ),
-						'post_status' => 'publish',
-						'post_type' => 'cp-meta-data'
-						);
+		'post_title' => __( 'Activity', 'collabpress' ),
+		'post_status' => 'publish',
+		'post_type' => 'cp-meta-data'
+		);
 	$activity_id = wp_insert_post( $add_activity );
-	update_post_meta( $activity_id, '_cp-meta-type', 'activity');
+	update_post_meta( $activity_id, '_cp-meta-type', 'activity' );
 
 	// Action
 	if ( $action )
@@ -260,7 +263,7 @@ function cp_add_activity( $action = NULL, $type = NULL, $author = NULL, $ID = NU
 	do_action( 'cp_add_activity', $action, $type, $author, $ID, $activity_id );
 }
 
-// Display Calendar Link
+// Output link to CollabPress calendar
 function cp_calendar() {
 	echo '<p><a title="'.__('View Calendar', 'collabpress').'" href="'.CP_DASHBOARD.'&calendar=1">'.__('View Calendar', 'collabpress').'</a></p>';
 }
@@ -523,7 +526,7 @@ function cp_recent_activity($data = NULL) {
 	<?php echo '</div>';
 }
 
-// Add Task
+// Output Add Task HTML form
 function cp_add_task($data = NULL) {
 
     global $cp_project;
@@ -619,7 +622,7 @@ function cp_add_task($data = NULL) {
 	wp_reset_query();
 }
 
-// Edit Task
+// Output Edit Task HTML form
 function cp_edit_task() {
 
 	global $cp_task, $cp_project;
@@ -699,7 +702,7 @@ function cp_edit_task() {
 
 }
 
-// Task
+// Output Task information
 function cp_task() {
 
 	    global $cp_project;
@@ -825,7 +828,7 @@ function cp_task() {
 	    echo '<div style="clear:both;"></div>';
 }
 
-// Add Task list
+// Output Add Task list HTML form
 function cp_add_task_list() {
 
 	global $cp_project;
@@ -876,7 +879,7 @@ function cp_add_task_list() {
 	wp_reset_query();
 }
 
-// Edit Task List
+// Output Edit Task List HTML form
 function cp_edit_task_list() {
 
 	global $cp_task_list;
@@ -916,7 +919,7 @@ function cp_edit_task_list() {
 
 }
 
-// Task List
+// Output Task List
 function cp_task_list() {
 
 	global $cp_project;
@@ -957,7 +960,7 @@ function cp_task_list() {
     endif;
 }
 
-// Add Project
+// Output Add Project HTML form
 function cp_add_project() {
 
 	// Get Current User
@@ -1024,7 +1027,7 @@ function cp_add_project() {
 	}
 }
 
-// Edit Project
+// Output Edit Project form
 function cp_edit_project() {
 
 	global $cp_project, $bp;
