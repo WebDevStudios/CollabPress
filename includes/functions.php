@@ -1,6 +1,9 @@
 <?php
 
-// Get Page Title
+/**
+ * Returns an HTML formatted page title 
+ * for the current CollabPress page
+ */
 function cp_get_page_title() {
 
 	global $cp_dashboard_page;
