@@ -175,14 +175,13 @@ function cp_send_email( $to, $subject, $message ) {
     // If email notifications are enabled proceed
     if ( $cp_email_notify ) {
 
-	// Set email variables
-	$cp_email = ( is_email( $to ) ) ? $to : null;
-	$cp_subject = ( isset( $subject ) ) ? $subject : '';
-	$cp_footer = __('Powered by ', 'collabpress').'<a href="http://collabpress.org">'.__( 'CollabPress.org', 'collabpress' ).'</a>.';
-	$cp_message = $message . "\n\n" .$cp_footer;
+		// Set email variables
+		$cp_email = ( is_email( $to ) ) ? $to : null;
+		$cp_subject = ( isset( $subject ) ) ? $subject : '';
+		$cp_message = $message;
 
-	// Send Away
-	wp_mail( $cp_email, $cp_subject, $cp_message );
+		// Send Away
+		wp_mail( $cp_email, $cp_subject, $cp_message );
     }
 }
 
