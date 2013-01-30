@@ -6,10 +6,6 @@ do_action( 'cp_core' );
 // Install CollabPress
 register_activation_hook( __FILE__, 'cp_install' );
 
-// Check for Pro Version
-if ( file_exists( CP_PLUGIN_DIR . '/collabpress-pro.php' ) )
-	require_once( CP_PLUGIN_DIR . '/collabpress-pro.php' );
-
 // CollabPress Admin Init Functions
 require_once( 'admin_init.php' );
 do_action( 'cp_after_admin_init' );
