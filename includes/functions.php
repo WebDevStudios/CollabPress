@@ -1480,28 +1480,6 @@ function cp_get_url( $ID = NULL, $type = NULL ) {
     return apply_filters( $filter_name, $cp_url, $ID );
 }
 
-// Retrieve all tasks in a task list with a specific status
-function cp_get_tasks( $task_list_id, $status ) {
-	$task_list_id = absint( $task_list_id );
-	$status = esc_attr( $status );
-    if ( $task_list_id && $status ) {
-		$tasks = get_posts( array( 
-			'post_type' => 'cp-tasks',
-			'meta_query' => array( 
-				array( 
-					'key' => '_cp-task-list-id',
-					'value' => $task_list_id,
-				),
-				array( 
-					'key' => '_cp-task-status',
-					'value' => $status,
-				)
-			)
-		) );
-		return $tasks;
-    }
-}
-
 // Validate Date
 function cp_validate_date( $value = NULL ) {
 	return preg_match( '`^\d{1,2}/\d{1,2}/\d{4}$`' , $value );
@@ -1619,4 +1597,123 @@ function cp_limit_length( $strtolimit=null, $limit=50 ) {
 	}
 
 	return $strtolimit;
+}
+
+function cp_get_projects( $args = array() ) {
+	$defaults = array(
+		'post_type' => 'cp-projects',
+		'posts_per_page' => -1,
+	);
+	$args = wp_parse_args( $args, $defaults );
+	return get_posts( $args );
+}
+
+function cp_project_permalink( $project_id ) {
+	echo add_query_arg( array( 'project' => $project_id ), CP_DASHBOARD );
+}
+
+
+// Retrieve all tasks in a task list with a specific status
+function cp_get_tasks( $args = array() ) {
+	$defaults = array(
+		'post_type' => 'cp-tasks',
+		'posts_per_page' => -1,
+		'project_id' => NULL,
+		'task_list_id' => NULL,
+		'status' => 'any',
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args );
+
+	if ( $task_list_id ) {
+		$args['meta_query'][] = array( 
+			'key' => '_cp-task-list-id',
+			'value' => $task_list_id,
+		);
+	}
+
+	if ( $project_id ) {
+		$args['meta_query'][] = array( 
+			'key' => '_cp-project-id',
+			'value' => $project_id,
+		);
+	}
+
+	if ( $status != 'any' ) {
+		$args['meta_query'][] = array( 
+			'key' => '_cp-task-status',
+			'value' => $status,
+		);
+	}
+
+	return get_posts( $args );
+}
+
+function cp_project_title() {
+	global $cp;
+	echo '<h2>' . $cp->project->post_title . '</h2>';
+}
+
+function cp_has_tasks( $args = array() ) {
+	global $cp;
+
+	$defaults = array(
+		'post_type' => 'cp-tasks',
+		'posts_per_page' => -1,
+		'project_id' => NULL,
+		'task_list_id' => NULL,
+		'status' => 'any',
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+
+	extract( $args );
+
+	if ( $task_list_id ) {
+		$args['meta_query'][] = array( 
+			'key' => '_cp-task-list-id',
+			'value' => $task_list_id,
+		);
+	}
+
+	if ( $project_id ) {
+		$args['meta_query'][] = array( 
+			'key' => '_cp-project-id',
+			'value' => $project_id,
+		);
+	} else if ( ! empty( $cp->project ) ) {
+		$args['meta_query'][] = array( 
+			'key' => '_cp-project-id',
+			'value' => $cp->project->ID,
+		);
+	}
+
+	if ( $status != 'any' ) {
+		$args['meta_query'][] = array( 
+			'key' => '_cp-task-status',
+			'value' => $status,
+		);
+	}
+
+	$cp->tasks = new WP_Query( $args );
+
+	return $cp->tasks->have_posts();
+}
+
+function cp_tasks() {
+	global $cp;
+	// Put into variable to check against next
+	$have_posts = $cp->tasks->have_posts();
+
+	// Reset the post data when finished
+	if ( empty( $have_posts ) )
+		wp_reset_postdata();
+	
+	return $have_posts;
+}
+
+function cp_the_task() {
+	global $cp;
+	return $cp->tasks->the_post();
 }
