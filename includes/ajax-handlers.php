@@ -68,3 +68,39 @@ function cp_add_new_task_handler() {
 
 	wp_send_json_success( array( 'redirect' => $permalink ) );
 }
+
+
+add_action( 'wp_ajax_cp_delete_task', 'cp_delete_task_handler' );
+
+function cp_delete_task_handler() {
+	global $wpdb, $cp;
+	
+	$data = $_REQUEST['data'];
+	extract( $data );
+	// todo fix nonce
+	// if ( ! wp_verify_nonce( $nonce, 'add_new_task' ) ) {
+	// 	echo 'bad nonce';
+	// 	die;
+	// }
+	wp_delete_post( $task_id, true );
+
+	wp_send_json_success();
+}
+
+
+add_action( 'wp_ajax_cp_attach_new_file', 'cp_attach_new_file_handler' );
+
+function cp_attach_new_file_handler() {
+	global $wpdb, $cp;
+	
+	$data = $_REQUEST['data'];
+	extract( $data );
+	// todo fix nonce
+	$attachment = get_post( $attachment_id );
+
+	wp_insert_attachment( $attachment, '', $project_id );
+
+	wp_send_json_success();
+}
+
+

@@ -111,15 +111,20 @@ function cp_admin_menu_page_load() {
 		// Set Project ID
 		if ( ! empty( $cp->task ) )
 			cp_load_template( 'content-single-task' );
-		else if ( ! empty( $cp->view ) )
+		else if ( ! empty( $cp->view ) ) {
+			if ( $cp->view == 'files' )
+				wp_enqueue_media();
 			cp_load_template( 'content-single-project-' . $cp->view );
+		}
 		else 
 			cp_load_template( 'content-single-project' );
 	} else {
 		if ( ! empty( $cp->view ) )
 			cp_load_template( 'content-' . $cp->view );
-		else
+		else {
 			cp_load_template( 'dashboard' );
+		}
+			
 	}
 }
 

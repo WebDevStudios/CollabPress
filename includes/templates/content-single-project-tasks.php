@@ -11,7 +11,7 @@
 			<?php if ( cp_has_tasks() ) : ?>
 				<?php while( cp_tasks() ) : cp_the_task(); ?>
 					<div class="collabpress-task">
-						<a href="<?php cp_task_permalink(); ?>"><?php the_title(); ?></a>
+						<a href="<?php cp_task_permalink(); ?>"><?php the_title(); ?></a> <a href="javascript:void(0);" class="delete-task" data-id="<?php echo get_the_ID(); ?>">delete</a>
 					</div>
 				<?php endwhile; ?>
 			<?php endif; ?>
@@ -82,6 +82,28 @@
 
 <script>
 (function($) {
+	$('.delete-task').click(function(i, el) {
+		var confirm_delete = confirm('Are you sure you want to delete this task?');
+		var task_el = $(this);
+		if ( ! confirm_delete )
+			return;
+
+		var data = {
+			task_id: task_el.data( 'id' )
+		};
+
+		// todo: add nonce
+		$.post(
+			ajaxurl,
+			{
+				action: 'cp_delete_task',
+				data: data
+			},
+			function( response ) {
+				task_el.parent('.collabpress-task').hide();
+			}
+		);
+	});
 	$(document).ready(function() {
 		$('.add-new-task').colorbox(
 			{

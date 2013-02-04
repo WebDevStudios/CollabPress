@@ -42,14 +42,14 @@
 						<th scope="row"><label for="cp-task-assign"><?php _e('Assigned to: ', 'collabpress') ?></label></th>
 						<td>
 							<p>
-		                        <?php
+														<?php
 								$user_list = '<select name="cp-task-assign" id="cp-task-assign">';
 								foreach ( cp_get_project_users() as $wp_user )
 									$user_list .= '<option value="' . $wp_user->ID . '">' . $wp_user->user_login . '</option>';
 								$user_list .= '</select>';
-                				$user_list = apply_filters( 'cp_task_user_list_html', $user_list, false );
-                				echo $user_list;
-		                        ?>
+												$user_list = apply_filters( 'cp_task_user_list_html', $user_list, false );
+												echo $user_list;
+														?>
 							</p>
 						</td>
 					</tr>
@@ -82,39 +82,53 @@
 
 <script>
 (function($) {
-	$(document).ready(function() {
-		$('.add-new-task').colorbox(
-			{
-				inline: true, 
-				width: '50%',
-				onLoad: function() {}
-			}
-		);
-	});
-	$('.submit').click(function() {
+	// Uploading files
+var file_frame;
+ 
+	jQuery('.add-new-task').live('click', function( event ){
+ 
+		event.preventDefault();
+ 
+		// If the media frame already exists, reopen it.
+		if ( file_frame ) {
+			file_frame.open();
+			return;
+		}
+ 
+		// Create the media frame.
+		file_frame = wp.media.frames.file_frame = wp.media({
+			title: 'Select a file',
+			button: {
+				text: 'Attach file to project',
+			},
+			multiple: false	// Set to true to allow multiple files to be selected
+		});
 
-		var data = { 
-			post_title: $('#cp-task').val(),
-			project_id: $('#cp-project-id').val(),
-			task_description: $('#cp-task').val(),
-			task_due_date: $('#cp-task-due-date').val(),
-			task_assigned_to: $('#cp-task-assign').val(),
-			task_priority: $('#cp-task-priority').val(),
-			send_email_notification: $('#notify').val(),
-		};
-		data.nonce = $('#add_new_task_nonce').val();
-		$('#inline_content .spinner').show();
-		$.post(
-			ajaxurl,
-			{
-				action: 'cp_add_new_task',
-				data: data
-			}, function( response ) {
-				console.log( response );
-				$('#inline_content .spinner').hide();
-				window.location = response.data.redirect;
-			}
-		);
+		
+ 
+		// When an image is selected, run a callback.
+		file_frame.on( 'select', function() {
+			// We set multiple to false so only get one image from the uploader
+			attachment = file_frame.state().get('selection').first().toJSON();
+ 			$.post(
+ 				ajaxurl,
+ 				{
+ 					action: 'cp_attach_new_file',
+ 					data: {
+ 						project_id: <?php echo cp_get_project_id(); ?>,
+ 						attachment_id: attachment.id,
+ 					}
+				},
+				function( response ) {
+					location.reload();
+				}
+			);
+			// Do something with attachment.id and/or attachment.url here
+		});
+ 
+		// Finally, open the modal
+		file_frame.open();
+
 	});
 })(jQuery);
 </script>

@@ -25,6 +25,13 @@
 		</div>
 		<div class="files">
 			<h3>Files</h3>
+			<?php if ( cp_has_files() ) : ?>
+				<?php while( cp_files() ) : cp_the_file(); ?>
+					<div class="collabpress-task">
+						<a href="<?php echo wp_get_attachment_url( get_the_ID() ); ?>"><?php the_title(); ?></a>
+					</div>
+				<?php endwhile; ?>
+			<?php endif; ?>
 			<a href="<?php cp_project_files_permalink(); ?>">View all files</a>
 		</div>
 
