@@ -56,11 +56,18 @@ function cp_add_admin_menu_item() {
 	);
 }
 
+add_action( 'init', 'asdf' );
+
+function asdf() {
+	require_once('isset/comment.php');
+}
+
+add_action( 'init', 'cp_setup_cp_global', 5 );
 /**
  * Setup the $cp PHP global
  */
 function cp_setup_cp_global() {
-	global $cp;
+	global $cp, $wpdb;
 
 	$cp = new StdClass;
 
@@ -69,6 +76,7 @@ function cp_setup_cp_global() {
 		'project'        => false,
 		'task'           => false,
 		'cp_page'        => false,
+		'view'           => false,
 	);
 
 	// Parse query string variables and set CollabPress global appropriately
@@ -78,12 +86,17 @@ function cp_setup_cp_global() {
 				case 'project':
 					$cp->project = get_post( $_REQUEST[$key] );
 				break;
+				case 'task':
+					$cp->task = get_post( $_REQUEST[$key] );
+				break;
 				default:
 					$cp->$key = $_REQUEST[$key];
 				break;
 			}
 		}
 	}
+
+	$cp->tables->project_users = $wpdb->prefix . 'cp_project_users';
 }
 
 /**
@@ -92,7 +105,7 @@ function cp_setup_cp_global() {
  */
 function cp_admin_menu_page_load() {
 	global $cp;
-	cp_setup_cp_global();
+
 	// Loading specific project
 	if ( ! empty( $cp->project ) ) {
 		// Set Project ID
@@ -103,7 +116,10 @@ function cp_admin_menu_page_load() {
 		else 
 			cp_load_template( 'content-single-project' );
 	} else {
-		cp_load_template( 'dashboard' );
+		if ( ! empty( $cp->view ) )
+			cp_load_template( 'content-' . $cp->view );
+		else
+			cp_load_template( 'dashboard' );
 	}
 }
 

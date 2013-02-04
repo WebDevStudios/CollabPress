@@ -3,7 +3,7 @@
 Plugin Name: CollabPress
 Plugin URI: http://collabpress.org/
 Description: A Project Management Plugin for WordPress
-Version: 1.2.3
+Version: 1.2.4
 Author: WebDevStudios.com
 Author URI: http://webdevstudios.com/
 License: GPLv2
@@ -26,12 +26,11 @@ License: GPLv2
 */
 
 // CollabPress Define(s)
-define( 'CP_VERSION', '1.2.3' );
+define( 'CP_VERSION', '1.2.4' );
 define( 'CP_BASENAME', plugin_basename(__FILE__) );
 define( 'CP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'CP_PLUGIN_URL', plugins_url( $path = 'collabpress/' ) );
+define( 'CP_PLUGIN_URL', plugins_url( substr( CP_BASENAME, 0, strpos( CP_BASENAME, '/' ) ) ) . '/' );
 define( 'CP_RSS_URL', 'http://collabpress.org/feed' );
-
 // Before CollabPress
 do_action( 'cp_before_collabpress' );
 
@@ -43,6 +42,29 @@ define( 'CP_DASHBOARD', $cp_dashboard );
 
 // CollabPress Core
 require_once( 'includes/cp-core.php' );
+
+cp_1_3_upgrade();
+function cp_1_3_upgrade() {
+	global $wpdb;
+	$installed_ver = get_option( 'cp_version' );
+
+	$tablename = $wpdb->prefix . 'cp_project_users';
+
+	// if( $installed_ver != CP_VERSION ) {
+		$sql = "CREATE TABLE $tablename (
+			project_member_id bigint(20) NOT NULL AUTO_INCREMENT,
+			project_id bigint(20) NOT NULL,
+			user_id bigint(20) NOT NULL,
+			UNIQUE KEY project_member_id (project_member_id)
+		);";
+
+		require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+		dbDelta($sql);
+
+		update_option( 'cp_version', CP_VERSION );
+	// }
+}
+
 
 /**
  * Returns the query string of CollabPress values

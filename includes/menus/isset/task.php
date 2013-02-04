@@ -9,28 +9,7 @@ if ( isset( $_POST['cp-add-task'] ) && isset($_POST['cp-task']) ) :
 
 	check_admin_referer('cp-add-task');
 
-	$add_task = array(
-					'post_title' => esc_html($_POST['cp-task']),
-					'post_status' => 'publish',
-					'post_type' => 'cp-tasks'
-					);
-	$task_id = wp_insert_post( $add_task );
-
-	//add task status
-	update_post_meta( $task_id, '_cp-task-status', 'open' );
-
-	// Where we get the project_id from depends on whether this is a BP installation
-	if ( isset( $_GET['project'] ) ) {
-		$project_id = $cp_project->id;
-	} else if ( is_object( $cp_bp_integration ) && method_exists( $cp_bp_integration, 'get_current_item_project' ) ) {
-		$project_id = $cp_bp_integration->get_current_item_project();
-	} else {
-		$project_id = NULL;
-	}
-
-	if ( $project_id ) {
-		update_post_meta( $task_id, '_cp-project-id', $project_id );
-	}
+	$task_id = cp_insert_task( array( $_POST['cp-task'] ) );
 
 	// Where we get the task list from depends on whether this is a BP installation
 	if ( isset( $_GET['task-list'] ) ) {
@@ -43,45 +22,6 @@ if ( isset( $_POST['cp-add-task'] ) && isset($_POST['cp-task']) ) :
 
 	if ( $task_list_id ) {
 		update_post_meta( $task_id, '_cp-task-list-id', $task_list_id );
-	}
-
-	if ( isset($_POST['cp-task-due']) ) :
-		// Validate Date
-		if ( cp_validate_date($_POST['cp-task-due']) ) :
-			$taskDate = esc_html($_POST['cp-task-due']);
-		else :
-			$taskDate = date('n/j/Y');
-		endif;
-		update_post_meta( $task_id, '_cp-task-due', $taskDate );
-	endif;
-
-	//save the user assignment
-	if ( isset($_POST['cp-task-assign']) )
-		update_post_meta( $task_id, '_cp-task-assign', absint($_POST['cp-task-assign']) );
-
-	//save the task priority
-	if ( isset($_POST['cp-task-priority']) )
-		update_post_meta( $task_id, '_cp-task-priority', strip_tags($_POST['cp-task-priority']) );
-
-	// Add Activity
-	cp_add_activity(__('added', 'collabpress'), __('task', 'collabpress'), $current_user->ID, $task_id);
-
-	do_action( 'cp_task_added', $task_id );
-
-	//check if email notification is checked
-	if( isset( $_POST['notify'] ) ) {
-
-	    //send email
-	    $task_author_data = get_userdata( absint( $_POST['cp-task-assign'] ) );
-	    $author_email = $task_author_data->user_email;
-
-	    $subject = __('New task assigned to you: ', 'collabpress') .get_the_title( $task_id );
-
-	    $message = __('There is a new task assigned to you:', 'collabpress') . "\n\n";
-	    $message .= esc_html( $_POST['cp-task'] );
-
-	    cp_send_email( $author_email, $subject, $message );
-
 	}
 
 endif;

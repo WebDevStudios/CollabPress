@@ -269,50 +269,50 @@ function cp_calendar() {
 }
 
 // List CollabPress Projects
-function cp_projects() {
+// function cp_projects() {
 
-	// Get Current User
-	global $current_user;
-	get_currentuserinfo();
+// 	// Get Current User
+// 	global $current_user;
+// 	get_currentuserinfo();
 
-	// Get Projects
-	$projects_args = array( 'post_type' => 'cp-projects', 'showposts' => '-1' );
-	$projects_query = new WP_Query( $projects_args );
+// 	// Get Projects
+// 	$projects_args = array( 'post_type' => 'cp-projects', 'showposts' => '-1' );
+// 	$projects_query = new WP_Query( $projects_args );
 
-	// WP_Query();
-	if ( $projects_query->have_posts() ) :
-	    while( $projects_query->have_posts() ) : $projects_query->the_post();
+// 	// WP_Query();
+// 	if ( $projects_query->have_posts() ) :
+// 	    while( $projects_query->have_posts() ) : $projects_query->the_post();
 
-		//verify logged in user has access to this project
-		if ( cp_check_project_permissions( $current_user->ID, get_the_ID() ) ) {
+// 		//verify logged in user has access to this project
+// 		if ( cp_check_project_permissions( $current_user->ID, get_the_ID() ) ) {
 
-		    //generate delete project link
-		    $cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
-		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
+// 		    //generate delete project link
+// 		    $cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
+// 		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
 
-		    //generate edit project link
-		    $cp_edit_link = CP_DASHBOARD.'&project='.get_the_ID().'&view=edit';
+// 		    //generate edit project link
+// 		    $cp_edit_link = CP_DASHBOARD.'&project='.get_the_ID().'&view=edit';
 
-		    echo '<p><a href="'.CP_DASHBOARD.'&project='.get_the_ID().'">'.get_the_title().'</a>';
+// 		    echo '<p><a href="'.CP_DASHBOARD.'&project='.get_the_ID().'">'.get_the_title().'</a>';
 
-		    //check if user can view edit/delete links
-		    if ( cp_check_permissions( 'settings_user_role' ) ) {
-			echo ' - <a href="' .$cp_edit_link. '">' .__( 'edit', 'collabpress'). '</a> &middot; <a href="' .$cp_del_link. '" style="color:red;" onclick="javascript:check=confirm(\'' . __('WARNING: This will delete the selected project, including ALL task lists and tasks in the project.\n\nChoose [Cancel] to Stop, [OK] to delete.\n', 'collabpress' ) .'\');if(check==false) return false;">'.__('delete', 'collabpress').'</a></p>';
-		    }
+// 		    //check if user can view edit/delete links
+// 		    if ( cp_check_permissions( 'settings_user_role' ) ) {
+// 			echo ' - <a href="' .$cp_edit_link. '">' .__( 'edit', 'collabpress'). '</a> &middot; <a href="' .$cp_del_link. '" style="color:red;" onclick="javascript:check=confirm(\'' . __('WARNING: This will delete the selected project, including ALL task lists and tasks in the project.\n\nChoose [Cancel] to Stop, [OK] to delete.\n', 'collabpress' ) .'\');if(check==false) return false;">'.__('delete', 'collabpress').'</a></p>';
+// 		    }
 
-		}
+// 		}
 
-	    endwhile;
-	    wp_reset_query();
+// 	    endwhile;
+// 	    wp_reset_query();
 
-	// No Results
-	else :
-		echo '<p>'.__( 'No Projects...', 'collabpress' ).'</p>';
-	endif;
+// 	// No Results
+// 	else :
+// 		echo '<p>'.__( 'No Projects...', 'collabpress' ).'</p>';
+// 	endif;
 
-	echo '<p><a class="button" title="'.__('View All Projects', 'collabpress').'" href="'.CP_DASHBOARD.'&view-projects=1">'.__('View All Projects', 'collabpress').'</a></p>';
+// 	echo '<p><a class="button" title="'.__('View All Projects', 'collabpress').'" href="'.CP_DASHBOARD.'&view-projects=1">'.__('View All Projects', 'collabpress').'</a></p>';
 
-}
+// }
 
 // List CollabPress Users
 function cp_users( $limit='yes' ) {
@@ -392,7 +392,7 @@ function cp_overview() {
 }
 
 // Thumnnail
-function cp_files($id = NULL) {
+/*function cp_files($id = NULL) {
 	?>
 	<form id="upload_image" name="upload_image">
 	<input class="cp-featured-id" type="hidden" value="<?php echo $id; ?>" />
@@ -427,7 +427,7 @@ function cp_files($id = NULL) {
 
 	echo '</form>';
 }
-
+*/
 // Show Recent Activity
 function cp_recent_activity($data = NULL) {
 
@@ -1106,6 +1106,7 @@ function cp_edit_project() {
 
 // Task Comments
 function cp_task_comments() {
+	global $cp;
 	global $cp_task;
 	global $cp_project;
 
@@ -1113,7 +1114,7 @@ function cp_task_comments() {
 	global $current_user;
 	get_currentuserinfo();
 
-	$comments = get_comments('post_id='.$cp_task->id);
+	$comments = get_comments('post_id='.$cp->task->ID );
 
 	echo '<div id="cp_task_comments_wrap">';
 
@@ -1135,7 +1136,7 @@ function cp_task_comments() {
 					<p class="cp_comment_author"><a title="<?php echo $comm->comment_author ?>" href="<?php echo CP_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo $comm->comment_author ?></a>
 					<?php
 					//generate delete comment link
-					$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&task='.$cp_task->id.'&cp-delete-comment-id='.$comm->comment_ID;
+					$cp_del_link = CP_DASHBOARD .'&project='.$cp->project->ID.'&task='.$cp->task->ID.'&cp-delete-comment-id='.$comm->comment_ID;
 					$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_comment' ) : $cp_del_link;
 
 					if ( $current_user->ID == $comm->user_id || current_user_can( 'manage_options' ) )
@@ -1258,11 +1259,20 @@ function cp_user_page() {
 
 
 // CollabPress Calendar
-function cp_draw_calendar($month = NULL, $year = NULL) {
+function cp_draw_calendar( $args = array() ) {
+	global $cp;
+
+	$defaults = array(
+		'month' => NULL, 
+		'year' => NULL,
+		'project' => NULL
+	);
+	$args = wp_parse_args( $args, $defaults );
+	extract( $args );
 
 	echo '<div id="cp-calendar-wrap">';
 
-	if ( !isset($_GET['month']) && !isset($_GET['day']) ) :
+	if ( ! $month && ! isset( $_GET['day'] ) ) :
 		$month = date('n');
 		$year = date('Y');
 	else :
@@ -1282,7 +1292,15 @@ function cp_draw_calendar($month = NULL, $year = NULL) {
 		$previousYear = $year;
 	endif;
 	$previousmonthName= date("F",mktime(0,0,0,$previousMonth,1,2000)) . ', ' . $previousYear;
-	echo '<a title="" class="cp_previous_month" href="'.CP_DASHBOARD.'&calendar=1&month='.$previousMonth.'&year='.$previousYear.'">'.$previousmonthName.'</a>';
+	$calendar_previous_month_link = cp_get_calendar_permalink( 
+		array( 
+			'project' => $project,
+			'month' => $previousMonth,
+			'year' => $previousYear,
+		)
+	);
+
+	echo '<a title="" class="cp_previous_month" href="' . $calendar_previous_month_link . '">'.$previousmonthName.'</a>';
 
 	// Next Link
 	if ($month == 12) :
@@ -1293,45 +1311,78 @@ function cp_draw_calendar($month = NULL, $year = NULL) {
 		$nextYear = $year;
 	endif;
 	$nextmonthName= date("F",mktime(0,0,0,$nextMonth,1,2000)) . ', ' . $nextYear;
-	echo '<a title="" class="cp_next_month" href="'.CP_DASHBOARD.'&calendar=1&month='.$nextMonth.'&year='.$nextYear.'">'.$nextmonthName.'</a>';
+	$calendar_next_month_link = cp_get_calendar_permalink( 
+		array( 
+			'project' => $project,
+			'month' => $nextMonth,
+			'year' => $nextYear,
+		)
+	);
+	echo '<a title="" class="cp_next_month" href="' . $calendar_next_month_link . '">'.$nextmonthName.'</a>';
 
 	/* draw table */
 	$calendar = '<table cellpadding="0" cellspacing="0" class="calendar">';
 
 	/* table headings */
-	$headings = array(__('Sunday', 'collabpress'), __('Monday', 'collabpress'), __('Tuesday', 'collabpress'), __('Wednesday', 'collabpress'), __('Thursday', 'collabpress'), __('Friday', 'collabpress'), __('Saturday', 'collabpress'));
-	$calendar.= '<tr class="calendar-row" valign="top"><td class="calendar-day-head">'.implode('</td><td class="calendar-day-head">',$headings).'</td></tr>';
+	$headings = array( __('Sunday', 'collabpress'), 
+		__('Monday', 'collabpress'), 
+		__('Tuesday', 'collabpress'), 
+		__('Wednesday', 'collabpress'), 
+		__('Thursday', 'collabpress'), 
+		__('Friday', 'collabpress'), 
+		__('Saturday', 'collabpress') 
+	);
+
+	$calendar .= '<tr class="calendar-row" valign="top"><td class="calendar-day-head">'.implode('</td><td class="calendar-day-head">',$headings).'</td></tr>';
 
 	/* days and weeks vars now ... */
-	$running_day = date('w',mktime(0,0,0,$month,1,$year));
+	$running_day = date(
+		'w',
+		mktime( 0, 0, 0, $month, 1, $year )
+	);
 	$days_in_month = date('t',mktime(0,0,0,$month,1,$year));
 	$days_in_this_week = 1;
 	$day_counter = 0;
 	$dates_array = array();
 
 	/* row for week one */
-	$calendar.= '<tr class="calendar-row" valign="top">';
+	$calendar .= '<tr class="calendar-row" valign="top">';
 
 	/* print "blank" days until the first of the current week */
 	for($x = 0; $x < $running_day; $x++):
-		$calendar.= '<td class="calendar-day-np">&nbsp;</td>';
+		$calendar .= '<td class="calendar-day-np">&nbsp;</td>';
 		$days_in_this_week++;
 	endfor;
 
 	/* keep going with days.... */
-	for($list_day = 1; $list_day <= $days_in_month; $list_day++):
-		$calendar.= '<td class="calendar-day">';
+	for ($list_day = 1; $list_day <= $days_in_month; $list_day++ ):
+		$calendar .= '<td class="calendar-day">';
 			/* add in the day number */
-			$calendar.= '<div class="day-number">'.$list_day.'</div>';
+			$calendar .= '<div class="day-number">'.$list_day.'</div>';
 			$formatDate = $month.'/'.$list_day.'/'.$year;
 
 			// Get Task Lists
-			$tasks_args = apply_filters( 'cp_calendar_tasks_args', array(
-								'post_type' => 'cp-tasks',
-								'meta_key' => '_cp-task-due',
-								'meta_value' => $formatDate,
-								'showposts' => '-1'
-								) );
+			$tasks_args = apply_filters(
+				'cp_calendar_tasks_args', 
+				array(
+					'post_type' => 'cp-tasks',
+					'meta_query' => array(
+						array(
+							 'key' => '_cp-task-due',
+							 'value' => $formatDate,
+						)
+					),
+					'showposts' => '-1'
+				)
+			);
+
+			if ( $project ) {
+				$tasks_args['meta_query'][] = array(
+					'key' => '_cp-project-id',
+				 	'value' => $project,
+				);
+			}
+				
 			$tasks_query = new WP_Query( $tasks_args );
 
 			// WP_Query();
@@ -1352,13 +1403,13 @@ function cp_draw_calendar($month = NULL, $year = NULL) {
 			else :
 			endif;
 
-			$calendar.= str_repeat('<p>&nbsp;</p>',2);
+			$calendar .= str_repeat('<p>&nbsp;</p>',2);
 
-		$calendar.= '</td>';
+		$calendar .= '</td>';
 		if($running_day == 6):
-			$calendar.= '</tr>';
+			$calendar .= '</tr>';
 			if(($day_counter+1) != $days_in_month):
-				$calendar.= '<tr class="calendar-row" valign="top">';
+				$calendar .= '<tr class="calendar-row" valign="top">';
 			endif;
 			$running_day = -1;
 			$days_in_this_week = 0;
@@ -1369,21 +1420,52 @@ function cp_draw_calendar($month = NULL, $year = NULL) {
 	/* finish the rest of the days in the week */
 	if($days_in_this_week < 8):
 		for($x = 1; $x <= (8 - $days_in_this_week); $x++):
-			$calendar.= '<td class="calendar-day-np">&nbsp;</td>';
+			$calendar .= '<td class="calendar-day-np">&nbsp;</td>';
 		endfor;
 	endif;
 
 	/* final row */
-	$calendar.= '</tr>';
+	$calendar .= '</tr>';
 
 	/* end the table */
-	$calendar.= '</table>';
+	$calendar .= '</table>';
 
 	/* all done, return result */
 	echo $calendar;
 
 	echo '</div>';
 }
+
+
+function cp_get_calendar_permalink( $args = array() ) {
+	$defaults = array(
+		'project' => NULL,
+		'month' => NULL,
+		'year' => NULL
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+
+	extract( $args );
+
+	$link = CP_DASHBOARD;
+	$link = add_query_arg( array( 'view' => 'calendar' ), $link );
+
+	if ( $project )
+		$link = add_query_arg( array( 'project' => $project ), $link );
+
+	if ( $month )
+		$link = add_query_arg( array( 'month' => $month ), $link );
+
+	if ( $year )
+		$link = add_query_arg( array( 'year' => $year ), $link );
+
+	return $link;
+}
+
+	function cp_calendar_permalink( $args = array() ) {
+		echo cp_get_calendar_permalink( $args );
+	}
 
 // View All Projects
 function cp_view_all_projects() {
@@ -1599,121 +1681,264 @@ function cp_limit_length( $strtolimit=null, $limit=50 ) {
 	return $strtolimit;
 }
 
-function cp_get_projects( $args = array() ) {
+require_once( CP_PLUGIN_DIR . 'includes/template-tags.php' );
+
+add_action( 'wp_enqueue_scripts', 'cp_maybe_enqueue_style' );
+add_action( 'admin_enqueue_scripts', 'cp_maybe_enqueue_style' );
+
+
+function cp_maybe_enqueue_style() {
+	if ( is_collabpress_page() ) {
+		wp_enqueue_style( 'collabpress-new', CP_PLUGIN_URL . 'includes/css/new.css' );
+		wp_enqueue_style( 'collabpress-fonts', 'http://fonts.googleapis.com/css?family=Roboto+Condensed:400italic,700italic,400,700' );
+		wp_enqueue_style( 'cp_admin', CP_PLUGIN_URL . 'includes/css/admin.css' );
+		wp_enqueue_style( 'colorbox-css', CP_PLUGIN_URL . 'includes/css/colorbox.css' );
+		wp_enqueue_script( 'colorbox', CP_PLUGIN_URL . 'includes/js/jquery.colorbox-min.js', array( 'jquery') );
+	}
+
+}
+
+function is_collabpress_page() {
+	if ( ! empty( $_REQUEST['page'] ) && $_REQUEST['page'] == 'collabpress-dashboard' )
+		return true;
+}
+
+function cp_task_due_date() {
+	global $cp;
+	if ( $due_date = get_post_meta( $cp->task->ID, '_cp-task-due', true ) ) {
+		return $due_date;
+	} else
+		return false;
+}
+
+function cp_task_priority() {
+	global $cp;
+	if ( ( $priority = get_post_meta( $cp->task->ID, '_cp-task-priority', true ) != 'None' ) ) {
+		return $priority;
+	} else
+		return false;
+}
+
+/**
+ * Create new CollabPress project.
+ * 
+ */
+function cp_insert_project( $args ) {
 	$defaults = array(
+		'post_title' => 'New Project',
+		'post_status' => 'publish',
 		'post_type' => 'cp-projects',
-		'posts_per_page' => -1,
-	);
-	$args = wp_parse_args( $args, $defaults );
-	return get_posts( $args );
-}
-
-function cp_project_permalink( $project_id ) {
-	echo add_query_arg( array( 'project' => $project_id ), CP_DASHBOARD );
-}
-
-
-// Retrieve all tasks in a task list with a specific status
-function cp_get_tasks( $args = array() ) {
-	$defaults = array(
-		'post_type' => 'cp-tasks',
-		'posts_per_page' => -1,
-		'project_id' => NULL,
-		'task_list_id' => NULL,
-		'status' => 'any',
-	);
-
-	$args = wp_parse_args( $args, $defaults );
-	extract( $args );
-
-	if ( $task_list_id ) {
-		$args['meta_query'][] = array( 
-			'key' => '_cp-task-list-id',
-			'value' => $task_list_id,
-		);
-	}
-
-	if ( $project_id ) {
-		$args['meta_query'][] = array( 
-			'key' => '_cp-project-id',
-			'value' => $project_id,
-		);
-	}
-
-	if ( $status != 'any' ) {
-		$args['meta_query'][] = array( 
-			'key' => '_cp-task-status',
-			'value' => $status,
-		);
-	}
-
-	return get_posts( $args );
-}
-
-function cp_project_title() {
-	global $cp;
-	echo '<h2>' . $cp->project->post_title . '</h2>';
-}
-
-function cp_has_tasks( $args = array() ) {
-	global $cp;
-
-	$defaults = array(
-		'post_type' => 'cp-tasks',
-		'posts_per_page' => -1,
-		'project_id' => NULL,
-		'task_list_id' => NULL,
-		'status' => 'any',
+		'project_description' => '',
+		'project_users' => array( 1 ),
 	);
 
 	$args = wp_parse_args( $args, $defaults );
 
 	extract( $args );
 
-	if ( $task_list_id ) {
-		$args['meta_query'][] = array( 
-			'key' => '_cp-task-list-id',
-			'value' => $task_list_id,
-		);
+	$project_id = wp_insert_post( $args );
+
+	// Project description
+	update_post_meta(
+		$project_id,
+		'_cp-project-description',
+		esc_html( $project_description ) 
+	);
+
+	// Project users
+	update_post_meta(
+		$project_id, 
+		'_cp-project-users', 
+		$project_users 
+	);
+
+	$current_user = wp_get_current_user();
+	if ( ! empty( $current_user ) ) {
+		// Add CollabPress Activity entry
+		cp_add_activity(
+			__('added', 'collabpress'), 
+			__('project', 'collabpress'), 
+			$current_user->ID, 
+			$project_id
+		);	
 	}
 
-	if ( $project_id ) {
-		$args['meta_query'][] = array( 
-			'key' => '_cp-project-id',
-			'value' => $project_id,
-		);
-	} else if ( ! empty( $cp->project ) ) {
-		$args['meta_query'][] = array( 
-			'key' => '_cp-project-id',
-			'value' => $cp->project->ID,
-		);
-	}
+	$project_users[] = $current_user->ID;
+	$project_users = array_unique( $project_users );
+	foreach ( $project_users as $user_id )
+		cp_add_user_to_project( $project_id, $user_id );
 
-	if ( $status != 'any' ) {
-		$args['meta_query'][] = array( 
-			'key' => '_cp-task-status',
-			'value' => $status,
-		);
-	}
+	do_action( 'cp_project_added', $project_id );
 
-	$cp->tasks = new WP_Query( $args );
-
-	return $cp->tasks->have_posts();
+	return $project_id;
 }
 
-function cp_tasks() {
-	global $cp;
-	// Put into variable to check against next
-	$have_posts = $cp->tasks->have_posts();
-
-	// Reset the post data when finished
-	if ( empty( $have_posts ) )
-		wp_reset_postdata();
+function cp_add_user_to_project( $project_id, $user_id ) {
+	global $wpdb, $cp;
+	$row_exists = $wpdb->get_var(
+		$wpdb->prepare( 
+			"SELECT COUNT(*) 
+			FROM {$cp->tables->project_users}
+			WHERE project_id = %d 
+			AND user_id = %d",
+			$project_id,
+			$user_id
+		)
+	);
+	if ( $row_exists )
+		return true;
 	
-	return $have_posts;
+	return $wpdb->insert(
+		$cp->tables->project_users,
+		array(
+			'project_id' => $project_id,
+			'user_id' => $user_id,
+		),
+		array(
+			'%d',
+			'%d',
+		)
+	);
 }
 
-function cp_the_task() {
-	global $cp;
-	return $cp->tasks->the_post();
+function cp_remove_user_from_project( $project_id, $user_id ) {
+	global $wpdb, $cp;
+	$row_exists = $wpdb->get_var(
+		$wpdb->prepare( 
+			"SELECT COUNT(*) 
+			FROM {$cp->tables->project_users}
+			WHERE project_id = %d 
+			AND user_id = %d",
+			$project_id,
+			$user_id
+		)
+	);
+	if ( ! $row_exists )
+		return true;
+	
+	return $wpdb->query(
+		$wpdb->prepare( 
+			"DELETE FROM {$cp->tables->project_users}
+			WHERE project_id = %d 
+			AND user_id = %d",
+			$project_id,
+			$user_id
+		)
+	);
 }
+
+function cp_get_project_users( $project_id = 0 ) {
+	global $wpdb, $cp;
+	if ( ! $project_id )
+		$project_id = $cp->project->ID;
+
+	$users = $wpdb->get_results( 
+		$wpdb->prepare(
+			"SELECT * FROM {$wpdb->users} as users
+			LEFT JOIN {$cp->tables->project_users} cp_project_users 
+				ON users.ID = cp_project_users.user_id
+			WHERE cp_project_users.project_id = %d",
+			$project_id
+		)
+	);
+	return $users;
+}
+
+function cp_user_is_in_project( $project_id, $user_id ) {
+	global $wpdb, $cp;
+	return $wpdb->get_var(
+		$wpdb->prepare( 
+			"SELECT COUNT(*) 
+			FROM {$cp->tables->project_users}
+			WHERE project_id = %d 
+			AND user_id = %d",
+			$project_id,
+			$user_id
+		)
+	);
+}
+
+/**
+ * Create new CollabPress task.
+ * 
+ */
+function cp_insert_task( $args = array() ) {
+
+	$defaults = array(
+		'post_title' => 'New Task',
+		'post_status' => 'publish',
+		'post_type' => 'cp-tasks',
+		'project_id' => NULL,
+		'task_due_date' => NULL,
+		'task_assigned_to' => NULL,
+		'task_priority' => 'None',
+		'send_email_notification' => true
+	);
+	$args = wp_parse_args( $args, $defaults );
+
+	extract( $args );
+	$task_id = wp_insert_post( $args );
+	
+	// Where we get the project_id from depends on whether this is a BP installation
+	if ( ! $project_id ) {
+		if ( is_object( $cp_bp_integration ) && method_exists( $cp_bp_integration, 'get_current_item_project' ) ) {
+			$project_id = $cp_bp_integration->get_current_item_project();
+		}
+	}
+
+	if ( $project_id )
+		update_post_meta( $task_id, '_cp-project-id', $project_id );
+
+	//add task status
+	update_post_meta( $task_id, '_cp-task-status', 'open' );
+
+	if ( $task_due_date ) {
+		// Validate Date
+		if ( cp_validate_date( $task_due_date ) )
+			$taskDate = esc_html( $task_due_date );
+
+		update_post_meta( $task_id, '_cp-task-due', $taskDate );
+	}
+
+	//save the user assignment
+	if ( $task_assigned_to )
+		update_post_meta( $task_id, '_cp-task-assign', $task_assigned_to );
+
+	//save the task priority
+	if ( $task_priority )
+		update_post_meta( $task_id, '_cp-task-priority', $task_priority );
+	
+	// Add CollabPress Activity entry
+	$current_user = wp_get_current_user();
+	cp_add_activity(
+		__('added', 'collabpress'), 
+		__('task', 'collabpress'), 
+		$current_user->ID, 
+		$task_id 
+	);
+
+	do_action( 'cp_task_added', $task_id );
+
+	//check if email notification is checked, and a user is assigned to a project
+	if( $send_email_notification && $task_assigned_to ) {
+
+	    //send email
+	    $task_author_data = get_userdata( $task_assigned_to );
+	    $author_email = $task_author_data->user_email;
+
+	    $subject = __('New task assigned to you: ', 'collabpress') .get_the_title( $task_id );
+
+	    $message = __('There is a new task assigned to you:', 'collabpress') . "\n\n";
+	    $message .= $post_title;
+
+	    cp_send_email( $author_email, $subject, $message );
+
+	}
+}
+
+
+
+
+
+
+

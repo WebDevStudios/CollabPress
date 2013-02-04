@@ -1,0 +1,23 @@
+.collabpress-project {
+	background-color: #808080;
+	float: left;
+	height: 190px;
+	margin: 0 5px 5px 0;
+	padding: 5px;
+	width: 190px;
+}
+
+.collabpress-project.new {
+	background-color: #0072ff;
+}
+
+.collabpress-project a {
+	color: white;
+	text-decoration: none;
+}
+
+.collabpress {
+	font-family: 'Roboto Condensed', sans-serif;
+	font-size: 16px;
+}
+

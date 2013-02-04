@@ -1,28 +1,21 @@
 <?php
 
 // Add Project
-if ( isset( $_POST['cp-add-project'] ) && isset($_POST['cp-project']) ) :
+if ( isset( $_POST['cp-add-project'] ) && isset($_POST['cp-project']) ) {
 
 	check_admin_referer('cp-add-project');
 
-	$add_project = array(
-					'post_title' => esc_html($_POST['cp-project']),
-					'post_status' => 'publish',
-					'post_type' => 'cp-projects'
-					);
-	$project_id = wp_insert_post( $add_project );
-	
-	update_post_meta( $project_id, '_cp-project-description', esc_html($_POST['cp-project-description']) );
+	$args = array(
+		'post_title' => esc_html($_POST['cp-project']),
+		'post_status' => 'publish',
+		'post_type' => 'cp-projects',
+		'project_description' => $_POST['cp-project-description'],
+		'project_users' => ( !empty($_POST['cp_project_users']) ) ? array_map( 'absint', $_POST['cp_project_users'] ) : array( 1 ),
 
-	$cp_project_users = ( !empty($_POST['cp_project_users']) ) ? array_map( 'absint', $_POST['cp_project_users'] ) : array( 1 );
-	update_post_meta( $project_id, '_cp-project-users', $cp_project_users );
+	);
+	cp_insert_project( $args );
 	
-	// Add Activity
-	cp_add_activity(__('added', 'collabpress'), __('project', 'collabpress'), $current_user->ID, $project_id);
-	
-	do_action( 'cp_project_added', $project_id );
-
-endif;
+}
 
 // Edit Project
 if ( isset( $_POST['cp-edit-project'] ) && $_POST['cp-edit-project-id'] ) :
