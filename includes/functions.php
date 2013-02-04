@@ -1257,7 +1257,23 @@ function cp_user_page() {
 	<?php
 }
 
+function cp_get_projects_for_user( $user_id ) {
+	global $cp, $wpdb;
+	$projects = $wpdb->get_col( 
+		$wpdb->prepare(
+			"SELECT project_id 
+			FROM {$cp->tables->project_users}
+			WHERE user_id = %d",
+			$user_id
+		)
+	);
+	return $projects;
+}
 
+function cp_get_projects_for_current_user() {
+	$current_user = wp_get_current_user();
+	return cp_get_projects_for_user( $current_user->ID );
+}
 // CollabPress Calendar
 function cp_draw_calendar( $args = array() ) {
 	global $cp;
@@ -1267,8 +1283,15 @@ function cp_draw_calendar( $args = array() ) {
 		'year' => NULL,
 		'project' => NULL
 	);
+
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args );
+
+	// If no project was given, only show projects
+	// user has access to
+	if ( ! $project ) {
+		$project = cp_get_projects_for_current_user();
+	}
 
 	echo '<div id="cp-calendar-wrap">';
 
@@ -1390,9 +1413,9 @@ function cp_draw_calendar( $args = array() ) {
 		    while( $tasks_query->have_posts() ) : $tasks_query->the_post();
 
 				// Project ID
-				$projectID = get_post_meta(get_the_ID(), '_cp-project-id', true);
-				$task_user_id = get_post_meta(get_the_ID(), '_cp-task-assign', true);
-				$task_status = get_post_meta (get_the_ID(), '_cp-task-status', true);
+				$projectID = get_post_meta( get_the_ID(), '_cp-project-id', true );
+				$task_user_id = get_post_meta( get_the_ID(), '_cp-task-assign', true );
+				$task_status = get_post_meta( get_the_ID(), '_cp-task-status', true );
 
 				if ($task_status == 'open') :
 					$calendar .= '<p><a href="'.cp_get_url(get_the_ID(), 'task').'">'.get_avatar($task_user_id, 32).' '.get_the_title().'</a></p>';
