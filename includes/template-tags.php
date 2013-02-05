@@ -7,6 +7,7 @@
  * @subpackage TemplateTags
  */
 
+
 function cp_has_projects( $args = array() ) {
 	global $cp;
 
@@ -22,9 +23,34 @@ function cp_has_projects( $args = array() ) {
 
 	extract( $args );
 
+	// Add filters to only grab projects logged-in user has access to. 
+	add_filter( 'posts_join_paged', 'cp_add_join_for_project_users_table' );
+	add_filter( 'posts_where_paged', 'cp_add_where_for_current_user' );
+	
 	$cp->projects = new WP_Query( $args );
+	
+	remove_filter( 'posts_join_paged', 'cp_add_join_for_project_users_table' );
+	remove_filter( 'posts_where_paged', 'cp_add_where_for_current_user' );
 
 	return $cp->projects->have_posts();
+}
+
+function cp_add_join_for_project_users_table( $sql ) {
+	global $cp, $wpdb;
+	$sql .= "LEFT JOIN {$cp->tables->project_users} AS cppu ON cppu.project_id = {$wpdb->posts}.ID";
+	return $sql;
+}
+
+function cp_add_where_for_current_user( $sql ) {
+	global $wpdb;
+	$current_user = wp_get_current_user();
+	if ( empty( $current_user ) || ! $current_user )
+		return;
+	$sql .= $wpdb->prepare( 
+		" AND cppu.user_id = %d ",
+		$current_user->ID
+	);
+	return $sql;
 }
 
 function cp_projects() {
