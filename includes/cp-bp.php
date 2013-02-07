@@ -89,7 +89,7 @@ class CP_BP_Integration {
 		register_taxonomy( 'cp-bp-group', 'cp-projects', array(
 			'label' 	=> 'BP Groups',
 			'public' 	=> $cp_debug_mode,
-			'query_var' 	=> 'group'
+			'query_var' 	=> 'cp-bp-group'
 		) );
 
 	}
