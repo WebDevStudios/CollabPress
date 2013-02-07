@@ -155,6 +155,15 @@ if ( cp_check_permissions( 'settings_user_role' ) ) {
                         </select>
                     </td>
                 </tr>
+                <tr>
+                    <th scope="row"><label for="presstrends"><?php _e( 'Opt-out of PressTrends Tracking', 'collabpress' ); ?></label></th>
+                    <td>
+                        <select name="cp_options[presstrends]">
+                            <option value="no" <?php selected( $options['presstrends'], 'no' ); ?>><?php _e('No', 'collabpress') ?></option>
+                            <option value="yes" <?php selected( $options['presstrends'], 'yes' ); ?>><?php _e('Yes', 'collabpress') ?></option>
+                        </select>
+                    </td>
+                </tr>
                 
                 <?php do_action( 'cp_after_advanced_settings' ) ?>
                 

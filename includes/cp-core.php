@@ -68,5 +68,8 @@ function cp_load_bp_functions() {
 	}
 }
 
+// PressTrends Tracking
+include ( 'presstrends.php' );
+
 // End
 do_action( 'cp_end' );
