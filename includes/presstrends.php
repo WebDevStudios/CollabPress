@@ -63,6 +63,6 @@
 
 // PressTrends WordPress Action
 $cp_options = get_option( 'cp_options' );
-$cp_presstrends = ( $cp_options['presstrends'] == 'yes' ) ? true : false;
+$cp_presstrends = ( $cp_options['presstrends'] == 'no' ) ? true : false;
 if ( $cp_presstrends )
 	add_action('admin_init', 'presstrends_CollabPress_plugin');
