@@ -76,10 +76,11 @@ if ( isset( $_POST['cp-add-task'] ) && isset( $_POST['cp-task'] ) ) :
 	    $task_author_data = get_userdata( absint( $_POST['cp-task-assign'] ) );
 	    $author_email = $task_author_data->user_email;
 
-	    $subject = __('New task assigned to you: ', 'collabpress') .get_the_title( $task_id );
+		$subject = apply_filters( 'cp_new_task_email_subject', __('New task assigned to you: ', 'collabpress') .get_the_title( $task_id ) );
 
 	    $message = __('There is a new task assigned to you:', 'collabpress') . "\n\n";
 	    $message .= esc_html( $_POST['cp-task'] );
+		$message = apply_filters( 'cp_new_task_email_body', $message );
 
 	    cp_send_email( $author_email, $subject, $message );
 
