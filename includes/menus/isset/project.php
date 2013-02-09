@@ -3,10 +3,11 @@
 // Add Project
 if ( isset( $_POST['cp-add-project'] ) && isset($_POST['cp-project']) ) :
 
-	check_admin_referer('cp-add-project');
+	//check nonce for security
+	check_admin_referer( 'cp-add-project' );
 
 	$add_project = array(
-					'post_title' => esc_html($_POST['cp-project']),
+					'post_title' => sanitize_text_field( $_POST['cp-project'] ),
 					'post_status' => 'publish',
 					'post_type' => 'cp-projects'
 					);
@@ -27,17 +28,18 @@ endif;
 // Edit Project
 if ( isset( $_POST['cp-edit-project'] ) && $_POST['cp-edit-project-id'] ) :
 
-	check_admin_referer('cp-edit-project');
+	//check nonce for security
+	check_admin_referer( 'cp-edit-project' .absint( $_POST['cp-edit-project-id'] ) );
 
-	//verify user has permission to edit projects
-	if ( cp_check_permissions( 'settings_user_role' ) ) {
+	//verify user has permission to edit projects and post ID is a project CPT
+	if ( cp_check_permissions( 'settings_user_role' ) && 'cp-projects' === get_post_type( absint( $_POST['cp-edit-project-id'] ) ) ) {
 
 	    // The ID
-	    $projectID =  absint( $_POST['cp-edit-project-id'] );
+	    $projectID = absint( $_POST['cp-edit-project-id'] );
 
 	    $project = array();
 	    $project['ID'] = $projectID;
-	    $project['post_title'] = esc_html( $_POST['cp-project'] );
+	    $project['post_title'] = sanitize_text_field( $_POST['cp-project'] );
 	    wp_update_post( $project );
 
 	    update_post_meta( $projectID, '_cp-project-description', esc_html( $_POST['cp-project-description'] ) );
@@ -56,59 +58,59 @@ endif;
 // Delete Project
 if ( isset( $_GET['cp-delete-project-id'] ) ) :
 
-    check_admin_referer( 'cp-action-delete_project' );
+	//check nonce for security
+    check_admin_referer( 'cp-action-delete_project' .absint( $_GET['cp-delete-project-id'] ) );
 
-    //verify user has permission to delete projects
-    if ( cp_check_permissions( 'settings_user_role' ) ) {
+    //verify user has permission to delete projects and post ID is a project CPT
+    if ( cp_check_permissions( 'settings_user_role' ) && 'cp-projects' === get_post_type( absint( $_GET['cp-delete-project-id'] ) ) ) {
 
-	$cp_project_id = absint( $_GET['cp-delete-project-id'] );
+		$cp_project_id = absint( $_GET['cp-delete-project-id'] );
 
-	//delete the project
-	wp_delete_post( $cp_project_id, true );
+		//delete the project
+		wp_delete_post( $cp_project_id, true );
 
-	//delete all task lists assigned to this project
-	$tasks_args = array(
-			    'post_type' => 'cp-task-lists',
-			    'meta_key' => '_cp-project-id',
-			    'meta_value' => $cp_project_id,
-			    'showposts' => '-1'
-			    );
-	$tasks_query = new WP_Query( $tasks_args );
+		//delete all task lists assigned to this project
+		$tasks_args = array(
+					'post_type' => 'cp-task-lists',
+					'meta_key' => '_cp-project-id',
+					'meta_value' => $cp_project_id,
+					'showposts' => '-1'
+					);
+		$tasks_query = new WP_Query( $tasks_args );
 
-	// WP_Query();
-	if ( $tasks_query->have_posts() ) :
-	    while( $tasks_query->have_posts() ) : $tasks_query->the_post();
-		$project_id = get_the_ID();
+		// WP_Query();
+		if ( $tasks_query->have_posts() ) :
+			while( $tasks_query->have_posts() ) : $tasks_query->the_post();
 
-		//delete the task
-		wp_delete_post( get_the_ID(), true );
+			//delete the task
+			wp_delete_post( get_the_ID(), true );
 
-	    endwhile;
-	endif;
+			endwhile;
+		endif;
 
-	//delete all tasks assigned to this project
-	$tasks_args = array(
-			    'post_type' => 'cp-tasks',
-			    'meta_key' => '_cp-project-id',
-			    'meta_value' => $cp_project_id,
-			    'showposts' => '-1'
-			    );
-	$tasks_query = new WP_Query( $tasks_args );
+		//delete all tasks assigned to this project
+		$tasks_args = array(
+					'post_type' => 'cp-tasks',
+					'meta_key' => '_cp-project-id',
+					'meta_value' => $cp_project_id,
+					'showposts' => '-1'
+					);
+		$tasks_query = new WP_Query( $tasks_args );
 
-	// WP_Query();
-	if ( $tasks_query->have_posts() ) :
-	    while( $tasks_query->have_posts() ) : $tasks_query->the_post();
+		// WP_Query();
+		if ( $tasks_query->have_posts() ) :
+			while( $tasks_query->have_posts() ) : $tasks_query->the_post();
 
-		//delete the task
-		wp_delete_post( get_the_ID(), true );
+			//delete the task
+			wp_delete_post( get_the_ID(), true );
 
-	    endwhile;
-	endif;
+			endwhile;
+		endif;
 
-	//add activity log
-	cp_add_activity(__('deleted', 'collabpress'), __('project', 'collabpress'), $current_user->ID, $cp_project_id );
-	
-	do_action( 'cp_project_deleted', $project_id );
+		//add activity log
+		cp_add_activity(__('deleted', 'collabpress'), __('project', 'collabpress'), $current_user->ID, $cp_project_id );
+
+		do_action( 'cp_project_deleted', $cp_project_id );
 
     }
 

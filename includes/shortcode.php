@@ -202,7 +202,7 @@ function cp_sc_projects( $id ) {
 
 			//generate delete project link
 			$cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
-			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
+			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' .get_the_ID() ) : $cp_del_link;
 
 			//generate edit project link
 			$cp_edit_link = CP_DASHBOARD.'&project='.get_the_ID().'&view=edit';

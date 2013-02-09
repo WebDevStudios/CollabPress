@@ -70,7 +70,7 @@ function cp_get_page_title() {
 		else :
 			//generate delete project link
 			$cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.$cp_project->id;
-			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
+			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' .absint( $cp_project->id ) ) : $cp_del_link;
 
 			$dashboardTitle = '<h2><a title="'.__('CollabPress Dashboard', 'collabpress').'" href="'.CP_DASHBOARD.'">'.cp_screen_icon('collabpress').'</a>'.get_the_title($cp_project->id);
 
@@ -283,7 +283,7 @@ function cp_projects() {
 
 		    //generate delete project link
 		    $cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
-		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
+		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' .get_the_ID() ) : $cp_del_link;
 
 		    //generate edit project link
 		    $cp_edit_link = CP_DASHBOARD.'&project='.get_the_ID().'&view=edit';
@@ -1039,9 +1039,9 @@ function cp_edit_project() {
 
 		// Add Project Form
 		echo '<form action="" method="post" name="edit_project_form">';
-			wp_nonce_field('cp-edit-project');
+			wp_nonce_field( 'cp-edit-project' .absint( $cp_project->id ) );
 			?>
-			<input type="hidden" name="cp-edit-project-id" value="<?php echo $cp_project->id ?>" />
+			<input type="hidden" name="cp-edit-project-id" value="<?php echo absint( $cp_project->id ); ?>" />
 			<h2><?php _e( 'Edit Project', 'collabpress' ); ?></h2>
 			<table class="form-table">
 				<tbody>
@@ -1402,7 +1402,7 @@ function cp_view_all_projects() {
 
 		    //generate delete project link
 		    $cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
-		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
+		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' .get_the_ID() ) : $cp_del_link;
 
 		    //generate edit project link
 		    $cp_edit_link = CP_DASHBOARD.'&project='.get_the_ID().'&view=edit';
