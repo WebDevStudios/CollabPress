@@ -266,7 +266,7 @@ function cp_sc_task_list() {
 
 			//generate delete task list link
 			$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&cp-delete-task-list-id='.get_the_ID();
-			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task_list' ) : $cp_del_link;
+			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task_list' .get_the_ID() ) : $cp_del_link;
 
 			//generate edit task list link
 			$cp_edit_link = CP_DASHBOARD .'&project='.$cp_project->id.'&task-list='.get_the_ID().'&view=edit';

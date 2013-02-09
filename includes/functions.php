@@ -883,9 +883,9 @@ function cp_edit_task_list() {
 	if ( current_user_can( 'cp_edit_task_lists' ) ) {
 
 		echo '<form action="" method="post">';
-			wp_nonce_field('cp-edit-task-list');
+			wp_nonce_field( 'cp-edit-task-list' .absint( $cp_task_list->id ) );
 			?>
-			<input type="hidden" name="cp-edit-task-list-id" value="<?php echo $cp_task_list->id ?>" />
+			<input type="hidden" name="cp-edit-task-list-id" value="<?php echo absint( $cp_task_list->id ); ?>" />
 			<h2><?php _e( 'Edit Task List', 'collabpress' ); ?></h2>
 			<table class="form-table">
 				<tbody>
@@ -936,7 +936,7 @@ function cp_task_list() {
 
 	//generate delete task list link
 	$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&cp-delete-task-list-id='.get_the_ID();
-	$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task_list' ) : $cp_del_link;
+	$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task_list' .get_the_ID() ) : $cp_del_link;
 
 	//generate edit task list link
 	$cp_edit_link = add_query_arg( 'view', 'edit', apply_filters( 'cp_task_list_link', CP_DASHBOARD . '&project=' . $cp_project->id . '&task-list=' . get_the_ID(), get_the_ID(), $cp_project->id ) );
