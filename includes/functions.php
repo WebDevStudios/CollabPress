@@ -1131,7 +1131,7 @@ function cp_task_comments() {
 					<?php
 					//generate delete comment link
 					$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&task='.$cp_task->id.'&cp-delete-comment-id='.$comm->comment_ID;
-					$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_comment' ) : $cp_del_link;
+					$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_comment' .absint( $comm->comment_ID ) ) : $cp_del_link;
 
 					if ( $current_user->ID == $comm->user_id || current_user_can( 'manage_options' ) )
 						echo ' - <a href="'.$cp_del_link.'" style="color:red;" onclick="javascript:check=confirm(\'' . __('WARNING: This will delete the selected comment.\n\nChoose [Cancel] to Stop, [OK] to delete.\n', 'collabpress' ) .'\');if(check==false) return false;">'.__( 'delete', 'collabpress' ). '</a>';
@@ -1155,7 +1155,7 @@ function cp_task_comments() {
         $checked = ( $options['email_notifications'] == 'enabled' ) ? 'checked="checked"' : null;
 
 	echo '<form action="'.cp_clean_querystring().'" method="post">';
-		wp_nonce_field('cp-add-comment');
+		wp_nonce_field( 'cp-add-comment' .absint( $cp_task->id ) );
 		?>
 		<p><label for="cp-comment-content"><?php _e('Leave a Comment: ', 'collabpress') ?></label></p>
 		<p><textarea class="large-text code" id="cp-comment-content" cols="30" rows="10" name="cp-comment-content"></textarea></p>
