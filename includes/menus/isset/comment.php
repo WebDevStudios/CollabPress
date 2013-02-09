@@ -13,7 +13,7 @@ if ( isset( $_POST['cp-add-comment'] ) && isset($_POST['cp-comment-content']) ) 
 	$time = current_time( 'mysql' );
 
 	$data = array(
-	    'comment_post_ID' => $cp_task->id,
+	    'comment_post_ID' => absint( $cp_task->id ),
 	    'comment_author' => $current_user->display_name,
 	    'comment_author_email' => $current_user->user_email,
 	    'comment_author_url' => $current_user->user_email,
@@ -39,10 +39,12 @@ if ( isset( $_POST['cp-add-comment'] ) && isset($_POST['cp-comment-content']) ) 
 	    $author_email = $task_author_data->user_email;
 
 	    $subject = __('New comment on task ', 'collabpress') .get_the_title( $cp_task->id );
-	    
+	    $subject = apply_filters( 'cp_new_comment_email_subject', $subject );
+		
 	    $message = __("There is a new comment on your task from ", "collabpress") .$current_user->display_name. ": " .get_the_title( $cp_task->id ) ."\n\n";
 	    $message .= __("Comment:", "collabpress") . "\n";
 	    $message .= esc_html( $_POST['cp-comment-content'] );
+		$message = apply_filters( 'cp_new_comment_email_body', $message );
 
 	    cp_send_email( $author_email, $subject, $message );
 
