@@ -5,12 +5,13 @@ global $cp_task_list;
 global $cp_bp_integration;
 
 // Add Task
-if ( isset( $_POST['cp-add-task'] ) && isset($_POST['cp-task']) ) :
+if ( isset( $_POST['cp-add-task'] ) && isset( $_POST['cp-task'] ) ) :
 
-	check_admin_referer('cp-add-task');
+	//check nonce for security
+	check_admin_referer( 'cp-add-task' );
 
 	$add_task = array(
-					'post_title' => esc_html($_POST['cp-task']),
+					'post_title' => sanitize_text_field( $_POST['cp-task'] ),
 					'post_status' => 'publish',
 					'post_type' => 'cp-tasks'
 					);
@@ -87,23 +88,24 @@ if ( isset( $_POST['cp-add-task'] ) && isset($_POST['cp-task']) ) :
 endif;
 
 // Edit Task
-if ( isset( $_POST['cp-edit-task'] ) && isset($_POST['cp-edit-task-id']) ) :
+if ( isset( $_POST['cp-edit-task'] ) && isset( $_POST['cp-edit-task-id'] ) ) :
 
-	check_admin_referer('cp-edit-task');
+	//check nonce for security
+	check_admin_referer( 'cp-edit-task' .absint( $_POST['cp-edit-task-id'] ) );
 
-    //verify user has permission to edit tasks
-    if ( cp_check_permissions( 'settings_user_role' ) ) {
+    //verify user has permission to edit tasks and post ID is a task CPT
+    if ( cp_check_permissions( 'settings_user_role' ) && 'cp-tasks' === get_post_type( absint( $_POST['cp-edit-task-id'] ) ) ) {
 
 	// The ID
-	$taskID =  absint($_POST['cp-edit-task-id']);
+	$taskID =  absint( $_POST['cp-edit-task-id'] );
 
 	$task = array();
 	$task['ID'] = $taskID;
-	$task['post_title'] = esc_html($_POST['cp-task']);
+	$task['post_title'] = sanitize_text_field( $_POST['cp-task'] );
 	wp_update_post( $task );
-	update_post_meta( $taskID, '_cp-task-due', esc_html($_POST['cp-task-due']) );
-	update_post_meta( $taskID, '_cp-task-assign', absint($_POST['cp-task-assign']) );
-	update_post_meta( $taskID, '_cp-task-priority', strip_tags($_POST['cp-task-priority']) );
+	update_post_meta( $taskID, '_cp-task-due', sanitize_text_field( $_POST['cp-task-due'] ) );
+	update_post_meta( $taskID, '_cp-task-assign', absint( $_POST['cp-task-assign'] ) );
+	update_post_meta( $taskID, '_cp-task-priority', sanitize_text_field( $_POST['cp-task-priority'] ) );
 
 	// Add Activity
 	cp_add_activity(__('updated', 'collabpress'), __('task', 'collabpress'), $current_user->ID, $taskID);
@@ -115,9 +117,10 @@ if ( isset( $_POST['cp-edit-task'] ) && isset($_POST['cp-edit-task-id']) ) :
 endif;
 
 // Complete Task
-if ( isset( $_GET['cp-complete-task-id'] ) ) :
+if ( isset( $_GET['cp-complete-task-id'] ) && 'cp-tasks' === get_post_type( absint( $_GET['cp-complete-task-id'] ) ) ) :
 
-    check_admin_referer('cp-complete-task');
+	//check nonce for security
+    check_admin_referer( 'cp-complete-task' .absint( $_GET['cp-complete-task-id'] ) );
 
     //task ID to complete
     $taskID = ( isset( $_GET['cp-complete-task-id'] ) ) ? absint( $_GET['cp-complete-task-id'] ) : null;
@@ -127,23 +130,23 @@ if ( isset( $_GET['cp-complete-task-id'] ) ) :
 
     if ( $taskID && $task_status != 'complete' ) {
 
-	//set the task to complete
-	update_post_meta( $taskID, '_cp-task-status', 'complete' );
+		//set the task to complete
+		update_post_meta( $taskID, '_cp-task-status', 'complete' );
 
-	// Add Activity
-	cp_add_activity(__('completed', 'collabpress'), __('task', 'collabpress'), $current_user->ID, $taskID );
+		// Add Activity
+		cp_add_activity(__('completed', 'collabpress'), __('task', 'collabpress'), $current_user->ID, $taskID );
 
-	do_action( 'cp_task_completed', $taskID );
+		do_action( 'cp_task_completed', $taskID );
 
-    }elseif ($taskID ) {
+    }elseif ( $taskID ) {
 
-	//open the task
-	update_post_meta( $taskID, '_cp-task-status', 'open' );
+		//open the task
+		update_post_meta( $taskID, '_cp-task-status', 'open' );
 
-	// Add Activity
-	cp_add_activity(__('opened', 'collabpress'), __('task', 'collabpress'), $current_user->ID, $taskID );
+		// Add Activity
+		cp_add_activity(__('opened', 'collabpress'), __('task', 'collabpress'), $current_user->ID, $taskID );
 
-	do_action( 'cp_task_reopened', $taskID );
+		do_action( 'cp_task_reopened', $taskID );
 
     }
 
@@ -152,20 +155,21 @@ endif;
 // Delete Task
 if ( isset( $_GET['cp-delete-task-id'] ) ) :
 
-    check_admin_referer( 'cp-action-delete_task' );
+	//check nonce for security
+    check_admin_referer( 'cp-action-delete_task' .absint( $_GET['cp-delete-task-id'] ) );
 
-    //verify user has permission to delete tasks
-    if ( cp_check_permissions( 'settings_user_role' ) ) {
+    //verify user has permission to delete tasks and post ID is a task CPT
+    if ( cp_check_permissions( 'settings_user_role' ) && 'cp-tasks' === get_post_type( absint( $_GET['cp-delete-task-id'] ) ) ) {
 
-	$cp_task_id = absint( $_GET['cp-delete-task-id'] );
+		$cp_task_id = absint( $_GET['cp-delete-task-id'] );
 
-	//delete the task
-	wp_trash_post( $cp_task_id, true );
+		//delete the task
+		wp_trash_post( $cp_task_id, true );
 
-	//add activity log
-	cp_add_activity(__('deleted', 'collabpress'), __('task', 'collabpress'), $current_user->ID, $cp_task_id );
+		//add activity log
+		cp_add_activity(__('deleted', 'collabpress'), __('task', 'collabpress'), $current_user->ID, $cp_task_id );
 
-	do_action( 'cp_task_deleted', $cp_task_id );
+		do_action( 'cp_task_deleted', $cp_task_id );
 
     }
 

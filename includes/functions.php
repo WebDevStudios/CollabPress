@@ -626,9 +626,9 @@ function cp_edit_task() {
 	if ( current_user_can( 'cp_edit_task' ) ) {
 
 		echo '<form action="" method="post">';
-			wp_nonce_field('cp-edit-task');
+			wp_nonce_field( 'cp-edit-task' .absint( $cp_task->id ) );
 			?>
-			<input type="hidden" name="cp-edit-task-id" value="<?php echo $cp_task->id ?>" />
+			<input type="hidden" name="cp-edit-task-id" value="<?php echo absint( $cp_task->id ); ?>" />
 			<table class="form-table">
 				<tbody>
 					<tr valign="top">
@@ -730,11 +730,11 @@ function cp_task() {
 
 			//generate complete task link
 			$link = CP_DASHBOARD .'&project=' .$cp_project->id .'&task-list=' .$cp_task_list->id .'&cp-complete-task-id=' .get_the_ID();
-			$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task' ) : $link;
+			$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task' .get_the_ID() ) : $link;
 
 			//generate delete task link
 			$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&task-list=' .$cp_task_list->id .'&cp-delete-task-id='.get_the_ID();
-			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task' ) : $cp_del_link;
+			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task' .get_the_ID() ) : $cp_del_link;
 
 			//generate edit task link
 			$cp_edit_link = add_query_arg( 'view', 'edit', apply_filters( 'cp_task_link', CP_DASHBOARD . '&project=' . $cp_project->id . '&task=' . get_the_ID(), get_the_ID(), $cp_project->id ) );
@@ -791,7 +791,7 @@ function cp_task() {
 
 			//generate complete task link
 			$link = CP_DASHBOARD .'&project=' .$cp_project->id .'&task-list=' .$cp_task_list->id .'&cp-complete-task-id=' .get_the_ID();
-			$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task' ) : $link;
+			$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task'  .get_the_ID() ) : $link;
 
 			//check task status
 			$task_status = get_post_meta( get_the_ID(), '_cp-task-status', true );
