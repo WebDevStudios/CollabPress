@@ -43,7 +43,7 @@ CollabPress is an Open Source project. If you are a developer, make sure to chec
 
 = 1.2.4 =
 * Hardened security for all projects, task lists, and tasks
-* Added new task email filters for subject and body
+* Added new task and comment email filters for subject and body
 
 = 1.2.3 =
 * Removed remaining Google Hosted jQuery
