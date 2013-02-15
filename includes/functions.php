@@ -1715,8 +1715,11 @@ function cp_maybe_enqueue_style() {
 		wp_enqueue_style( 'collabpress-new', CP_PLUGIN_URL . 'includes/css/new.css' );
 		wp_enqueue_style( 'collabpress-fonts', 'http://fonts.googleapis.com/css?family=Roboto+Condensed:400italic,700italic,400,700' );
 		wp_enqueue_style( 'cp_admin', CP_PLUGIN_URL . 'includes/css/admin.css' );
+		
 		wp_enqueue_style( 'colorbox-css', CP_PLUGIN_URL . 'includes/css/colorbox.css' );
 		wp_enqueue_script( 'colorbox', CP_PLUGIN_URL . 'includes/js/jquery.colorbox-min.js', array( 'jquery') );
+		
+		wp_enqueue_script( 'cp-task-list', CP_PLUGIN_URL . 'includes/js/task_list.js', array( 'jquery', 'jquery-ui-sortable' ) );
 	}
 
 }
@@ -1895,6 +1898,7 @@ function cp_insert_task( $args = array() ) {
 		'task_due_date' => NULL,
 		'task_assigned_to' => NULL,
 		'task_priority' => 'None',
+		'task_list' => 0,
 		'send_email_notification' => true
 	);
 	$args = wp_parse_args( $args, $defaults );
@@ -1922,6 +1926,9 @@ function cp_insert_task( $args = array() ) {
 
 		update_post_meta( $task_id, '_cp-task-due', $taskDate );
 	}
+
+	// update task list
+	update_post_meta( $task_id, '_cp-task-list-id', $task_list );
 
 	//save the user assignment
 	if ( $task_assigned_to )
@@ -1959,9 +1966,39 @@ function cp_insert_task( $args = array() ) {
 	}
 }
 
+function cp_insert_task_list( $args = array() ) {
+	global $cp_bp_integration;
 
+	$defaults = array(
+		'post_title' => 'New Task List',
+		'post_status' => 'publish',
+		'post_type' => 'cp-task-lists',
+		'project_id' => NULL,
+		'task_list_description' => '',
+	);
+	$args = wp_parse_args( $args, $defaults );
 
+	extract( $args );
+	$task_list_id = wp_insert_post( $args );
 
+	if ( $project_id )
+		update_post_meta( $task_list_id, '_cp-project-id', $project_id );
 
+	update_post_meta( $task_list_id, '_cp-task-list-description', esc_html( $task_list_description ) );
 
+	// Add CollabPress Activity entry
+	$current_user = wp_get_current_user();
+	cp_add_activity(
+		__('added', 'collabpress'), 
+		__('task list', 'collabpress'), 
+		$current_user->ID, 
+		$task_list_id 
+	);
 
+	do_action( 'cp_task_list_added', $task_list_id );
+
+}
+
+function cp_add_task_to_task_list( $task_id, $task_list_id ) {
+	return update_post_meta( $task_id, '_cp-task-list-id', $task_list_id );
+}

@@ -164,7 +164,7 @@ function cp_get_tasks( $args = array() ) {
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args );
 
-	if ( $task_list_id ) {
+	if ( ! is_null( $task_list_id ) ) {
 		$args['meta_query'][] = array( 
 			'key' => '_cp-task-list-id',
 			'value' => $task_list_id,
@@ -284,6 +284,18 @@ function cp_task_permalink() {
 		CP_DASHBOARD
 	);
 	echo $permalink;
+}
+
+function cp_get_task_permalink( $task_id ) {
+	global $cp;
+	$permalink = add_query_arg( 
+		array( 
+			'project' => $cp->project->ID,
+			'task' => $task_id,
+			), 
+		CP_DASHBOARD
+	);
+	return $permalink;
 }
 
 function cp_project_links() {

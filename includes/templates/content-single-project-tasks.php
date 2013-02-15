@@ -1,4 +1,130 @@
-<?php global $cp; ?>
+<?php global $cp; 
+
+function cp_compare_tasks_and_task_lists( $a, $b ) {
+	if ( $a->menu_order == $b->menu_order )
+		return 0;
+	else
+		return ( $a->menu_order < $b->menu_order ) ? 0 : 1;
+}
+/**
+ * Returns the menu formatted to edit.
+ *
+ * @since 3.0.0
+ *
+ * @param string $menu_id The ID of the menu to format.
+ * @return string|WP_Error $output The menu formatted to edit or error object on failure.
+ */
+function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_id = 0 ) {
+	$tasks_without_task_lists = get_posts( array(
+		'post_type' => 'cp-tasks',
+		'meta_query' => array(
+			array(
+				'key' => '_cp-project-id',
+				'value' => $project_id,
+			),
+			array(
+				'key' => '_cp-task-list-id',
+				'value' => 0,
+			),
+		)
+	) );
+	$task_lists =  get_posts( array(
+		'post_type' => array( 'cp-task-lists' ),
+		'meta_query' => array(
+			array(
+				'key' => '_cp-project-id',
+				'value' => $project_id,
+			),
+		)
+	) );
+
+	$tasks_and_task_lists = array_merge( $tasks_without_task_lists, $task_lists );
+	uasort( $tasks_and_task_lists, 'cp_compare_tasks_and_task_lists' );
+	$tasks_and_task_lists = array_values( $tasks_and_task_lists );
+
+	$result = '<div id="menu-instructions" class="post-body-plain'; 
+	$result .= ( ! empty($menu_items) ) ? ' menu-instructions-inactive">' : '">';
+	if ( empty( $tasks_and_task_lists ) )
+		$result .= '<p>' . __('Next, add your first task in this project.') . '</p>'; 
+	$result .= '</div>'; 
+	$result .= '<ul class="menu" id="menu-to-edit"> ';
+
+	// Output the HTML for each item. 
+	// Hacked from Walker_Nav_Menu_Edit::start_el()
+
+	foreach ( $tasks_and_task_lists as $item ) { 
+		ob_start();
+		$item_id = $item->ID; 
+		$title = $item->post_title; ?>
+		<li id="menu-item-<?php echo $item_id; ?>" class="menu-item">
+			<dl class="menu-item-bar">
+				<dt class="menu-item-handle">
+					<span class="item-title"><a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a><span>
+					<span class="item-controls">
+						<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
+					</span>
+				</dt>
+			</dl>
+
+			<div class="menu-item-settings" id="menu-item-settings-<?php echo $item_id; ?>">
+
+				<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $item_id; ?>]" value="<?php echo $item_id; ?>" />
+				<input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
+				<input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
+				<input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
+				<input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
+				<input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->post_type ); ?>" />
+			</div><!-- .menu-item-settings-->
+			<ul class="menu-item-transport"></ul>
+		<?php
+		$task_list_tasks = get_posts( array(
+			'post_type' => 'cp-tasks',
+			'meta_query' => array(
+				array(
+					'key' => '_cp-project-id',
+					'value' => $project_id,
+				),
+				array(
+					'key' => '_cp-task-list-id',
+					'value' => $item_id,
+				),
+			)
+		) );
+		if ( ! empty( $task_list_tasks ) ) {
+			foreach ( $task_list_tasks as $task ) { 
+				$item_id = $task->ID; 
+				$title = $task->post_title; ?>
+				<li id="menu-item-<?php echo $item_id; ?>" class="menu-item menu-item-depth-1">
+					<dl class="menu-item-bar">
+						<dt class="menu-item-handle">
+							<span class="item-title"><a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a><span>
+							<span class="item-controls">
+								<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
+							</span>
+						</dt>
+					</dl>
+
+					<div class="menu-item-settings" id="menu-item-settings-<?php echo $item_id; ?>">
+
+						<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $item_id; ?>]" value="<?php echo $item_id; ?>" />
+						<input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
+						<input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
+						<input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
+						<input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
+						<input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->post_type ); ?>" />
+					</div><!-- .menu-item-settings-->
+					<ul class="menu-item-transport"></ul>
+			<?php
+			}
+		}
+		$result .= ob_get_clean();
+	}
+	
+	$result .= ' </ul> ';
+	echo $result;
+}
+
+?>
 <div class="collabpress">
 	<?php cp_get_sidebar(); ?>
 	<div class="collabpress-content" style="border: dashed 1px black; width: 75%; margin-left: 5px;min-height: 400px; padding: 5px; float: left">
@@ -8,18 +134,15 @@
 		<?php echo cp_project_title(); ?>
 		<div class="tasks">
 			<h3>Tasks</h3>
-			<?php if ( cp_has_tasks() ) : ?>
-				<?php while( cp_tasks() ) : cp_the_task(); ?>
-					<div class="collabpress-task">
-						<a href="<?php cp_task_permalink(); ?>"><?php the_title(); ?></a> <a href="javascript:void(0);" class="delete-task" data-id="<?php echo get_the_ID(); ?>">delete</a>
-					</div>
-				<?php endwhile; ?>
-			<?php endif; ?>
-			<a href="#inline_content" class="add-new-task">Add new task</a>
+			<?php 
+			cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() );
+			?>
+			<a href="#add_new_task_inline_content" class="add-new-task">Add new task</a>
+			<a href="#add_new_task_list_inline_content" class="add-new-task">Add new task list</a>
 		</div>
 	</div>
 	<div style='display:none'>
-		<div id='inline_content' style='padding:10px; background:#fff;'>
+		<div id='add_new_task_inline_content' style='padding:10px; background:#fff;'>
 			<h2>Add Task</h2>
 			<input type="hidden" id="add_new_task_nonce" value="<?php echo wp_create_nonce( 'add_new_task' ); ?>">
 			<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>">
@@ -77,6 +200,35 @@
 				<span class="spinner" style="float: left"></span></p>
 			</p>
 		</div>
+		<div id='add_new_task_list_inline_content' style='padding:10px; background:#fff;'>
+			<h2>Add Task List</h2>
+			<input type="hidden" id="add_new_task_nonce" value="<?php echo wp_create_nonce( 'add_new_task' ); ?>">
+			<input type="hidden" id="cp-project-task-list-id" value="<?php echo cp_get_project_id() ?>">
+			<table class="form-table">
+				<tbody>
+					<tr valign="top">
+						<th scope="row"><?php _e('Title: ', 'collabpress') ?></th>
+						<td><fieldset><legend class="screen-reader-text"><span></span></legend>
+							<p>
+								<input id="cp-task-list"></textarea>
+							</p>
+						</fieldset></td>
+					</tr>
+					<tr valign="top">
+						<th scope="row"><?php _e('Description: ', 'collabpress') ?></th>
+						<td>
+							<p>
+								<textarea class="large-text code" id="cp-task-list-description" cols="30" rows="10"></textarea>
+							</p>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			<p class="submit">
+				<input class="button-primary" type="submit" name="cp-add-task" value="<?php _e( 'Submit', 'collabpress' ); ?>"/>
+				<span class="spinner" style="float: left"></span></p>
+			</p>
+		</div>
 	</div>
 </div>
 
@@ -100,7 +252,7 @@
 				data: data
 			},
 			function( response ) {
-				task_el.parent('.collabpress-task').hide();
+				task_el.parents('.menu-item').hide();
 			}
 		);
 	});
@@ -113,7 +265,7 @@
 			}
 		);
 	});
-	$('.submit').click(function() {
+	$('#add_new_task_inline_content .submit').click(function() {
 
 		var data = { 
 			post_title: $('#cp-task').val(),
@@ -125,15 +277,38 @@
 			send_email_notification: $('#notify').val(),
 		};
 		data.nonce = $('#add_new_task_nonce').val();
-		$('#inline_content .spinner').show();
+		$('#add_new_task_inline_content .spinner').show();
 		$.post(
 			ajaxurl,
 			{
 				action: 'cp_add_new_task',
 				data: data
 			}, function( response ) {
-				console.log( response );
-				$('#inline_content .spinner').hide();
+				$('#add_new_task_inline_content .spinner').hide();
+				window.location = response.data.redirect;
+			}
+		);
+	});
+
+	$('#add_new_task_list_inline_content .submit').click(function() {
+
+		var data = { 
+			post_title: $('#cp-task-list').val(),
+			project_id: $('#cp-project-task-list-id').val(),
+			task_list_description: $('#cp-task-list-description').val()
+		};
+
+		// todo: fix nonces
+		// data.nonce = $('#add_new_task_list_nonce').val();
+		$('#add_new_task_list_inline_content .spinner').show();
+		$.post(
+			ajaxurl,
+			{
+				action: 'cp_add_new_task_list',
+				data: data
+			}, function( response ) {
+				console.log(response );
+				$('#add_new_task_list_inline_content .spinner').hide();
 				window.location = response.data.redirect;
 			}
 		);

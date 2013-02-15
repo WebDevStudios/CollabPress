@@ -87,6 +87,25 @@ function cp_delete_task_handler() {
 	wp_send_json_success();
 }
 
+add_action( 'wp_ajax_cp_add_new_task_list', 'cp_add_new_task_list_handler' );
+
+function cp_add_new_task_list_handler() {
+	global $wpdb, $cp;
+	
+	$data = $_REQUEST['data'];
+	extract( $data );
+	
+	// todo: fix nonces
+	// if ( ! wp_verify_nonce( $nonce, 'add_new_task' ) ) {
+	// 	echo 'bad nonce';
+	// 	die;
+	// }
+	cp_insert_task_list( $data );
+	
+	$permalink = cp_get_project_tasks_permalink( $project_id );
+	
+	wp_send_json_success( array( 'redirect' => $permalink ) );
+}
 
 add_action( 'wp_ajax_cp_attach_new_file', 'cp_attach_new_file_handler' );
 
@@ -103,4 +122,22 @@ function cp_attach_new_file_handler() {
 	wp_send_json_success();
 }
 
+add_action( 'wp_ajax_cp_save_task_list_order', 'cp_save_task_list_order' );
+
+function cp_save_task_list_order() {
+	global $wpdb, $cp;
+
+	$data = $_REQUEST['data'];
+	extract( $data );
+	foreach ( $items as $item ) {
+		$post = get_post( $item['ID'] );
+		wp_update_post( $item );
+		if ( isset( $item['task_list'] ) ) {
+			cp_add_task_to_task_list( $item['ID'], $item['task_list'] );
+		} else if ( $post->post_type == 'cp-tasks' )
+			update_post_meta( $item['ID'], '_cp-task-list-id', 0 );
+	}
+	die;
+	wp_send_json_success();
+}
 
