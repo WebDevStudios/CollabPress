@@ -126,11 +126,11 @@ function cp_get_breadcrumb() {
 	// Task page
 	echo '<div id="cp_breadcrumb">';
 		echo '<ul>';
-		
+
 		if ( $cp_calendar_page || $cp_view_projects ) :
-			
+
 			echo '<li class="dash-crumb"><a href="' .CP_DASHBOARD. '">'.__('Dashboard', 'collabpress').'</a></li>';
-		
+
 		elseif ( $cp_project_page ) :
 
 			echo '<li class="dash-crumb"><a href="' .CP_DASHBOARD. '">'.__('Dashboard', 'collabpress').'</a></li><li class="proj-crumb"><span>' .get_the_title( $cp_project->id ) .'</span></li>';
@@ -155,7 +155,7 @@ function cp_get_breadcrumb() {
 			echo '<li class="dash-crumb"><span>'.__('Dashboard', 'collabpress').'</span></li>';
 
 		endif;
-		
+
 		echo '</ul>';
 	echo '</div>';
 }
@@ -1184,14 +1184,14 @@ function cp_user_page() {
 		    $tasks_query = get_posts( array(
 		    	'post_type' => 'cp-meta-data',
 		    	'meta_query' => array(
-		    		array( 
+		    		array(
 		    			'key' => '_cp-meta-type',
 		    			'value' => 'activity',
 		    		),
-		    		array( 
+		    		array(
 		    			'key' => '_cp-activity-author',
 		    			'value' => $cp_user->id,
-		    		)	
+		    		)
 		    	)
 		    ) );
 
@@ -1222,11 +1222,11 @@ function cp_user_page() {
 			$tasks_query = get_posts( array(
 				'post_type' => 'cp-tasks',
 				'meta_query' => array(
-					array( 
+					array(
 						'key' => '_cp-task-assign',
 						'value' => $cp_user->id,
 					),
-					array( 
+					array(
 						'key' => '_cp-task-status',
 						'value' => 'open',
 					)
