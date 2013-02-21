@@ -9,6 +9,46 @@ class WP_Test_Functions extends WP_UnitTestCase {
 		$this->factory->task = new CP_UnitTest_Factory_For_Task( $this->factory );
 	}
 
+	function test_cp_get_tasks_orderby_status() {
+
+		$args1 = array(
+			'task_list_id' => 1,
+			'status' => 'open',
+		);
+		$task_id1 = $this->factory->task->create( $args1 );
+
+		$args2 = array(
+			'task_list_id' => 1,
+			'status' => 'complete',
+		);
+		$task_id2 = $this->factory->task->create( $args2 );
+
+		$args3 = array(
+			'task_list_id' => 1,
+			'status' => 'zzz',
+		);
+		$task_id3 = $this->factory->task->create( $args3 );
+
+		// Shouldn't show up in results
+		// Included here to test that meta_value ordering works
+		// alongside meta_query
+		$args4 = array(
+			'task_list_id' => 2,
+			'status' => 'aaa',
+		);
+		$task_id4 = $this->factory->task->create( $args4 );
+
+		$tasks = cp_get_tasks(
+			array(
+				'orderby' => 'status',
+				'order' => 'asc',
+				'task_list_id' => 1,
+			)
+		);
+
+		$this->assertEquals( $tasks, array( get_post( $task_id2 ), get_post( $task_id1 ), get_post( $task_id3 ) ) );
+	}
+
 	/**
 	 * old argument format: cp_get_tasks( $task_list_id, $status )
 	 */

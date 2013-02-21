@@ -1502,7 +1502,7 @@ function cp_get_tasks( $args = array(), $deprecated = true ) {
 		'assigned_user_id' => null,
 	) );
 
-	// Sanitize
+	// Sanitize and convert
 	foreach ( $r as $rkey => $rvalue ) {
 		if ( ! is_null( $rvalue ) ) {
 			switch ( $rkey ) {
@@ -1513,6 +1513,14 @@ function cp_get_tasks( $args = array(), $deprecated = true ) {
 
 				case 'status' :
 					$r[ $rkey ] = esc_attr( $rvalue );
+					break;
+
+				case 'orderby' :
+					if ( 'status' == $rvalue ) {
+						$r['meta_key'] = '_cp-task-status';
+						$r['orderby'] = 'meta_value';
+					}
+
 					break;
 			}
 		}
@@ -1543,6 +1551,9 @@ function cp_get_tasks( $args = array(), $deprecated = true ) {
 			'value' => $r['assigned_user_id'],
 		);
 	}
+
+	// Pass through other arguments
+	$query_args = array_merge( $r, $query_args );
 
 	return get_posts( $query_args );
 }
