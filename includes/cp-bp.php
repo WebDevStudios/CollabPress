@@ -145,10 +145,6 @@ class CP_BP_Integration {
 		return get_permalink( $post_id );
 	}
 
-	function setup_page() {
-
-	}
-
 	function do_cp_query() {
 		global $cp_page;
 
