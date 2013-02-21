@@ -1474,26 +1474,77 @@ function cp_get_url( $ID = NULL, $type = NULL ) {
     return apply_filters( $filter_name, $cp_url, $ID );
 }
 
-// Retrieve all tasks in a task list with a specific status
-function cp_get_tasks( $task_list_id, $status ) {
-	$task_list_id = absint( $task_list_id );
-	$status = esc_attr( $status );
-    if ( $task_list_id && $status ) {
-		$tasks = get_posts( array( 
-			'post_type' => 'cp-tasks',
-			'meta_query' => array( 
-				array( 
-					'key' => '_cp-task-list-id',
-					'value' => $task_list_id,
-				),
-				array( 
-					'key' => '_cp-task-status',
-					'value' => $status,
-				)
-			)
-		) );
-		return $tasks;
-    }
+/**
+ * Fetch some tasks
+ *
+ * Note that this uses some WP defaults for fetching posts. In addition to
+ * CP-specific arguments, you can also pass any argument accepted by
+ * get_posts() or WP_Query.
+ *
+ * @param array $args See default definition below
+ */
+function cp_get_tasks( $args = array(), $deprecated = true ) {
+
+	// Backward compatibility for old argument style
+	if ( ! is_array( $args ) ) {
+		$new_args = array( 'task_list_id' => $args );
+
+		if ( $deprecated && is_string( $deprecated ) ) {
+			$new_args['status'] = $deprecated;
+		}
+
+		$args = $new_args;
+	}
+
+	$r = wp_parse_args( $args, array(
+		'task_list_id'     => null,
+		'status'           => null,
+		'assigned_user_id' => null,
+	) );
+
+	// Sanitize
+	foreach ( $r as $rkey => $rvalue ) {
+		if ( ! is_null( $rvalue ) ) {
+			switch ( $rkey ) {
+				case 'task_list_id' :
+				case 'user_id' :
+					$r[ $rkey ] = absint( $rvalue );
+					break;
+
+				case 'status' :
+					$r[ $rkey ] = esc_attr( $rvalue );
+					break;
+			}
+		}
+	}
+
+	$query_args = array(
+		'post_type' => 'cp-tasks',
+		'meta_query' => array(),
+	);
+
+	if ( ! is_null( $r['task_list_id'] ) ) {
+		$query_args['meta_query'][] = array(
+			'key' => '_cp-task-list-id',
+			'value' => $r['task_list_id'],
+		);
+	}
+
+	if ( ! is_null( $r['status'] ) ) {
+		$query_args['meta_query'][] = array(
+			'key' => '_cp-task-status',
+			'value' => $r['status'],
+		);
+	}
+
+	if ( ! is_null( $r['assigned_user_id'] ) ) {
+		$query_args['meta_query'][] = array(
+			'key' => '_cp-task-assign',
+			'value' => $r['assigned_user_id'],
+		);
+	}
+
+	return get_posts( $query_args );
 }
 
 // Validate Date

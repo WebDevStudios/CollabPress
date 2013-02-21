@@ -42,5 +42,22 @@ class WP_Test_Functions extends WP_UnitTestCase {
 
 		$this->assertEquals( $tasks, array( get_post( $task_id4 ) ) );
 	}
+
+	function test_cp_get_tasks_by_assigned_user() {
+
+		$args1 = array(
+			'assigned_user_id' => 2,
+		);
+		$task_id1 = $this->factory->task->create( $args1 );
+
+		$args2 = array(
+			'assigned_user_id' => 1,
+		);
+		$task_id2 = $this->factory->task->create( $args2 );
+
+		$tasks = cp_get_tasks( array( 'assigned_user_id' => 1 ) );
+
+		$this->assertEquals( $tasks, array( get_post( $task_id2 ) ) );
+	}
 }
 
