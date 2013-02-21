@@ -2,7 +2,6 @@
 
 global $cp_project;
 global $cp_task_list;
-global $cp_bp_integration;
 
 // Add Task
 if ( isset( $_POST['cp-add-task'] ) && isset( $_POST['cp-task'] ) ) :
@@ -19,6 +18,8 @@ if ( isset( $_POST['cp-add-task'] ) && isset( $_POST['cp-task'] ) ) :
 
 	//add task status
 	update_post_meta( $task_id, '_cp-task-status', 'open' );
+
+	$cp_bp_integration = cp_bp();
 
 	// Where we get the project_id from depends on whether this is a BP installation
 	if ( isset( $_GET['project'] ) ) {

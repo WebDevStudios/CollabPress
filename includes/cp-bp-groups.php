@@ -50,7 +50,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @since 1.2
 	 */
 	function __construct() {
-		global $bp, $cp_bp_integration;
+		global $bp;
 
 		$this->cp_settings = cp_get_options();
 
@@ -94,7 +94,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		}
 
 		// Put the CP slug in the main global for later access when building URLs
-		$cp_bp_integration->item_cp_slug = $this->slug;
+		cp_bp()->item_cp_slug = $this->slug;
 
 	 	// We only need to show in the admin if admins can customize
 	 	if ( $this->admins_can_customize || $this->admins_can_disable ) {
@@ -318,8 +318,6 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @since 1.2
 	 */
 	function set_current_item() {
-		global $cp_bp_integration;
-
 		$this->current_item = array(
 			'project' 	=> '',
 			'task_list' 	=> '',
@@ -338,7 +336,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		}
 
 		// Put in the global object for abstraction
-		$cp_bp_integration->current_item = $this->current_item;
+		cp_bp()->current_item = $this->current_item;
 	}
 
 	/**
@@ -359,8 +357,6 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @since 1.2
 	 */
 	function set_current_view() {
-		global $cp_bp_integration;
-
 		if ( !empty( $this->current_item['task'] ) ) {
 			$view = 'task';
 		} else if ( !empty( $this->current_item['task_list'] ) ) {
@@ -374,7 +370,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		$this->current_view = $view;
 
 		// Set the global current view as well
-		$cp_bp_integration->current_view = apply_filters( 'bp_cp_current_group_view', $view );
+		cp_bp()->current_view = apply_filters( 'bp_cp_current_group_view', $view );
 
 		// Now let's get the post ID for the currently viewed item
 		if ( in_array( $this->current_view, array( 'task', 'task_list', 'project' ) ) ) {
@@ -390,9 +386,9 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 				$this->current_item_obj      = $current_item_query->posts[0];
 				$this->current_item_ancestry = cp_bp_get_item_ancestry( $this->current_item_obj );
 
-				$cp_bp_integration->current_item_id       = $this->current_item_id;
-				$cp_bp_integration->current_item_obj      = $this->current_item_obj;
-				$cp_bp_integration->current_item_ancestry = $this->current_item_ancestry;
+				cp_bp()->current_item_id       = $this->current_item_id;
+				cp_bp()->current_item_obj      = $this->current_item_obj;
+				cp_bp()->current_item_ancestry = $this->current_item_ancestry;
 			}
 		}
 	}
@@ -655,8 +651,6 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @since 1.2
 	 */
 	function render_subnav() {
-		global $cp_bp_integration;
-
 		?>
 		<div class="item-list-tabs no-ajax" id="subnav" role="navigation">
 
@@ -664,17 +658,23 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 
 			<li<?php if ( 'list' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link ) ?>"><?php _e( 'Dashboard', 'collabpress' ) ?></a></li>
 
-			<?php if ( $project_name = $cp_bp_integration->get_current_item_project_name() ) : ?>
-				<li<?php if ( 'project' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . $cp_bp_integration->get_current_item_project_slug() ) ?>"> &rarr; <?php echo $project_name ?></a></li>
+			<?php if ( $project_name = cp_bp()->get_current_item_project_name() ) : ?>
+
+				<li<?php if ( 'project' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . cp_bp()->get_current_item_project_slug() ) ?>"> &rarr; <?php echo $project_name ?></a></li>
+
+				<?php if ( $task_list_name = cp_bp()->get_current_item_task_list_name() ) : ?>
+					<li<?php if ( 'task_list' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . cp_bp()->get_current_item_project_slug() . '/' . cp_bp()->get_current_item_task_list_slug() ) ?>"> &rarr; <?php echo $task_list_name ?></a></li>
+				<?php endif ?>
+
+				<?php if ( $task_name = cp_bp()->get_current_item_task_name() ) : ?>
+					<li<?php if ( 'task' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . cp_bp()->get_current_item_project_slug() . '/' . cp_bp()->get_current_item_task_list_slug() . '/' . cp_bp()->get_current_item_task_slug() ) ?>"> &rarr; <?php echo $task_name ?></a></li>
+				<?php endif ?>
+
+			<?php else : ?>
 			<?php endif ?>
 
-			<?php if ( $task_list_name = $cp_bp_integration->get_current_item_task_list_name() ) : ?>
-				<li<?php if ( 'task_list' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . $cp_bp_integration->get_current_item_project_slug() . '/' . $cp_bp_integration->get_current_item_task_list_slug() ) ?>"> &rarr; <?php echo $task_list_name ?></a></li>
-			<?php endif ?>
 
-			<?php if ( $task_name = $cp_bp_integration->get_current_item_task_name() ) : ?>
-				<li<?php if ( 'task' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . $cp_bp_integration->get_current_item_project_slug() . '/' . $cp_bp_integration->get_current_item_task_list_slug() . '/' . $cp_bp_integration->get_current_item_task_slug() ) ?>"> &rarr; <?php echo $task_name ?></a></li>
-			<?php endif ?>
+
 		</ul>
 
 		</div>

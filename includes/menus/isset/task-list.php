@@ -1,6 +1,6 @@
 <?php
 
-global $cp_project, $cp_bp_integration;
+global $cp_project;
 
 // Add Task List
 if ( isset( $_POST['cp-add-task-list'] ) && isset($_POST['cp-task-list']) ) :
@@ -15,7 +15,7 @@ if ( isset( $_POST['cp-add-task-list'] ) && isset($_POST['cp-task-list']) ) :
 				);
 	$task_list_id = wp_insert_post( $add_task_list );
 
-	if ( isset( $_GET['project'] ) || ( isset( $cp_bp_integration->current_view ) && 'project' == $cp_bp_integration->current_view ) )
+	if ( isset( $_GET['project'] ) || ( isset( cp_bp()->current_view ) && 'project' == cp_bp()->current_view ) )
 		update_post_meta( $task_list_id, '_cp-project-id', $cp_project->id );
 	if ( isset($_POST['cp-task-list-description']) )
 		update_post_meta( $task_list_id, '_cp-task-list-description', esc_html( $_POST['cp-task-list-description'] ) );

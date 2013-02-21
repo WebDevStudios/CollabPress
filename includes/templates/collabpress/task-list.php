@@ -1,12 +1,12 @@
 <?php 
 
-global $cp_page, $cp_bp_integration;
+global $cp_page;
 
 ?>
 
 <div class="cp-bp-header cp-task">
-	<h3><?php printf( __( 'Task List: <em>%s</em>', 'collabpress' ), esc_html( $cp_bp_integration->get_current_item_task_list_name() ) ) ?></h3>
-	<p class="description"><?php echo esc_html( $cp_bp_integration->get_current_item_task_list_description() ) ?></p>
+	<h3><?php printf( __( 'Task List: <em>%s</em>', 'collabpress' ), esc_html( cp_bp()->get_current_item_task_list_name() ) ) ?></h3>
+	<p class="description"><?php echo esc_html( cp_bp()->get_current_item_task_list_description() ) ?></p>
 </div>
 
 <div class="cp-meta-box cp-add-task hide-on-load">

@@ -307,8 +307,32 @@ class CP_BP_Integration {
 		<?php
 	}
 }
-global $cp_bp_integration;
-$cp_bp_integration = new CP_BP_Integration;
+
+/**
+ * Loads the BP component
+ *
+ * @since 1.3
+ */
+function cp_bp_load_component() {
+	global $bp;
+	$bp->collabpress = new CP_BP_Integration;
+}
+cp_bp_load_component();
+
+/**
+ * Convenience function for accessing CP_BP_Integration object
+ *
+ * @since 1.3
+ * @return obj CP_BP_Integration piece from $bp global
+ */
+function cp_bp() {
+	if ( function_exists( 'buddypress' ) ) {
+		return buddypress()->collabpress;
+	} else {
+		global $bp;
+		return $bp->collabpress;
+	}
+}
 
 /**
  * Assemble arguments for querying a list of projects
@@ -362,7 +386,7 @@ function cp_bp_projects_query_args( $args = array() ) {
  * @param
  */
 function cp_bp_get_project_permalink( $project_id = false, $project = false ) {
-	global $post, $cp_bp_integration;
+	global $post;
 
 	// Only run another query if we have to
 	if ( $project_id && !$project && ( ( isset( $post->ID ) && $project_id != $post->ID ) || !isset( $post->ID ) ) ) {
@@ -384,7 +408,7 @@ function cp_bp_get_project_permalink( $project_id = false, $project = false ) {
 		'item_id'	=> $project->post_author,
 		'item_type'	=> 'user',
 		'item_link'	=> bp_core_get_user_domain( $project->post_author ),
-		'item_cp_slug'	=> $cp_bp_integration->item_cp_slug // Todo: This has to be alterable
+		'item_cp_slug'	=> cp_bp()->item_cp_slug // Todo: This has to be alterable
 	), $project );
 
 	// Assemble the permalink
