@@ -19,10 +19,10 @@ if ( isset( $_POST['cp-add-task-list'] ) && isset($_POST['cp-task-list']) ) :
 		update_post_meta( $task_list_id, '_cp-project-id', $cp_project->id );
 	if ( isset($_POST['cp-task-list-description']) )
 		update_post_meta( $task_list_id, '_cp-task-list-description', esc_html( $_POST['cp-task-list-description'] ) );
-	
+
 	// Add Activity
 	cp_add_activity(__('added', 'collabpress'), __('task list', 'collabpress'), $current_user->ID, $task_list_id);
-	
+
 	do_action( 'cp_task_list_added', $task_list_id );
 
 endif;
@@ -49,7 +49,7 @@ if ( isset( $_POST['cp-edit-task-list'] ) && $_POST['cp-edit-task-list-id'] ) :
 		cp_add_activity(__('updated', 'collabpress'), __('task list', 'collabpress'), $current_user->ID, $tasklistID);
 
 		do_action( 'cp_task_list_edited', $tasklistID );
-		
+
     }
 
 endif;
@@ -85,7 +85,7 @@ if ( isset( $_GET['cp-delete-task-list-id'] ) ) :
 			endwhile;
 		endif;
 
-		do_action( 'cp_task_list_deleted', $cp_task_list_id ); 
+		do_action( 'cp_task_list_deleted', $cp_task_list_id );
 
     }
 

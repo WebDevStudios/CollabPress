@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 global $cp_page;
 
@@ -12,7 +12,7 @@ global $cp_page;
 <div class="cp-meta-box cp-add-task-list hide-on-load">
 	<div title="Click to toggle" class="handlediv"><br></div>
 	<h4 class="hndle"><span><?php _e( 'Add Task List', 'collabpress' ) ?></span></h4>
-	
+
 	<div class="inside">
 		<?php $cp_page->cp_add_task_list_meta() ?>
 	</div>
@@ -21,7 +21,7 @@ global $cp_page;
 <div class="cp-meta-box cp-project-overview">
 	<div title="Click to toggle" class="handlediv"><br></div>
 	<h4 class="hndle"><span><?php _e( 'Project Overview', 'collabpress' ) ?></span></h4>
-	
+
 	<div class="inside">
 		<?php $cp_page->cp_task_list_meta() ?>
 	</div>
@@ -30,10 +30,10 @@ global $cp_page;
 <?php /* Files are disabled for the moment */ ?>
 <?php /*
 <div class="cp-meta-box cp-files hide-on-load">
-	
+
 	<div title="Click to toggle" class="handlediv"><br></div>
 	<h4 class="hndle"><span><?php _e( 'Files', 'collabpress' ) ?></span></h4>
-	
+
 	<div class="inside">
 		<?php $cp_page->cp_files_meta() ?>
 	</div>
@@ -41,13 +41,13 @@ global $cp_page;
 */ ?>
 
 
-<?php if ( cp_check_permissions( 'settings_user_role' ) ) : ?>	
+<?php if ( cp_check_permissions( 'settings_user_role' ) ) : ?>
 	<div class="cp-meta-box cp-edit-project hide-on-load">
 		<div title="Click to toggle" class="handlediv"><br></div>
 		<h4 class="hndle"><span><?php _e( 'Edit Project', 'collabpress' ) ?></span></h4>
-		
+
 		<div class="inside">
 			<?php $cp_page->cp_edit_project_meta() ?>
 		</div>
 	</div>
-<?php endif ?>	
+<?php endif ?>
