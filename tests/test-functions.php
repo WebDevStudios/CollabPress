@@ -7,6 +7,34 @@ class WP_Test_Functions extends WP_UnitTestCase {
 
 		require_once( dirname(__FILE__) . '/factory.php' );
 		$this->factory->task = new CP_UnitTest_Factory_For_Task( $this->factory );
+		$this->factory->tasklist = new CP_UnitTest_Factory_For_TaskList( $this->factory );
+	}
+
+	function test_cp_get_tasklist_project_id() {
+		$tasklist_id = $this->factory->tasklist->create( array( 'project_id' => 3 ) );
+
+		$this->assertEquals( cp_get_tasklist_project_id( $tasklist_id ), 3 );
+
+		// Check the null case. Should never happen
+		$tasklist_id2 = $this->factory->tasklist->create();
+		$this->assertFalse( cp_get_tasklist_project_id( $tasklist_id2 ) );
+	}
+
+	function test_cp_get_task_tasklist_id() {
+		$tasklist_id = $this->factory->tasklist->create();
+		$task_id = $this->factory->task->create( array( 'task_list_id' => $tasklist_id ) );
+
+		$this->assertEquals( cp_get_task_tasklist_id( $task_id ), $tasklist_id );
+
+		// Check the null case. Should never happen
+		$task_id2 = $this->factory->task->create();
+		$this->assertFalse( cp_get_task_tasklist_id( $task_id2 ) );
+	}
+
+	function test_cp_get_task_project_id() {
+		$tasklist_id = $this->factory->tasklist->create( array( 'project_id' => 4 ) );
+		$task_id = $this->factory->task->create( array( 'task_list_id' => $tasklist_id ) );
+		$this->assertEquals( cp_get_task_project_id( $task_id ), 4 );
 	}
 
 	function test_cp_get_tasks_orderby_status() {

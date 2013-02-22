@@ -1640,6 +1640,69 @@ function cp_check_project_permissions( $user_id=1, $project_id=1 ) {
 }
 
 /**
+ * Get a task's project ID
+ *
+ * @since 1.3
+ * @todo If and when task lists are made into optional taxonomies, this'll have
+ *   to be reworked
+ *
+ * @param int $task_id
+ * @return int|bool Project id if one is found, otherwise false
+ */
+function cp_get_task_project_id( $task_id = 0 ) {
+	$tasklist_id = cp_get_task_tasklist_id( $task_id );
+	$project_id = cp_get_tasklist_project_id( $tasklist_id );
+
+	return $project_id;
+}
+
+/**
+ * Get a task's task list ID
+ *
+ * @since 1.3
+ * @todo If and when task lists are made into optional taxonomies, this'll have
+ *   to be reworked
+ *
+ * @param int $task_id
+ * @return int|bool Task list id if one is found, otherwise false
+ */
+function cp_get_tasklist_project_id( $tasklist_id = 0 ) {
+	$tasklist_id = absint( $tasklist_id );
+	$project_id = get_post_meta( $tasklist_id, '_cp-project-id', true );
+
+	if ( $project_id ) {
+		$project_id = absint( $project_id );
+	} else {
+		$project_id = false;
+	}
+
+	return $project_id;
+}
+
+/**
+ * Get a task list's project ID
+ *
+ * @since 1.3
+ * @todo If and when task lists are made into optional taxonomies, this'll have
+ *   to be reworked
+ *
+ * @param int $task_list_id
+ * @return int|bool Project id if one is found, otherwise false
+ */
+function cp_get_task_tasklist_id( $task_id = 0 ) {
+	$task_id = absint( $task_id );
+	$tasklist_id = get_post_meta( $task_id, '_cp-task-list-id', true );
+
+	if ( $tasklist_id ) {
+		$tasklist_id = absint( $tasklist_id );
+	} else {
+		$tasklist_id = false;
+	}
+
+	return $tasklist_id;
+}
+
+/**
  * Utility function for calling up CP's options array, providing any necessary defaults
  *
  * @package CollabPress
