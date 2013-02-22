@@ -1481,6 +1481,11 @@ function cp_get_url( $ID = NULL, $type = NULL ) {
  * CP-specific arguments, you can also pass any argument accepted by
  * get_posts() or WP_Query.
  *
+ * 'posts_only' is a special param that allows you to control whether the
+ * function returns just a list of the posts matching a query, or the WP_Query
+ * object. You might want this latter option when you need the total found
+ * rows, as when building pagination.
+ *
  * @param array $args See default definition below
  */
 function cp_get_tasks( $args = array(), $deprecated = true ) {
@@ -1497,6 +1502,7 @@ function cp_get_tasks( $args = array(), $deprecated = true ) {
 	}
 
 	$r = wp_parse_args( $args, array(
+		'posts_only'       => true,
 		'task_list_id'     => null,
 		'status'           => null,
 		'assigned_user_id' => null,
@@ -1555,7 +1561,13 @@ function cp_get_tasks( $args = array(), $deprecated = true ) {
 	// Pass through other arguments
 	$query_args = array_merge( $r, $query_args );
 
-	return get_posts( $query_args );
+	if ( $r['posts_only'] ) {
+		$retval = get_posts( $query_args );
+	} else {
+		$retval = new WP_Query( $query_args );
+	}
+
+	return $retval;
 }
 
 // Validate Date
