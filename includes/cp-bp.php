@@ -16,7 +16,7 @@
  * @subpackage CP BP
  * @since 1.2
  */
-class CP_BP_Integration {
+class CP_BP_Integration extends BP_Component {
 	var $item_cp_slug;
 
 	var $current_view;
@@ -33,6 +33,19 @@ class CP_BP_Integration {
 	 * @since 1.2
 	 */
 	function __construct() {
+		global $bp;
+
+		parent::start(
+			'collabpress',
+			__( 'CollabPress', 'collabpress' ),
+			CP_PLUGIN_DIR
+		);
+
+		// Register ourselves as an active BP component
+		$bp->active_components['collabpress'] = '1';
+
+		add_filter( 'bp_get_template_stack', array( $this, 'add_cp_to_template_stack' ) );
+
 		// Register BP-specific taxonomies
 		add_action( 'cp_registered_post_types', array( &$this, 'register_taxonomies' ) );
 
@@ -57,6 +70,87 @@ class CP_BP_Integration {
 		add_filter( 'cp_task_link', array( &$this, 'filter_item_link' ), 10, 3 );
 
 		add_action( 'cp_project_added', array( &$this, 'mark_post_in_group' ) );
+
+		add_action( 'wp_print_styles', array( &$this, 'enqueue_styles' ) );
+	}
+
+	/**
+	 * Implementation of BP_Component::setup_globals()
+	 *
+	 * @since 1.3
+	 */
+	public function setup_globals() {
+		$globals = array(
+			'slug'                  => 'collabpress',
+			'root_slug'             => 'collabpress',
+			'has_directory'         => false,
+		);
+		parent::setup_globals( $globals );
+	}
+
+	/**
+	 * Set up navigation
+	 *
+	 * @since 1.3
+	 */
+	function setup_nav() {
+		// Add 'Example' to the main navigation
+		$main_nav = array(
+			'name'                    => __( 'Projects', 'collabpress' ),
+			'slug'                    => $this->slug,
+			'position'                => 44,
+			'screen_function'         => array( $this, 'template_loader' ),
+			'default_subnav_slug'     => 'tasks',
+			'show_for_displayed_user' => array( $this, 'show_tab_for_current_user' ),
+		);
+
+		$projects_link = trailingslashit( bp_loggedin_user_domain() . $this->slug );
+
+		// Add a few subnav items under the main Example tab
+		$sub_nav[] = array(
+			'name'            =>  bp_is_my_profile() ? __( 'My Tasks', 'collabpress' ) : sprintf( __( '%s&#8217s Tasks', 'collabpress' ), bp_get_user_firstname() ),
+			'slug'            => 'tasks',
+			'parent_url'      => $projects_link,
+			'parent_slug'     => $this->slug,
+			'screen_function' => array( $this, 'template_loader' ),
+			'position'        => 10
+		);
+
+		parent::setup_nav( $main_nav, $sub_nav );
+	}
+
+	public function show_tab_for_current_user() {
+		$show = bp_is_my_profile() || current_user_can( 'bp_moderate' );
+		return apply_filters( 'cp_bp_show_tab_for_current_user', $show );
+	}
+
+	public function template_loader() {
+		add_action( 'bp_template_content', array( $this, 'template_content_loader' ) );
+		bp_core_load_template( 'members/plugins' );
+	}
+
+	public function template_content_loader() {
+		$template = '';
+		switch ( bp_current_action() ) {
+			case 'tasks' :
+				$template = 'collabpress/user-tasks';
+				break;
+		}
+
+		if ( function_exists( 'bp_get_template_part' ) ) {
+			// BP 1.7+ has theme compatibility support
+			bp_get_template_part( $template );
+		} else {
+			// For versions of BP <1.7, there's no built-in support
+			// for custom templates (sorry, theme authors - didn't
+			// want to add the overhead for a legacy system)
+			include( apply_filters( 'cp_bp_legacy_user_template', $template ) );
+		}
+	}
+
+	public function add_cp_to_template_stack( $stack ) {
+		$stack[] = CP_PLUGIN_DIR . '/includes/templates/';
+		return $stack;
 	}
 
 	/**
@@ -305,6 +399,12 @@ class CP_BP_Integration {
 		<?php endif ?>
 
 		<?php
+	}
+
+	public function enqueue_styles() {
+		if ( bp_is_user() && bp_is_current_component( 'collabpress' ) ) {
+			wp_enqueue_style( 'cp-bp', CP_PLUGIN_URL . 'includes/css/bp.css' );
+		}
 	}
 }
 

@@ -1527,6 +1527,9 @@ function cp_get_tasks( $args = array(), $deprecated = true ) {
 						$r['orderby'] = 'meta_value';
 					}
 
+					if ( 'due_date' == $rvalue ) {
+					}
+
 					break;
 			}
 		}
