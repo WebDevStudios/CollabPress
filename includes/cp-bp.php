@@ -126,7 +126,7 @@ class CP_BP_Integration extends BP_Component {
 
 	public function template_loader() {
 		add_action( 'bp_template_content', array( $this, 'template_content_loader' ) );
-		bp_core_load_template( 'members/plugins' );
+		bp_core_load_template( 'members/single/plugins' );
 	}
 
 	public function template_content_loader() {
@@ -144,7 +144,7 @@ class CP_BP_Integration extends BP_Component {
 			// For versions of BP <1.7, there's no built-in support
 			// for custom templates (sorry, theme authors - didn't
 			// want to add the overhead for a legacy system)
-			include( apply_filters( 'cp_bp_legacy_user_template', $template ) );
+			include( apply_filters( 'cp_bp_legacy_user_template', CP_PLUGIN_DIR . '/includes/templates/' . $template . '.php' ) );
 		}
 	}
 
