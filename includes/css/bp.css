@@ -52,6 +52,10 @@ body.collabpress table.cb-tasks-list th {
 	width: 25%;
 }
 
+body.collabpress .currently-viewing {
+	font-size: 85%;
+}
+
 /*******************/
 /* FAUX META BOXES */
 /*******************/
