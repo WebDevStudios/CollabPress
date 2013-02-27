@@ -147,8 +147,40 @@ function collabpress_init() {
 							);
 	// Register CollabPress Meta Data
 	register_post_type( 'cp-meta-data', $args_tasks );
-	
+
 	// Let other plugins (and the BuddyPress compatibility module) know that we've registered
-	do_action( 'cp_registered_post_types' ); 
+	do_action( 'cp_registered_post_types' );
 
 }
+
+/**
+ * Dismiss a CP warning admin notice
+ *
+ * @since 1.3
+ */
+function cp_dismiss_admin_notice() {
+	if ( ! current_user_can( 'manage_options' ) ) {
+		return;
+	}
+
+	// Sanitize
+	$notices = array( 'no_bp_groups', 'no_bp_15' );
+	if ( ! isset( $_GET['cp_dismiss'] ) || ! in_array( $_GET['cp_dismiss'], $notices ) ) {
+		return;
+	}
+
+	check_admin_referer( 'cp_dismiss_notice' );
+
+	$dismissed = get_option( 'cp_dismissed_messages' );
+	if ( ! $dismissed ) {
+		$dismissed = array();
+	}
+
+	$dismissed[ $_GET['cp_dismiss'] ] = '1';
+
+	update_option( 'cp_dismissed_messages', $dismissed );
+
+	$redirect = remove_query_arg( array( '_wpnonce', 'cp_dismiss' ), wp_get_referer() );
+	wp_safe_redirect( $redirect );
+}
+add_action( 'admin_init', 'cp_dismiss_admin_notice' );
