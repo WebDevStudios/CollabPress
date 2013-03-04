@@ -150,21 +150,68 @@ function cp_get_project_users_permalink( $project_id = 0 ) {
 		echo cp_get_project_users_permalink( $project_id );
 	}
 
-// Retrieve all tasks in a task list with a specific status
-// todo: maybe remove in the future
+/**
+ * Fetch some tasks
+ *
+ * Note that this uses some WP defaults for fetching posts. In addition to
+ * CP-specific arguments, you can also pass any argument accepted by
+ * get_posts() or WP_Query.
+ *
+ * 'posts_only' is a special param that allows you to control whether the
+ * function returns just a list of the posts matching a query, or the WP_Query
+ * object. You might want this latter option when you need the total found
+ * rows, as when building pagination.
+ *
+ * @param array $args See default definition below
+ */
 function cp_get_tasks( $args = array() ) {
+
+	// Backward compatibility for old argument style
+	if ( ! is_array( $args ) ) {
+		$new_args = array( 'task_list_id' => $args );
+
+		if ( $deprecated && is_string( $deprecated ) ) {
+			$new_args['status'] = $deprecated;
+		}
+
+		$args = $new_args;
+	}
+
 	$defaults = array(
-		'post_type' => 'cp-tasks',
-		'posts_per_page' => -1,
-		'project_id' => NULL,
-		'task_list_id' => NULL,
-		'status' => 'any',
+		'posts_only' =>       true,
+		'post_type' =>        'cp-tasks',
+		'posts_per_page' =>   -1,
+		'project_id' =>       NULL,
+		'task_list_id' =>     NULL,
+		'status' =>           'any',
+		'assigned_user_id' => null,
 	);
 
 	$args = wp_parse_args( $args, $defaults );
+
+	// Sanitize and convert
+	foreach ( $args as $key => $value ) {
+		if ( ! is_null( $value ) ) {
+			switch ( $key ) {
+				case 'task_list_id' :
+				case 'user_id' :
+					$args[ $key ] = absint( $value );
+				break;
+				case 'status' :
+					$args[ $key ] = esc_attr( $value );
+				break;
+				case 'orderby' :
+					if ( 'status' == $value ) {
+						$args['meta_key'] = '_cp-task-status';
+						$args['orderby'] = 'meta_value';
+					}
+				break;
+			}
+		}
+	}
 	extract( $args );
 
-	if ( ! is_null( $task_list_id ) ) {
+	if ( $task_list_id ) {
 		$args['meta_query'][] = array( 
 			'key' => '_cp-task-list-id',
 			'value' => $task_list_id,
@@ -185,7 +232,17 @@ function cp_get_tasks( $args = array() ) {
 		);
 	}
 
-	return get_posts( $args );
+	if ( ! empty( $assigned_user_id ) && $assigned_user_id ) {
+		$args['meta_query'][] = array( 
+			'key' => '_cp-task-assign',
+			'value' => $assigned_user_id,
+		);
+	}
+
+	if ( $posts_only )
+		return get_posts( $args );
+	else
+		return new WP_Query( $args );
 }
 
 function cp_task_title() {

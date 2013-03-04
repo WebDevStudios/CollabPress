@@ -286,15 +286,10 @@ function cp_calendar() {
 // 		//verify logged in user has access to this project
 // 		if ( cp_check_project_permissions( $current_user->ID, get_the_ID() ) ) {
 
-<<<<<<< HEAD
+
 // 		    //generate delete project link
 // 		    $cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
 // 		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
-=======
-		    //generate delete project link
-		    $cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
-		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' .get_the_ID() ) : $cp_del_link;
->>>>>>> master
 
 // 		    //generate edit project link
 // 		    $cp_edit_link = CP_DASHBOARD.'&project='.get_the_ID().'&view=edit';
@@ -1142,14 +1137,10 @@ function cp_task_comments() {
 					<p class="cp_comment_author"><a title="<?php echo $comm->comment_author ?>" href="<?php echo CP_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo $comm->comment_author ?></a>
 					<?php
 					//generate delete comment link
-<<<<<<< HEAD
+
 					$cp_del_link = CP_DASHBOARD .'&project='.$cp->project->ID.'&task='.$cp->task->ID.'&cp-delete-comment-id='.$comm->comment_ID;
 					$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_comment' ) : $cp_del_link;
-=======
-					$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&task='.$cp_task->id.'&cp-delete-comment-id='.$comm->comment_ID;
-					$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_comment' .absint( $comm->comment_ID ) ) : $cp_del_link;
->>>>>>> master
-
+					
 					if ( $current_user->ID == $comm->user_id || current_user_can( 'manage_options' ) )
 						echo ' - <a href="'.$cp_del_link.'" style="color:red;" onclick="javascript:check=confirm(\'' . __('WARNING: This will delete the selected comment.\n\nChoose [Cancel] to Stop, [OK] to delete.\n', 'collabpress' ) .'\');if(check==false) return false;">'.__( 'delete', 'collabpress' ). '</a>';
 					?>
@@ -1595,108 +1586,6 @@ function cp_get_url( $ID = NULL, $type = NULL ) {
     return apply_filters( $filter_name, $cp_url, $ID );
 }
 
-<<<<<<< HEAD
-=======
-/**
- * Fetch some tasks
- *
- * Note that this uses some WP defaults for fetching posts. In addition to
- * CP-specific arguments, you can also pass any argument accepted by
- * get_posts() or WP_Query.
- *
- * 'posts_only' is a special param that allows you to control whether the
- * function returns just a list of the posts matching a query, or the WP_Query
- * object. You might want this latter option when you need the total found
- * rows, as when building pagination.
- *
- * @param array $args See default definition below
- */
-function cp_get_tasks( $args = array(), $deprecated = true ) {
-
-	// Backward compatibility for old argument style
-	if ( ! is_array( $args ) ) {
-		$new_args = array( 'task_list_id' => $args );
-
-		if ( $deprecated && is_string( $deprecated ) ) {
-			$new_args['status'] = $deprecated;
-		}
-
-		$args = $new_args;
-	}
-
-	$r = wp_parse_args( $args, array(
-		'posts_only'       => true,
-		'task_list_id'     => null,
-		'status'           => null,
-		'assigned_user_id' => null,
-	) );
-
-	// Sanitize and convert
-	foreach ( $r as $rkey => $rvalue ) {
-		if ( ! is_null( $rvalue ) ) {
-			switch ( $rkey ) {
-				case 'task_list_id' :
-				case 'user_id' :
-					$r[ $rkey ] = absint( $rvalue );
-					break;
-
-				case 'status' :
-					$r[ $rkey ] = esc_attr( $rvalue );
-					break;
-
-				case 'orderby' :
-					if ( 'status' == $rvalue ) {
-						$r['meta_key'] = '_cp-task-status';
-						$r['orderby'] = 'meta_value';
-					}
-
-					if ( 'due_date' == $rvalue ) {
-					}
-
-					break;
-			}
-		}
-	}
-
-	$query_args = array(
-		'post_type' => 'cp-tasks',
-		'meta_query' => array(),
-	);
-
-	if ( ! is_null( $r['task_list_id'] ) ) {
-		$query_args['meta_query'][] = array(
-			'key' => '_cp-task-list-id',
-			'value' => $r['task_list_id'],
-		);
-	}
-
-	if ( ! is_null( $r['status'] ) ) {
-		$query_args['meta_query'][] = array(
-			'key' => '_cp-task-status',
-			'value' => $r['status'],
-		);
-	}
-
-	if ( ! is_null( $r['assigned_user_id'] ) ) {
-		$query_args['meta_query'][] = array(
-			'key' => '_cp-task-assign',
-			'value' => $r['assigned_user_id'],
-		);
-	}
-
-	// Pass through other arguments
-	$query_args = array_merge( $r, $query_args );
-
-	if ( $r['posts_only'] ) {
-		$retval = get_posts( $query_args );
-	} else {
-		$retval = new WP_Query( $query_args );
-	}
-
-	return $retval;
-}
-
->>>>>>> master
 // Validate Date
 function cp_validate_date( $value = NULL ) {
 	return preg_match( '`^\d{1,2}/\d{1,2}/\d{4}$`' , $value );
