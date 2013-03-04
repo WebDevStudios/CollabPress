@@ -36,10 +36,8 @@ $cp_task = NULL;
 $cp_user = NULL;
 
 define('COLLABPRESS_DASHBOARD_PAGE', 'collabpress-dashboard');
-$new_debug = true;
 
 // load the new template instead of the old one on the back-end
-if ( $new_debug )
 	add_action( 'admin_menu', 'cp_add_admin_menu_item' ); 
 
 function cp_add_admin_menu_item() {
@@ -54,12 +52,6 @@ function cp_add_admin_menu_item() {
 		'cp_admin_menu_page_load',
 		CP_PLUGIN_URL .'includes/images/collabpress-menu-icon.png'
 	);
-}
-
-add_action( 'init', 'asdf' );
-
-function asdf() {
-	require_once('isset/comment.php');
 }
 
 add_action( 'init', 'cp_setup_cp_global', 5 );
@@ -577,6 +569,3 @@ class collabpress_dashboard_page {
 	}
 
 }
-
-if ( ! $new_debug )
-	$collabpress_dashboard_page = new collabpress_dashboard_page();

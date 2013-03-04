@@ -6,10 +6,10 @@
 .toplevel_page_collabpress-dashboard {
 	color: #21759B;
 }
-.toplevel_page_collabpress-dashboard a {
+/*.toplevel_page_collabpress-dashboard a {
 	color: #21759B;
 	text-decoration: none;
-}
+}*/
 .toplevel_page_collabpress-dashboard a:hover, .toplevel_page_collabpress-dashboard a:active  {
 	color: #D54E21;
 }

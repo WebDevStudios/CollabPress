@@ -37,7 +37,15 @@ do_action( 'cp_before_collabpress' );
 //front-end querystring support
 $cp_qs_add = cp_frontend_querystrings();
 
+// Define the dashboard link
 $cp_dashboard = ( is_admin() ) ? 'admin.php?page=collabpress-dashboard' : '?' .$cp_qs_add. 'cp=front';
+
+// If we're processing an AJAX request, 
+// set the dashboard link according to the origin of the request
+if ( ! empty( $_REQUEST['data']['collabpress_ajax_request_origin'] ) ) {
+	$cp_dashboard = ( $_REQUEST['data']['collabpress_ajax_request_origin'] == 'admin' ) ? 'admin.php?page=collabpress-dashboard' : '?' .$cp_qs_add. 'cp=front';
+}
+
 define( 'CP_DASHBOARD', $cp_dashboard );
 
 // CollabPress Core

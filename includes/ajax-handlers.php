@@ -137,7 +137,15 @@ function cp_save_task_list_order() {
 		} else if ( $post->post_type == 'cp-tasks' )
 			update_post_meta( $item['ID'], '_cp-task-list-id', 0 );
 	}
-	die;
 	wp_send_json_success();
 }
 
+add_action( 'wp_ajax_cp_update_task_status', 'cp_update_task_status_handler' );
+
+function cp_update_task_status_handler() {
+	$data = $_REQUEST['data'];
+	extract( $data );
+	$task_status = ( $task_status == 'on' ) ? 'complete' : 'open';
+	cp_update_task_status( $task_id, $task_status );
+	wp_send_json_success();
+}

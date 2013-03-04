@@ -8,13 +8,18 @@
 		<?php if( cp_has_projects() ) : ?>
 			<?php while( cp_projects() ) : cp_the_project(); ?>
 			<div class="collabpress-project">
-				<a href="<?php cp_project_permalink( get_the_ID() ); ?>"><?php echo get_the_title(); ?></a>
+				<h2>
+					<a href="<?php cp_project_permalink( get_the_ID() ); ?>"><?php echo get_the_title(); ?></a>
+				</h2>
 			</div>
 			<?php endwhile; ?>
 		<?php endif; ?>
 			<div class="collabpress-project new">
-				<a href="#inline_content" class="add-new-project">Add new project</a>
-				<a href="#inline_content" class="add-new-project">+</a>
+				<a href="#inline_content" class="add-new-project">
+					<div class="plus-sign">+</div>
+					<h2>Add new project</h2>
+				</a>
+
 			</div>
 	</div>
 	<div style='display:none'>
@@ -90,7 +95,8 @@
 		var data = { 
 			project_name: $('#cp-project').val(),
 			project_description: $('#cp-project-description').val(),
-			users: []
+			users: [],
+			collabpress_ajax_request: true
 		};
 		$('.cp_project_user').each(function( i, el ){
 			if ( $(el).is(':checked') ) {
@@ -105,7 +111,6 @@
 				action: 'cp_add_project',
 				data: data
 			}, function( response ) {
-				console.log( response );
 				$('#inline_content .spinner').hide();
 				window.location = response.data.redirect;
 			}

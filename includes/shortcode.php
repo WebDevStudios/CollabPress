@@ -12,9 +12,8 @@ function cp_project_short( $atts ) {
 
     //verify user has permission to view shortcode
     if ( cp_check_permissions( 'shortcode_user_role' ) ) :
-
-        cp_sc_projects( $id );
-
+    	cp_admin_menu_page_load();
+        // cp_sc_projects( $id );
     endif;
 
 }

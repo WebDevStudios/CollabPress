@@ -6,13 +6,14 @@
 			<?php cp_project_links(); ?>
 		</div>
 		<?php echo cp_project_title(); ?>
-		<div class="users">
 			<h3>Users</h3>
-			<?php foreach ( cp_get_project_users() as $user ) {
-				echo get_avatar( $user->ID );
-			} ?>
+			<div class="users">
+				<?php foreach ( cp_get_project_users() as $user ) {
+					echo get_avatar( $user->ID );
+				} ?>
+			</div>
 			<a href="#inline_content" class="modify-users-link">Modify users</a>
-		</div>
+		
 	</div>
 	<div style='display:none'>
 		<div id='inline_content' style='padding:10px; background:#fff;'>
@@ -59,7 +60,8 @@
 	$('.submit').click(function() {
 		var data = { 
 			project_id: $('#cp-project-id').val(),
-			users: []
+			users: [],
+			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 		};
 		$('.cp_project_user').each(function( i, el ){
 			if ( $(el).is(':checked') ) {
@@ -74,7 +76,6 @@
 				action: 'cp_modify_project_users',
 				data: data
 			}, function( response ) {
-				console.log( response );
 				$('#inline_content .spinner').hide();
 				window.location = response.data.redirect;
 			}

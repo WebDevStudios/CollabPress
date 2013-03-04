@@ -5,15 +5,15 @@
 			<?php cp_project_links(); ?>
 		</div>
 		<?php cp_project_title(); ?>
-		<div class="users">
 			<h3>Users</h3>
+			<div class="users">
 			<?php foreach ( cp_get_project_users() as $user ) {
 				echo get_avatar( $user->ID );
 			} ?>
+			</div>
 			<a href="<?php cp_project_users_permalink(); ?>">View all users</a>
-		</div>
-		<div class="tasks">
 			<h3>Tasks</h3>
+			<div class="tasks">
 			<?php if ( cp_has_tasks() ) : ?>
 				<?php while( cp_tasks() ) : cp_the_task(); ?>
 					<div class="collabpress-task">
@@ -21,10 +21,10 @@
 					</div>
 				<?php endwhile; ?>
 			<?php endif; ?>
+			</div>
 			<a href="<?php cp_project_tasks_permalink(); ?>"> View all tasks</a>
-		</div>
-		<div class="files">
 			<h3>Files</h3>
+			<div class="files">
 			<?php if ( cp_has_files() ) : ?>
 				<?php while( cp_files() ) : cp_the_file(); ?>
 					<div class="collabpress-task">
@@ -32,8 +32,7 @@
 					</div>
 				<?php endwhile; ?>
 			<?php endif; ?>
+			</div>
 			<a href="<?php cp_project_files_permalink(); ?>">View all files</a>
-		</div>
-
 	</div>
 </div>

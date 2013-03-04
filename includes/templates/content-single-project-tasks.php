@@ -55,11 +55,14 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 	foreach ( $tasks_and_task_lists as $item ) { 
 		ob_start();
 		$item_id = $item->ID; 
-		$title = $item->post_title; ?>
+		$title = $item->post_title;
+		$task_status = cp_get_task_status( $item->ID );
+		$title_class = $task_status; ?>
 		<li id="menu-item-<?php echo $item_id; ?>" class="menu-item">
 			<dl class="menu-item-bar">
 				<dt class="menu-item-handle">
-					<span class="item-title"><a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a><span>
+					<input type="checkbox" <?php checked( 'complete', $task_status ); ?>>
+					<span class="item-title <?php echo $title_class; ?>"><a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a></span>
 					<span class="item-controls">
 						<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
 					</span>
@@ -236,9 +239,11 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 (function($) {
 	$('.delete-task').click(function(i, el) {
 		var confirm_delete = confirm('Are you sure you want to delete this task?');
-		var task_el = $(this);
+		
 		if ( ! confirm_delete )
 			return;
+
+		var task_el = $(this);
 
 		var data = {
 			task_id: task_el.data( 'id' )
@@ -275,6 +280,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			task_assigned_to: $('#cp-task-assign').val(),
 			task_priority: $('#cp-task-priority').val(),
 			send_email_notification: $('#notify').val(),
+			collabpress_ajax_request: true
 		};
 		data.nonce = $('#add_new_task_nonce').val();
 		$('#add_new_task_inline_content .spinner').show();
@@ -295,7 +301,8 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 		var data = { 
 			post_title: $('#cp-task-list').val(),
 			project_id: $('#cp-project-task-list-id').val(),
-			task_list_description: $('#cp-task-list-description').val()
+			task_list_description: $('#cp-task-list-description').val(),
+			collabpress_ajax_request: true
 		};
 
 		// todo: fix nonces
@@ -307,9 +314,34 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 				action: 'cp_add_new_task_list',
 				data: data
 			}, function( response ) {
-				console.log(response );
 				$('#add_new_task_list_inline_content .spinner').hide();
 				window.location = response.data.redirect;
+			}
+		);
+	});
+	$('.menu-item input.item-completed').change( function(event) {
+		var data = { 
+			project_id: $('#cp-project-task-list-id').val(),
+			task_id: $(this)
+				.parents( '.menu-item-bar')
+				.siblings('.menu-item-settings')
+				.children('.menu-item-data-db-id')
+				.val(),
+			task_status: $(this).val(),
+			collabpress_ajax_request: true
+		};
+
+		if ( data.task_status == 'on' )
+			$(this).siblings('.item-title').css('text-decoration', 'line-through' );
+		else
+			$(this).siblings('.item-title').css('text-decoration', 'normal' );
+		$.post(
+			ajaxurl,
+			{
+				action: 'cp_update_task_status',
+				data: data
+			}, function( response ) {
+				console.log( response );
 			}
 		);
 	});

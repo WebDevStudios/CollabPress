@@ -300,18 +300,20 @@ function cp_get_task_permalink( $task_id ) {
 
 function cp_project_links() {
 	global $cp;
+
 	?>
-	<a href="<?php cp_permalink(); ?>">CP Dashboard</a>
-	<a href="<?php cp_project_permalink(); ?>">Project Overview</a>
-	<a href="<?php cp_project_calendar_permalink(); ?>">Calendar</a>
-	<a href="<?php cp_project_tasks_permalink(); ?>">Tasks</a>
-	<a href="<?php cp_project_files_permalink(); ?>">Files</a>
-	<a href="<?php cp_project_users_permalink(); ?>">Users</a><?php
+	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>">CP Dashboard</a>
+	<a class="<?php echo ( is_collabpress_page( 'project-overview' ) ? 'current' : '' ); ?>" href="<?php cp_project_permalink(); ?>">Project Overview</a>
+	<a class="<?php echo ( is_collabpress_page( 'project-calendar' ) ? 'current' : '' ); ?>" href="<?php cp_project_calendar_permalink(); ?>">Calendar</a>
+	<a class="<?php echo ( is_collabpress_page( 'project-tasks' ) ? 'current' : '' ); ?>" href="<?php cp_project_tasks_permalink(); ?>">Tasks</a>
+	<a class="<?php echo ( is_collabpress_page( 'project-files' ) ? 'current' : '' ); ?>" href="<?php cp_project_files_permalink(); ?>">Files</a>
+	<a class="<?php echo ( is_collabpress_page( 'project-users' ) ? 'current' : '' ); ?>" href="<?php cp_project_users_permalink(); ?>">Users</a><?php
 } 
 
-function cp_overall_links() { ?>
-	<a href="<?php cp_permalink(); ?>">Dashboard</a>
-	<a href="<?php cp_calendar_permalink(); ?>">Calendar</a><?php
+function cp_overall_links() { 
+	?>
+	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>">Dashboard</a>
+	<a class="<?php echo ( is_collabpress_page( 'calendar' ) ? 'current' : '' ); ?>" href="<?php cp_calendar_permalink(); ?>">Calendar</a><?php
 }
 
 function cp_permalink() {

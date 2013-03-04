@@ -1713,7 +1713,7 @@ add_action( 'admin_enqueue_scripts', 'cp_maybe_enqueue_style' );
 function cp_maybe_enqueue_style() {
 	if ( is_collabpress_page() ) {
 		wp_enqueue_style( 'collabpress-new', CP_PLUGIN_URL . 'includes/css/new.css' );
-		wp_enqueue_style( 'collabpress-fonts', 'http://fonts.googleapis.com/css?family=Roboto+Condensed:400italic,700italic,400,700' );
+		wp_enqueue_style( 'collabpress-fonts', 'http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,300,400,700' );
 		wp_enqueue_style( 'cp_admin', CP_PLUGIN_URL . 'includes/css/admin.css' );
 		
 		wp_enqueue_style( 'colorbox-css', CP_PLUGIN_URL . 'includes/css/colorbox.css' );
@@ -1724,9 +1724,69 @@ function cp_maybe_enqueue_style() {
 
 }
 
-function is_collabpress_page() {
-	if ( ! empty( $_REQUEST['page'] ) && $_REQUEST['page'] == 'collabpress-dashboard' )
+/**
+ * Check if we're on a CollabPress page.
+ * 
+ * If a slug is included, check if we're on a specific CollabPress page.
+ */
+function is_collabpress_page( $slug = '' ) {
+	global $post;
+
+	// If the page is not set 
+	if ( ( 
+		empty( $_REQUEST['page'] )
+	  	|| 
+	  	( ! empty( $_REQUEST['page'] ) 
+	  		&& $_REQUEST['page'] != 'collabpress-dashboard' ) 
+	  	)
+	  	&&
+	  	(
+	  		! empty( $post->post_content )
+	  		&&
+	  		strpos( $post->post_content, '[collabpress]' ) === FALSE
+  		)
+
+	  	
+	   )
+		return false;
+
+	// Default, if we're just checking that we're on a CollabPress page
+	if ( ! $slug )
 		return true;
+
+	if ( ! empty( $_REQUEST['project'] ) ) {
+		if ( ! empty( $_REQUEST['view'] ) ) {
+			if ( $slug == 'project-calendar' 
+			  && $_REQUEST['view'] == 'calendar' )
+				return true;
+			if ( $slug == 'project-tasks' 
+			  && $_REQUEST['view'] == 'tasks' )
+				return true;
+			if ( $slug == 'project-files' 
+			  && $_REQUEST['view'] == 'files' )
+				return true;
+			if ( $slug == 'project-users' 
+			  && $_REQUEST['view'] == 'users' )
+				return true;
+		} else {
+			if ( ! empty( $_REQUEST['task'] ) ) {
+				if ( $slug == 'task' )
+					return true;	
+			} else {
+				if ( $slug == 'project-overview' )
+					return true;	
+			}
+		}
+	} else {
+		if ( ! empty( $_REQUEST['view'] ) ) {
+			if ( $slug == 'calendar' && $_REQUEST['view'] == 'calendar' )
+				return true;
+		} else {
+			if ( $slug == 'dashboard' )
+				return true;
+		}
+	}
+	return false;
 }
 
 function cp_task_due_date() {
@@ -2001,4 +2061,20 @@ function cp_insert_task_list( $args = array() ) {
 
 function cp_add_task_to_task_list( $task_id, $task_list_id ) {
 	return update_post_meta( $task_id, '_cp-task-list-id', $task_list_id );
+}
+
+add_action( 'wp_head', 'cp_define_ajaxurl' );
+
+function cp_define_ajaxurl() {
+	if ( is_collabpress_page() ) {
+		?><script>var ajaxurl = '<?php echo admin_url( 'admin-ajax.php' ); ?>';</script><?php
+	}
+}
+
+function cp_update_task_status( $task_id, $status = 'open' ) {
+	return update_post_meta( $task_id, '_cp-task-status', $status );
+}
+
+function cp_get_task_status( $task_id ) {
+	return get_post_meta( $task_id, '_cp-task-status', true );
 }
