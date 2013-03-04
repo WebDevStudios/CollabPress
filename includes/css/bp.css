@@ -20,6 +20,41 @@ table.group-collabpress-options {
 	min-height: 40px;
 }
 
+/***************/
+/* SORTING     */
+/***************/
+
+body.collabpress th.sorted > a {
+	text-decoration: none;
+}
+
+body.collabpress th.sorted.desc > a:after {
+	content: "\25BC";
+}
+
+body.collabpress th.sorted.asc > a:after {
+	content: "\25B2";
+}
+
+body.collabpress th.sorted.asc > a:hover:after {
+	content: "\25BC";
+}
+
+body.collabpress th.sortable.desc > a:hover:after {
+	content: "\25B2";
+}
+
+body.collabpress th.sortable.asc > a:hover:after {
+	content: "\25BC";
+}
+
+body.collabpress table.cb-tasks-list th {
+	width: 25%;
+}
+
+body.collabpress .currently-viewing {
+	font-size: 85%;
+}
 
 /*******************/
 /* FAUX META BOXES */

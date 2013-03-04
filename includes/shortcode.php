@@ -201,7 +201,7 @@ function cp_sc_projects( $id ) {
 
 			//generate delete project link
 			$cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
-			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
+			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' .get_the_ID() ) : $cp_del_link;
 
 			//generate edit project link
 			$cp_edit_link = CP_DASHBOARD.'&project='.get_the_ID().'&view=edit';
@@ -265,7 +265,7 @@ function cp_sc_task_list() {
 
 			//generate delete task list link
 			$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&cp-delete-task-list-id='.get_the_ID();
-			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task_list' ) : $cp_del_link;
+			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task_list' .get_the_ID() ) : $cp_del_link;
 
 			//generate edit task list link
 			$cp_edit_link = CP_DASHBOARD .'&project='.$cp_project->id.'&task-list='.get_the_ID().'&view=edit';
@@ -338,11 +338,11 @@ function cp_sc_task() {
 
 				//generate complete task link
 				$link = CP_DASHBOARD .'&project=' .$cp_project->id .'&task-list=' .$cp_task_list->id .'&cp-complete-task-id=' .get_the_ID();
-				$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task' ) : $link;
+				$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task' .get_the_ID() ) : $link;
 
 				//generate delete task link
 				$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&task-list=' .$cp_task_list->id .'&cp-delete-task-id='.get_the_ID();
-				$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task' ) : $cp_del_link;
+				$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task' .get_the_ID() ) : $cp_del_link;
 
 				//generate edit task link
 				$cp_edit_link = CP_DASHBOARD.'&project='.$cp_project->id.'&task='.get_the_ID().'&view=edit';
@@ -417,7 +417,7 @@ function cp_sc_task() {
 
 				//generate complete task link
 				$link = CP_DASHBOARD .'&project=' .$cp_project->id .'&task-list=' .$cp_task_list->id .'&cp-complete-task-id=' .get_the_ID();
-				$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task' ) : $link;
+				$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task' .get_the_ID() ) : $link;
 
 				//check task status
 				$task_status = get_post_meta( get_the_ID(), '_cp-task-status', true );

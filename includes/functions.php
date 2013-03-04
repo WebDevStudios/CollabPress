@@ -73,7 +73,7 @@ function cp_get_page_title() {
 		else :
 			//generate delete project link
 			$cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.$cp_project->id;
-			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
+			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' .absint( $cp_project->id ) ) : $cp_del_link;
 
 			$dashboardTitle = '<h2><a title="'.__('CollabPress Dashboard', 'collabpress').'" href="'.CP_DASHBOARD.'">'.cp_screen_icon('collabpress').'</a>'.get_the_title($cp_project->id);
 
@@ -129,11 +129,11 @@ function cp_get_breadcrumb() {
 	// Task page
 	echo '<div id="cp_breadcrumb">';
 		echo '<ul>';
-		
+
 		if ( $cp_calendar_page || $cp_view_projects ) :
-			
+
 			echo '<li class="dash-crumb"><a href="' .CP_DASHBOARD. '">'.__('Dashboard', 'collabpress').'</a></li>';
-		
+
 		elseif ( $cp_project_page ) :
 
 			echo '<li class="dash-crumb"><a href="' .CP_DASHBOARD. '">'.__('Dashboard', 'collabpress').'</a></li><li class="proj-crumb"><span>' .get_the_title( $cp_project->id ) .'</span></li>';
@@ -158,7 +158,7 @@ function cp_get_breadcrumb() {
 			echo '<li class="dash-crumb"><span>'.__('Dashboard', 'collabpress').'</span></li>';
 
 		endif;
-		
+
 		echo '</ul>';
 	echo '</div>';
 }
@@ -286,9 +286,15 @@ function cp_calendar() {
 // 		//verify logged in user has access to this project
 // 		if ( cp_check_project_permissions( $current_user->ID, get_the_ID() ) ) {
 
+<<<<<<< HEAD
 // 		    //generate delete project link
 // 		    $cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
 // 		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
+=======
+		    //generate delete project link
+		    $cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
+		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' .get_the_ID() ) : $cp_del_link;
+>>>>>>> master
 
 // 		    //generate edit project link
 // 		    $cp_edit_link = CP_DASHBOARD.'&project='.get_the_ID().'&view=edit';
@@ -631,9 +637,9 @@ function cp_edit_task() {
 	if ( current_user_can( 'cp_edit_task' ) ) {
 
 		echo '<form action="" method="post">';
-			wp_nonce_field('cp-edit-task');
+			wp_nonce_field( 'cp-edit-task' .absint( $cp_task->id ) );
 			?>
-			<input type="hidden" name="cp-edit-task-id" value="<?php echo $cp_task->id ?>" />
+			<input type="hidden" name="cp-edit-task-id" value="<?php echo absint( $cp_task->id ); ?>" />
 			<table class="form-table">
 				<tbody>
 					<tr valign="top">
@@ -735,11 +741,11 @@ function cp_task() {
 
 			//generate complete task link
 			$link = CP_DASHBOARD .'&project=' .$cp_project->id .'&task-list=' .$cp_task_list->id .'&cp-complete-task-id=' .get_the_ID();
-			$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task' ) : $link;
+			$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task' .get_the_ID() ) : $link;
 
 			//generate delete task link
 			$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&task-list=' .$cp_task_list->id .'&cp-delete-task-id='.get_the_ID();
-			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task' ) : $cp_del_link;
+			$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task' .get_the_ID() ) : $cp_del_link;
 
 			//generate edit task link
 			$cp_edit_link = add_query_arg( 'view', 'edit', apply_filters( 'cp_task_link', CP_DASHBOARD . '&project=' . $cp_project->id . '&task=' . get_the_ID(), get_the_ID(), $cp_project->id ) );
@@ -796,7 +802,7 @@ function cp_task() {
 
 			//generate complete task link
 			$link = CP_DASHBOARD .'&project=' .$cp_project->id .'&task-list=' .$cp_task_list->id .'&cp-complete-task-id=' .get_the_ID();
-			$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task' ) : $link;
+			$link = ( function_exists( 'wp_nonce_url' ) ) ? wp_nonce_url( $link, 'cp-complete-task'  .get_the_ID() ) : $link;
 
 			//check task status
 			$task_status = get_post_meta( get_the_ID(), '_cp-task-status', true );
@@ -888,9 +894,9 @@ function cp_edit_task_list() {
 	if ( current_user_can( 'cp_edit_task_lists' ) ) {
 
 		echo '<form action="" method="post">';
-			wp_nonce_field('cp-edit-task-list');
+			wp_nonce_field( 'cp-edit-task-list' .absint( $cp_task_list->id ) );
 			?>
-			<input type="hidden" name="cp-edit-task-list-id" value="<?php echo $cp_task_list->id ?>" />
+			<input type="hidden" name="cp-edit-task-list-id" value="<?php echo absint( $cp_task_list->id ); ?>" />
 			<h2><?php _e( 'Edit Task List', 'collabpress' ); ?></h2>
 			<table class="form-table">
 				<tbody>
@@ -941,7 +947,7 @@ function cp_task_list() {
 
 	//generate delete task list link
 	$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&cp-delete-task-list-id='.get_the_ID();
-	$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task_list' ) : $cp_del_link;
+	$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_task_list' .get_the_ID() ) : $cp_del_link;
 
 	//generate edit task list link
 	$cp_edit_link = add_query_arg( 'view', 'edit', apply_filters( 'cp_task_list_link', CP_DASHBOARD . '&project=' . $cp_project->id . '&task-list=' . get_the_ID(), get_the_ID(), $cp_project->id ) );
@@ -1044,9 +1050,9 @@ function cp_edit_project() {
 
 		// Add Project Form
 		echo '<form action="" method="post" name="edit_project_form">';
-			wp_nonce_field('cp-edit-project');
+			wp_nonce_field( 'cp-edit-project' .absint( $cp_project->id ) );
 			?>
-			<input type="hidden" name="cp-edit-project-id" value="<?php echo $cp_project->id ?>" />
+			<input type="hidden" name="cp-edit-project-id" value="<?php echo absint( $cp_project->id ); ?>" />
 			<h2><?php _e( 'Edit Project', 'collabpress' ); ?></h2>
 			<table class="form-table">
 				<tbody>
@@ -1136,8 +1142,13 @@ function cp_task_comments() {
 					<p class="cp_comment_author"><a title="<?php echo $comm->comment_author ?>" href="<?php echo CP_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo $comm->comment_author ?></a>
 					<?php
 					//generate delete comment link
+<<<<<<< HEAD
 					$cp_del_link = CP_DASHBOARD .'&project='.$cp->project->ID.'&task='.$cp->task->ID.'&cp-delete-comment-id='.$comm->comment_ID;
 					$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_comment' ) : $cp_del_link;
+=======
+					$cp_del_link = CP_DASHBOARD .'&project='.$cp_project->id.'&task='.$cp_task->id.'&cp-delete-comment-id='.$comm->comment_ID;
+					$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_comment' .absint( $comm->comment_ID ) ) : $cp_del_link;
+>>>>>>> master
 
 					if ( $current_user->ID == $comm->user_id || current_user_can( 'manage_options' ) )
 						echo ' - <a href="'.$cp_del_link.'" style="color:red;" onclick="javascript:check=confirm(\'' . __('WARNING: This will delete the selected comment.\n\nChoose [Cancel] to Stop, [OK] to delete.\n', 'collabpress' ) .'\');if(check==false) return false;">'.__( 'delete', 'collabpress' ). '</a>';
@@ -1156,16 +1167,15 @@ function cp_task_comments() {
 
 	echo '</div>';
 
-        //check if email option is enabled
+	//check if email option is enabled
 	$options = get_option('cp_options');
-        $checked = ( $options['email_notifications'] == 'enabled' ) ? 'checked="checked"' : null;
 
 	echo '<form action="'.cp_clean_querystring().'" method="post">';
-		wp_nonce_field('cp-add-comment');
+		wp_nonce_field( 'cp-add-comment' .absint( $cp_task->id ) );
 		?>
 		<p><label for="cp-comment-content"><?php _e('Leave a Comment: ', 'collabpress') ?></label></p>
 		<p><textarea class="large-text code" id="cp-comment-content" cols="30" rows="10" name="cp-comment-content"></textarea></p>
-		<p><?php _e('Notify via Email?', 'collabpress'); ?> <input type="checkbox" name="notify" <?php echo $checked; ?> /></p>
+		<p><?php _e('Notify via Email?', 'collabpress'); ?> <input type="checkbox" name="notify" <?php checked( $options['email_notifications'], 'enabled' ); ?> /></p>
 		<?php
 		echo '<p class="submit"><input class="button-primary" type="submit" name="cp-add-comment" value="'.__( 'Submit', 'collabpress' ).'"/></p>';
 
@@ -1191,14 +1201,14 @@ function cp_user_page() {
 		    $tasks_query = get_posts( array(
 		    	'post_type' => 'cp-meta-data',
 		    	'meta_query' => array(
-		    		array( 
+		    		array(
 		    			'key' => '_cp-meta-type',
 		    			'value' => 'activity',
 		    		),
-		    		array( 
+		    		array(
 		    			'key' => '_cp-activity-author',
 		    			'value' => $cp_user->id,
-		    		)	
+		    		)
 		    	)
 		    ) );
 
@@ -1229,11 +1239,11 @@ function cp_user_page() {
 			$tasks_query = get_posts( array(
 				'post_type' => 'cp-tasks',
 				'meta_query' => array(
-					array( 
+					array(
 						'key' => '_cp-task-assign',
 						'value' => $cp_user->id,
 					),
-					array( 
+					array(
 						'key' => '_cp-task-status',
 						'value' => 'open',
 					)
@@ -1512,7 +1522,7 @@ function cp_view_all_projects() {
 
 		    //generate delete project link
 		    $cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
-		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' ) : $cp_del_link;
+		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' .get_the_ID() ) : $cp_del_link;
 
 		    //generate edit project link
 		    $cp_edit_link = CP_DASHBOARD.'&project='.get_the_ID().'&view=edit';
@@ -1585,6 +1595,108 @@ function cp_get_url( $ID = NULL, $type = NULL ) {
     return apply_filters( $filter_name, $cp_url, $ID );
 }
 
+<<<<<<< HEAD
+=======
+/**
+ * Fetch some tasks
+ *
+ * Note that this uses some WP defaults for fetching posts. In addition to
+ * CP-specific arguments, you can also pass any argument accepted by
+ * get_posts() or WP_Query.
+ *
+ * 'posts_only' is a special param that allows you to control whether the
+ * function returns just a list of the posts matching a query, or the WP_Query
+ * object. You might want this latter option when you need the total found
+ * rows, as when building pagination.
+ *
+ * @param array $args See default definition below
+ */
+function cp_get_tasks( $args = array(), $deprecated = true ) {
+
+	// Backward compatibility for old argument style
+	if ( ! is_array( $args ) ) {
+		$new_args = array( 'task_list_id' => $args );
+
+		if ( $deprecated && is_string( $deprecated ) ) {
+			$new_args['status'] = $deprecated;
+		}
+
+		$args = $new_args;
+	}
+
+	$r = wp_parse_args( $args, array(
+		'posts_only'       => true,
+		'task_list_id'     => null,
+		'status'           => null,
+		'assigned_user_id' => null,
+	) );
+
+	// Sanitize and convert
+	foreach ( $r as $rkey => $rvalue ) {
+		if ( ! is_null( $rvalue ) ) {
+			switch ( $rkey ) {
+				case 'task_list_id' :
+				case 'user_id' :
+					$r[ $rkey ] = absint( $rvalue );
+					break;
+
+				case 'status' :
+					$r[ $rkey ] = esc_attr( $rvalue );
+					break;
+
+				case 'orderby' :
+					if ( 'status' == $rvalue ) {
+						$r['meta_key'] = '_cp-task-status';
+						$r['orderby'] = 'meta_value';
+					}
+
+					if ( 'due_date' == $rvalue ) {
+					}
+
+					break;
+			}
+		}
+	}
+
+	$query_args = array(
+		'post_type' => 'cp-tasks',
+		'meta_query' => array(),
+	);
+
+	if ( ! is_null( $r['task_list_id'] ) ) {
+		$query_args['meta_query'][] = array(
+			'key' => '_cp-task-list-id',
+			'value' => $r['task_list_id'],
+		);
+	}
+
+	if ( ! is_null( $r['status'] ) ) {
+		$query_args['meta_query'][] = array(
+			'key' => '_cp-task-status',
+			'value' => $r['status'],
+		);
+	}
+
+	if ( ! is_null( $r['assigned_user_id'] ) ) {
+		$query_args['meta_query'][] = array(
+			'key' => '_cp-task-assign',
+			'value' => $r['assigned_user_id'],
+		);
+	}
+
+	// Pass through other arguments
+	$query_args = array_merge( $r, $query_args );
+
+	if ( $r['posts_only'] ) {
+		$retval = get_posts( $query_args );
+	} else {
+		$retval = new WP_Query( $query_args );
+	}
+
+	return $retval;
+}
+
+>>>>>>> master
 // Validate Date
 function cp_validate_date( $value = NULL ) {
 	return preg_match( '`^\d{1,2}/\d{1,2}/\d{4}$`' , $value );
@@ -1652,6 +1764,69 @@ function cp_check_project_permissions( $user_id=1, $project_id=1 ) {
     }
 
     return apply_filters( 'cp_check_project_permissions', $has_access, $user_id, $project_id, $cp_project_users );
+}
+
+/**
+ * Get a task's project ID
+ *
+ * @since 1.3
+ * @todo If and when task lists are made into optional taxonomies, this'll have
+ *   to be reworked
+ *
+ * @param int $task_id
+ * @return int|bool Project id if one is found, otherwise false
+ */
+function cp_get_task_project_id( $task_id = 0 ) {
+	$tasklist_id = cp_get_task_tasklist_id( $task_id );
+	$project_id = cp_get_tasklist_project_id( $tasklist_id );
+
+	return $project_id;
+}
+
+/**
+ * Get a task's task list ID
+ *
+ * @since 1.3
+ * @todo If and when task lists are made into optional taxonomies, this'll have
+ *   to be reworked
+ *
+ * @param int $task_id
+ * @return int|bool Task list id if one is found, otherwise false
+ */
+function cp_get_tasklist_project_id( $tasklist_id = 0 ) {
+	$tasklist_id = absint( $tasklist_id );
+	$project_id = get_post_meta( $tasklist_id, '_cp-project-id', true );
+
+	if ( $project_id ) {
+		$project_id = absint( $project_id );
+	} else {
+		$project_id = false;
+	}
+
+	return $project_id;
+}
+
+/**
+ * Get a task list's project ID
+ *
+ * @since 1.3
+ * @todo If and when task lists are made into optional taxonomies, this'll have
+ *   to be reworked
+ *
+ * @param int $task_list_id
+ * @return int|bool Project id if one is found, otherwise false
+ */
+function cp_get_task_tasklist_id( $task_id = 0 ) {
+	$task_id = absint( $task_id );
+	$tasklist_id = get_post_meta( $task_id, '_cp-task-list-id', true );
+
+	if ( $tasklist_id ) {
+		$tasklist_id = absint( $tasklist_id );
+	} else {
+		$tasklist_id = false;
+	}
+
+	return $tasklist_id;
 }
 
 /**

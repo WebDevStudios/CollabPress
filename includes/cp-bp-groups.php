@@ -50,7 +50,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @since 1.2
 	 */
 	function __construct() {
-		global $bp, $cp_bp_integration;
+		global $bp;
 
 		$this->cp_settings = cp_get_options();
 
@@ -94,7 +94,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		}
 
 		// Put the CP slug in the main global for later access when building URLs
-		$cp_bp_integration->item_cp_slug = $this->slug;
+		cp_bp()->item_cp_slug = $this->slug;
 
 	 	// We only need to show in the admin if admins can customize
 	 	if ( $this->admins_can_customize || $this->admins_can_disable ) {
@@ -136,9 +136,6 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 			if ( $this->calendar_enable ) {
 				$this->calendar_nav_setup();
 			}
-
-			// Filter permalinks so that they point to the proper place
-			add_filter( 'cp_bp_get_project_permalink_parent_item', array( &$this, 'rewrite_item_parent' ), 10, 2 );
 
 			// Ensure that the proper users show up on the user list dropdown
 			add_filter( 'cp_task_user_list_html', array( &$this, 'user_list_html' ), 10, 2 );
@@ -318,8 +315,6 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @since 1.2
 	 */
 	function set_current_item() {
-		global $cp_bp_integration;
-
 		$this->current_item = array(
 			'project' 	=> '',
 			'task_list' 	=> '',
@@ -338,7 +333,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		}
 
 		// Put in the global object for abstraction
-		$cp_bp_integration->current_item = $this->current_item;
+		cp_bp()->current_item = $this->current_item;
 	}
 
 	/**
@@ -359,8 +354,6 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @since 1.2
 	 */
 	function set_current_view() {
-		global $cp_bp_integration;
-
 		if ( !empty( $this->current_item['task'] ) ) {
 			$view = 'task';
 		} else if ( !empty( $this->current_item['task_list'] ) ) {
@@ -374,7 +367,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		$this->current_view = $view;
 
 		// Set the global current view as well
-		$cp_bp_integration->current_view = apply_filters( 'bp_cp_current_group_view', $view );
+		cp_bp()->current_view = apply_filters( 'bp_cp_current_group_view', $view );
 
 		// Now let's get the post ID for the currently viewed item
 		if ( in_array( $this->current_view, array( 'task', 'task_list', 'project' ) ) ) {
@@ -390,9 +383,9 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 				$this->current_item_obj      = $current_item_query->posts[0];
 				$this->current_item_ancestry = cp_bp_get_item_ancestry( $this->current_item_obj );
 
-				$cp_bp_integration->current_item_id       = $this->current_item_id;
-				$cp_bp_integration->current_item_obj      = $this->current_item_obj;
-				$cp_bp_integration->current_item_ancestry = $this->current_item_ancestry;
+				cp_bp()->current_item_id       = $this->current_item_id;
+				cp_bp()->current_item_obj      = $this->current_item_obj;
+				cp_bp()->current_item_ancestry = $this->current_item_ancestry;
 			}
 		}
 	}
@@ -655,8 +648,6 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @since 1.2
 	 */
 	function render_subnav() {
-		global $cp_bp_integration;
-
 		?>
 		<div class="item-list-tabs no-ajax" id="subnav" role="navigation">
 
@@ -664,17 +655,23 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 
 			<li<?php if ( 'list' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link ) ?>"><?php _e( 'Dashboard', 'collabpress' ) ?></a></li>
 
-			<?php if ( $project_name = $cp_bp_integration->get_current_item_project_name() ) : ?>
-				<li<?php if ( 'project' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . $cp_bp_integration->get_current_item_project_slug() ) ?>"> &rarr; <?php echo $project_name ?></a></li>
+			<?php if ( $project_name = cp_bp()->get_current_item_project_name() ) : ?>
+
+				<li<?php if ( 'project' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . cp_bp()->get_current_item_project_slug() ) ?>"> &rarr; <?php echo $project_name ?></a></li>
+
+				<?php if ( $task_list_name = cp_bp()->get_current_item_task_list_name() ) : ?>
+					<li<?php if ( 'task_list' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . cp_bp()->get_current_item_project_slug() . '/' . cp_bp()->get_current_item_task_list_slug() ) ?>"> &rarr; <?php echo $task_list_name ?></a></li>
+				<?php endif ?>
+
+				<?php if ( $task_name = cp_bp()->get_current_item_task_name() ) : ?>
+					<li<?php if ( 'task' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . cp_bp()->get_current_item_project_slug() . '/' . cp_bp()->get_current_item_task_list_slug() . '/' . cp_bp()->get_current_item_task_slug() ) ?>"> &rarr; <?php echo $task_name ?></a></li>
+				<?php endif ?>
+
+			<?php else : ?>
 			<?php endif ?>
 
-			<?php if ( $task_list_name = $cp_bp_integration->get_current_item_task_list_name() ) : ?>
-				<li<?php if ( 'task_list' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . $cp_bp_integration->get_current_item_project_slug() . '/' . $cp_bp_integration->get_current_item_task_list_slug() ) ?>"> &rarr; <?php echo $task_list_name ?></a></li>
-			<?php endif ?>
 
-			<?php if ( $task_name = $cp_bp_integration->get_current_item_task_name() ) : ?>
-				<li<?php if ( 'task' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . $cp_bp_integration->get_current_item_project_slug() . '/' . $cp_bp_integration->get_current_item_task_list_slug() . '/' . $cp_bp_integration->get_current_item_task_slug() ) ?>"> &rarr; <?php echo $task_name ?></a></li>
-			<?php endif ?>
+
 		</ul>
 
 		</div>
@@ -783,63 +780,6 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		}
 
 		return $tax_query;
-	}
-
-	/**
-	 * If a project is associated with a group, this function will catch its parent_item args
-	 * (which are associated with the project author by default) and replace them with args
-	 * corresponding to the group.
-	 *
-	 * @package CollabPress
-	 * @since 1.2
-	 *
-	 * @param array $args The arguments filtered at cp_bp_get_project_permalink_parent_item
-	 * @param array $project The WP post object representing the project
-	 * @return array $args The arguments which have possibly been modified
-	 */
-	function rewrite_item_parent( $args, $item ) {
-		// Check to see whether this is associated with a group
-		// If so, get the group info and replace args
-		$terms = wp_get_post_terms( $item->ID, 'cp-bp-group' );
-
-		if ( !is_wp_error( $terms ) && !empty( $terms ) ) {
-			// Take the first term for now. Todo: figure this out
-			$term = $terms[0];
-			if ( bp_get_current_group_id() == $term->name ) {
-				// We've already got much of the info we need
-				$args = array(
-					'item_id' => bp_get_current_group_id(),
-					'item_type' => 'group',
-					'item_link' => bp_get_group_permalink( groups_get_current_group() ),
-					'item_cp_slug' => $this->slug
-				);
-			} else {
-				// We'll have to pull up this group's data
-				$group = new BP_Groups_Group( $term->name );
-
-				if ( !$group )
-					return $args;
-
-				$args = array(
-					'item_id' => $group->id,
-					'item_type' => 'group',
-					'item_link' => bp_get_group_permalink( $group )
-				);
-
-				if ( $this->admins_can_customize ) {
-					// Pull up the group settings to see if there is a custom
-					// slug defined. Otherwise fall back on site settings
-					$group_settings = groups_get_groupmeta( $group->id, 'collabpress' );
-					$args['item_cp_slug'] = !empty( $group_settings['tab_slug'] ) ? $group_settings['tab_slug'] : $this->cp_settings['bp']['groups_default_tab_slug'];
-				} else {
-					// If customization is not allowed, the slug will be the
-					// same through all groups
-					$args['item_cp_slug'] = $this->cp_settings['bp']['groups_default_tab_slug'];
-				}
-			}
-		}
-
-		return $args;
 	}
 
 	/**
@@ -1046,4 +986,66 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 
 endif;
 
-?>
+/**
+ * If a project is associated with a group, this function will catch its parent_item args
+ * (which are associated with the project author by default) and replace them with args
+ * corresponding to the group.
+ *
+ * @package CollabPress
+ * @since 1.2
+ *
+ * @param array $args The arguments filtered at cp_bp_get_project_permalink_parent_item
+ * @param array $project The WP post object representing the project
+ * @return array $args The arguments which have possibly been modified
+ */
+function cp_bp_filter_group_parent_item( $args, $item ) {
+	// Check to see whether this is associated with a group
+	// If so, get the group info and replace args
+	$terms = wp_get_post_terms( $item->ID, 'cp-bp-group' );
+
+	if ( !is_wp_error( $terms ) && !empty( $terms ) ) {
+
+		$cp_options = cp_get_options();
+	 	$admins_can_customize = 'allow' == $cp_options['bp']['groups_admins_can_customize'];
+
+		// Take the first term for now. Todo: figure this out
+		$term = $terms[0];
+
+		if ( $admins_can_customize ) {
+			// Pull up the group settings to see if there is a custom
+			// slug defined. Otherwise fall back on site settings
+			$group_settings = groups_get_groupmeta( $term->name, 'collabpress' );
+			$slug = !empty( $group_settings['tab_slug'] ) ? $group_settings['tab_slug'] : $cp_options['bp']['groups_default_tab_slug'];
+		} else {
+			// If customization is not allowed, the slug will be the
+			// same through all groups
+			$slug = $cp_settings['bp']['groups_default_tab_slug'];
+		}
+
+		if ( bp_get_current_group_id() == $term->name ) {
+			// We've already got much of the info we need
+			$args = array(
+				'item_id' => bp_get_current_group_id(),
+				'item_type' => 'group',
+				'item_link' => bp_get_group_permalink( groups_get_current_group() ),
+				'item_cp_slug' => $slug,
+			);
+		} else {
+			// We'll have to pull up this group's data
+			$group = new BP_Groups_Group( $term->name );
+
+			if ( !$group )
+				return $args;
+
+			$args = array(
+				'item_id' => $group->id,
+				'item_type' => 'group',
+				'item_link' => bp_get_group_permalink( $group ),
+				'item_cp_slug' => $slug,
+			);
+		}
+	}
+
+	return $args;
+}
+add_filter( 'cp_bp_get_project_permalink_parent_item', 'cp_bp_filter_group_parent_item', 10, 2 );
