@@ -37,6 +37,98 @@ $cp_user = NULL;
 
 define('COLLABPRESS_DASHBOARD_PAGE', 'collabpress-dashboard');
 
+// load the new template instead of the old one on the back-end
+	add_action( 'admin_menu', 'cp_add_admin_menu_item' ); 
+
+function cp_add_admin_menu_item() {
+	$cp_options = get_option( 'cp_options' );
+	$cp_user_role = ( isset( $cp_options['user_role'] ) ) ? esc_attr( $cp_options['user_role'] ) : 'manage_options';
+	
+	add_menu_page(
+		__('CollabPress Dashboard', 'collabpress'), 
+		__('CollabPress', 'collabpress'), 
+		$cp_user_role, 
+		COLLABPRESS_DASHBOARD_PAGE, 
+		'cp_admin_menu_page_load',
+		CP_PLUGIN_URL .'includes/images/collabpress-menu-icon.png'
+	);
+}
+
+add_action( 'init', 'cp_setup_cp_global', 5 );
+/**
+ * Setup the $cp PHP global
+ */
+function cp_setup_cp_global() {
+	global $cp, $wpdb;
+
+	$cp = new StdClass;
+
+	// Set up the default keys
+	$defaults = array(
+		'project'        => false,
+		'task'           => false,
+		'cp_page'        => false,
+		'view'           => false,
+	);
+
+	// Parse query string variables and set CollabPress global appropriately
+	foreach ( $defaults as $key => $value ) {
+		if ( ! empty( $_REQUEST[$key] ) ) {
+			switch ( $key ) {
+				case 'project':
+					$cp->project = get_post( $_REQUEST[$key] );
+				break;
+				case 'task':
+					$cp->task = get_post( $_REQUEST[$key] );
+				break;
+				default:
+					$cp->$key = $_REQUEST[$key];
+				break;
+			}
+		}
+	}
+
+	$cp->tables->project_users = $wpdb->prefix . 'cp_project_users';
+}
+
+/**
+ * Callback for add_menu_page, calls the proper CollabPress template
+ * 
+ */
+function cp_admin_menu_page_load() {
+	global $cp;
+
+	// Loading specific project
+	if ( ! empty( $cp->project ) ) {
+		// Set Project ID
+		if ( ! empty( $cp->task ) )
+			cp_load_template( 'content-single-task' );
+		else if ( ! empty( $cp->view ) ) {
+			if ( $cp->view == 'files' )
+				wp_enqueue_media();
+			cp_load_template( 'content-single-project-' . $cp->view );
+		}
+		else 
+			cp_load_template( 'content-single-project' );
+	} else {
+		if ( ! empty( $cp->view ) )
+			cp_load_template( 'content-' . $cp->view );
+		else {
+			cp_load_template( 'dashboard' );
+		}
+			
+	}
+}
+
+/**
+ * Requires the referenced CollabPress template
+ */
+function cp_load_template( $template_name ) {
+	$full_file_path = CP_PLUGIN_DIR . '/includes/templates/' . $template_name . '.php';
+	if ( file_exists( $full_file_path ) )
+		require_once( $full_file_path );
+}
+
 // Class for Dashboard
 class collabpress_dashboard_page {
 
@@ -58,7 +150,14 @@ class collabpress_dashboard_page {
 		//load settings user role
 		$cp_settings_user_role = ( isset( $cp_options['settings_user_role'] ) ) ? esc_attr( $cp_options['settings_user_role'] ) : 'manage_options';
 
-		$this->pagehook = add_menu_page( __('CollabPress Dashboard', 'collabpress'), __('CollabPress', 'collabpress'), $cp_user_role, COLLABPRESS_DASHBOARD_PAGE, array( &$this, 'on_show_page' ), CP_PLUGIN_URL .'includes/images/collabpress-menu-icon.png' );
+		$this->pagehook = add_menu_page( __('CollabPress Dashboard', 'collabpress'), 
+			__('CollabPress', 'collabpress'), 
+			$cp_user_role, 
+			COLLABPRESS_DASHBOARD_PAGE, 
+			array( $this, 'on_show_page' ), 
+			CP_PLUGIN_URL .'includes/images/collabpress-menu-icon.png' 
+		);
+
 		// Call Back
 		add_action('load-'.$this->pagehook, array(&$this, 'on_load_page'));
 		add_action('admin_print_styles-' . $this->pagehook, array(&$this, 'cp_admin_styles'));
@@ -470,5 +569,3 @@ class collabpress_dashboard_page {
 	}
 
 }
-
-$collabpress_dashboard_page = new collabpress_dashboard_page();

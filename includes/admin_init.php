@@ -1,7 +1,9 @@
 <?php
 
-// Initialize CollabPress settings
+
 add_action( 'admin_init', 'cp_admin_init' );
+
+// Initialize CollabPress settings
 function cp_admin_init() {
 
 	// Register CollabPress options
@@ -11,6 +13,9 @@ function cp_admin_init() {
 	global $wp_roles;
 
 	// add capabilities to Client user role
+	// TODO: use get_role() instead of global $wp_roles
+	// TODO: review roles and capabilities in CP. Why should a subscriber be able to add projects
+
 	$wp_roles->add_cap( 'administrator', 'cp_add_projects' );
 	$wp_roles->add_cap( 'administrator', 'cp_edit_projects' );
 	$wp_roles->add_cap( 'administrator', 'cp_add_task_lists' );
@@ -96,7 +101,11 @@ function collabpress_frontend_scripts() {
 <?php
 }
 
-// CollabPress Init
+/**
+ * CollabPress Init
+ * 
+ * Register Custom Post Types
+ */
 add_action( 'init', 'collabpress_init', 5 );
 function collabpress_init() {
 
@@ -106,45 +115,46 @@ function collabpress_init() {
 	// Check if debug mode is enabled
 	$cp_debug_mode = ( $cp_options['debug_mode'] == 'enabled' ) ? true : false;
 
-	// Custom Post Types
+	// Register Custom Post Types
 
 	// Projects
-	$args_projects = array('label' => __('Projects', 'collabpress'),
-								'description' => __('Custom Post Type for CollabPress Projects', 'collabpress'),
-								'public' => $cp_debug_mode,
-								'supports' => array('title','author','thumbnail','comments','custom-fields'),
-								'exclude_from_search' => true
-								);
+	$args_projects = array(
+		'label' => __( 'Projects', 'collabpress' ),
+		'description' => __( 'Custom Post Type for CollabPress Projects', 'collabpress' ),
+		'public' => $cp_debug_mode,
+		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+		'exclude_from_search' => true
+	);
 	// Register Projects Custom Post Type
 	register_post_type( 'cp-projects', $args_projects );
 
 	// Task Lists
 	$args_task_lists = array('label' => __('Task Lists', 'collabpress'),
-								'description' => __('Custom Post Type for CollabPress Task Lists', 'collabpress'),
-								'public' => $cp_debug_mode,
-								'supports' => array('title','author','thumbnail','comments','custom-fields'),
-								'exclude_from_search' => true
-								);
+		'description' => __('Custom Post Type for CollabPress Task Lists', 'collabpress'),
+		'public' => $cp_debug_mode,
+		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+		'exclude_from_search' => true
+		);
 	// Register Task List Custom Post Type
 	register_post_type( 'cp-task-lists', $args_task_lists );
 
 	// Tasks
 	$args_tasks = array('label' => __('Tasks', 'collabpress'),
-							'description' => __('Custom Post Type for CollabPress Tasks', 'collabpress'),
-							'public' => $cp_debug_mode,
-							'supports' => array('title','author','thumbnail','comments','custom-fields'),
-							'exclude_from_search' => true
-							);
+		'description' => __('Custom Post Type for CollabPress Tasks', 'collabpress'),
+		'public' => $cp_debug_mode,
+		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+		'exclude_from_search' => true
+		);
 	// Register Tasks Custom Post Type
 	register_post_type( 'cp-tasks', $args_tasks );
 
 	// Meta Data
 	$args_tasks = array('label' => __('Meta Data', 'collabpress'),
-							'description' => __('Custom Post Type for CollabPress Meta Data', 'collabpress'),
-							'public' => $cp_debug_mode,
-							'supports' => array('title','author','thumbnail','comments','custom-fields'),
-							'exclude_from_search' => true
-							);
+		'description' => __('Custom Post Type for CollabPress Meta Data', 'collabpress' ),
+		'public' => $cp_debug_mode,
+		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+		'exclude_from_search' => true
+	);
 	// Register CollabPress Meta Data
 	register_post_type( 'cp-meta-data', $args_tasks );
 
