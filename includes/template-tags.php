@@ -170,8 +170,8 @@ function cp_get_tasks( $args = array() ) {
 	if ( ! is_array( $args ) ) {
 		$new_args = array( 'task_list_id' => $args );
 
-		if ( $deprecated && is_string( $deprecated ) ) {
-			$new_args['status'] = $deprecated;
+		if ( func_get_arg( 1 ) && is_string( func_get_arg( 1 ) ) ) {
+			$new_args['status'] = func_get_arg( 1 );
 		}
 
 		$args = $new_args;
