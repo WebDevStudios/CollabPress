@@ -88,6 +88,7 @@ function cp_setup_cp_global() {
 		}
 	}
 
+	$cp->tables = new stdClass;
 	$cp->tables->project_users = $wpdb->prefix . 'cp_project_users';
 }
 
