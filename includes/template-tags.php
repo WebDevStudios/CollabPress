@@ -23,12 +23,12 @@ function cp_has_projects( $args = array() ) {
 
 	extract( $args );
 
-	// Add filters to only grab projects logged-in user has access to. 
+	// Add filters to only grab projects logged-in user has access to.
 	add_filter( 'posts_join_paged', 'cp_add_join_for_project_users_table' );
 	add_filter( 'posts_where_paged', 'cp_add_where_for_current_user' );
-	
+
 	$cp->projects = new WP_Query( $args );
-	
+
 	remove_filter( 'posts_join_paged', 'cp_add_join_for_project_users_table' );
 	remove_filter( 'posts_where_paged', 'cp_add_where_for_current_user' );
 
@@ -46,7 +46,7 @@ function cp_add_where_for_current_user( $sql ) {
 	$current_user = wp_get_current_user();
 	if ( empty( $current_user ) || ! $current_user )
 		return;
-	$sql .= $wpdb->prepare( 
+	$sql .= $wpdb->prepare(
 		" AND cppu.user_id = %d ",
 		$current_user->ID
 	);
@@ -61,7 +61,7 @@ function cp_projects() {
 	// Reset the post data when finished
 	if ( empty( $have_posts ) )
 		wp_reset_postdata();
-	
+
 	return $have_posts;
 }
 
@@ -178,12 +178,12 @@ function cp_get_tasks( $args = array() ) {
 	}
 
 	$defaults = array(
-		'posts_only' =>       true,
-		'post_type' =>        'cp-tasks',
-		'posts_per_page' =>   -1,
-		'project_id' =>       NULL,
-		'task_list_id' =>     NULL,
-		'status' =>           'any',
+		'posts_only'       => true,
+		'post_type'        => 'cp-tasks',
+		'posts_per_page'   => -1,
+		'project_id'       => NULL,
+		'task_list_id'     => NULL,
+		'status'           => 'any',
 		'assigned_user_id' => null,
 	);
 
@@ -212,28 +212,28 @@ function cp_get_tasks( $args = array() ) {
 	extract( $args );
 
 	if ( $task_list_id ) {
-		$args['meta_query'][] = array( 
+		$args['meta_query'][] = array(
 			'key' => '_cp-task-list-id',
 			'value' => $task_list_id,
 		);
 	}
 
 	if ( $project_id ) {
-		$args['meta_query'][] = array( 
+		$args['meta_query'][] = array(
 			'key' => '_cp-project-id',
 			'value' => $project_id,
 		);
 	}
 
 	if ( $status != 'any' ) {
-		$args['meta_query'][] = array( 
+		$args['meta_query'][] = array(
 			'key' => '_cp-task-status',
 			'value' => $status,
 		);
 	}
 
 	if ( ! empty( $assigned_user_id ) && $assigned_user_id ) {
-		$args['meta_query'][] = array( 
+		$args['meta_query'][] = array(
 			'key' => '_cp-task-assign',
 			'value' => $assigned_user_id,
 		);
@@ -284,26 +284,26 @@ function cp_has_tasks( $args = array() ) {
 	extract( $args );
 
 	if ( $task_list_id ) {
-		$args['meta_query'][] = array( 
+		$args['meta_query'][] = array(
 			'key' => '_cp-task-list-id',
 			'value' => $task_list_id,
 		);
 	}
 
 	if ( $project_id ) {
-		$args['meta_query'][] = array( 
+		$args['meta_query'][] = array(
 			'key' => '_cp-project-id',
 			'value' => $project_id,
 		);
 	} else if ( ! empty( $cp->project ) ) {
-		$args['meta_query'][] = array( 
+		$args['meta_query'][] = array(
 			'key' => '_cp-project-id',
 			'value' => $cp->project->ID,
 		);
 	}
 
 	if ( $status != 'any' ) {
-		$args['meta_query'][] = array( 
+		$args['meta_query'][] = array(
 			'key' => '_cp-task-status',
 			'value' => $status,
 		);
@@ -322,7 +322,7 @@ function cp_tasks() {
 	// Reset the post data when finished
 	if ( empty( $have_posts ) )
 		wp_reset_postdata();
-	
+
 	return $have_posts;
 }
 
@@ -333,11 +333,11 @@ function cp_the_task() {
 
 function cp_task_permalink() {
 	global $cp, $post;
-	$permalink = add_query_arg( 
-		array( 
+	$permalink = add_query_arg(
+		array(
 			'project' => $cp->project->ID,
 			'task' => $post->ID,
-			), 
+			),
 		CP_DASHBOARD
 	);
 	echo $permalink;
@@ -345,11 +345,11 @@ function cp_task_permalink() {
 
 function cp_get_task_permalink( $task_id ) {
 	global $cp;
-	$permalink = add_query_arg( 
-		array( 
+	$permalink = add_query_arg(
+		array(
 			'project' => $cp->project->ID,
 			'task' => $task_id,
-			), 
+			),
 		CP_DASHBOARD
 	);
 	return $permalink;
@@ -365,9 +365,9 @@ function cp_project_links() {
 	<a class="<?php echo ( is_collabpress_page( 'project-tasks' ) ? 'current' : '' ); ?>" href="<?php cp_project_tasks_permalink(); ?>">Tasks</a>
 	<a class="<?php echo ( is_collabpress_page( 'project-files' ) ? 'current' : '' ); ?>" href="<?php cp_project_files_permalink(); ?>">Files</a>
 	<a class="<?php echo ( is_collabpress_page( 'project-users' ) ? 'current' : '' ); ?>" href="<?php cp_project_users_permalink(); ?>">Users</a><?php
-} 
+}
 
-function cp_overall_links() { 
+function cp_overall_links() {
 	?>
 	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>">Dashboard</a>
 	<a class="<?php echo ( is_collabpress_page( 'calendar' ) ? 'current' : '' ); ?>" href="<?php cp_calendar_permalink(); ?>">Calendar</a><?php
@@ -430,7 +430,7 @@ function cp_files() {
 	// Reset the post data when finished
 	if ( empty( $have_posts ) )
 		wp_reset_postdata();
-	
+
 	return $have_posts;
 }
 
