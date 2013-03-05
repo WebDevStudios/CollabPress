@@ -209,37 +209,36 @@ function cp_get_tasks( $args = array() ) {
 			}
 		}
 	}
-	extract( $args );
 
-	if ( $task_list_id ) {
+	if ( $args['task_list_id'] ) {
 		$args['meta_query'][] = array(
 			'key' => '_cp-task-list-id',
-			'value' => $task_list_id,
+			'value' => $args['task_list_id'],
 		);
 	}
 
-	if ( $project_id ) {
+	if ( $args['project_id'] ) {
 		$args['meta_query'][] = array(
 			'key' => '_cp-project-id',
-			'value' => $project_id,
+			'value' => $args['project_id'],
 		);
 	}
 
-	if ( $status != 'any' ) {
+	if ( $args['status'] != 'any' ) {
 		$args['meta_query'][] = array(
 			'key' => '_cp-task-status',
-			'value' => $status,
+			'value' => $args['status'],
 		);
 	}
 
-	if ( ! empty( $assigned_user_id ) && $assigned_user_id ) {
+	if ( ! empty( $args['assigned_user_id'] ) && $args['assigned_user_id'] ) {
 		$args['meta_query'][] = array(
 			'key' => '_cp-task-assign',
-			'value' => $assigned_user_id,
+			'value' => $args['assigned_user_id'],
 		);
 	}
 
-	if ( $posts_only )
+	if ( $args['posts_only'] )
 		return get_posts( $args );
 	else
 		return new WP_Query( $args );
