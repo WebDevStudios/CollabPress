@@ -38,17 +38,17 @@ $cp_user = NULL;
 define('COLLABPRESS_DASHBOARD_PAGE', 'collabpress-dashboard');
 
 // load the new template instead of the old one on the back-end
-	add_action( 'admin_menu', 'cp_add_admin_menu_item' ); 
+	add_action( 'admin_menu', 'cp_add_admin_menu_item' );
 
 function cp_add_admin_menu_item() {
 	$cp_options = get_option( 'cp_options' );
 	$cp_user_role = ( isset( $cp_options['user_role'] ) ) ? esc_attr( $cp_options['user_role'] ) : 'manage_options';
-	
+
 	add_menu_page(
-		__('CollabPress Dashboard', 'collabpress'), 
-		__('CollabPress', 'collabpress'), 
-		$cp_user_role, 
-		COLLABPRESS_DASHBOARD_PAGE, 
+		__('CollabPress Dashboard', 'collabpress'),
+		__('CollabPress', 'collabpress'),
+		$cp_user_role,
+		COLLABPRESS_DASHBOARD_PAGE,
 		'cp_admin_menu_page_load',
 		CP_PLUGIN_URL .'includes/images/collabpress-menu-icon.png'
 	);
@@ -94,7 +94,7 @@ function cp_setup_cp_global() {
 
 /**
  * Callback for add_menu_page, calls the proper CollabPress template
- * 
+ *
  */
 function cp_admin_menu_page_load() {
 	global $cp;
@@ -109,7 +109,7 @@ function cp_admin_menu_page_load() {
 				wp_enqueue_media();
 			cp_load_template( 'content-single-project-' . $cp->view );
 		}
-		else 
+		else
 			cp_load_template( 'content-single-project' );
 	} else {
 		if ( ! empty( $cp->view ) )
@@ -117,7 +117,7 @@ function cp_admin_menu_page_load() {
 		else {
 			cp_load_template( 'dashboard' );
 		}
-			
+
 	}
 }
 
@@ -136,27 +136,27 @@ class collabpress_dashboard_page {
 	// Constructor
 	function collabpress_dashboard_page() {
 		// Callbacks
-		add_action('admin_menu', array(&$this, 'on_admin_menu')); 
+		add_action('admin_menu', array(&$this, 'on_admin_menu'));
 		add_action('admin_post_save_howto_metaboxes_general', array(&$this, 'on_save_changes'));
 	}
-	
+
 	// Add Menus
 	function on_admin_menu() {
 		$cp_options = get_option( 'cp_options' );
 		$cp_debug_mode = ( $cp_options['debug_mode'] == 'enabled' ) ? true : false;
-		
+
 		//load user role required for CP
 		$cp_user_role = ( isset( $cp_options['user_role'] ) ) ? esc_attr( $cp_options['user_role'] ) : 'manage_options';
 
 		//load settings user role
 		$cp_settings_user_role = ( isset( $cp_options['settings_user_role'] ) ) ? esc_attr( $cp_options['settings_user_role'] ) : 'manage_options';
 
-		$this->pagehook = add_menu_page( __('CollabPress Dashboard', 'collabpress'), 
-			__('CollabPress', 'collabpress'), 
-			$cp_user_role, 
-			COLLABPRESS_DASHBOARD_PAGE, 
-			array( $this, 'on_show_page' ), 
-			CP_PLUGIN_URL .'includes/images/collabpress-menu-icon.png' 
+		$this->pagehook = add_menu_page( __('CollabPress Dashboard', 'collabpress'),
+			__('CollabPress', 'collabpress'),
+			$cp_user_role,
+			COLLABPRESS_DASHBOARD_PAGE,
+			array( $this, 'on_show_page' ),
+			CP_PLUGIN_URL .'includes/images/collabpress-menu-icon.png'
 		);
 
 		// Call Back
@@ -180,26 +180,26 @@ class collabpress_dashboard_page {
 		    add_action('admin_print_scripts-' . $cp_debug_page_hook, array(&$this, 'cp_admin_scripts'));
 		endif;
 	}
-	
+
 	function cp_admin_styles() {
 		// Register Styles
 		wp_register_style('cp_admin', CP_PLUGIN_URL . 'includes/css/admin.css');
 		wp_register_style('cp_jquery-ui', CP_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css');
 		wp_register_style('cp_fancybox', CP_PLUGIN_URL . 'includes/tools/fancybox/jquery.fancybox-1.3.4.css');
-		
+
 		wp_enqueue_style('cp_admin');
 		wp_enqueue_style('cp_jquery-ui');
 		wp_enqueue_style('thickbox');
 		wp_enqueue_style('cp_fancybox');
 	}
-	
+
 	function cp_admin_scripts() {
 		// Register Scripts
 		wp_register_script('cp_admin', CP_PLUGIN_URL . 'includes/js/admin.js');
 		wp_register_script('cp_upload', CP_PLUGIN_URL . 'includes/js/cp_uploader.js', array('jquery','media-upload','thickbox'));
 		wp_register_script('cp_post', CP_PLUGIN_URL . 'includes/js/cp_post.js');
 		wp_register_script('cp_fancybox', CP_PLUGIN_URL . 'includes/tools/fancybox/jquery.fancybox-1.3.4.pack.js', array('jquery'));
-		
+
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('cp_admin');
 		wp_enqueue_script('jquery-ui');
@@ -210,13 +210,13 @@ class collabpress_dashboard_page {
 		wp_enqueue_script('cp_post');
 		wp_enqueue_script('cp_fancybox');
 	}
-	
+
 	// Before Render
 	function on_load_page( $args = array() ) {
-		
+
 		global $current_user;
 		get_currentuserinfo();
-		
+
 		global $cp_dashboard_page;
 		global $cp_project_page;
 		global $cp_task_list_page;
@@ -225,7 +225,7 @@ class collabpress_dashboard_page {
 		global $cp_calendar_page;
 		global $cp_view_projects;
 		global $cp_all_users_page;
-		
+
 		global $cp_project;
 		global $cp_task_list;
 		global $cp_task;
@@ -252,67 +252,67 @@ class collabpress_dashboard_page {
 				$defaults[$key] = $_GET[$gkey];
 			}
 		}
-		
+
 		$r = wp_parse_args( $args, $defaults );
 		extract( $r, EXTR_SKIP );
 
 		if ( $project ) :
-			
+
 			// Set Project ID
 			$cp_project = new CP_Project();
 			$cp_project->id = absint( $project );
-		
+
 			// Task Page
 			if ( $task ) :
-			
+
 				// Set Task List ID
 				$cp_task = new CP_Task();
 				$cp_task->id = absint( $task );
-				
+
 				$cp_task_page = true;
-			
+
 			// Task List Page
 			elseif ( $task_list ) :
-			
+
 				// Set Task List ID
 				$cp_task_list = new CP_TaskList();
 				$cp_task_list->id = absint( $task_list );
-				
+
 				$cp_task_list_page = true;
-			
+
 			// Project Page
 			else:
-			
+
 				$cp_project_page = true;
-				
+
 			endif;
-		
+
 		// User Page
 		elseif ( $user ) :
-		
+
 			// Set User ID
 			$cp_user = new CP_User();
 			$cp_user->id = absint( $user );
-		
+
 			$cp_user_page = true;
 
 		// All Users Page
 		elseif ( $all_users ) :
 			$cp_all_users_page = true;
-			
+
 		// Calendar Page
 		elseif ( $calendar ) :
 			$cp_calendar_page = true;
-			
+
 		// View Projects
 		elseif ( $view_projects ) :
 			$cp_view_projects = true;
-			
+
 		// Dashboard
 		else:
 			$cp_dashboard_page = true;
 		endif;
-		
+
 		// Enqueue Scripts
 		wp_enqueue_script('common');
 		wp_enqueue_script('wp-lists');
@@ -325,24 +325,24 @@ class collabpress_dashboard_page {
 		require_once('isset/comment.php');
 
 		/* Add Meta Boxes */
-		
+
 		if ( $add_meta_boxes ) {
 			// Core Sidebar
 			add_meta_box('cp-sidebar-meta-box-calendar', __('Calendar', 'collabpress'), array(&$this, 'cp_calendar_meta'), $this->pagehook, 'collabpress-side', 'core');
 			add_meta_box('cp-sidebar-meta-box-projects', __('Projects', 'collabpress'), array(&$this, 'cp_projects_meta'), $this->pagehook, 'collabpress-side', 'core');
 			add_meta_box('cp-sidebar-meta-box-users', __('Users', 'collabpress'), array(&$this, 'cp_users_meta'), $this->pagehook, 'collabpress-side', 'core');
 			add_meta_box('cp-sidebar-meta-box-overview', __('Overview', 'collabpress'), array(&$this, 'cp_overview_meta'), $this->pagehook, 'collabpress-side', 'core');
-			
+
 			// Dashboard Landing
 			if ($cp_dashboard_page) :
 				add_meta_box('cp-recent-activity', __('Recent Activity', 'collabpress'), array(&$this, 'cp_recent_activity_meta'), $this->pagehook, 'collabpress-project', 'core');
 				add_meta_box('cp-add-project', __('Add New Project', 'collabpress'), array(&$this, 'cp_add_project_meta'), $this->pagehook, 'collabpress-project', 'core');
 				add_meta_box('cp-edit-project', __('Edit Project', 'collabpress'), array(&$this, 'cp_edit_project_meta'), $this->pagehook, 'collabpress-project-edit', 'core');
 			endif;
-			
+
 			// Project
 			if ($cp_project_page) :
-	
+
 			    //verify user has permission to view the project
 			    if ( cp_check_project_permissions( $current_user->ID, $cp_project->id ) ) {
 				// Main
@@ -355,9 +355,9 @@ class collabpress_dashboard_page {
 			    }else{
 				wp_redirect( CP_DASHBOARD );
 			    }
-			    
+
 			endif;
-			
+
 			// Tasks List
 			if ($cp_task_list_page) :
 				// Main
@@ -367,7 +367,7 @@ class collabpress_dashboard_page {
 				// Sidebar
 				add_meta_box('cp-sidebar-meta-box-files', __('Files', 'collabpress'), array(&$this, 'cp_files_meta'), $this->pagehook, 'collabpress-files', 'core');
 			endif;
-			
+
 			// Task
 			if ($cp_task_page) :
 				// Main
@@ -375,58 +375,58 @@ class collabpress_dashboard_page {
 				// Sidebar
 				add_meta_box('cp-sidebar-meta-box-files', __('Files', 'collabpress'), array(&$this, 'cp_files_meta'), $this->pagehook, 'collabpress-files', 'core');
 			endif;
-			
+
 			// Footer
 			add_meta_box('cp-footer', __('Credits', 'collabpress'), array(&$this, 'cp_footer_meta'), $this->pagehook, 'collabpress-footer', 'core');
 		}
 	}
-	
+
 	// Render
 	function on_show_page() {
-		
+
 		// Get Columns
 		global $screen_layout_columns;
-		
+
 		global $current_user;
 		get_currentuserinfo();
-		
+
 		?>
 		<div id="collabpress-wrap" class="wrap">
-		
+
 		<?php
-		
+
 		// User Notice
 		$sent_data = ( $_POST ) ? $_POST : $_GET;
 		cp_user_notice( $sent_data );
-		
+
 		// Title
 		echo cp_get_page_title();
 
 		cp_get_breadcrumb();
 		?>
-		
+
 			<?php wp_nonce_field('closedpostboxes', 'closedpostboxesnonce', false ); ?>
 			<?php wp_nonce_field('meta-box-order', 'meta-box-order-nonce', false ); ?>
 			<input type="hidden" name="action" value="save_howto_metaboxes_general" />
-		
+
 			<?php $data = array(); ?>
-		
+
 			<div id="poststuff" class="metabox-holder has-right-sidebar">
 				<div id="side-info-column" class="inner-sidebar">
 					<?php
-					
+
 					// Show Side Meta Boxes
 					require_once('isset/show-side-meta-boxes.php');
-					
+
 					?>
 				</div>
 				<div id="post-body" class="has-sidebar">
 					<div id="post-body-content" class="has-sidebar-content">
 						<?php
-						
+
 						// Show Core Meta Boxes
 						require_once('isset/show-core-meta-boxes.php');
-						
+
 						?>
 					</div>
 				</div>
@@ -445,44 +445,44 @@ class collabpress_dashboard_page {
 		});
 		//]]>
 	</script>
-		
+
 		<?php
-		
+
 	}
 
 	// On Save
 	function on_save_changes() {
-		
+
 		// Get Current User
 		global $current_user;
 		get_currentuserinfo();
-		
+
 		if ( !current_user_can('manage_options') )
 			wp_die( __('Cheatin&#8217; uh?') );
 		check_admin_referer('howto-metaboxes-general');
-		wp_redirect($_POST['_wp_http_referer']);		
+		wp_redirect($_POST['_wp_http_referer']);
 	}
-	
+
 	// List Calendar
 	function cp_calendar_meta($data = NULL) {
 		cp_calendar();
 	}
-	
+
 	// List Projects
 	function cp_projects_meta($data = NULL) {
 		cp_projects();
 	}
-	
+
 	// CollabPress Users
 	function cp_users_meta($data = NULL) {
 		cp_users( $limit='yes' );
 	}
-	
+
 	// CollabPress Overview
 	function cp_overview_meta($data = NULL) {
 		cp_overview();
 	}
-	
+
 	// CollabPress Files
 	function cp_files_meta($id = NULL) {
 		cp_files($id);
@@ -492,35 +492,35 @@ class collabpress_dashboard_page {
 	function cp_recent_activity_meta($data = NULL) {
 		cp_recent_activity($data);
 	}
-	
+
 	// Add Task
 	function cp_add_task_meta($data = NULL) {
-		
+
 		// Get Current User
 		global $current_user;
 		get_currentuserinfo();
 
 		cp_add_task($data);
 	}
-	
+
 	// Edit Task
 	function cp_edit_task_meta($data = NULL) {
-		
+
 		// Get Current User
 		global $current_user;
 		get_currentuserinfo();
 
 		cp_edit_task();
-		
+
 	}
-	
+
 	// Task
 	function cp_task_meta() {
-		
+
 		// Get Current User
 		global $current_user;
 		get_currentuserinfo();
-		
+
 		cp_task();
 	}
 
@@ -528,42 +528,42 @@ class collabpress_dashboard_page {
 	function cp_footer_meta() {
 		cp_footer();
 	}
-	
+
 	// Add Task List
 	function cp_add_task_list_meta($data = NULL) {
-		
+
 		// Get Current User
 		global $current_user;
 		get_currentuserinfo();
 
 		cp_add_task_list();
 	}
-	
+
 	// Edit Task List
 	function cp_edit_task_list_meta($data = NULL) {
-		
+
 		// Get Current User
 		global $current_user;
 		get_currentuserinfo();
 
 		cp_edit_task_list();
 	}
-	
+
 	// Task List
 	function cp_task_list_meta($data = NULL) {
-		
+
 		// Get Current User
 		global $current_user;
 		get_currentuserinfo();
-		
+
 		cp_task_list();
 	}
-	
+
 	// Add Project
 	function cp_add_project_meta($data = NULL) {
 		cp_add_project();
 	}
-	
+
 	// Edit Project
 	function cp_edit_project_meta($data = NULL) {
 		cp_edit_project();
