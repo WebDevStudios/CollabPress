@@ -352,17 +352,9 @@ function cp_get_project_for_task( $task_id ) {
 }
 
 function cp_get_task_permalink( $task_id ) {
-	global $cp;
-<<<<<<< HEAD
-	$permalink = add_query_arg(
-		array(
-			'project' => $cp->project->ID,
-=======
-
 	$permalink = add_query_arg( 
 		array( 
 			'project' => cp_get_project_for_task( $task_id ),
->>>>>>> Fix some leftover merge conflicts in unused code; Add comment on tasks AJAX handling.
 			'task' => $task_id,
 			),
 		CP_DASHBOARD
