@@ -21,6 +21,7 @@
 			<h2>Edit Task</h2>
 			<input type="hidden" id="edit_task_nonce" value="<?php echo wp_create_nonce( 'edit_task' ); ?>">
 			<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>">
+			<input type="hidden" id="cp-task-id" value="<?php echo cp_get_task_id() ?>">
 			<table class="form-table">
 				<tbody>
 					<tr valign="top">
@@ -71,9 +72,34 @@
 				</tbody>
 			</table>
 			<p class="submit">
-				<input class="button-primary" type="submit" name="cp-add-task" value="<?php _e( 'Submit', 'collabpress' ); ?>"/>
+				<input class="button-primary" type="submit" class="add-task-button" name="cp-add-task" value="<?php _e( 'Submit', 'collabpress' ); ?>"/>
 				<span class="spinner" style="float: left"></span></p>
 			</p>
 		</div>
 	</div>
 </div>
+<script>
+(function($) {
+	$(document).ready(function() {
+		$('.collabpress form').submit(function() {
+			var data = { 
+				task_id: $('#cp-task-id').val(),
+				user_id: <?php echo wp_get_current_user()->ID; ?>,
+				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
+				comment_content: $('#cp-comment-content').val()
+			};
+			$.post(
+				ajaxurl,
+				{
+					action: 'cp_add_comment_to_task',
+					data: data
+				}, function( response ) {
+					console.log( response );
+					// window.location = response.data.redirect;
+				}
+			);
+			return false;
+		});
+	});
+})(jQuery);
+</script>

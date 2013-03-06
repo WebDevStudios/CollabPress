@@ -96,7 +96,7 @@
 			project_name: $('#cp-project').val(),
 			project_description: $('#cp-project-description').val(),
 			users: [],
-			collabpress_ajax_request: true
+			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 		};
 		$('.cp_project_user').each(function( i, el ){
 			if ( $(el).is(':checked') ) {

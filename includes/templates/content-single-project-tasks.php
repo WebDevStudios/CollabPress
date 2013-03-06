@@ -280,7 +280,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			task_assigned_to: $('#cp-task-assign').val(),
 			task_priority: $('#cp-task-priority').val(),
 			send_email_notification: $('#notify').val(),
-			collabpress_ajax_request: true
+			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 		};
 		data.nonce = $('#add_new_task_nonce').val();
 		$('#add_new_task_inline_content .spinner').show();
@@ -302,7 +302,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			post_title: $('#cp-task-list').val(),
 			project_id: $('#cp-project-task-list-id').val(),
 			task_list_description: $('#cp-task-list-description').val(),
-			collabpress_ajax_request: true
+			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 		};
 
 		// todo: fix nonces
@@ -328,7 +328,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 				.children('.menu-item-data-db-id')
 				.val(),
 			task_status: $(this).val(),
-			collabpress_ajax_request: true
+			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 		};
 
 		if ( data.task_status == 'on' )

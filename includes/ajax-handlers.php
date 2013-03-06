@@ -149,3 +149,20 @@ function cp_update_task_status_handler() {
 	cp_update_task_status( $task_id, $task_status );
 	wp_send_json_success();
 }
+
+add_action( 'wp_ajax_cp_add_comment_to_task', 'cp_add_comment_to_task_handler' );
+
+function cp_add_comment_to_task_handler() {
+	$data = $_REQUEST['data'];
+	extract( $data );
+	cp_insert_comment_on_task( 
+		array(
+			'comment_post_ID' => $task_id,
+			'comment_content' => nl2br( esc_html( $comment_content ) )
+		) 
+	);
+
+	$permalink = cp_get_task_permalink( $task_id );
+	wp_send_json_success( array( 'redirect' => $permalink ) );
+}
+

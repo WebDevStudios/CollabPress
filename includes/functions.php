@@ -2142,3 +2142,68 @@ function cp_update_task_status( $task_id, $status = 'open' ) {
 function cp_get_task_status( $task_id ) {
 	return get_post_meta( $task_id, '_cp-task-status', true );
 }
+
+/**
+ * Create a new commment on a task.
+ * 
+ * @uses wp_insert_comment
+ */
+function cp_insert_comment_on_task( $args = array() ) {
+
+	global $cp_task, $cp;
+	global $current_user;
+	get_currentuserinfo();
+
+	$time = current_time( 'mysql' );
+
+	$defaults = array(
+	    'comment_author' => $current_user->display_name,
+	    'comment_author_email' => $current_user->user_email,
+	    'comment_author_url' => $current_user->user_email,
+	    'comment_type' => 'collabpress',
+	    'comment_parent' => 0,
+	    'user_id' => $current_user->ID,
+	    'comment_author_IP' => preg_replace( '/[^0-9a-fA-F:., ]/', '',$_SERVER['REMOTE_ADDR'] ),
+	    'comment_agent' => substr( $_SERVER['HTTP_USER_AGENT'], 0, 254 ),
+	    'comment_date' => $time,
+	    'comment_approved' => 1,
+	);
+
+	// $cp may not be defined, check here
+	if ( isset( $cp->task->ID ) )
+		$defaults['comment_post_ID'] = $cp->task->ID;
+	if ( isset( $_POST['cp-comment-content'] ) )
+	 	$defaults['comment_content'] = nl2br( esc_html( $_POST['cp-comment-content'] ) );
+
+	$args = wp_parse_args( $args, $defaults );
+
+	wp_insert_comment( $args );
+
+	//check if email notification is checked
+	if ( isset( $_POST['notify'] ) ) {
+	    //send email
+
+	    //get user assigned to the task
+	    $task_author_id = get_post_meta( $cp->task->ID, '_cp-task-assign', true );
+	    $task_author_data = get_userdata( $task_author_id );
+	    $author_email = $task_author_data->user_email;
+
+	    $subject = __('New comment on task ', 'collabpress') .get_the_title( $cp->task->ID );
+	    
+	    $message = __("There is a new comment on your task from ", "collabpress") .$current_user->display_name. ": " .get_the_title( $cp->task->ID ) ."\n\n";
+	    $subject = __('New comment on task ', 'collabpress') .get_the_title( $cp_task->id );
+	    $subject = apply_filters( 'cp_new_comment_email_subject', $subject );
+		
+	    $message = __("There is a new comment on your task from ", "collabpress") .$current_user->display_name. ": " .get_the_title( $cp_task->id ) ."\n\n";
+	    $message .= __("Comment:", "collabpress") . "\n";
+	    $message .= esc_html( $_POST['cp-comment-content'] );
+		$message = apply_filters( 'cp_new_comment_email_body', $message );
+
+	    cp_send_email( $author_email, $subject, $message );
+
+	}
+
+	// Add Activity
+	cp_add_activity(__('added', 'collabpress'), __('comment', 'collabpress'), $args['user_id'], $args['comment_post_ID'] );
+
+}

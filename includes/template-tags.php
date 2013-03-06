@@ -249,6 +249,11 @@ function cp_task_title() {
 	echo '<h2>' . $cp->task->post_title . '</h2>';
 }
 
+function cp_get_task_id() {
+	global $cp;
+	return $cp->task->ID;
+}
+
 function cp_task_content() {
 	global $cp;
 	echo $cp->task->post_content;
@@ -342,11 +347,22 @@ function cp_task_permalink() {
 	echo $permalink;
 }
 
+function cp_get_project_for_task( $task_id ) {
+	return get_post_meta( $task_id, '_cp-project-id', true );
+}
+
 function cp_get_task_permalink( $task_id ) {
 	global $cp;
+<<<<<<< HEAD
 	$permalink = add_query_arg(
 		array(
 			'project' => $cp->project->ID,
+=======
+
+	$permalink = add_query_arg( 
+		array( 
+			'project' => cp_get_project_for_task( $task_id ),
+>>>>>>> Fix some leftover merge conflicts in unused code; Add comment on tasks AJAX handling.
 			'task' => $task_id,
 			),
 		CP_DASHBOARD
