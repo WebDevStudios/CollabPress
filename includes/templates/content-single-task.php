@@ -94,8 +94,7 @@
 					action: 'cp_add_comment_to_task',
 					data: data
 				}, function( response ) {
-					console.log( response );
-					// window.location = response.data.redirect;
+					window.location = response.data.redirect;
 				}
 			);
 			return false;
