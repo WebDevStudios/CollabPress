@@ -27,10 +27,21 @@ License: GPLv2
 
 // CollabPress Define(s)
 define( 'CP_VERSION', '1.2.4' );
-define( 'CP_BASENAME', plugin_basename(__FILE__) );
-define( 'CP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
-define( 'CP_PLUGIN_URL', plugins_url( substr( CP_BASENAME, 0, strpos( CP_BASENAME, '/' ) ) ) . '/' );
+
+if ( ! defined( 'CP_BASENAME' ) ) {
+	define( 'CP_BASENAME', plugin_basename(__FILE__) );
+}
+
+if ( ! defined( 'CP_PLUGIN_DIR' ) ) {
+	define( 'CP_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
+}
+
+if ( ! defined( 'CP_PLUGIN_URL' ) ) {
+	define( 'CP_PLUGIN_URL', plugins_url( substr( CP_BASENAME, 0, strpos( CP_BASENAME, '/' ) ) ) . '/' );
+}
+
 define( 'CP_RSS_URL', 'http://collabpress.org/feed' );
+
 // Before CollabPress
 do_action( 'cp_before_collabpress' );
 
