@@ -11,7 +11,7 @@
 				echo get_avatar( $user->ID );
 			} ?>
 			</div>
-			<a href="<?php cp_project_users_permalink(); ?>">View all users</a>
+			<a class="view-all-link" href="<?php cp_project_users_permalink(); ?>">View all users</a>
 			<h3>Tasks</h3>
 			<div class="tasks">
 			<?php if ( cp_has_tasks() ) : ?>
@@ -22,7 +22,7 @@
 				<?php endwhile; ?>
 			<?php endif; ?>
 			</div>
-			<a href="<?php cp_project_tasks_permalink(); ?>"> View all tasks</a>
+			<a class="view-all-link" href="<?php cp_project_tasks_permalink(); ?>"> View all tasks</a>
 			<h3>Files</h3>
 			<div class="files">
 			<?php if ( cp_has_files() ) : ?>
@@ -33,6 +33,6 @@
 				<?php endwhile; ?>
 			<?php endif; ?>
 			</div>
-			<a href="<?php cp_project_files_permalink(); ?>">View all files</a>
+			<a class="view-all-link" href="<?php cp_project_files_permalink(); ?>">View all files</a>
 	</div>
 </div>
