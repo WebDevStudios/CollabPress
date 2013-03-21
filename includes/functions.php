@@ -1115,7 +1115,7 @@ function cp_task_comments() {
 	global $current_user;
 	get_currentuserinfo();
 
-	$comments = get_comments('post_id='.$cp->task->ID );
+	$comments = get_comments('post_id=' . $cp->task->ID );
 
 	echo '<div id="cp_task_comments_wrap">';
 
@@ -1162,7 +1162,7 @@ function cp_task_comments() {
 	$options = get_option('cp_options');
 
 	echo '<form action="'.cp_clean_querystring().'" method="post">';
-		wp_nonce_field( 'cp-add-comment' .absint( $cp_task->id ) );
+		wp_nonce_field( 'cp-add-comment' .absint( $cp->task->ID ) );
 		?>
 		<p><label for="cp-comment-content"><?php _e('Leave a Comment: ', 'collabpress') ?></label></p>
 		<p><textarea class="large-text code" id="cp-comment-content" cols="30" rows="10" name="cp-comment-content"></textarea></p>
