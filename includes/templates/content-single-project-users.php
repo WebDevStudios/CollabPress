@@ -1,20 +1,17 @@
 <?php global $cp; ?>
 <div class="collabpress">
-	<?php cp_get_sidebar(); ?>
-	<div class="collabpress-content" style="border: dashed 1px black; width: 75%; margin-left: 5px;min-height: 400px; padding: 5px; float: left">
-		<div class="project-links" style="float: right;">
-			<?php cp_project_links(); ?>
-		</div>
-		<?php echo cp_project_title(); ?>
-			<h3>Users</h3>
-			<div class="users">
-				<?php foreach ( cp_get_project_users() as $user ) {
-					echo get_avatar( $user->ID );
-				} ?>
-			</div>
-			<a href="#inline_content" class="modify-users-link">Modify users</a>
-		
+	<div class="project-links" style="float: right;">
+		<?php cp_project_links(); ?>
 	</div>
+	<?php echo cp_project_title(); ?>
+		<h3>Users</h3>
+		<div class="users">
+			<?php foreach ( cp_get_project_users() as $user ) {
+				echo get_avatar( $user->ID );
+			} ?>
+		</div>
+		<a href="#inline_content" class="modify-users-link">Modify users</a>
+</div>
 	<div style='display:none'>
 		<div id='inline_content' style='padding:10px; background:#fff;'>
 		<h2><?php _e( 'Modify Users in Project', 'collabpress' ); ?></h2>
@@ -50,7 +47,7 @@
 	$(document).ready(function() {
 		$('.modify-users-link').colorbox(
 			{
-				inline: true, 
+				inline: true,
 				width: '50%',
 				onLoad: function() {
 				}
@@ -58,7 +55,7 @@
 		);
 	});
 	$('.submit').click(function() {
-		var data = { 
+		var data = {
 			project_id: $('#cp-project-id').val(),
 			users: [],
 			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',

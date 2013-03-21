@@ -1,20 +1,17 @@
 <div class="collabpress">
-	<?php cp_get_sidebar(); ?>
-	<div class="collabpress-content" style="border: dashed 1px black; width: 75%; margin-left: 5px;min-height: 400px; padding: 5px; float: left">
-		<div class="collabpress-task">
-			<div class="project-links" style="float: right;">
-				<?php cp_project_links(); ?>
-			</div>
-			<?php cp_project_title(); ?>
-			<?php cp_task_title(); ?><a class="edit-task" href="javascript:void();">Edit</a><BR>
-			<?php if ( $due_date = cp_task_due_date() ) {
-				echo 'Due date: ' . $due_date . '<BR>';
-			} ?>
-			<?php if ( $priority = cp_task_priority() ) {
-				echo 'Priority: ' . $priority . '<BR>';
-			} ?>
-			<?php cp_task_comments(); ?>
-		</div> 
+	<div class="collabpress-task">
+		<div class="project-links" style="float: right;">
+			<?php cp_project_links(); ?>
+		</div>
+		<?php cp_project_title(); ?>
+		<?php cp_task_title(); ?><a class="edit-task" href="javascript:void();">Edit</a><BR>
+		<?php if ( $due_date = cp_task_due_date() ) {
+			echo 'Due date: ' . $due_date . '<BR>';
+		} ?>
+		<?php if ( $priority = cp_task_priority() ) {
+			echo 'Priority: ' . $priority . '<BR>';
+		} ?>
+		<?php cp_task_comments(); ?>
 	</div>
 	<div style='display:none'>
 		<div id='inline_content' style='padding:10px; background:#fff;'>
@@ -82,7 +79,7 @@
 (function($) {
 	$(document).ready(function() {
 		$('.collabpress form').submit(function() {
-			var data = { 
+			var data = {
 				task_id: $('#cp-task-id').val(),
 				user_id: <?php echo wp_get_current_user()->ID; ?>,
 				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',

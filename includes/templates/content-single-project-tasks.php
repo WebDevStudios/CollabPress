@@ -1,4 +1,4 @@
-<?php global $cp; 
+<?php global $cp;
 
 function cp_compare_tasks_and_task_lists( $a, $b ) {
 	if ( $a->menu_order == $b->menu_order )
@@ -42,19 +42,19 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 	uasort( $tasks_and_task_lists, 'cp_compare_tasks_and_task_lists' );
 	$tasks_and_task_lists = array_values( $tasks_and_task_lists );
 
-	$result = '<div id="menu-instructions" class="post-body-plain'; 
+	$result = '<div id="menu-instructions" class="post-body-plain';
 	$result .= ( ! empty($menu_items) ) ? ' menu-instructions-inactive">' : '">';
 	if ( empty( $tasks_and_task_lists ) )
-		$result .= '<p>' . __('Next, add your first task in this project.') . '</p>'; 
-	$result .= '</div>'; 
+		$result .= '<p>' . __('Next, add your first task in this project.') . '</p>';
+	$result .= '</div>';
 	$result .= '<ul class="menu" id="menu-to-edit"> ';
 
-	// Output the HTML for each item. 
+	// Output the HTML for each item.
 	// Hacked from Walker_Nav_Menu_Edit::start_el()
 
-	foreach ( $tasks_and_task_lists as $item ) { 
+	foreach ( $tasks_and_task_lists as $item ) {
 		ob_start();
-		$item_id = $item->ID; 
+		$item_id = $item->ID;
 		$title = $item->post_title;
 		$task_status = cp_get_task_status( $item->ID );
 		$title_class = $task_status; ?>
@@ -94,8 +94,8 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			)
 		) );
 		if ( ! empty( $task_list_tasks ) ) {
-			foreach ( $task_list_tasks as $task ) { 
-				$item_id = $task->ID; 
+			foreach ( $task_list_tasks as $task ) {
+				$item_id = $task->ID;
 				$title = $task->post_title; ?>
 				<li id="menu-item-<?php echo $item_id; ?>" class="menu-item menu-item-depth-1">
 					<dl class="menu-item-bar">
@@ -122,28 +122,26 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 		}
 		$result .= ob_get_clean();
 	}
-	
+
 	$result .= ' </ul> ';
 	echo $result;
 }
 
 ?>
 <div class="collabpress">
-	<?php cp_get_sidebar(); ?>
-	<div class="collabpress-content" style="border: dashed 1px black; width: 75%; margin-left: 5px;min-height: 400px; padding: 5px; float: left">
-		<div class="project-links" style="float: right;">
-			<?php cp_project_links(); ?>
-		</div>
-		<?php echo cp_project_title(); ?>
-		<div class="tasks">
-			<h3>Tasks</h3>
-			<?php 
-			cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() );
-			?>
-			<a href="#add_new_task_inline_content" class="add-new-task">Add new task</a>
-			<a href="#add_new_task_list_inline_content" class="add-new-task">Add new task list</a>
-		</div>
+	<div class="project-links" style="float: right;">
+		<?php cp_project_links(); ?>
 	</div>
+	<?php echo cp_project_title(); ?>
+	<div class="tasks">
+		<h3>Tasks</h3>
+		<?php
+		cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() );
+		?>
+		<a href="#add_new_task_inline_content" class="add-new-task">Add new task</a>
+		<a href="#add_new_task_list_inline_content" class="add-new-task">Add new task list</a>
+	</div>
+</div>
 	<div style='display:none'>
 		<div id='add_new_task_inline_content' style='padding:10px; background:#fff;'>
 			<h2>Add Task</h2>
@@ -239,7 +237,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 (function($) {
 	$('.delete-task').click(function(i, el) {
 		var confirm_delete = confirm('Are you sure you want to delete this task?');
-		
+
 		if ( ! confirm_delete )
 			return;
 
@@ -264,7 +262,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 	$(document).ready(function() {
 		$('.add-new-task').colorbox(
 			{
-				inline: true, 
+				inline: true,
 				width: '50%',
 				onLoad: function() {}
 			}
@@ -272,7 +270,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 	});
 	$('#add_new_task_inline_content .submit').click(function() {
 
-		var data = { 
+		var data = {
 			post_title: $('#cp-task').val(),
 			project_id: $('#cp-project-id').val(),
 			task_description: $('#cp-task').val(),
@@ -298,7 +296,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 
 	$('#add_new_task_list_inline_content .submit').click(function() {
 
-		var data = { 
+		var data = {
 			post_title: $('#cp-task-list').val(),
 			project_id: $('#cp-project-task-list-id').val(),
 			task_list_description: $('#cp-task-list-description').val(),
@@ -320,7 +318,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 		);
 	});
 	$('.menu-item input.item-completed').change( function(event) {
-		var data = { 
+		var data = {
 			project_id: $('#cp-project-task-list-id').val(),
 			task_id: $(this)
 				.parents( '.menu-item-bar')
