@@ -1,22 +1,19 @@
 <?php global $cp; ?>
 <div class="collabpress">
-	<?php cp_get_sidebar(); ?>
-	<div class="collabpress-content" style="border: dashed 1px black; width: 75%; margin-left: 5px;min-height: 400px; padding: 5px; float: left">
-		<div class="project-links" style="float: right;">
-			<?php cp_project_links(); ?>
-		</div>
-		<?php echo cp_project_title(); ?>
-		<div class="files">
-			<h3>Files</h3>
-			<?php if ( cp_has_files() ) : ?>
-				<?php while( cp_files() ) : cp_the_file(); ?>
-					<div class="collabpress-task">
-						<a href="<?php echo wp_get_attachment_url( get_the_ID() ); ?>"><?php the_title(); ?></a>
-					</div>
-				<?php endwhile; ?>
-			<?php endif; ?>
-			<a href="#inline_content" class="add-new-task">Upload file</a>
-		</div>
+	<div class="project-links" style="float: right;">
+		<?php cp_project_links(); ?>
+	</div>
+	<?php echo cp_project_title(); ?>
+	<div class="files">
+		<h3>Files</h3>
+		<?php if ( cp_has_files() ) : ?>
+			<?php while( cp_files() ) : cp_the_file(); ?>
+				<div class="collabpress-task">
+					<a href="<?php echo wp_get_attachment_url( get_the_ID() ); ?>"><?php the_title(); ?></a>
+				</div>
+			<?php endwhile; ?>
+		<?php endif; ?>
+		<a href="#inline_content" class="add-new-task">Upload file</a>
 	</div>
 	<div style='display:none'>
 		<div id='inline_content' style='padding:10px; background:#fff;'>
@@ -84,17 +81,17 @@
 (function($) {
 	// Uploading files
 var file_frame;
- 
+
 	jQuery('.add-new-task').live('click', function( event ){
- 
+
 		event.preventDefault();
- 
+
 		// If the media frame already exists, reopen it.
 		if ( file_frame ) {
 			file_frame.open();
 			return;
 		}
- 
+
 		// Create the media frame.
 		file_frame = wp.media.frames.file_frame = wp.media({
 			title: 'Select a file',
@@ -104,8 +101,8 @@ var file_frame;
 			multiple: false	// Set to true to allow multiple files to be selected
 		});
 
-		
- 
+
+
 		// When an image is selected, run a callback.
 		file_frame.on( 'select', function() {
 			// We set multiple to false so only get one image from the uploader
@@ -125,7 +122,7 @@ var file_frame;
 			);
 			// Do something with attachment.id and/or attachment.url here
 		});
- 
+
 		// Finally, open the modal
 		file_frame.open();
 
