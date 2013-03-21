@@ -1,26 +1,23 @@
 <div class="collabpress">
-	<?php cp_get_sidebar(); ?>
-	<div class="collabpress-content" style="border: dashed 1px black; width: 75%; margin-left: 5px;min-height: 400px; padding: 5px; float: left">
-		<div class="overall-links" style="float: right">
-			<?php cp_overall_links(); ?>
+	<div class="overall-links" style="float: right">
+		<?php cp_overall_links(); ?>
+	</div>
+	<div class="clear"></div>
+	<?php if( cp_has_projects() ) : ?>
+		<?php while( cp_projects() ) : cp_the_project(); ?>
+		<div class="collabpress-project">
+			<h2>
+				<a href="<?php cp_project_permalink( get_the_ID() ); ?>"><?php echo get_the_title(); ?></a>
+			</h2>
 		</div>
-		<div class="clear"></div>
-		<?php if( cp_has_projects() ) : ?>
-			<?php while( cp_projects() ) : cp_the_project(); ?>
-			<div class="collabpress-project">
-				<h2>
-					<a href="<?php cp_project_permalink( get_the_ID() ); ?>"><?php echo get_the_title(); ?></a>
-				</h2>
-			</div>
-			<?php endwhile; ?>
-		<?php endif; ?>
-			<div class="collabpress-project new">
-				<a href="#inline_content" class="add-new-project">
-					<div class="plus-sign">+</div>
-					<h2>Add new project</h2>
-				</a>
+		<?php endwhile; ?>
+	<?php endif; ?>
+	<div class="collabpress-project new">
+		<a href="#inline_content" class="add-new-project">
+			<div class="plus-sign">+</div>
+			<h2>Add new project</h2>
+		</a>
 
-			</div>
 	</div>
 	<div style='display:none'>
 		<div id='inline_content' style='padding:10px; background:#fff;'>
@@ -79,7 +76,7 @@
 	$(document).ready(function() {
 		$('.add-new-project').colorbox(
 			{
-				inline: true, 
+				inline: true,
 				width: '50%',
 				onLoad: function() {
 					$('#cp-project').val( '' );
@@ -92,7 +89,7 @@
 		);
 	});
 	$('.submit').click(function() {
-		var data = { 
+		var data = {
 			project_name: $('#cp-project').val(),
 			project_description: $('#cp-project-description').val(),
 			users: [],
