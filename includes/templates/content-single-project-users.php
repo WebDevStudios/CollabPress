@@ -18,8 +18,8 @@
 		<input type="hidden" id="modify_project_users_nonce" value="<?php echo wp_create_nonce( 'modify_project_users' ); ?>">
 		<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>">
 			<p>
-				<input type="button" name="CheckAll" value="<?php _e( 'Check All', 'collabpress' ); ?>" onClick="checkAll(document.new_project_form['cp_project_users[]'])" />
-				<input type="button" name="UnCheckAll" value="<?php _e( 'Uncheck All', 'collabpress' ); ?>" onClick="uncheckAll(document.new_project_form['cp_project_users[]'])" />
+				<input type="button" name="CheckAll" class="check-all-users-button" value="<?php _e( 'Check All', 'collabpress' ); ?>" />
+				<input type="button" name="UnCheckAll" class="uncheck-all-users-button" value="<?php _e( 'Uncheck All', 'collabpress' ); ?>" />
 			</p>
 			<?php
 			//check if user is subscriber
@@ -77,6 +77,16 @@
 				window.location = response.data.redirect;
 			}
 		);
+	});
+	$('.check-all-users-button').click( function() {
+		$('.cp_project_user').each( function() {
+			jQuery(this).prop('checked', 'checked');
+		});
+	});
+	$('.uncheck-all-users-button').click( function() {
+		$('.cp_project_user').each( function() {
+			jQuery(this).prop('checked', '');
+		});
 	});
 })(jQuery);
 </script>

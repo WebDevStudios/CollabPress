@@ -28,6 +28,10 @@
 }
 
 
+.collabpress .project-links {
+	margin-right: 20px;
+}
+
 .collabpress .project-links a, .collabpress .overall-links a {
 	padding: 5px;
 }
@@ -101,4 +105,13 @@ a.view-all-link {
 	display: block;
 	font-weight: bold;
 	margin-top: 10px;
+}
+
+.overall-links {
+	margin: 20px 20px 0 0;
+}
+
+.collabpress .projects {
+	clear: both;
+	padding: 20px 0 0;
 }
