@@ -12,12 +12,15 @@
 			</div>
 			<?php endwhile; ?>
 		<?php endif; ?>
+		<?php if ( cp_check_permissions( 'settings_user_role' ) ) { ?>
+
 		<div class="collabpress-project new">
 			<a href="#inline_content" class="add-new-project">
 				<div class="plus-sign">+</div>
 				<h2>Add new project</h2>
 			</a>
 		</div>
+		<?php } ?>
 		<div style="clear: both"></div>
 		<div style='display:none'>
 			<div id='inline_content' style='padding:10px; background:#fff;'>

@@ -1600,10 +1600,8 @@ function cp_check_permissions( $type = NULL ) {
     //load settings user role
     $options = get_option( 'cp_options' );
     $cp_settings_user_role = ( isset( $options[$type] ) ) ? esc_attr( $options[$type] ) : 'manage_options';
-
     // Filter so that BP-compatibility (and other plugins) can modify
     $cp_settings_user_role = apply_filters( 'cp_settings_user_role', $cp_settings_user_role, $type );
-
     if ( $cp_settings_user_role == 'all' ) :
 
         return true;

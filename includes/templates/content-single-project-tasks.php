@@ -62,7 +62,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			<dl class="menu-item-bar">
 				<dt class="menu-item-handle">
 					<?php if ( $item->post_type == 'cp-tasks' ) : ?>
-						<input type="checkbox" <?php checked( 'complete', $task_status ); ?>>
+					<input type="checkbox" <?php checked( 'complete', $task_status ); ?>>
 					<?php endif; ?>
 					<span class="item-title <?php echo $title_class; ?>">
 						<?php if ( $item->post_type == 'cp-tasks' ) : // for now, only display a link for tasks. ?>
@@ -108,6 +108,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 				<li id="menu-item-<?php echo $item_id; ?>" class="menu-item menu-item-depth-1">
 					<dl class="menu-item-bar">
 						<dt class="menu-item-handle">
+							<input type="checkbox" <?php checked( 'complete', $task_status ); ?>>
 							<span class="item-title"><a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a><span>
 							<span class="item-controls">
 								<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
@@ -146,12 +147,14 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 		<?php
 		cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() );
 		?>
+		<?php if ( cp_check_permissions( 'settings_user_role' ) ) { ?>
 		<div>
 			<a href="#add_new_task_inline_content" class="add-new-task">+ Add new task</a>
 		</div>
 		<div>
 			<a href="#add_new_task_list_inline_content" class="add-new-task">+ Add new task list</a>
 		</div>
+		<?php } ?>
 	</div>
 </div>
 	<div style='display:none'>

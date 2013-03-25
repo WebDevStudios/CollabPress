@@ -10,7 +10,9 @@
 				echo get_avatar( $user->ID );
 			} ?>
 		</div>
+		<?php if ( cp_check_permissions( 'settings_user_role' ) ) { ?>
 		<a href="#inline_content" class="modify-users-link">Modify users</a>
+		<?php } ?>
 </div>
 	<div style='display:none'>
 		<div id='inline_content' style='padding:10px; background:#fff;'>
