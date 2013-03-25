@@ -11,10 +11,16 @@ function cp_project_short( $atts ) {
     ), $atts ) );
 
     //verify user has permission to view shortcode
-    if ( cp_check_permissions( 'shortcode_user_role' ) ) :
+    if ( cp_check_permissions( 'shortcode_user_role' ) ) {
     	cp_admin_menu_page_load();
-        // cp_sc_projects( $id );
-    endif;
+    } else {
+    	if ( is_user_logged_in() ) {
+    		echo 'You do not have access to this project.';
+    	} else {
+    		echo 'You must be logged in to view this page.';
+    	}
+
+    }
 
 }
 
@@ -26,7 +32,7 @@ function cp_using_shortcode($posts) {
 
     if ( empty($posts) )
         return $posts;
-	
+
     $foundsc = false;
 
     foreach ($posts as $post) {
@@ -38,15 +44,15 @@ function cp_using_shortcode($posts) {
     if ($foundsc = true) {
     $css_src = CP_PLUGIN_URL . 'includes/css/front.css';
     $js_src = CP_PLUGIN_URL . 'includes/js/frontend.js';
-   
+
     wp_register_style('cp_frontend_css', $css_src );
     wp_enqueue_style('cp_frontend_css');
-    
+
     wp_register_script('cp_frontend_js', $js_src );
-	wp_enqueue_script('jquery');  
-    wp_enqueue_script('cp_frontend_js');    
+	wp_enqueue_script('jquery');
+    wp_enqueue_script('cp_frontend_js');
 	}
-	
+
     return $posts;
 }
 
@@ -77,7 +83,7 @@ function cp_sc_projects( $id ) {
 
 		//verify user has permission to access the project
 		if ( cp_check_project_permissions( $current_user->ID, absint( $_GET['project'] ) ) ) {
-		
+
 			//store the project ID
 			$cp_project = new CP_Project();
 			$cp_project->id = absint( $_GET['project'] );
@@ -104,7 +110,7 @@ function cp_sc_projects( $id ) {
 			endif;
 
 		}
-		
+
     endif;
 
     require_once('menus/isset/project.php');
@@ -114,11 +120,11 @@ function cp_sc_projects( $id ) {
 
     // Title
     echo '<div id="collabpress">';
- 
+
      // User Notice
     $sent_data = ( $_POST ) ? $_POST : $_GET;
     cp_user_notice( $sent_data );
-    
+
     //show the breadcrumb navigation
     cp_get_breadcrumb();
 
@@ -130,7 +136,7 @@ function cp_sc_projects( $id ) {
 			echo cp_get_page_title();
 		endif;
    	echo '</div>';
-   	
+
     if ( $cp_project_page ) :
 
         //load project task lists
@@ -227,11 +233,11 @@ function cp_sc_projects( $id ) {
     // No Results
     else :
         echo '<p class="cp_none">' .__( 'No Projects...', 'collabpress' ). '</p>';
-       
+
     endif;
 		echo '</div>';
    	endif;
-   	
+
 	echo '</div>'; // <!-- end div#collabpress -->
 
 }
@@ -241,12 +247,12 @@ function cp_sc_task_list() {
 
     global $cp_project;
 	global $current_user;
-	
+
 	get_currentuserinfo();
 
 	//verify user has permission to access the project
 	if ( cp_check_project_permissions( $current_user->ID, $cp_project->id ) ) {
-	
+
 		// Get Task Lists
 		$task_lists_args = array(
 				'post_type' => 'cp-task-lists',
@@ -283,7 +289,7 @@ function cp_sc_task_list() {
 			echo '<p class="description cp_none">'.__( 'No Task Lists...', 'collabpress' ).'</p>';
 		endif;
 		echo '</ul>';
-	
+
 	}
 }
 
@@ -296,7 +302,7 @@ function cp_sc_task() {
 		global $current_user;
 
 		get_currentuserinfo();
-		
+
 		//verify user has permission to access the project
 		if ( cp_check_project_permissions( $current_user->ID, $cp_project->id ) ) {
 
@@ -362,7 +368,7 @@ function cp_sc_task() {
 
 						echo '<span class="cp_assign_due">'.__( 'Assigned to:', 'collabpress' ) .'' .get_avatar( $task_user_id, 16 ). '' . $user_name . ' - ' .__('Due: ', 'collabpress') . $task_due_date .' - ' .__('Priority: ', 'collabpress') .$task_priority.'</span>';
 						if ( $num_comments > 0 ) echo '<span class="cp_task_comm">'.$num_comments. '</span>';
-						
+
 						//check if user can view edit/delete links
 						if ( cp_check_permissions( 'settings_user_role' ) ) {
 							echo '<span class="edit-del-links"><a class="cp_task_edit" href="'.$cp_edit_link.'">' .__('edit', 'collabpress'). '</a> &middot; <a class="cp_task_del" href="'. $cp_del_link .'" style="color:red;" onclick="javascript:check=confirm(\'' . __('WARNING: This will delete the selected task.\n\nChoose [Cancel] to Stop, [OK] to delete.\n', 'collabpress' ) .'\');if(check==false) return false;">' .__( 'delete', 'collabpress' ). '</a></span>';
@@ -453,7 +459,7 @@ function cp_sc_task() {
 			endif;
 
 			echo '<div style="clear:both;"></div>';
-			
+
 		}
 }
 ?>
