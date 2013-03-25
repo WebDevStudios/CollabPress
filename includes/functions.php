@@ -1115,7 +1115,10 @@ function cp_task_comments() {
 	global $current_user;
 	get_currentuserinfo();
 
-	$comments = get_comments('post_id=' . $cp->task->ID );
+	$comments = get_comments( array(
+		'post_id' => $cp->task->ID,
+		'order' => 'ASC',
+	) );
 
 	echo '<div id="cp_task_comments_wrap">';
 
