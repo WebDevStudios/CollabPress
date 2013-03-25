@@ -64,7 +64,13 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 					<?php if ( $item->post_type == 'cp-tasks' ) : ?>
 						<input type="checkbox" <?php checked( 'complete', $task_status ); ?>>
 					<?php endif; ?>
-					<span class="item-title <?php echo $title_class; ?>"><a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a></span>
+					<span class="item-title <?php echo $title_class; ?>">
+						<?php if ( $item->post_type == 'cp-tasks' ) : // for now, only display a link for tasks. ?>
+						<a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a>
+						<?php else: // add a link to task lists if we make a template for them. ?>
+						<?php echo esc_html( $title ); ?>
+						<?php endif; ?>
+					</span>
 					<span class="item-controls">
 						<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
 					</span>
