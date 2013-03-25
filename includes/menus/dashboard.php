@@ -38,7 +38,7 @@ $cp_user = NULL;
 define('COLLABPRESS_DASHBOARD_PAGE', 'collabpress-dashboard');
 
 // load the new template instead of the old one on the back-end
-	add_action( 'admin_menu', 'cp_add_admin_menu_item' );
+add_action( 'admin_menu', 'cp_add_admin_menu_item' );
 
 function cp_add_admin_menu_item() {
 	$cp_options = get_option( 'cp_options' );
@@ -52,6 +52,11 @@ function cp_add_admin_menu_item() {
 		'cp_admin_menu_page_load',
 		CP_PLUGIN_URL .'includes/images/collabpress-menu-icon.png'
 	);
+
+	//load settings user role
+	$cp_settings_user_role = ( isset( $cp_options['settings_user_role'] ) ) ? esc_attr( $cp_options['settings_user_role'] ) : 'manage_options';
+
+	$cp_settings_page_hook = add_submenu_page( COLLABPRESS_DASHBOARD_PAGE, __( 'CollabPress Settings', 'collabpress' ), __( 'Settings', 'collabpress' ), $cp_settings_user_role, 'collabpress-settings', 'cp_settings_page' );
 }
 
 add_action( 'init', 'cp_setup_cp_global', 5 );
