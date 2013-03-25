@@ -115,3 +115,23 @@ a.view-all-link {
 	clear: both;
 	padding: 20px 0 0;
 }
+
+.collabpress #menu-to-edit {
+	margin: 0;
+	padding: 0;
+}
+
+.collabpress .sortable-placeholder {
+	list-style-type: none;
+}
+
+.collabpress dl {
+	margin: 0;
+}
+
+.collabpress .menu-item-bar {
+	clear: both;
+line-height: 1.5em;
+position: relative;
+margin: 9px 0 0;
+}
