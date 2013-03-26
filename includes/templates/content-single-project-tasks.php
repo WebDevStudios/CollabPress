@@ -275,11 +275,10 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 		);
 	});
 	$(document).ready(function() {
-		$('.add-new-task').colorbox(
+		$('.add-new-task, .add-new-task-list').colorbox(
 			{
 				inline: true,
-				width: '50%',
-				onLoad: function() {}
+				width: '50%'
 			}
 		);
 	});
