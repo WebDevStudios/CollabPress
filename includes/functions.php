@@ -1,59 +1,5 @@
 <?php
 
-// Create breadcrumb
-function cp_get_breadcrumb() {
-
-	global $cp_dashboard_page;
-	global $cp_project_page;
-	global $cp_task_list_page;
-	global $cp_task_page;
-	global $cp_user_page;
-	global $cp_calendar_page;
-	global $cp_view_projects;
-
-	global $cp_project;
-	global $cp_task_list;
-	global $cp_task;
-	global $cp_user;
-
-
-	// Task page
-	echo '<div id="cp_breadcrumb">';
-		echo '<ul>';
-
-		if ( $cp_calendar_page || $cp_view_projects ) :
-
-			echo '<li class="dash-crumb"><a href="' .CP_DASHBOARD. '">'.__('Dashboard', 'collabpress').'</a></li>';
-
-		elseif ( $cp_project_page ) :
-
-			echo '<li class="dash-crumb"><a href="' .CP_DASHBOARD. '">'.__('Dashboard', 'collabpress').'</a></li><li class="proj-crumb"><span>' .get_the_title( $cp_project->id ) .'</span></li>';
-
-		elseif ( $cp_task_list_page ) :
-			//load the project ID for this task list
-			$cp_project_id = get_post_meta( $cp_task_list->id, '_cp-project-id', true );
-
-			echo '<li class="dash-crumb"><a href="' .CP_DASHBOARD. '">'.__('Dashboard', 'collabpress').'</a></li><li class="proj-crumb"><a href="'.CP_DASHBOARD.'&project='.$cp_project_id.'">' .get_the_title($cp_project_id). '</a></li><li class="list-crumb"><span>' .get_the_title($cp_task_list->id).'</span></li>';
-
-		elseif ( $cp_task_page ) :
-			//load the project ID for this task list
-			$cp_project_id = get_post_meta( $cp_task->id, '_cp-project-id', true );
-
-			//load the task list ID for this task
-			$cp_task_list_id = get_post_meta( $cp_task->id, '_cp-task-list-id', true );
-
-			echo '<li class="dash-crumb"><a href="' .CP_DASHBOARD. '">'.__('Dashboard', 'collabpress').'</a></li><li class="proj-crumb"><a href="'.CP_DASHBOARD.'&project='.$cp_project_id.'">' .get_the_title($cp_project_id). '</a></li><li class="list-crumb"><a href="'.CP_DASHBOARD.'&project='.$cp_project_id.'&task-list='.$cp_task_list_id.'">' .get_the_title( $cp_task_list_id ). '</a></li><li class="task-crumb"><span>' .cp_limit_length( get_the_title( $cp_task->id ), 50 ).'</span></li>';
-
-		else :
-
-			echo '<li class="dash-crumb"><span>'.__('Dashboard', 'collabpress').'</span></li>';
-
-		endif;
-
-		echo '</ul>';
-	echo '</div>';
-}
-
 // Send Emails from CollabPress
 function cp_send_email( $to, $subject, $message ) {
 
@@ -154,7 +100,9 @@ function cp_add_activity( $action = NULL, $type = NULL, $author = NULL, $ID = NU
 	do_action( 'cp_add_activity', $action, $type, $author, $ID, $activity_id );
 }
 
-// Task Comments
+/**
+ * Outputs all comments on displayed task.
+ */
 function cp_task_comments() {
 	global $cp;
 	global $cp_task;
@@ -223,91 +171,6 @@ function cp_task_comments() {
 		echo '<p class="submit"><input class="button-primary" type="submit" name="cp-add-comment" value="'.__( 'Submit', 'collabpress' ).'"/></p>';
 
 	echo '</form>';
-}
-
-// User Page
-function cp_user_page() {
-	global $post;
-	global $cp_user;
-	$userdata = get_userdata($cp_user->id);
-
-	?>
-
-	<div id="cp_user_page_wrap">
-
-		<?php echo get_avatar($userdata->ID, 128) ?>
-
-		<div class="cp_user_page_right">
-			<h3><?php _e('Recent Activity', 'collabpress') ?></h3>
-			<?php
-			// Get Task Lists
-		    $tasks_query = get_posts( array(
-		    	'post_type' => 'cp-meta-data',
-		    	'meta_query' => array(
-		    		array(
-		    			'key' => '_cp-meta-type',
-		    			'value' => 'activity',
-		    		),
-		    		array(
-		    			'key' => '_cp-activity-author',
-		    			'value' => $cp_user->id,
-		    		)
-		    	)
-		    ) );
-
-			// WP_Query();
-		    if ($tasks_query) :
-		    foreach ($tasks_query as $post):
-				setup_postdata($post);
-
-				$activityUser = get_post_meta($post->ID, '_cp-activity-author', true);
-				$activityUser = get_userdata($activityUser);
-				$activityAction = get_post_meta($post->ID, '_cp-activity-action', true);
-				$activityType = get_post_meta($post->ID, '_cp-activity-type', true);
-				$activityID = get_post_meta($post->ID, '_cp-activity-ID', true);
-				?>
-
-					<p><?php echo $activityUser->display_name . ' ' . $activityAction . ' a ' . $activityType ?>: <a href="<?php echo cp_get_url( $activityID, $activityType ); ?>"><?php echo get_the_title( $activityID ); ?></a></p>
-
-				<?php
-
-			endforeach;
-		    else :
-			    echo '<p>'.__( 'No Recent Activity...', 'collabpress' ).'</p>';
-			endif;
-			?>
-			<h3><?php _e('Current Tasks', 'collabpress') ?></h3>
-			<?php
-			// Get Task Lists
-			$tasks_query = get_posts( array(
-				'post_type' => 'cp-tasks',
-				'meta_query' => array(
-					array(
-						'key' => '_cp-task-assign',
-						'value' => $cp_user->id,
-					),
-					array(
-						'key' => '_cp-task-status',
-						'value' => 'open',
-					)
-				)
-			) );
-
-			// WP_Query();
-		    if ($tasks_query) :
-		    foreach ($tasks_query as $post):
-				setup_postdata($post);
-				echo '<p><a title="'.get_the_title().'" href="'.cp_get_url($post->ID, 'task').'">'.get_the_title().__(' - View', 'collabpress').'</a></p>';
-			endforeach;
-		    else :
-			    echo '<p>'.__( 'No Tasks...', 'collabpress' ).'</p>';
-			endif;
-			?>
-		</div>
-
-	</div>
-
-	<?php
 }
 
 function cp_get_projects_for_user( $user_id ) {
