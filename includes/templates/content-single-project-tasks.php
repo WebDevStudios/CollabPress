@@ -152,7 +152,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			<a href="#add_new_task_inline_content" class="add-new-task">+ Add new task</a>
 		</div>
 		<div>
-			<a href="#add_new_task_list_inline_content" class="add-new-task">+ Add new task list</a>
+			<a href="#add_new_task_list_inline_content" class="add-new-task-list">+ Add new task list</a>
 		</div>
 		<?php } ?>
 	</div>
