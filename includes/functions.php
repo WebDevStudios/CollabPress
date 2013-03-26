@@ -406,52 +406,6 @@ function cp_get_calendar_permalink( $args = array() ) {
 		echo cp_get_calendar_permalink( $args );
 	}
 
-// View All Projects
-function cp_view_all_projects() {
-
-	// Get Current User
-	global $current_user;
-	get_currentuserinfo();
-
-	echo '<h4 class="cp-no-margin">'.__('All Projects', 'collabpress').'</h4>';
-
-	// Get Projects
-	$projects_args = array( 'post_type' => 'cp-projects', 'showposts' => '-1' );
-	$projects_query = new WP_Query( $projects_args );
-
-	// WP_Query();
-	if ( $projects_query->have_posts() ) :
-	    while( $projects_query->have_posts() ) : $projects_query->the_post();
-
-		//verify user has permission to view this project
-		if ( cp_check_project_permissions( $current_user->ID, get_the_ID() ) ) {
-
-		    //generate delete project link
-		    $cp_del_link = CP_DASHBOARD .'&cp-delete-project-id='.get_the_ID();
-		    $cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_project' .get_the_ID() ) : $cp_del_link;
-
-		    //generate edit project link
-		    $cp_edit_link = CP_DASHBOARD.'&project='.get_the_ID().'&view=edit';
-
-		    echo '<p><a href="'.CP_DASHBOARD.'&project='.get_the_ID().'">'.get_the_title().'</a>';
-
-		    //check if user can view edit/delete links
-		    if ( cp_check_permissions( 'settings_user_role' ) ) {
-			echo ' - <a href="' .$cp_edit_link. '">' .__( 'edit', 'collabpress'). '</a> &middot; <a href="' .$cp_del_link. '" style="color:red;" onclick="javascript:check=confirm(\'' . __('WARNING: This will delete the selected project, including ALL task lists and tasks in the project.\n\nChoose [Cancel] to Stop, [OK] to delete.\n', 'collabpress' ) .'\');if(check==false) return false;">'.__('delete', 'collabpress').'</a></p>';
-		    }
-
-		}
-
-	    endwhile;
-	    wp_reset_query();
-
-	// No Results
-	else :
-		echo '<p>'.__( 'No Projects...', 'collabpress' ).'</p>';
-	endif;
-
-}
-
 // Display Icon
 function cp_screen_icon($screen = '') {
 	global $current_screen, $typenow;
@@ -541,7 +495,7 @@ function cp_clean_querystring() {
 }
 
 //verify user has access to view a project
-function cp_check_project_permissions( $user_id=1, $project_id=1 ) {
+function cp_check_project_permissions( $user_id = 1, $project_id = 1 ) {
 
     $cp_project_users = get_post_meta( $project_id, '_cp-project-users', true );
     $has_access = false;
