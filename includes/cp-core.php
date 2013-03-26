@@ -7,29 +7,29 @@ do_action( 'cp_core' );
 register_activation_hook( __FILE__, 'cp_install' );
 
 // AJAX handlers
-require_once( 'ajax-handlers.php' );
+require_once( CP_PLUGIN_DIR . 'includes/ajax-handlers.php' );
 
 // CollabPress Update
-require_once( 'update.php' );
+require_once( CP_PLUGIN_DIR . 'includes/update.php' );
 
 // CollabPress Admin Init Functions
-require_once( 'admin_init.php' );
+require_once( CP_PLUGIN_DIR . 'includes/admin_init.php' );
 do_action( 'cp_after_admin_init' );
 
 // CollabPress Functions
-require_once( 'functions.php' );
+require_once( CP_PLUGIN_DIR . 'includes/functions.php' );
 do_action( 'cp_after_functions' );
 
 // Administration Menus
-require_once( 'menus.php' );
+require_once( CP_PLUGIN_DIR . 'includes/menus.php' );
 do_action( 'cp_after_menus' );
 
 // CollabPress shortcode support
-require_once( 'shortcode.php' );
+require_once( CP_PLUGIN_DIR . 'includes/shortcode.php' );
 do_action( 'cp_after_shortcode' );
 
 // CollabPress widgets
-require_once( 'cp-widgets.php' );
+require_once( CP_PLUGIN_DIR . 'includes/cp-widgets.php' );
 do_action( 'cp_after_widgets' );
 
 // Load BuddyPress integration, if BP is enabled
