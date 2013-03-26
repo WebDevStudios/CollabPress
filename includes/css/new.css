@@ -23,8 +23,9 @@
 }
 
 .collabpress-project.new .plus-sign {
-	font-size: 5em;
-	margin: .75em 0 .5em;
+	font-size: 3em;
+	line-height: 1em;
+	margin: .25em 0;
 }
 
 
@@ -134,4 +135,15 @@ a.view-all-link {
 line-height: 1.5em;
 position: relative;
 margin: 9px 0 0;
+}
+
+.collabpress .item-controls {
+	font-size: 12px;
+	position: absolute;
+	right: 20px;
+	top: -1px;
+}
+
+.collabpress .add-new-task, .collabpress .add-new-task-list {
+	font-weight: bold;
 }
