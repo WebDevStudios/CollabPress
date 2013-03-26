@@ -8,6 +8,10 @@ register_activation_hook( __FILE__, 'cp_install' );
 
 // AJAX handlers
 require_once( 'ajax-handlers.php' );
+
+// CollabPress Update
+require_once( 'update.php' );
+
 // CollabPress Admin Init Functions
 require_once( 'admin_init.php' );
 do_action( 'cp_after_admin_init' );
