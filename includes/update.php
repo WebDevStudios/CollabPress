@@ -1,5 +1,4 @@
 <?php
-
 cp_update();
 
 function cp_update() {
@@ -8,7 +7,7 @@ function cp_update() {
 
 	if ( $installed_version != CP_VERSION ) {
 		// 1.3 specific upgrades
-		if ( version_compare( $installed_version, '1.3', '<' ) ) {
+		if ( version_compare( $installed_version, '1.3-dev', '<' ) ) {
 			$tablename = $wpdb->prefix . 'cp_project_users';
 
 			// Add project_users table
@@ -19,9 +18,10 @@ function cp_update() {
 				UNIQUE KEY project_member_id (project_member_id)
 			);";
 
-			require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 			dbDelta( $sql );
 		}
+
 		update_option( 'cp_version', CP_VERSION );
 	}
 }
