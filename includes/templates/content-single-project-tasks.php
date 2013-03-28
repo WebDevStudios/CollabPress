@@ -56,15 +56,14 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 		ob_start();
 		$item_id = $item->ID;
 		$title = $item->post_title;
-		$task_status = cp_get_task_status( $item->ID );
-		$title_class = $task_status; ?>
-		<li id="menu-item-<?php echo $item_id; ?>" class="menu-item">
+		$task_status = cp_get_task_status( $item->ID ); ?>
+		<li id="menu-item-<?php echo $item_id; ?>" class="menu-item <?php echo $task_status; ?>">
 			<dl class="menu-item-bar">
 				<dt class="menu-item-handle">
 					<?php if ( $item->post_type == 'cp-tasks' ) : ?>
 					<input class="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>>
 					<?php endif; ?>
-					<span class="item-title <?php echo $title_class; ?>">
+					<span class="item-title">
 						<?php if ( $item->post_type == 'cp-tasks' ) : // for now, only display a link for tasks. ?>
 						<a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a>
 						<?php else: // add a link to task lists if we make a template for them. ?>
@@ -106,13 +105,12 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 				$item_id = $task->ID;
 				$title = $task->post_title;
 				$task_status = cp_get_task_status( $task->ID );
-				$title_class = $task_status;
 				 ?>
-				<li id="menu-item-<?php echo $item_id; ?>" class="menu-item menu-item-depth-1">
+				<li id="menu-item-<?php echo $item_id; ?>" class="menu-item menu-item-depth-1 <?php echo $task_status; ?>">
 					<dl class="menu-item-bar">
 						<dt class="menu-item-handle">
 							<input class="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>>
-							<span class="item-title <?php echo $title_class; ?>"><a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a><span>
+							<span class="item-title"><a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a><span>
 							<span class="item-controls">
 								<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
 							</span>
@@ -147,6 +145,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 	<?php echo cp_project_title(); ?>
 	<div class="tasks">
 		<h3>Tasks</h3>
+		<div class="toggle-view-completed-tasks">Toggle view completed tasks</div>
 		<?php cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() ); ?>
 		<?php if ( cp_check_permissions( 'settings_user_role' ) ) { ?>
 		<div>
@@ -252,6 +251,10 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 <script>
 (function($) {
 
+	$('.toggle-view-completed-tasks').click( function() {
+
+	});
+
 	$(document).ready(function() {
 		jQuery('#cp-task-due-date').datepicker( {dateFormat: 'm/d/yy'} ); // init the datepicker
 		// Init colorbox for New Task and New Task list modals
@@ -353,9 +356,9 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 		};
 		if ( $(this).is(':checked') )
-			$(this).siblings('.item-title').css('text-decoration', 'line-through' );
+			$(this).parents( '.menu-item' ).addClass( 'complete' );
 		else
-			$(this).siblings('.item-title').css('text-decoration', 'none' );
+			$(this).parents( '.menu-item' ).removeClass( 'complete' );
 
 		$.post(
 			ajaxurl,
