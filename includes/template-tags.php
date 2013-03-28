@@ -76,6 +76,14 @@ function cp_project_title() {
 	echo '<h2>' . $cp->project->post_title . '</h2>';
 }
 
+function cp_get_the_project_title() {
+	global $cp;
+	if ( ! empty( $cp->project->post_title ) )
+		return $cp->project->post_title;
+	else
+		return false;
+}
+
 /**
  * Return current project ID in $cp global
  */
@@ -85,6 +93,10 @@ function cp_get_project_id() {
 		return $cp->project->ID;
 	else
 		return false;
+}
+
+function cp_get_dashbaord_permalink() {
+	return CP_DASHBOARD;
 }
 
 function cp_get_project_permalink( $project_id = 0 ) {

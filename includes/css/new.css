@@ -11,11 +11,21 @@
 	margin: 0 5px 5px 0;
 	padding: 5px;
 	width: 190px;
+	position: relative;
 }
 
 .collabpress-project h2 {
 	font-size: 1.2em;
 	font-weight: 400;
+}
+
+.collabpress-project .edit-project {
+	position: absolute;
+	bottom: .83em;
+	right: .83em;
+}
+.edit-project a {
+	color: #ccc;
 }
 .collabpress-project.new {
 	background-color: #0072ff;

@@ -310,7 +310,6 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 				action: 'cp_add_new_task',
 				data: data
 			}, function( response ) {
-				console.log( response );
 				$('#add_new_task_inline_content .spinner').hide();
 				window.location = response.data.redirect;
 			}
@@ -363,9 +362,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			{
 				action: 'cp_update_task_status',
 				data: data
-			}, function( response ) {
-				console.log( response )
-			}
+			}, function( response ) {}
 		);
 	});
 })(jQuery);

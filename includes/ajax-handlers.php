@@ -182,8 +182,6 @@ function cp_add_comment_to_task_handler() {
 	wp_send_json_success( array( 'redirect' => $permalink ) );
 }
 
-
-
 add_action( 'wp_ajax_cp_delete_comment', 'cp_delete_comment_handler' );
 
 function cp_delete_comment_handler() {
@@ -191,5 +189,25 @@ function cp_delete_comment_handler() {
 	extract( $data );
 	wp_delete_comment( $comment_id, true );
 	wp_send_json_success();
+}
+
+add_action( 'wp_ajax_cp_edit_project', 'cp_edit_project_handler' );
+
+function cp_edit_project_handler() {
+	$data = $_REQUEST['data'];
+	extract( $data );
+	wp_update_post( $data );
+	$permalink = cp_get_project_permalink( $ID );
+	wp_send_json_success( array( 'redirect' => $permalink ) );
+}
+
+add_action( 'wp_ajax_cp_delete_project', 'cp_delete_project_handler' );
+
+function cp_delete_project_handler() {
+	$data = $_REQUEST['data'];
+	extract( $data );
+	wp_delete_post( $ID, true );
+	$permalink = cp_get_dashbaord_permalink();
+	wp_send_json_success( array( 'redirect' => $permalink ) );
 }
 
