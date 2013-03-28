@@ -147,9 +147,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 	<?php echo cp_project_title(); ?>
 	<div class="tasks">
 		<h3>Tasks</h3>
-		<?php
-		cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() );
-		?>
+		<?php cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() ); ?>
 		<?php if ( cp_check_permissions( 'settings_user_role' ) ) { ?>
 		<div>
 			<a href="#add_new_task_inline_content" class="add-new-task">+ Add new task</a>
@@ -347,7 +345,6 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 	// Handle checkbox change for a task
 	$('.menu-item input.item-completed').change( function(event) {
 		var data = {
-			project_id: $('#cp-project-task-list-id').val(),
 			task_id: $(this)
 				.parents( '.menu-item-bar')
 				.siblings('.menu-item-settings')

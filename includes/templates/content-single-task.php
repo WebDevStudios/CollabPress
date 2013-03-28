@@ -6,7 +6,7 @@
 		<?php cp_project_title(); ?>
 		<?php $task_status = cp_get_task_status( cp_get_the_task_ID() ); ?>
 		<?php $title_class = $task_status; ?>
-		<h1 class="<?php echo $title_class; ?>"><input type="checkbox" <?php checked( 'complete', $task_status ); ?>><?php echo cp_get_task_title(); ?></h1>
+		<h1 id="task-title" class="<?php echo $title_class; ?>"><input id="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>><?php echo cp_get_task_title(); ?></h1>
 		<a class="edit-task" href="#edit_task_inline_content">Edit</a><BR>
 		<?php if ( $due_date = cp_get_the_task_due_date() ) {
 			echo 'Due date: ' . $due_date . '<BR>';
@@ -88,6 +88,28 @@
 (function($) {
 	$(document).ready(function() {
 		jQuery('#cp-task-due-date').datepicker( {dateFormat: 'm/d/yy'} ); // init the datepicker
+
+		// Handle checkbox change for a task
+		$('#item-completed').change( function(event) {
+			var data = {
+				task_id: $('#cp-task-id').val(),
+				task_status: ( $(this).is(':checked') ? 'complete' : 'open' ),
+				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
+			};
+			if ( $(this).is(':checked') )
+				$('#task-title').css('text-decoration', 'line-through' );
+			else
+				$('#task-title').css('text-decoration', 'none' );
+			$.post(
+				ajaxurl,
+				{
+					action: 'cp_update_task_status',
+					data: data
+				}, function( response ) {
+					console.log( response )
+				}
+			);
+		});
 
 		// Init colorbox on edit task modal
 		$('.edit-task').colorbox(
