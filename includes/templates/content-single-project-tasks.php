@@ -98,33 +98,34 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 					'key' => '_cp-task-list-id',
 					'value' => $item_id,
 				),
-			)
+			),
+			'orderby' => 'menu_order',
+			'order' => 'ASC',
 		) );
 		if ( ! empty( $task_list_tasks ) ) {
 			foreach ( $task_list_tasks as $task ) {
-				$item_id = $task->ID;
 				$title = $task->post_title;
 				$task_status = cp_get_task_status( $task->ID );
 				 ?>
-				<li id="menu-item-<?php echo $item_id; ?>" class="menu-item menu-item-depth-1 <?php echo $task_status; ?>">
+				<li id="menu-item-<?php echo $task->ID; ?>" class="menu-item menu-item-depth-1 <?php echo $task_status; ?>">
 					<dl class="menu-item-bar">
 						<dt class="menu-item-handle">
 							<input class="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>>
-							<span class="item-title"><a href="<?php echo cp_get_task_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a><span>
+							<span class="item-title"><a href="<?php echo cp_get_task_permalink( $task->ID ); ?>"><?php echo esc_html( $title ); ?></a><span>
 							<span class="item-controls">
-								<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
+								<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $task->ID; ?>">delete</a>
 							</span>
 						</dt>
 					</dl>
 
-					<div class="menu-item-settings" id="menu-item-settings-<?php echo $item_id; ?>">
+					<div class="menu-item-settings" id="menu-item-settings-<?php echo $task->ID; ?>">
 
-						<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $item_id; ?>]" value="<?php echo $item_id; ?>" />
-						<input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
-						<input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
-						<input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
-						<input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
-						<input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->post_type ); ?>" />
+						<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $task->ID; ?>]" value="<?php echo $task->ID; ?>" />
+						<input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo $task->ID; ?>]" value="<?php echo esc_attr( $task->object_id ); ?>" />
+						<input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo $task->ID; ?>]" value="<?php echo esc_attr( $task->object ); ?>" />
+						<input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo $task->ID; ?>]" value="<?php echo esc_attr( $task->menu_item_parent ); ?>" />
+						<input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo $task->ID; ?>]" value="<?php echo esc_attr( $task->menu_order ); ?>" />
+						<input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo $task->ID; ?>]" value="<?php echo esc_attr( $task->post_type ); ?>" />
 					</div><!-- .menu-item-settings-->
 					<ul class="menu-item-transport"></ul>
 			<?php
@@ -250,9 +251,8 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 
 <script>
 (function($) {
-
 	$('.toggle-view-completed-tasks').click( function() {
-
+		$('.menu-item.complete').hide( 500 );
 	});
 
 	$(document).ready(function() {

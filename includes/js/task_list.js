@@ -16,7 +16,7 @@ var cpTaskList;
 
 		options : {
 			menuItemDepthPerLevel : 30, // Do not use directly. Use depthToPx and pxToDepth instead.
-			globalMaxDepth : 11
+			globalMaxDepth : 1
 		},
 
 		menuList : undefined,	// Set in init.
@@ -46,12 +46,12 @@ var cpTaskList;
 
 			// if( oneThemeLocationNoMenus )
 			// 	$('#posttype-page').addSelectedToMenu( api.addMenuItemToBottom );
-			
+
 			this.messageFadeIn();
-			
+
 			this.initSelectMenuDropdown();
 			this.initAccessibility();
-			
+
 			this.initToggles();
 		},
 
@@ -262,20 +262,20 @@ var cpTaskList;
 				}
 			});
 		},
-		
-		initSelectMenuDropdown : function () { 
-			var menuSelector = $('.manage-menus select'); 
 
-			menuSelector.on('change', function () { 
-				var url = $(this).val(); 
+		initSelectMenuDropdown : function () {
+			var menuSelector = $('.manage-menus select');
 
-				if (url && '--' !== url) { 
-					$('.menu-selector .spinner').show(); 
-					window.location = url; 
-				} 
-			}); 
-		}, 
-		
+			menuSelector.on('change', function () {
+				var url = $(this).val();
+
+				if (url && '--' !== url) {
+					$('.menu-selector .spinner').show();
+					window.location = url;
+				}
+			});
+		},
+
 		initAccessibility : function() {
 			$('.item-edit').off('focus').on('focus', function () {
 				$(this).on('keydown', function (e) {
@@ -304,7 +304,7 @@ var cpTaskList;
 					// Bail if there is only one menu item
 					if (1 === menuItemsCount)
 						return;
-						
+
 					// If RTL, swap left/right arrows
 					var arrows = { '38' : 'up', '40' : 'down', '37' : 'left', '39' : 'right' };
 					if ($('body').hasClass('rtl'))
@@ -388,20 +388,20 @@ var cpTaskList;
 				$(this).off('keydown');
 			});
 		},
-		
+
 		messageFadeIn : function() {
 			var messages = $('#message');
-			
+
 			// Visual change when users save menus multiple times in a row
 			messages.slideDown('slow');
 		},
-		
-		hideAllMetaBoxes : function(el) { 
-			el.addClass('closed');
-		}, 
 
-		showMetaBox : function(el) { 
-			el.removeClass('closed'); 
+		hideAllMetaBoxes : function(el) {
+			el.addClass('closed');
+		},
+
+		showMetaBox : function(el) {
+			el.removeClass('closed');
 		},
 
 		initToggles : function() {
@@ -415,7 +415,7 @@ var cpTaskList;
 				menuEdge = api.menuList.offset().left,
 				body = $('body'), maxChildDepth,
 				menuMaxDepth = initialMenuMaxDepth();
-				
+
 			if( 0 != $('#menu-to-edit li').length )
 				$('.drag-instructions').show();
 
@@ -473,7 +473,7 @@ var cpTaskList;
 
 					// Return child elements to the list
 					children = transport.children().insertAfter(ui.item);
-					
+
 					// Add "sub menu" description
 					var subMenuTitle = ui.item.find('.item-title .is-submenu');
 					if (0 < currentDepth)
@@ -494,7 +494,7 @@ var cpTaskList;
 
 					// address sortable's incorrectly-calculated top in opera
 					ui.item[0].style.top = 0;
-				
+
 					// package task and task list data for ajax
 					var data = {
 						project_id: $('#cp-project-id').val(),
@@ -527,17 +527,13 @@ var cpTaskList;
 						}
 						data.items.push( item );
 					});
-
-					// todo: fix nonces
-					// data.nonce = $('#save_task_').val();
+					console.log( data );
 					$.post(
 						ajaxurl,
 						{
 							action: 'cp_save_task_list_order',
 							data: data
-						}, function( response ) {
-							console.log( response );
-						}
+						}, function( response ) {}
 					);
 				},
 				change: function(e, ui) {
@@ -583,11 +579,12 @@ var cpTaskList;
 				nextThreshold = (next.length) ? next.offset().top + next.height() / 3 : 0;
 				minDepth = (next.length) ? next.menuItemDepth() : 0;
 				if( prev.length ) {
-					
-					if ( prev.getItemData()["menu-item-type"] == 'cp-tasks' )
+					if ( prev.getItemData()["menu-item-type"] == 'cp-tasks' ) {
 						maxDepth = prev.menuItemDepth();
-					else
+					}else {
 						maxDepth = ( (depth = prev.menuItemDepth() + 1) > api.options.globalMaxDepth ) ? api.options.globalMaxDepth : depth;
+					}
+
 				} else
 					maxDepth = 0;
 			}
@@ -672,7 +669,7 @@ var cpTaskList;
 				if( '' == $t.val() )
 					$t.addClass( name ).val( $t.data(name) );
 			});
-			
+
 			$('.blank-slate .input-with-default-title').focus();
 		},
 
