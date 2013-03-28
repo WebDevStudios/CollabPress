@@ -107,6 +107,22 @@ function cp_add_new_task_list_handler() {
 	wp_send_json_success( array( 'redirect' => $permalink ) );
 }
 
+
+add_action( 'wp_ajax_cp_edit_task', 'cp_edit_task_handler' );
+
+function cp_edit_task_handler() {
+	global $wpdb, $cp;
+
+	$data = $_REQUEST['data'];
+	extract( $data );
+	cp_update_task( $data );
+	$permalink = cp_get_task_permalink( $ID );
+
+	wp_send_json_success( array( 'redirect' => $permalink ) );
+}
+
+
+
 add_action( 'wp_ajax_cp_attach_new_file', 'cp_attach_new_file_handler' );
 
 function cp_attach_new_file_handler() {

@@ -159,7 +159,7 @@ function cp_task_comments() {
 	//check if email option is enabled
 	$options = get_option('cp_options');
 
-	echo '<form action="'.cp_clean_querystring().'" method="post">';
+	echo '<form id="task-comment-form" action="'.cp_clean_querystring().'" method="post">';
 		wp_nonce_field( 'cp-add-comment' .absint( $cp->task->ID ) );
 		?>
 		<p><label for="cp-comment-content"><?php _e('Leave a Comment: ', 'collabpress') ?></label></p>
@@ -445,6 +445,32 @@ function cp_get_the_task_ID() {
 	else
 		return false;
 }
+
+/**
+ * Return the description of the displayed task.
+ */
+function cp_get_the_task_description() {
+	global $cp;
+	if ( ! empty( $cp->task->post_title ) )
+		return $cp->task->post_title;
+	else
+		return false;
+}
+
+function cp_get_the_task_due_date() {
+	global $cp;
+	if ( ! empty( $cp->task->ID ) )
+		$task_id = $cp->task->ID;
+	else
+		return false;
+	return cp_get_task_due_date( $task_id );
+
+}
+
+function cp_get_task_due_date( $task_id ) {
+	return get_post_meta( $task_id, '_cp-task-due', true );
+}
+
 // Get URL
 function cp_get_url( $ID = NULL, $type = NULL ) {
     if ( $type == 'task' || $type == 'comment' ) :
@@ -649,6 +675,8 @@ function cp_maybe_enqueue_style() {
 		wp_enqueue_script( 'colorbox', CP_PLUGIN_URL . 'includes/js/jquery.colorbox-min.js', array( 'jquery') );
 
 		wp_enqueue_script( 'cp-task-list', CP_PLUGIN_URL . 'includes/js/task_list.js', array( 'jquery', 'jquery-ui-sortable' ) );
+
+		wp_enqueue_style( 'jquery-ui', CP_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css' );
 	}
 
 }
@@ -718,20 +746,17 @@ function is_collabpress_page( $slug = '' ) {
 	return false;
 }
 
-function cp_task_due_date() {
+function cp_get_the_task_priority() {
 	global $cp;
-	if ( $due_date = get_post_meta( $cp->task->ID, '_cp-task-due', true ) ) {
-		return $due_date;
-	} else
+	if ( ! empty( $cp->task->ID ) )
+		$task_id = $cp->task->ID;
+	else
 		return false;
+	return cp_get_task_priority( $task_id );
 }
 
-function cp_task_priority() {
-	global $cp;
-	if ( ( $priority = get_post_meta( $cp->task->ID, '_cp-task-priority', true ) != 'None' ) ) {
-		return $priority;
-	} else
-		return false;
+function cp_get_task_priority( $task_id ) {
+	return get_post_meta( $task_id, '_cp-task-priority', true );
 }
 
 /**
@@ -955,6 +980,26 @@ function cp_insert_task( $args = array() ) {
 	}
 }
 
+function cp_update_task( $args = array() ) {
+	if ( empty( $args['ID'] ) )
+		return false;
+	extract( $args );
+	if ( ! empty( $priority ) )
+		update_post_meta( $ID, '_cp-task-priority', $priority );
+	if ( ! empty( $task_assigned_to ) )
+		update_post_meta( $ID, '_cp-task-assign', $task_assigned_to );
+	if ( ! empty( $task_due_date ) )
+		update_post_meta( $ID, '_cp-task-due', $task_due_date );
+	return wp_update_post( $args );
+}
+
+function cp_get_user_assigned_to_task( $task_id = 0 ) {
+	if ( ! $task_id )
+		$task_id = cp_get_the_task_ID();
+	$user_id = get_post_meta( $task_id, '_cp-task-assign', true );
+	return new WP_User( $user_id );
+}
+
 function cp_insert_task_list( $args = array() ) {
 	global $cp_bp_integration;
 
@@ -1032,7 +1077,7 @@ function cp_insert_comment_on_task( $args = array() ) {
 	    'comment_agent'            => substr( $_SERVER['HTTP_USER_AGENT'], 0, 254 ),
 	    'comment_date'             => $time,
 	    'comment_approved'         => 1,
-	    'send_email_notifications' => true,
+	    'send_email_notification' => true,
 	);
 
 	// $cp may not be defined, check here
@@ -1046,7 +1091,7 @@ function cp_insert_comment_on_task( $args = array() ) {
 	wp_insert_comment( $args );
 
 	//check if email notification is checked
-	if ( $args['send_email_notifications'] ) {
+	if ( $args['send_email_notification'] ) {
 	    //send email
 
 	    //get user assigned to the task

@@ -178,7 +178,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 					</tr>
 					<tr valign="top">
 						<th scope="row"><label for="cp-task-due"><?php _e('Due: ', 'collabpress') ?></label></th>
-						<td><p><input name="cp-task-due" class="cp-task-due-date" id="cp-task-due-date" id="datepicker" class="regular-text" type="text" value=<?php echo date('n/j/Y') ?> /></p></td>
+						<td><p><input name="cp-task-due" class="cp-task-due-date" id="cp-task-due-date" class="regular-text" type="text" value=<?php echo date('n/j/Y') ?> /></p></td>
 					</tr>
 					<tr valign="top">
 						<th scope="row"><label for="cp-task-assign"><?php _e('Assigned to: ', 'collabpress') ?></label></th>
@@ -253,6 +253,19 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 
 <script>
 (function($) {
+
+	$(document).ready(function() {
+		jQuery('#cp-task-due-date').datepicker( {dateFormat: 'm/d/yy'} ); // init the datepicker
+		// Init colorbox for New Task and New Task list modals
+		$('.add-new-task, .add-new-task-list').colorbox(
+			{
+				inline: true,
+				width: '50%'
+			}
+		);
+	});
+
+	// Delete task handler
 	$('.delete-task').click(function(i, el) {
 		var confirm_delete = confirm('Are you sure you want to delete this task?');
 
@@ -277,14 +290,8 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			}
 		);
 	});
-	$(document).ready(function() {
-		$('.add-new-task, .add-new-task-list').colorbox(
-			{
-				inline: true,
-				width: '50%'
-			}
-		);
-	});
+
+	// On New task form submit send AJAX query
 	$('#add_new_task_inline_content .submit').click(function() {
 
 		var data = {
@@ -312,6 +319,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 		);
 	});
 
+	// On New task list form submit send AJAX query
 	$('#add_new_task_list_inline_content .submit').click(function() {
 
 		var data = {
@@ -335,6 +343,8 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			}
 		);
 	});
+
+	// Handle checkbox change for a task
 	$('.menu-item input.item-completed').change( function(event) {
 		var data = {
 			project_id: $('#cp-project-task-list-id').val(),
