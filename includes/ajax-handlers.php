@@ -11,7 +11,7 @@ function cp_add_project_ajax_handler() {
 	}
 	$args = array(
 		'post_title' => $data['project_name'],
-		'project_description' => $data['project_description'] 
+		'project_description' => $data['project_description']
 	);
 
 	if ( ! empty( $data['users'] ) )
@@ -27,7 +27,7 @@ add_action( 'wp_ajax_cp_modify_project_users', 'cp_modify_project_users_handler'
 
 function cp_modify_project_users_handler() {
 	global $wpdb, $cp;
-	
+
 	$data = $_REQUEST['data'];
 	extract( $data );
 
@@ -55,7 +55,7 @@ add_action( 'wp_ajax_cp_add_new_task', 'cp_add_new_task_handler' );
 
 function cp_add_new_task_handler() {
 	global $wpdb, $cp;
-	
+
 	$data = $_REQUEST['data'];
 	extract( $data );
 	if ( ! wp_verify_nonce( $nonce, 'add_new_task' ) ) {
@@ -63,7 +63,7 @@ function cp_add_new_task_handler() {
 		die;
 	}
 	cp_insert_task( $data );
-	
+
 	$permalink = cp_get_project_tasks_permalink( $project_id );
 
 	wp_send_json_success( array( 'redirect' => $permalink ) );
@@ -74,7 +74,7 @@ add_action( 'wp_ajax_cp_delete_task', 'cp_delete_task_handler' );
 
 function cp_delete_task_handler() {
 	global $wpdb, $cp;
-	
+
 	$data = $_REQUEST['data'];
 	extract( $data );
 	// todo fix nonce
@@ -91,19 +91,19 @@ add_action( 'wp_ajax_cp_add_new_task_list', 'cp_add_new_task_list_handler' );
 
 function cp_add_new_task_list_handler() {
 	global $wpdb, $cp;
-	
+
 	$data = $_REQUEST['data'];
 	extract( $data );
-	
+
 	// todo: fix nonces
 	// if ( ! wp_verify_nonce( $nonce, 'add_new_task' ) ) {
 	// 	echo 'bad nonce';
 	// 	die;
 	// }
 	cp_insert_task_list( $data );
-	
+
 	$permalink = cp_get_project_tasks_permalink( $project_id );
-	
+
 	wp_send_json_success( array( 'redirect' => $permalink ) );
 }
 
@@ -111,7 +111,7 @@ add_action( 'wp_ajax_cp_attach_new_file', 'cp_attach_new_file_handler' );
 
 function cp_attach_new_file_handler() {
 	global $wpdb, $cp;
-	
+
 	$data = $_REQUEST['data'];
 	extract( $data );
 	// todo fix nonce
@@ -145,7 +145,7 @@ add_action( 'wp_ajax_cp_update_task_status', 'cp_update_task_status_handler' );
 function cp_update_task_status_handler() {
 	$data = $_REQUEST['data'];
 	extract( $data );
-	$task_status = ( $task_status == 'on' ) ? 'complete' : 'open';
+	$task_status = $data['task_status'];
 	cp_update_task_status( $task_id, $task_status );
 	wp_send_json_success();
 }
@@ -155,11 +155,11 @@ add_action( 'wp_ajax_cp_add_comment_to_task', 'cp_add_comment_to_task_handler' )
 function cp_add_comment_to_task_handler() {
 	$data = $_REQUEST['data'];
 	extract( $data );
-	cp_insert_comment_on_task( 
+	cp_insert_comment_on_task(
 		array(
 			'comment_post_ID' => $task_id,
 			'comment_content' => nl2br( esc_html( $comment_content ) )
-		) 
+		)
 	);
 
 	$permalink = cp_get_task_permalink( $task_id );

@@ -249,6 +249,11 @@ function cp_task_title() {
 	echo '<h2>' . $cp->task->post_title . '</h2>';
 }
 
+	function cp_get_task_title() {
+		global $cp;
+		return $cp->task->post_title;
+	}
+
 function cp_get_task_id() {
 	global $cp;
 	return $cp->task->ID;
@@ -352,8 +357,8 @@ function cp_get_project_for_task( $task_id ) {
 }
 
 function cp_get_task_permalink( $task_id ) {
-	$permalink = add_query_arg( 
-		array( 
+	$permalink = add_query_arg(
+		array(
 			'project' => cp_get_project_for_task( $task_id ),
 			'task' => $task_id,
 			),

@@ -437,6 +437,16 @@ function cp_screen_icon($screen = '') {
 	return '<span id="icon-'.$name.'" class="'.$class.'"></span>';
 }
 
+/**
+ * Return the ID of the displayed task.
+ */
+function cp_get_the_task_ID() {
+	global $cp;
+	if ( ! empty( $cp->task->ID ) )
+		return $cp->task->ID;
+	else
+		return false;
+}
 // Get URL
 function cp_get_url( $ID = NULL, $type = NULL ) {
     if ( $type == 'task' || $type == 'comment' ) :

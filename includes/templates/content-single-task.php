@@ -4,7 +4,10 @@
 			<?php cp_project_links(); ?>
 		</div>
 		<?php cp_project_title(); ?>
-		<?php cp_task_title(); ?><a class="edit-task" href="javascript:void();">Edit</a><BR>
+		<?php $task_status = cp_get_task_status( cp_get_the_task_ID() ); ?>
+		<?php $title_class = $task_status; ?>
+		<h1 class="<?php echo $title_class; ?>"><input type="checkbox" <?php checked( 'complete', $task_status ); ?>><?php echo cp_get_task_title(); ?></h1>
+		<a class="edit-task" href="javascript:void();">Edit</a><BR>
 		<?php if ( $due_date = cp_task_due_date() ) {
 			echo 'Due date: ' . $due_date . '<BR>';
 		} ?>
@@ -16,9 +19,9 @@
 	<div style='display:none'>
 		<div id='inline_content' style='padding:10px; background:#fff;'>
 			<h2>Edit Task</h2>
-			<input type="hidden" id="edit_task_nonce" value="<?php echo wp_create_nonce( 'edit_task' ); ?>">
-			<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>">
-			<input type="hidden" id="cp-task-id" value="<?php echo cp_get_task_id() ?>">
+			<input type="hidden" id="edit_task_nonce" value="<?php echo wp_create_nonce( 'edit_task' ); ?>" />
+			<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>" />
+			<input type="hidden" id="cp-task-id" value="<?php echo cp_get_task_id() ?>" />
 			<table class="form-table">
 				<tbody>
 					<tr valign="top">
