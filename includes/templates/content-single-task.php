@@ -94,11 +94,33 @@
 					action: 'cp_add_comment_to_task',
 					data: data
 				}, function( response ) {
-					window.location = response.data.redirect;
+					console.log( response );
+					if ( response.data.redirect ) {
+						window.location = response.data.redirect;
+					}
 				}
 			);
 			return false;
 		});
+	});
+	$('.delete-comment-link').click( function() {
+		if ( window.confirm( '<?php _e( 'Are you sure you want to delete this comment?', 'collabpress' ); ?>' ) ) {
+			var that = this;
+			var data = {
+				comment_id: $(this).data('comment-id'),
+				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
+			};
+			$.post(
+				ajaxurl,
+				{
+					action: 'cp_delete_comment',
+					data: data
+				}, function( response ) {
+					if ( response.success ) {
+						jQuery(that).parents('.cp_task_comment').hide();
+					}
+				});
+		}
 	});
 })(jQuery);
 </script>

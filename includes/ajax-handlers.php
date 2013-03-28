@@ -166,3 +166,14 @@ function cp_add_comment_to_task_handler() {
 	wp_send_json_success( array( 'redirect' => $permalink ) );
 }
 
+
+
+add_action( 'wp_ajax_cp_delete_comment', 'cp_delete_comment_handler' );
+
+function cp_delete_comment_handler() {
+	$data = $_REQUEST['data'];
+	extract( $data );
+	wp_delete_comment( $comment_id, true );
+	wp_send_json_success();
+}
+

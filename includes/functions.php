@@ -8,7 +8,6 @@ function cp_send_email( $to, $subject, $message ) {
 
     // Check if email notifications are enabled - default to enabled
     $cp_email_notify = ( $cp_options['email_notifications'] == 'disabled' ) ? false : true;
-
     // If email notifications are enabled proceed
     if ( $cp_email_notify ) {
 
@@ -123,7 +122,6 @@ function cp_task_comments() {
 		$commentCount = 1;
 		// Display each comment
 		foreach( $comments as $comm ) :
-
 			if ( ($commentCount % 2) == 0 ) {
 				$row = " even";
 			} else {
@@ -142,7 +140,7 @@ function cp_task_comments() {
 					$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_comment' ) : $cp_del_link;
 
 					if ( $current_user->ID == $comm->user_id || current_user_can( 'manage_options' ) )
-						echo ' - <a href="'.$cp_del_link.'" style="color:red;" onclick="javascript:check=confirm(\'' . __('WARNING: This will delete the selected comment.\n\nChoose [Cancel] to Stop, [OK] to delete.\n', 'collabpress' ) .'\');if(check==false) return false;">'.__( 'delete', 'collabpress' ). '</a>';
+						echo ' - <a data-comment-id="' . $comm->comment_ID . '" class="delete-comment-link" href="javascript:void(0)" style="color:red;">'.__( 'delete', 'collabpress' ). '</a>';
 					?>
 					</p>
 					<p class="cp_comment_content"><?php echo $comm->comment_content ?></p>
@@ -1024,16 +1022,17 @@ function cp_insert_comment_on_task( $args = array() ) {
 	$time = current_time( 'mysql' );
 
 	$defaults = array(
-	    'comment_author' => $current_user->display_name,
-	    'comment_author_email' => $current_user->user_email,
-	    'comment_author_url' => $current_user->user_email,
-	    'comment_type' => 'collabpress',
-	    'comment_parent' => 0,
-	    'user_id' => $current_user->ID,
-	    'comment_author_IP' => preg_replace( '/[^0-9a-fA-F:., ]/', '',$_SERVER['REMOTE_ADDR'] ),
-	    'comment_agent' => substr( $_SERVER['HTTP_USER_AGENT'], 0, 254 ),
-	    'comment_date' => $time,
-	    'comment_approved' => 1,
+	    'comment_author'           => $current_user->display_name,
+	    'comment_author_email'     => $current_user->user_email,
+	    'comment_author_url'       => $current_user->user_email,
+	    'comment_type'             => 'collabpress',
+	    'comment_parent'           => 0,
+	    'user_id'                  => $current_user->ID,
+	    'comment_author_IP'        => preg_replace( '/[^0-9a-fA-F:., ]/', '',$_SERVER['REMOTE_ADDR'] ),
+	    'comment_agent'            => substr( $_SERVER['HTTP_USER_AGENT'], 0, 254 ),
+	    'comment_date'             => $time,
+	    'comment_approved'         => 1,
+	    'send_email_notifications' => true,
 	);
 
 	// $cp may not be defined, check here
@@ -1047,23 +1046,23 @@ function cp_insert_comment_on_task( $args = array() ) {
 	wp_insert_comment( $args );
 
 	//check if email notification is checked
-	if ( isset( $_POST['notify'] ) ) {
+	if ( $args['send_email_notifications'] ) {
 	    //send email
 
 	    //get user assigned to the task
-	    $task_author_id = get_post_meta( $cp->task->ID, '_cp-task-assign', true );
+	    $task_author_id = get_post_meta( $args['comment_post_ID'], '_cp-task-assign', true );
 	    $task_author_data = get_userdata( $task_author_id );
 	    $author_email = $task_author_data->user_email;
 
-	    $subject = __('New comment on task ', 'collabpress') .get_the_title( $cp->task->ID );
+	    $subject = __('New comment on task ', 'collabpress') .get_the_title( $args['comment_post_ID'] );
 
-	    $message = __("There is a new comment on your task from ", "collabpress") .$current_user->display_name. ": " .get_the_title( $cp->task->ID ) ."\n\n";
-	    $subject = __('New comment on task ', 'collabpress') .get_the_title( $cp_task->id );
+	    $message = __("There is a new comment on your task from ", "collabpress") .$current_user->display_name. ": " .get_the_title( $args['comment_post_ID'] ) ."\n\n";
+	    $subject = __('New comment on task ', 'collabpress') .get_the_title( $args['comment_post_ID'] );
 	    $subject = apply_filters( 'cp_new_comment_email_subject', $subject );
 
-	    $message = __("There is a new comment on your task from ", "collabpress") .$current_user->display_name. ": " .get_the_title( $cp_task->id ) ."\n\n";
+	    $message = __("There is a new comment on your task from ", "collabpress") .$current_user->display_name. ": " .get_the_title( $args['comment_post_ID'] ) ."\n\n";
 	    $message .= __("Comment:", "collabpress") . "\n";
-	    $message .= esc_html( $_POST['cp-comment-content'] );
+	    $message .= esc_html( $args['comment_content'] );
 		$message = apply_filters( 'cp_new_comment_email_body', $message );
 
 	    cp_send_email( $author_email, $subject, $message );
