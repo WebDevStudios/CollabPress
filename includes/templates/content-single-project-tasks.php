@@ -319,8 +319,6 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 				data: data
 			},
 			function( response ) {
-				console.log( response );
-				return;
 				task_el.parents('.menu-item').hide();
 			}
 		);
