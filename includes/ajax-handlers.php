@@ -211,3 +211,16 @@ function cp_delete_project_handler() {
 	wp_send_json_success( array( 'redirect' => $permalink ) );
 }
 
+add_action( 'wp_ajax_cp_set_user_preferences_for_displaying_completed_tasks', 'cp_set_user_preferences_for_displaying_completed_tasks_handler' );
+
+function cp_set_user_preferences_for_displaying_completed_tasks_handler() {
+	$data = $_REQUEST['data'];
+	extract( $data );
+	$current_user = wp_get_current_user();
+	update_user_option( $current_user->ID, 'display_completed_tasks', $display_completed_tasks );
+	// var_dump( $display_completed_tasks );
+	// die;
+	wp_send_json_success( );
+}
+
+

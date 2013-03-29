@@ -49,15 +49,18 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 	$result .= '</div>';
 	$result .= '<ul class="menu" id="menu-to-edit"> ';
 
+
+	$hide_completed_tasks_style = get_user_option( 'display_completed_tasks' ) ? 'style="display:none"' : '';
+
 	// Output the HTML for each item.
 	// Hacked from Walker_Nav_Menu_Edit::start_el()
-
 	foreach ( $tasks_and_task_lists as $item ) {
 		ob_start();
 		$item_id = $item->ID;
 		$title = $item->post_title;
-		$task_status = cp_get_task_status( $item->ID ); ?>
-		<li id="menu-item-<?php echo $item_id; ?>" class="menu-item <?php echo $task_status; ?>">
+		$task_status = cp_get_task_status( $item->ID );
+		?>
+		<li id="menu-item-<?php echo $item_id; ?>" class="menu-item <?php echo $task_status; ?> <?php if ( $task_status == 'complete' ) echo $hide_completed_tasks_style; ?>">
 			<dl class="menu-item-bar">
 				<dt class="menu-item-handle">
 					<?php if ( $item->post_type == 'cp-tasks' ) : ?>
@@ -251,8 +254,29 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 
 <script>
 (function($) {
+	var display_completed_tasks = <?php if ( get_user_option( 'display_completed_tasks' ) ) echo get_user_option( 'display_completed_tasks' ); else echo 'true'; ?>;
+
+	// Immediately hide completed tasks if the user option says so
+	if ( ! display_completed_tasks )
+		$('.menu-item.complete').hide();
+
 	$('.toggle-view-completed-tasks').click( function() {
-		$('.menu-item.complete').hide( 500 );
+		display_completed_tasks = display_completed_tasks ? false : true; // Flip display completed tasks setting
+		if ( display_completed_tasks )
+			$('.menu-item.complete').show( 250 );
+		else
+			$('.menu-item.complete').hide( 250 );
+
+		$.post(
+			ajaxurl,
+			{
+				action: 'cp_set_user_preferences_for_displaying_completed_tasks',
+				data: {
+					display_completed_tasks: display_completed_tasks
+				}
+			},
+			function( response ) { }
+		);
 	});
 
 	$(document).ready(function() {

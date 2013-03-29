@@ -162,3 +162,7 @@ margin: 9px 0 0;
 	margin-right: 5px;
 	vertical-align: middle;
 }
+
+.toggle-view-completed-tasks {
+	cursor: pointer;
+}
