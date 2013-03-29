@@ -82,6 +82,26 @@ function cp_delete_task_handler() {
 	// 	echo 'bad nonce';
 	// 	die;
 	// }
+	$task = get_post( $task_id );
+
+	// If we're deleting a task list, move all tasks related
+	// to it up to the project level
+	if ( $task->post_type == 'cp-task-lists' ) {
+		$task_list_tasks = get_posts( array(
+			'posts_per_page' => -1,
+			'post_type' => 'cp-tasks',
+			'meta_query' => array(
+				array(
+					'key' => '_cp-task-list-id',
+					'value' => $task->ID,
+				),
+			),
+			'orderby' => 'menu_order',
+			'order' => 'ASC',
+		) );
+		foreach ( $task_list_tasks as $task_list_task )
+			update_post_meta( $task_list_task->ID, '_cp-task-list-id', '0' );
+	}
 	wp_delete_post( $task_id, true );
 
 	wp_send_json_success();

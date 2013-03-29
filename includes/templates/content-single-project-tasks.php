@@ -16,6 +16,7 @@ function cp_compare_tasks_and_task_lists( $a, $b ) {
  */
 function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_id = 0 ) {
 	$tasks_without_task_lists = get_posts( array(
+		'posts_per_page' => -1,
 		'post_type' => 'cp-tasks',
 		'meta_query' => array(
 			array(
@@ -29,6 +30,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 		)
 	) );
 	$task_lists =  get_posts( array(
+		'posts_per_page' => -1,
 		'post_type' => array( 'cp-task-lists' ),
 		'meta_query' => array(
 			array(
@@ -74,6 +76,9 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 						<?php endif; ?>
 					</span>
 					<span class="item-controls">
+						<?php if ( $item->post_type == 'cp-task-lists' ) : ?>
+							<a href="javascript:void(0);" class="edit-task-list" data-id="<?php echo $item->ID; ?>">edit</a>
+							<?php endif; ?>
 						<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
 					</span>
 				</dt>
@@ -91,6 +96,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			<ul class="menu-item-transport"></ul>
 		<?php
 		$task_list_tasks = get_posts( array(
+			'posts_per_page' => -1,
 			'post_type' => 'cp-tasks',
 			'meta_query' => array(
 				array(
@@ -290,6 +296,11 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 		);
 	});
 
+	// Edit task list handler
+	$('.edit-task-list').click( function( i, el ) {
+
+	});
+
 	// Delete task handler
 	$('.delete-task').click(function(i, el) {
 		var confirm_delete = confirm('Are you sure you want to delete this task?');
@@ -311,6 +322,8 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 				data: data
 			},
 			function( response ) {
+				console.log( response );
+				return;
 				task_el.parents('.menu-item').hide();
 			}
 		);
