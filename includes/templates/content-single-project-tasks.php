@@ -76,9 +76,6 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 						<?php endif; ?>
 					</span>
 					<span class="item-controls">
-						<?php if ( $item->post_type == 'cp-task-lists' ) : ?>
-							<a href="javascript:void(0);" class="edit-task-list" data-id="<?php echo $item->ID; ?>">edit</a>
-							<?php endif; ?>
 						<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
 					</span>
 				</dt>
