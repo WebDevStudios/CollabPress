@@ -62,7 +62,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 		$title = $item->post_title;
 		$task_status = cp_get_task_status( $item->ID );
 		?>
-		<li id="menu-item-<?php echo $item_id; ?>" class="menu-item <?php echo $task_status; ?> <?php if ( $task_status == 'complete' ) echo $hide_completed_tasks_style; ?>">
+		<li id="menu-item-<?php echo $item_id; ?>" class="menu-item menu-item-depth-0 <?php echo $task_status; ?> <?php if ( $task_status == 'complete' ) echo $hide_completed_tasks_style; ?>">
 			<dl class="menu-item-bar">
 				<dt class="menu-item-handle">
 					<?php if ( $item->post_type == 'cp-tasks' ) : ?>
