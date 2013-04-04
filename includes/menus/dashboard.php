@@ -108,19 +108,19 @@ function cp_admin_menu_page_load() {
 	if ( ! empty( $cp->project ) ) {
 		// Set Project ID
 		if ( ! empty( $cp->task ) )
-			cp_load_template( 'content-single-task' );
+			cp_load_template( 'collabpress/content-single-task.php' );
 		else if ( ! empty( $cp->view ) ) {
 			if ( $cp->view == 'files' )
 				wp_enqueue_media();
-			cp_load_template( 'content-single-project-' . $cp->view );
+			cp_load_template( 'collabpress/content-single-project-' . $cp->view . '.php' );
 		}
 		else
-			cp_load_template( 'content-single-project' );
+			cp_load_template( 'collabpress/content-single-project.php' );
 	} else {
 		if ( ! empty( $cp->view ) )
-			cp_load_template( 'content-' . $cp->view );
+			cp_load_template( 'collabpress/content-' . $cp->view . '.php' );
 		else {
-			cp_load_template( 'dashboard' );
+			cp_load_template( 'collabpress/dashboard.php' );
 		}
 
 	}
@@ -129,8 +129,10 @@ function cp_admin_menu_page_load() {
 /**
  * Requires the referenced CollabPress template
  */
-function cp_load_template( $template_name ) {
-	$full_file_path = CP_PLUGIN_DIR . '/includes/templates/' . $template_name . '.php';
-	if ( file_exists( $full_file_path ) )
-		require_once( $full_file_path );
+function cp_load_template( $template ) {
+	if ( ! $located_template = locate_template( $template ) ) {
+		// If no template is found, load the one from the plugin
+		$located_template = CP_PLUGIN_DIR . 'includes/templates/' . $template;
+	}
+	require_once( $located_template );
 }
