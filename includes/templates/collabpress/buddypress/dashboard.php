@@ -1,9 +1,8 @@
 <div class="collabpress">
-	<div class="overall-links" style="float: right">
-		<?php cp_overall_links(); ?>
-	</div>
 	<div class="projects">
-		<?php if( cp_has_projects() ) : ?>
+		<?php
+		?>
+		<?php if( cp_has_projects( cp_bp_projects_query_args() ) ) : ?>
 			<?php while( cp_projects() ) : cp_the_project(); ?>
 			<div class="collabpress-project">
 				<h2>
@@ -92,11 +91,14 @@
 			}
 		);
 	});
+
+	// Add new Project submit handler
 	$('.submit').click(function() {
 		var data = {
 			project_name: $('#cp-project').val(),
 			project_description: $('#cp-project-description').val(),
 			users: [],
+			group_id: <?php echo bp_get_current_group_id(); ?>,
 			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 		};
 		$('.cp_project_user').each(function( i, el ){
@@ -112,6 +114,8 @@
 				action: 'cp_add_project',
 				data: data
 			}, function( response ) {
+				console.log( response );
+				return;
 				$('#inline_content .spinner').hide();
 				window.location = response.data.redirect;
 			}
