@@ -134,5 +134,5 @@ function cp_load_template( $template ) {
 		// If no template is found, load the one from the plugin
 		$located_template = CP_PLUGIN_DIR . 'includes/templates/' . $template;
 	}
-	require_once( $located_template );
+	require( $located_template );
 }

@@ -150,6 +150,8 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		// Load the styles
 		add_action( 'wp_print_styles', array( &$this, 'enqueue_styles' ) );
 		$this->enqueue_scripts();
+
+		add_action( 'cp_project_added', array( $this, 'add_tax_data_for_new_projects' ) );
 	}
 
 	/**
@@ -614,30 +616,19 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		// What gets displayed after the subnav depends on the current view
 		switch ( $this->current_view ) {
 			case 'project' :
-				$template = 'collabpress/project.php';
-				break;
-
-			case 'task_list' :
-				$template = 'collabpress/task-list.php';
+				$template = 'collabpress/buddypress/content-single-project.php';
 				break;
 
 			case 'task' :
-				$template = 'collabpress/task.php';
+				$template = 'collabpress/buddypress/content-single-task.php';
 				break;
 
 			case 'list' :
 			default :
-				$template = 'collabpress/projects-loop.php';
-				break;
+				$template = 'collabpress/buddypress/dashboard.php';
+			break;
 		}
-
-		// Allow themes to override the template
-		if ( !$located_template = locate_template( $template ) ) {
-			// If no template is found, load the one from the plugin
-			$located_template = CP_PLUGIN_DIR . 'includes/templates/' . $template;
-		}
-
-		require( $located_template );
+		cp_load_template( $template );
 	}
 
 	/**
@@ -979,7 +970,18 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		if ( bp_is_current_action( $this->slug ) || in_array( $this->slug, (array)bp_action_variables() ) || bp_is_current_action( 'calendar' ) ) {
 			wp_enqueue_script( 'cp-bp', CP_PLUGIN_URL . 'includes/js/bp.js', array( 'jquery' ) );
 
-			collabpress_dashboard_page::cp_admin_scripts();
+			// collabpress_dashboard_page::cp_admin_scripts();
+		}
+	}
+
+	/**
+	 *
+	 *
+	 */
+	function add_tax_data_for_new_projects( $project_id ) {
+		if ( ! empty( $_REQUEST['data']['group_id'] ) ) {
+			$group_id = $_REQUEST['data']['group_id'];
+			wp_set_post_terms( $project_id, $group_id, 'cp-bp-group', true );
 		}
 	}
 }
@@ -1047,5 +1049,6 @@ function cp_bp_filter_group_parent_item( $args, $item ) {
 	}
 
 	return $args;
+
 }
 add_filter( 'cp_bp_get_project_permalink_parent_item', 'cp_bp_filter_group_parent_item', 10, 2 );
