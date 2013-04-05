@@ -238,9 +238,5 @@ function cp_set_user_preferences_for_displaying_completed_tasks_handler() {
 	extract( $data );
 	$current_user = wp_get_current_user();
 	update_user_option( $current_user->ID, 'display_completed_tasks', $display_completed_tasks );
-	// var_dump( $display_completed_tasks );
-	// die;
-	wp_send_json_success( );
+	wp_send_json_success();
 }
-
-
