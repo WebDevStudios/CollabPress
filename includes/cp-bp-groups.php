@@ -980,7 +980,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 */
 	function add_tax_data_for_new_projects( $project_id ) {
 		if ( ! empty( $_REQUEST['data']['group_id'] ) ) {
-			$group_id = $_REQUEST['data']['group_id'];
+			$group_id = intval( $_REQUEST['data']['group_id'] );
 			wp_set_post_terms( $project_id, $group_id, 'cp-bp-group', true );
 		}
 	}
