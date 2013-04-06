@@ -9,7 +9,7 @@
 	<?php if ( cp_has_tasks() ) : ?>
 		<?php while( cp_tasks() ) : cp_the_task(); ?>
 			<div class="collabpress-task">
-				<a href="<?php cp_task_permalink(); ?>"><?php the_title(); ?></a>
+				<a href="<?php the_permalink() ?>"><?php the_title() ?></a>
 			</div>
 		<?php endwhile; ?>
 	<?php endif; ?>
