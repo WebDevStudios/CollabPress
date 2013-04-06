@@ -73,15 +73,13 @@ function cp_frontend_querystrings() {
 	$cp_querystrings = explode( '&', $cp_all_querystrings );
 
 	//set pattern to strip out
-	$pattern = "/^cp|project|task-list|task|view/";
+	$pattern = "/^cp|project|task-list|task|view|activity_page/";
 	$cp_qs_add = '';
 
 	foreach ( $cp_querystrings as $cp_querystring ) {
-
-	    if ( !preg_match( $pattern, $cp_querystring ) ) {
-		$cp_qs_add .= $cp_querystring .'&';
+	    if ( !	preg_match( $pattern, $cp_querystring ) ) {
+			$cp_qs_add .= $cp_querystring .'&';
 	    }
-
 	}
 
 	if ( $cp_qs_add != '&' ) :
