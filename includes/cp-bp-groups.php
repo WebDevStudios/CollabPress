@@ -317,6 +317,8 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @since 1.2
 	 */
 	function set_current_item() {
+		global $cp;
+
 		$this->current_item = array(
 			'project' 	=> '',
 			'task_list' 	=> '',
@@ -325,12 +327,21 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 
 		// If we're not on the CP tab, there's nothing to fill in
 		if ( bp_is_current_action( $this->slug ) ) {
-			$this->current_item['project']   = bp_action_variable( 0 );
-			$this->current_item['task_list'] = bp_action_variable( 1 );
-			$this->current_item['task'] 	 = bp_action_variable( 2 );
+			$this->current_item['project'] = bp_action_variable( 0 );
+			$this->current_item['task'] = bp_action_variable( 1 );
+
+			// Setup $cp global values for current items
+			if ( $this->current_item['project'] ) {
+				$project_id = get_page_by_path( $this->current_item['project'], OBJECT, 'cp-projects' );
+				$cp->project = get_post( $project_id );
+			}
+			if ( $this->current_item['task'] ) {
+				$task_id = get_page_by_path( $this->current_item['task'], OBJECT, 'cp-tasks' );
+				$cp->task = get_post( $task_id );
+			}
 		}
 
-		foreach( $this->current_item as $key => $value ) {
+		foreach ( $this->current_item as $key => $value ) {
 			$this->current_item[$key] = $this->sanitize_current_item_part( $value );
 		}
 
@@ -655,7 +666,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 				<?php endif ?>
 
 				<?php if ( $task_name = cp_bp()->get_current_item_task_name() ) : ?>
-					<li<?php if ( 'task' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . cp_bp()->get_current_item_project_slug() . '/' . cp_bp()->get_current_item_task_list_slug() . '/' . cp_bp()->get_current_item_task_slug() ) ?>"> &rarr; <?php echo $task_name ?></a></li>
+					<li<?php if ( 'task' == $this->current_view ) : ?> class="current"<?php endif; ?>><a href="<?php echo esc_html( $this->cp_link . '/' . cp_bp()->get_current_item_project_slug() . '/' . cp_bp()->get_current_item_task_slug() ) ?>"> &rarr; <?php echo $task_name ?></a></li>
 				<?php endif ?>
 
 			<?php else : ?>

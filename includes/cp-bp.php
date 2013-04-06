@@ -47,7 +47,7 @@ class CP_BP_Integration extends BP_Component {
 		add_filter( 'bp_get_template_stack', array( $this, 'add_cp_to_template_stack' ) );
 
 		// Register BP-specific taxonomies
-		add_action( 'cp_registered_post_types', array( &$this, 'register_taxonomies' ) );
+		$this->register_taxonomies();
 
 		// Set up the CP query
 		add_action( 'cp_bp_setup_item', array( &$this, 'do_cp_query' ), 5 );
@@ -242,8 +242,6 @@ class CP_BP_Integration extends BP_Component {
 	function do_cp_query() {
 		global $cp_page;
 
-		$cp_page = new collabpress_dashboard_page();
-
 		$args = array(
 			$this->current_view => $this->current_item_id,
 			'add_meta_boxes' => false
@@ -253,10 +251,6 @@ class CP_BP_Integration extends BP_Component {
 		if ( 'task_list' == $this->current_view || 'task' == $this->current_view ) {
 			$args['project'] = get_post_meta( $this->current_item_id, '_cp-project-id', true );
 		}
-
-		$cp_page->on_load_page( $args );
-
-		//$this->maybe_load_scripts();
 	}
 
 	function get_current_item_obj_data( $type, $data ) {

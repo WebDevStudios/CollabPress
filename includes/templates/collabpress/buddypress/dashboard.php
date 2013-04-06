@@ -6,7 +6,7 @@
 			<?php while( cp_projects() ) : cp_the_project(); ?>
 			<div class="collabpress-project">
 				<h2>
-					<a href="<?php cp_project_permalink( get_the_ID() ); ?>"><?php echo get_the_title(); ?></a>
+					<a href="<?php the_permalink() ?>"><?php the_title() ?></a>
 				</h2>
 			</div>
 			<?php endwhile; ?>
@@ -114,8 +114,6 @@
 				action: 'cp_add_project',
 				data: data
 			}, function( response ) {
-				console.log( response );
-				return;
 				$('#inline_content .spinner').hide();
 				window.location = response.data.redirect;
 			}
