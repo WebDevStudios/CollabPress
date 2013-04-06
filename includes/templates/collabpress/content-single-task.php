@@ -9,14 +9,15 @@
 		<h1 id="task-title" class="<?php echo $title_class; ?>"><input id="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>><?php echo cp_get_task_title(); ?></h1>
 		<a class="edit-task" href="#edit_task_inline_content">Edit</a><BR>
 		<?php if ( $due_date = cp_get_the_task_due_date() ) {
-			echo 'Due date: ' . $due_date . '<BR>';
+			echo '<div>Due date: ' . $due_date . '</div>';
 		} ?>
 		<?php if ( $priority = cp_get_the_task_priority() ) {
-			echo 'Priority: ' . $priority . '<BR>';
+			echo '<div>Priority: ' . $priority . '</div>';
 		} ?>
 		<?php
 		$user_assigned = cp_get_user_assigned_to_task();
-		echo 'Assigned to: ' . get_avatar( $user_assigned->ID ); ?>
+		echo '<div>Assigned to: ' . get_avatar( $user_assigned->ID ) . '</div>'; ?>
+		<div style="clear:both"></div>
 		<?php cp_task_comments(); ?>
 	</div>
 
