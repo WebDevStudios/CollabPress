@@ -60,6 +60,7 @@ function cp_add_admin_menu_item() {
 }
 
 add_action( 'init', 'cp_setup_cp_global', 5 );
+
 /**
  * Setup the $cp PHP global
  */
@@ -85,6 +86,7 @@ function cp_setup_cp_global() {
 				break;
 				case 'task':
 					$cp->task = get_post( $_REQUEST[$key] );
+					$cp->project = get_post( cp_get_task_project_id( $cp->task->ID ) );
 				break;
 				default:
 					$cp->$key = $_REQUEST[$key];
@@ -93,6 +95,18 @@ function cp_setup_cp_global() {
 		}
 	}
 
+	// Set the view if it's not declared in the query string.
+	// We'll use it later for choosing the template to be loaded.
+	if ( empty( $cp->view ) ) {
+		if ( ! empty( $cp->task ) ) {
+			$cp->view = 'task';
+		} else if ( ! empty( $cp->project ) ) {
+			$cp->view = 'project';
+		} else {
+			$cp->view = 'dashboard';
+		}
+	}
+	// echo '<PRE>';var_dump( $cp ); die;
 	$cp->tables = new stdClass;
 	$cp->tables->project_users = $wpdb->prefix . 'cp_project_users';
 }
@@ -103,27 +117,24 @@ function cp_setup_cp_global() {
  */
 function cp_admin_menu_page_load() {
 	global $cp;
-
-	// Loading specific project
+	// Find the template depending on the view.
 	if ( ! empty( $cp->project ) ) {
-		// Set Project ID
-		if ( ! empty( $cp->task ) )
-			cp_load_template( 'collabpress/content-single-task.php' );
-		else if ( ! empty( $cp->view ) ) {
+		if ( $cp->view == 'task' ) {
+			$template = 'collabpress/content-single-task.php';
+		} else if ( $cp->view != 'project' ) {
 			if ( $cp->view == 'files' )
-				wp_enqueue_media();
-			cp_load_template( 'collabpress/content-single-project-' . $cp->view . '.php' );
+				wp_enqueue_media(); // todo: maybe move this to an enqueue function
+			$template = 'collabpress/content-single-project-' . $cp->view . '.php';
+		} else {
+			$template = 'collabpress/content-single-project.php';
 		}
-		else
-			cp_load_template( 'collabpress/content-single-project.php' );
 	} else {
-		if ( ! empty( $cp->view ) )
-			cp_load_template( 'collabpress/content-' . $cp->view . '.php' );
-		else {
-			cp_load_template( 'collabpress/dashboard.php' );
-		}
-
+		if ( $cp->view != 'dashboard' )
+			$template = 'collabpress/content-' . $cp->view . '.php';
+		else
+			$template = 'collabpress/dashboard.php';
 	}
+	cp_load_template( $template );
 }
 
 /**
