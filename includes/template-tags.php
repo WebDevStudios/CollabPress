@@ -17,20 +17,23 @@ function cp_has_projects( $args = array() ) {
 		'project_id' => NULL,
 		'task_list_id' => NULL,
 		'status' => 'any',
+		'projects_logged_in_user_has_access' => false, //todo fix this
 	);
 
 	$args = wp_parse_args( $args, $defaults );
 
-	extract( $args );
-
-	// Add filters to only grab projects logged-in user has access to.
-	add_filter( 'posts_join_paged', 'cp_add_join_for_project_users_table' );
-	add_filter( 'posts_where_paged', 'cp_add_where_for_current_user' );
+	if ( $args['projects_logged_in_user_has_access'] ) {
+		// Add filters to only grab projects logged-in user has access to.
+		add_filter( 'posts_join_paged', 'cp_add_join_for_project_users_table' );
+		add_filter( 'posts_where_paged', 'cp_add_where_for_current_user' );
+	}
 
 	$cp->projects = new WP_Query( $args );
 
-	remove_filter( 'posts_join_paged', 'cp_add_join_for_project_users_table' );
-	remove_filter( 'posts_where_paged', 'cp_add_where_for_current_user' );
+	if ( $args['projects_logged_in_user_has_access'] ) {
+		remove_filter( 'posts_join_paged', 'cp_add_join_for_project_users_table' );
+		remove_filter( 'posts_where_paged', 'cp_add_where_for_current_user' );
+	}
 
 	return $cp->projects->have_posts();
 }
@@ -95,24 +98,11 @@ function cp_get_project_id() {
 		return false;
 }
 
-function cp_get_dashbaord_permalink() {
-	return CP_DASHBOARD;
+function cp_project_permalink( $project_id = 0 ) {
+	if ( ! $project_id )
+		$project_id = cp_get_project_id();
+	echo cp_get_project_permalink( $project_id );
 }
-
-function cp_get_project_permalink( $project_id = 0 ) {
-	if ( ! $project_id ) {
-		global $cp;
-		if ( ! empty( $cp->project->ID ) )
-			$project_id = $cp->project->ID;
-		else
-			$project_id = get_the_ID();
-	}
-	return add_query_arg( array( 'project' => $project_id ), CP_DASHBOARD );
-}
-
-	function cp_project_permalink( $project_id = 0 ) {
-		echo cp_get_project_permalink( $project_id );
-	}
 
 function cp_get_project_tasks_permalink( $project_id = 0 ) {
 	if ( ! $project_id ) {
@@ -368,22 +358,11 @@ function cp_get_project_for_task( $task_id ) {
 	return get_post_meta( $task_id, '_cp-project-id', true );
 }
 
-function cp_get_task_permalink( $task_id ) {
-	$permalink = add_query_arg(
-		array(
-			'project' => cp_get_project_for_task( $task_id ),
-			'task' => $task_id,
-			),
-		CP_DASHBOARD
-	);
-	return $permalink;
-}
-
 function cp_project_links() {
 	global $cp;
 
 	?>
-	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>">CP Dashboard</a>
+	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>">Dashboard</a>
 	<a class="<?php echo ( is_collabpress_page( 'project-overview' ) ? 'current' : '' ); ?>" href="<?php cp_project_permalink(); ?>">Project Overview</a>
 	<a class="<?php echo ( is_collabpress_page( 'project-calendar' ) ? 'current' : '' ); ?>" href="<?php cp_project_calendar_permalink(); ?>">Calendar</a>
 	<a class="<?php echo ( is_collabpress_page( 'project-tasks' ) ? 'current' : '' ); ?>" href="<?php cp_project_tasks_permalink(); ?>">Tasks</a>
@@ -394,6 +373,7 @@ function cp_project_links() {
 function cp_overall_links() {
 	?>
 	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>">Dashboard</a>
+	<a class="<?php echo ( is_collabpress_page( 'activity' ) ? 'current' : '' ); ?>" href="<?php cp_activity_permalink(); ?>">Activity</a>
 	<a class="<?php echo ( is_collabpress_page( 'calendar' ) ? 'current' : '' ); ?>" href="<?php cp_calendar_permalink(); ?>">Calendar</a><?php
 }
 
@@ -416,9 +396,7 @@ function cp_get_sidebar() {
  *
  * @param mixed $args All the arguments supported by {@link WP_Query},
  * 	as well as a few custom arguments specific to CollabPress:
- *		'task_list_id' - a task list
  * 		'project_id' - a project
- * 		'status' - a task status
  * @uses WP_Query To make query and get the tasks
  * @return object Multidimensional array of forum information
  */
@@ -461,4 +439,49 @@ function cp_files() {
 function cp_the_file() {
 	global $cp;
 	return $cp->files->the_post();
+}
+
+
+/**
+ * The main CollabPress activities loop.
+ *
+ * @since 1.2
+ *
+ * @param mixed $args All the arguments supported by {@link WP_Query},
+ * 	as well as a few custom arguments specific to CollabPress:
+ * @uses WP_Query To make query and get the tasks
+ * @return object Multidimensional array of forum information
+ */
+function cp_has_activities( $args = array() ) {
+	global $cp;
+
+	$defaults = array(
+		'post_type' => 'cp-meta-data',
+		'posts_per_page' => 10
+	);
+
+	$args = wp_parse_args( $args, $defaults );
+
+	extract( $args );
+
+	$cp->activities = new WP_Query( $args );
+
+	return $cp->activities->have_posts();
+}
+
+function cp_activities() {
+	global $cp;
+	// Put into variable to check against next
+	$have_posts = $cp->activities->have_posts();
+
+	// Reset the post data when finished
+	if ( empty( $have_posts ) )
+		wp_reset_postdata();
+
+	return $have_posts;
+}
+
+function cp_the_activity() {
+	global $cp;
+	return $cp->activities->the_post();
 }
