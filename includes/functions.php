@@ -79,7 +79,8 @@ function cp_add_activity( $action = NULL, $type = NULL, $author = NULL, $ID = NU
 		'post_title' => __( 'Activity', 'collabpress' ),
 		'post_status' => 'publish',
 		'post_type' => 'cp-meta-data'
-		);
+	);
+
 	$activity_id = wp_insert_post( $add_activity );
 	update_post_meta( $activity_id, '_cp-meta-type', 'activity' );
 
@@ -332,7 +333,7 @@ function cp_draw_calendar( $args = array() ) {
 				$task_status = get_post_meta( get_the_ID(), '_cp-task-status', true );
 
 				if ($task_status == 'open') :
-					$calendar .= '<p><a href="'.cp_get_url(get_the_ID(), 'task').'">'.get_avatar($task_user_id, 32).' '.get_the_title().'</a></p>';
+					$calendar .= '<p><a href="'.cp_get_task_permalink( get_the_ID() ).'">'.get_avatar($task_user_id, 32).' '.get_the_title().'</a></p>';
 				endif;
 
 		    endwhile;
@@ -402,6 +403,17 @@ function cp_get_calendar_permalink( $args = array() ) {
 
 	function cp_calendar_permalink( $args = array() ) {
 		echo cp_get_calendar_permalink( $args );
+	}
+
+function cp_get_activity_permalink() {
+	$link = CP_DASHBOARD;
+	$link = add_query_arg( array( 'view' => 'activity' ), $link );
+
+	return $link;
+}
+
+	function cp_activity_permalink( $args = array() ) {
+		echo cp_get_activity_permalink( $args );
 	}
 
 // Display Icon
@@ -557,10 +569,7 @@ function cp_check_project_permissions( $user_id = 1, $project_id = 1 ) {
  * @return int|bool Project id if one is found, otherwise false
  */
 function cp_get_task_project_id( $task_id = 0 ) {
-	$tasklist_id = cp_get_task_tasklist_id( $task_id );
-	$project_id = cp_get_tasklist_project_id( $tasklist_id );
-
-	return $project_id;
+	return get_post_meta( $task_id, '_cp-project-id', true );
 }
 
 /**
@@ -702,8 +711,6 @@ function is_collabpress_page( $slug = '' ) {
 	  		&&
 	  		strpos( $post->post_content, '[collabpress]' ) === FALSE
   		)
-
-
 	   )
 		return false;
 
@@ -737,6 +744,8 @@ function is_collabpress_page( $slug = '' ) {
 	} else {
 		if ( ! empty( $_REQUEST['view'] ) ) {
 			if ( $slug == 'calendar' && $_REQUEST['view'] == 'calendar' )
+				return true;
+			if ( $slug == 'activity' && $_REQUEST['view'] == 'activity' )
 				return true;
 		} else {
 			if ( $slug == 'dashboard' )
@@ -1118,3 +1127,226 @@ function cp_insert_comment_on_task( $args = array() ) {
 	cp_add_activity(__('added', 'collabpress'), __('comment', 'collabpress'), $args['user_id'], $args['comment_post_ID'] );
 
 }
+
+/**
+ * Make a CollabPress permalink.
+ *
+ */
+function cp_get_permalink( $args = array() ) {
+	return apply_filters( 'cp_permalink', add_query_arg( $args, CP_DASHBOARD ), $args );
+}
+
+add_filter( 'post_type_link', 'cp_filter_permalinks', 10, 4 );
+
+/**
+ * Filter the permalink for CollabPress post types.
+ */
+function cp_filter_permalinks( $link, $post, $leavename, $sample ) {
+	switch ( $post->post_type ) {
+		case 'cp-projects' :
+			$link = cp_get_project_permalink( $post->ID, $post );
+			break;
+
+		case 'cp-tasks' :
+			$link = cp_get_task_permalink( $post->ID, $post );
+			break;
+	}
+
+	return $link;
+}
+
+function cp_get_project_permalink( $project_id = false, $project = false ) {
+	global $post;
+
+	// Only run another query if we have to
+	if ( $project_id && !$project && ( ( isset( $post->ID ) && $project_id != $post->ID ) || !isset( $post->ID ) ) ) {
+		$project = get_post( $project_id );
+	} else if ( $project_id && !$project && isset( $post->ID ) && $project_id == $post->ID ) {
+		$project = $post;
+	}
+
+	if ( empty( $project ) )
+		return false;
+
+	// Check the post type
+	if ( 'cp-projects' != $project->post_type )
+		return false;
+
+	// Assemble the permalink
+	$link = cp_get_permalink( array( 'project' => $project_id ) );
+
+	return $link;
+}
+
+function cp_get_task_permalink( $task_id = false, $task = false ) {
+	global $post;
+
+	// Only run another query if we have to
+	if ( $task_id && !$task && ( ( isset( $post->ID ) && $task_id != $post->ID ) || !isset( $post->ID ) ) ) {
+		$task = get_post( $task_id );
+	} else if ( $task_id && !$task && isset( $post->ID ) && $task_id == $post->ID ) {
+		$task = $post;
+	}
+
+	if ( empty( $task ) )
+		return false;
+
+	// Check the post type
+	if ( 'cp-tasks' != $task->post_type )
+		return false;
+
+	// Assemble the permalink
+	$link = cp_get_permalink( array( 'task' => $task_id ) );
+
+	return $link;
+}
+
+
+/**
+ * Custom sorting function for task lists and tasks.
+ */
+function cp_compare_tasks_and_task_lists( $a, $b ) {
+	if ( $a->menu_order == $b->menu_order )
+		return 0;
+	else
+		return ( $a->menu_order < $b->menu_order ) ? 0 : 1;
+}
+/**
+ * Returns the menu formatted to edit.
+ *
+ * @since 1.3
+ *
+ * @param string $menu_id The ID of the menu to format.
+ * @return string|WP_Error $output The menu formatted to edit or error object on failure.
+ */
+function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_id = 0 ) {
+	$tasks_without_task_lists = get_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => 'cp-tasks',
+		'meta_query' => array(
+			array(
+				'key' => '_cp-project-id',
+				'value' => $project_id,
+			),
+			array(
+				'key' => '_cp-task-list-id',
+				'value' => 0,
+			),
+		)
+	) );
+	$task_lists =  get_posts( array(
+		'posts_per_page' => -1,
+		'post_type' => array( 'cp-task-lists' ),
+		'meta_query' => array(
+			array(
+				'key' => '_cp-project-id',
+				'value' => $project_id,
+			),
+		)
+	) );
+
+	$tasks_and_task_lists = array_merge( $tasks_without_task_lists, $task_lists );
+	uasort( $tasks_and_task_lists, 'cp_compare_tasks_and_task_lists' );
+	$tasks_and_task_lists = array_values( $tasks_and_task_lists );
+
+	$result = '<div id="menu-instructions" class="post-body-plain';
+	$result .= ( ! empty($menu_items) ) ? ' menu-instructions-inactive">' : '">';
+	if ( empty( $tasks_and_task_lists ) )
+		$result .= '<p>' . __('Next, add your first task in this project.') . '</p>';
+	$result .= '</div>';
+	$result .= '<ul class="menu" id="menu-to-edit"> ';
+
+
+	$hide_completed_tasks_style = get_user_option( 'display_completed_tasks' ) ? 'style="display:none"' : '';
+
+	// Output the HTML for each item.
+	// Hacked from Walker_Nav_Menu_Edit::start_el()
+	foreach ( $tasks_and_task_lists as $item ) {
+		ob_start();
+		$item_id = $item->ID;
+		$title = $item->post_title;
+		$task_status = cp_get_task_status( $item->ID );
+		?>
+		<li id="menu-item-<?php echo $item_id; ?>" class="menu-item menu-item-depth-0 <?php echo $task_status; ?> <?php if ( $task_status == 'complete' ) echo $hide_completed_tasks_style; ?>">
+			<dl class="menu-item-bar">
+				<dt class="menu-item-handle">
+					<?php if ( $item->post_type == 'cp-tasks' ) : ?>
+					<input class="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>>
+					<?php endif; ?>
+					<span class="item-title">
+						<?php if ( $item->post_type == 'cp-tasks' ) : // for now, only display a link for tasks. ?>
+						<a href="<?php echo get_permalink( $item_id ); ?>"><?php echo esc_html( $title ); ?></a>
+						<?php else: // add a link to task lists if we make a template for them. ?>
+						<?php echo esc_html( $title ); ?>
+						<?php endif; ?>
+					</span>
+					<span class="item-controls">
+						<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
+					</span>
+				</dt>
+			</dl>
+
+			<div class="menu-item-settings" id="menu-item-settings-<?php echo $item_id; ?>">
+
+				<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $item_id; ?>]" value="<?php echo $item_id; ?>" />
+				<input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object_id ); ?>" />
+				<input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->object ); ?>" />
+				<input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_item_parent ); ?>" />
+				<input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->menu_order ); ?>" />
+				<input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo $item_id; ?>]" value="<?php echo esc_attr( $item->post_type ); ?>" />
+			</div><!-- .menu-item-settings-->
+			<ul class="menu-item-transport"></ul>
+		<?php
+		$task_list_tasks = get_posts( array(
+			'posts_per_page' => -1,
+			'post_type' => 'cp-tasks',
+			'meta_query' => array(
+				array(
+					'key' => '_cp-project-id',
+					'value' => $project_id,
+				),
+				array(
+					'key' => '_cp-task-list-id',
+					'value' => $item_id,
+				),
+			),
+			'orderby' => 'menu_order',
+			'order' => 'ASC',
+		) );
+		if ( ! empty( $task_list_tasks ) ) {
+			foreach ( $task_list_tasks as $task ) {
+				$title = $task->post_title;
+				$task_status = cp_get_task_status( $task->ID );
+				 ?>
+				<li id="menu-item-<?php echo $task->ID; ?>" class="menu-item menu-item-depth-1 <?php echo $task_status; ?>">
+					<dl class="menu-item-bar">
+						<dt class="menu-item-handle">
+							<input class="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>>
+							<span class="item-title"><a href="<?php echo get_permalink( $task->ID ); ?>"><?php echo esc_html( $title ); ?></a><span>
+							<span class="item-controls">
+								<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $task->ID; ?>">delete</a>
+							</span>
+						</dt>
+					</dl>
+
+					<div class="menu-item-settings" id="menu-item-settings-<?php echo $task->ID; ?>">
+
+						<input class="menu-item-data-db-id" type="hidden" name="menu-item-db-id[<?php echo $task->ID; ?>]" value="<?php echo $task->ID; ?>" />
+						<input class="menu-item-data-object-id" type="hidden" name="menu-item-object-id[<?php echo $task->ID; ?>]" value="<?php echo esc_attr( $task->object_id ); ?>" />
+						<input class="menu-item-data-object" type="hidden" name="menu-item-object[<?php echo $task->ID; ?>]" value="<?php echo esc_attr( $task->object ); ?>" />
+						<input class="menu-item-data-parent-id" type="hidden" name="menu-item-parent-id[<?php echo $task->ID; ?>]" value="<?php echo esc_attr( $task->menu_item_parent ); ?>" />
+						<input class="menu-item-data-position" type="hidden" name="menu-item-position[<?php echo $task->ID; ?>]" value="<?php echo esc_attr( $task->menu_order ); ?>" />
+						<input class="menu-item-data-type" type="hidden" name="menu-item-type[<?php echo $task->ID; ?>]" value="<?php echo esc_attr( $task->post_type ); ?>" />
+					</div><!-- .menu-item-settings-->
+					<ul class="menu-item-transport"></ul>
+			<?php
+			}
+		}
+		$result .= ob_get_clean();
+	}
+
+	$result .= ' </ul> ';
+	echo $result;
+}
+
+?>
