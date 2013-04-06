@@ -9,9 +9,6 @@ register_activation_hook( __FILE__, 'cp_install' );
 // AJAX handlers
 require_once( CP_PLUGIN_DIR . 'includes/ajax-handlers.php' );
 
-// CollabPress Update
-require_once( CP_PLUGIN_DIR . 'includes/update.php' );
-
 // CollabPress Admin Init Functions
 require_once( CP_PLUGIN_DIR . 'includes/admin_init.php' );
 do_action( 'cp_after_admin_init' );
@@ -23,6 +20,9 @@ do_action( 'cp_after_functions' );
 // Administration Menus
 require_once( CP_PLUGIN_DIR . 'includes/menus.php' );
 do_action( 'cp_after_menus' );
+
+// CollabPress Update
+require_once( CP_PLUGIN_DIR . 'includes/update.php' );
 
 // CollabPress shortcode support
 require_once( CP_PLUGIN_DIR . 'includes/shortcode.php' );

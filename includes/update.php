@@ -1,5 +1,5 @@
 <?php
-cp_update();
+add_action( 'init', 'cp_update' );
 
 function cp_update() {
 	global $wpdb;
@@ -20,6 +20,21 @@ function cp_update() {
 
 			require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 			dbDelta( $sql );
+
+			// Move old user relationships into new user table
+			$projects = get_posts(
+				array(
+					'post_type' => 'cp-projects',
+					'posts_per_page' => -1
+				)
+			);
+			foreach ( $projects as $project ) {
+				$users = get_post_meta( $project->ID, '_cp-project-users', true );
+				foreach ( $users as $user_id ) {
+					cp_add_user_to_project( $project->ID, $user_id );
+				}
+			}
+
 		}
 
 		update_option( 'cp_version', CP_VERSION );
