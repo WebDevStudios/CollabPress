@@ -11,13 +11,23 @@ function cp_send_email( $to, $subject, $message ) {
     // If email notifications are enabled proceed
     if ( $cp_email_notify ) {
 
-		// Set email variables
-		$cp_email = ( is_email( $to ) ) ? $to : null;
+		// Check thru emails, either array of string.
+		if ( is_array( $to ) ) {
+			$new_to = array();
+			foreach ( $to as $to_email ) {
+				if ( is_email( $to_email ) )
+					$new_to[] = $to_email;
+			}
+			$to = $new_to;
+		} else if ( is_string( $to ) ) {
+			$to = ( is_email( $to ) ) ? $to : null;
+		}
+
 		$cp_subject = ( isset( $subject ) ) ? $subject : '';
 		$cp_message = $message;
 
 		// Send Away
-		wp_mail( $cp_email, $cp_subject, $cp_message );
+		wp_mail( $to, $cp_subject, $cp_message );
     }
 }
 
@@ -969,10 +979,13 @@ function cp_insert_task( $args = array() ) {
 	    $task_author_data = get_userdata( $task_assigned_to );
 	    $author_email = $task_author_data->user_email;
 
-	    $subject = __('New task assigned to you: ', 'collabpress') .get_the_title( $task_id );
+	    $subject = sprintf( __('You have been assigned the task %d.', 'collabpress'),
+	    	esc_attr( get_the_title( $task_id ) )
+	    );
 
-	    $message = __('There is a new task assigned to you:', 'collabpress') . "\n\n";
-	    $message .= $post_title;
+	    $message = sprintf( __('You have been assigned the task %d.', 'collabpress'),
+	    	esc_attr( get_the_title( $task_id ) )
+	    );
 
 	    cp_send_email( $author_email, $subject, $message );
 
@@ -1091,28 +1104,44 @@ function cp_insert_comment_on_task( $args = array() ) {
 
 	//check if email notification is checked
 	if ( $args['send_email_notification'] ) {
-	    //send email
 
-	    //get user assigned to the task
 	    $task_author_id = get_post_meta( $args['comment_post_ID'], '_cp-task-assign', true );
 	    $task_author_data = get_userdata( $task_author_id );
-	    $author_email = $task_author_data->user_email;
+
+	    // Add user assigned to the task to the email list.
+	    $to[] = $task_author_data->user_email;
+
+	    // Add all users that have commented on the task to the email list.
+
+	    $comments = get_comments( array(
+			'post_id' => $args['comment_post_ID'],
+			'order' => 'ASC',
+		) );
+
+	    foreach ( $comments as $comment ) {
+	    	$to[] = $comment->comment_author_email;
+	    }
+
+	    // Remove duplicates from the email list.
+	    array_unique( $to );
 
 	    $subject = __('New comment on task ', 'collabpress') .get_the_title( $args['comment_post_ID'] );
 
-	    $message = __("There is a new comment on your task from ", "collabpress") .$current_user->display_name. ": " .get_the_title( $args['comment_post_ID'] ) ."\n\n";
-	    $subject = __('New comment on task ', 'collabpress') .get_the_title( $args['comment_post_ID'] );
+
 	    $subject = apply_filters( 'cp_new_comment_email_subject', $subject );
 
-	    $message = __("There is a new comment on your task from ", "collabpress") .$current_user->display_name. ": " .get_the_title( $args['comment_post_ID'] ) ."\n\n";
+	    $message = sprintf( __("There is a new comment on the task %s from %s", "collabpress"),
+	    	get_the_title( $args['comment_post_ID'] ),
+	    	$current_user->display_name
+	    );
+
+	    $message .= "\n\n";
 	    $message .= __("Comment:", "collabpress") . "\n";
 	    $message .= esc_html( $args['comment_content'] );
 		$message = apply_filters( 'cp_new_comment_email_body', $message );
 
-	    cp_send_email( $author_email, $subject, $message );
-
+	    cp_send_email( $to, $subject, $message );
 	}
-
 	// Add Activity
 	cp_add_activity( __('commented', 'collabpress'), __('task', 'collabpress'), $args['user_id'], $args['comment_post_ID'] );
 
