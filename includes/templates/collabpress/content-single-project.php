@@ -3,36 +3,45 @@
 		<?php cp_project_links(); ?>
 	</div>
 	<?php cp_project_title(); ?>
-	<a class="edit-project" href="#edit_project_inline_content">Edit Project</a>
-	<h3>Tasks</h3>
-	<div class="tasks">
-	<?php if ( cp_has_tasks() ) : ?>
-		<?php while( cp_tasks() ) : cp_the_task(); ?>
-			<div class="collabpress-task">
-				<a href="<?php the_permalink() ?>"><?php the_title() ?></a>
-			</div>
-		<?php endwhile; ?>
-	<?php endif; ?>
+	<div>
+		<a class="edit-project" href="#edit_project_inline_content">Edit Project</a>
 	</div>
-	<a class="view-all-link" href="<?php cp_project_tasks_permalink(); ?>"> View all tasks</a>
-	<h3>Users</h3>
-	<div class="users">
-	<?php foreach ( cp_get_project_users() as $user ) {
-		echo get_avatar( $user->ID );
-	} ?>
+	<div class="left-col" style="width: 50%; float: left;">
+		<h3>Recent Activity</h3>
+		<h3>Users</h3>
+		<div class="users">
+		<?php foreach ( cp_get_project_users() as $user ) {
+			echo get_avatar( $user->ID );
+		} ?>
+		</div>
+		<a class="view-all-link" href="<?php cp_project_users_permalink(); ?>">View all users</a>
 	</div>
-	<a class="view-all-link" href="<?php cp_project_users_permalink(); ?>">View all users</a>
-	<h3>Files</h3>
-	<div class="files">
-	<?php if ( cp_has_files() ) : ?>
-		<?php while( cp_files() ) : cp_the_file(); ?>
-			<div class="collabpress-task">
-				<a href="<?php echo wp_get_attachment_url( get_the_ID() ); ?>"><?php the_title(); ?></a>
-			</div>
-		<?php endwhile; ?>
-	<?php endif; ?>
+	<div class="right-col" style="width: 50%; float: right;">
+		<h3>Tasks</h3>
+		<div class="tasks">
+		<?php if ( cp_has_tasks() ) : ?>
+			<?php while( cp_tasks() ) : cp_the_task(); ?>
+				<div class="collabpress-task">
+					<a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+				</div>
+			<?php endwhile; ?>
+		<?php endif; ?>
+		</div>
+		<a class="view-all-link" href="<?php cp_project_tasks_permalink(); ?>"> View all tasks</a>
+		<h3>Files</h3>
+		<div class="files">
+		<?php if ( cp_has_files() ) : ?>
+			<?php while( cp_files() ) : cp_the_file(); ?>
+				<div class="collabpress-task">
+					<a href="<?php echo wp_get_attachment_url( get_the_ID() ); ?>"><?php the_title(); ?></a>
+				</div>
+			<?php endwhile; ?>
+		<?php endif; ?>
+		</div>
+		<a class="view-all-link" href="<?php cp_project_files_permalink(); ?>">View all files</a>
 	</div>
-	<a class="view-all-link" href="<?php cp_project_files_permalink(); ?>">View all files</a>
+	<div style="clear:both"></div>
+
 </div>
 <div style='display:none'>
 	<div id='edit_project_inline_content' style='padding:10px; background:#fff;'>
