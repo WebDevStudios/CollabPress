@@ -25,7 +25,7 @@
 		<div id='edit_task_inline_content' style='padding:10px; background:#fff;'>
 			<form id="edit-task-form">
 				<h2>Edit Task</h2>
-				<input type="hidden" id="edit_task_nonce" value="<?php echo wp_create_nonce( 'edit_task' ); ?>" />
+				<input type="hidden" id="edit_task_nonce" value="<?php echo wp_create_nonce( 'edit-task' ); ?>" />
 				<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>" />
 				<input type="hidden" id="cp-task-id" value="<?php echo cp_get_task_id() ?>" />
 				<table class="form-table">
@@ -106,9 +106,7 @@
 				{
 					action: 'cp_update_task_status',
 					data: data
-				}, function( response ) {
-					console.log( response )
-				}
+				}, function( response ) { }
 			);
 		});
 
@@ -135,10 +133,10 @@
 				ajaxurl,
 				{
 					action: 'cp_edit_task',
-					data: data
+					data: data,
+					nonce: jQuery( '#edit_task_nonce' ).val()
 				}, function( response ) {
-					if ( response.data.redirect )
-						window.location = response.data.redirect;
+					window.location = response.data.redirect;
 				}
 			);
 			return false;
@@ -156,7 +154,8 @@
 				ajaxurl,
 				{
 					action: 'cp_add_comment_to_task',
-					data: data
+					data: data,
+					nonce: jQuery( '#add_task_comment_nonce' ).val()
 				}, function( response ) {
 					if ( response.data.redirect )
 						window.location = response.data.redirect;
@@ -168,22 +167,28 @@
 
 	// On comment delete click send AJAX request
 	$('.delete-comment-link').click( function() {
+
 		if ( window.confirm( '<?php _e( 'Are you sure you want to delete this comment?', 'collabpress' ); ?>' ) ) {
 			var that = this;
-			var data = {
-				comment_id: $(this).data('comment-id'),
-				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
-			};
+
+			var comment_id = $(this).data('comment-id'),
+				data = {
+					comment_id: comment_id,
+					collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>'
+				},
+				nonce = jQuery( '#delete_comment_nonce_' + comment_id ).val();
+
 			$.post(
 				ajaxurl,
 				{
 					action: 'cp_delete_comment',
-					data: data
+					data: data,
+					nonce: nonce
 				}, function( response ) {
-					if ( response.success ) {
+					if ( response.success )
 						jQuery(that).parents('.cp_task_comment').hide();
-					}
-				});
+				}
+			);
 		}
 	});
 })(jQuery);

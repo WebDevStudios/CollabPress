@@ -527,12 +527,12 @@ var cpTaskList;
 						}
 						data.items.push( item );
 					});
-					console.log( data );
 					$.post(
 						ajaxurl,
 						{
 							action: 'cp_save_task_list_order',
-							data: data
+							data: data,
+							nonce: jQuery('#save_task_list_order_nonce').val()
 						}, function( response ) {}
 					);
 				},

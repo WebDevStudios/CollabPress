@@ -38,6 +38,8 @@
 	<div id='edit_project_inline_content' style='padding:10px; background:#fff;'>
 		<form id="edit-project-form">
 			<h2>Edit Project</h2>
+			<input type="hidden" id="cp_edit_project_nonce" value="<?php echo wp_create_nonce( 'edit-project' ); ?>">
+			<input type="hidden" id="cp_delete_project_nonce" value="<?php echo wp_create_nonce( 'delete-project' ); ?>">
 			<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>" />
 			<table class="form-table">
 				<tbody>
@@ -80,7 +82,8 @@
 			ajaxurl,
 			{
 				action: 'cp_edit_project',
-				data: data
+				data: data,
+				nonce: jQuery( '#cp_edit_project_nonce' ).val()
 			}, function( response ) {
 				if ( response.data.redirect )
 					window.location = response.data.redirect;
@@ -99,9 +102,9 @@
 			ajaxurl,
 			{
 				action: 'cp_delete_project',
-				data: data
+				data: data,
+				nonce: jQuery( '#cp_delete_project_nonce' ).val()
 			}, function( response ) {
-				console.log( response );
 				if ( response.data.redirect )
 					window.location = response.data.redirect;
 			}

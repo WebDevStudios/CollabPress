@@ -122,24 +122,15 @@ function cp_task_comments() {
 	if ($comments) :
 		$commentCount = 1;
 		// Display each comment
-		foreach( $comments as $comm ) :
-			if ( ($commentCount % 2) == 0 ) {
-				$row = " even";
-			} else {
-				$row = " odd";
-			}
-
+		foreach( $comments as $comment_key => $comm ) :
+			$row = ($comment_key % 2) ?  'odd' : 'even';
 		?>
-			<div class="cp_task_comment<?php echo $row ?>">
+			<div class="cp_task_comment <?php echo $row ?>">
 				<a class="avatar" title="<?php echo $comm->comment_author ?>" href="<?php echo CP_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo get_avatar($comm->user_id, 64) ?></a>
 				<div class="cp_task_comment_content">
 					<p class="cp_comment_author"><a title="<?php echo $comm->comment_author ?>" href="<?php echo CP_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo $comm->comment_author ?></a>
+					<input type="hidden" id="delete_comment_nonce_<?php echo $comm->comment_ID ?>" value="<?php echo wp_create_nonce( 'delete-task-comment_' . $comm->comment_ID ); ?>" />
 					<?php
-					//generate delete comment link
-
-					$cp_del_link = CP_DASHBOARD .'&project='.$cp->project->ID.'&task='.$cp->task->ID.'&cp-delete-comment-id='.$comm->comment_ID;
-					$cp_del_link = ( function_exists('wp_nonce_url') ) ? wp_nonce_url( $cp_del_link, 'cp-action-delete_comment' ) : $cp_del_link;
-
 					if ( $current_user->ID == $comm->user_id || current_user_can( 'manage_options' ) )
 						echo ' - <a data-comment-id="' . $comm->comment_ID . '" class="delete-comment-link" href="javascript:void(0)" style="color:red;">'.__( 'delete', 'collabpress' ). '</a>';
 					?>
@@ -148,7 +139,6 @@ function cp_task_comments() {
 				</div>
 			</div>
 		<?php
-			$commentCount++;
 		endforeach;
 	// No Comments
 	else:
@@ -161,7 +151,7 @@ function cp_task_comments() {
 	$options = get_option('cp_options');
 
 	echo '<form id="task-comment-form" action="'.cp_clean_querystring().'" method="post">';
-		wp_nonce_field( 'cp-add-comment' .absint( $cp->task->ID ) );
+		wp_nonce_field( 'add-task-comment', 'add_task_comment_nonce' );
 		?>
 		<p><label for="cp-comment-content"><?php _e('Leave a Comment: ', 'collabpress') ?></label></p>
 		<p><textarea class="large-text code" id="cp-comment-content" cols="30" rows="10" name="cp-comment-content"></textarea></p>
@@ -1271,7 +1261,8 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 			<dl class="menu-item-bar">
 				<dt class="menu-item-handle">
 					<?php if ( $item->post_type == 'cp-tasks' ) : ?>
-					<input class="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>>
+					<input type="hidden" id="item-complete-status-change-<?php echo $item_id; ?>" value="<?php echo wp_create_nonce( 'item-complete-status-change_' . $item_id ) ?>" />
+					<input class="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?> />
 					<?php endif; ?>
 					<span class="item-title">
 						<?php if ( $item->post_type == 'cp-tasks' ) : // for now, only display a link for tasks. ?>
@@ -1282,6 +1273,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 					</span>
 					<span class="item-controls">
 						<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $item_id; ?>">delete</a>
+						<input type="hidden" id="delete_task_nonce_<?php echo $item_id ?>" value="<?php echo wp_create_nonce( 'delete-task_' . $item_id ) ?>" />
 					</span>
 				</dt>
 			</dl>
@@ -1321,10 +1313,12 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 				<li id="menu-item-<?php echo $task->ID; ?>" class="menu-item menu-item-depth-1 <?php echo $task_status; ?>">
 					<dl class="menu-item-bar">
 						<dt class="menu-item-handle">
+							<input type="hidden" id="item_complete_status_change_nonce_<?php echo $task->ID; ?>" value="<?php echo wp_create_nonce( 'item-complete-status-change_' . $task->ID ) ?>" />
 							<input class="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>>
 							<span class="item-title"><a href="<?php echo get_permalink( $task->ID ); ?>"><?php echo esc_html( $title ); ?></a><span>
 							<span class="item-controls">
 								<a href="javascript:void(0);" class="delete-task" data-id="<?php echo $task->ID; ?>">delete</a>
+								<input type="hidden" id="delete_task_nonce_<?php echo $task->ID ?>" value="<?php echo wp_create_nonce( 'delete-task_' . $task->ID ) ?>" />
 							</span>
 						</dt>
 					</dl>

@@ -3,12 +3,11 @@
 add_action( 'wp_ajax_cp_add_project', 'cp_add_project_ajax_handler' );
 
 function cp_add_project_ajax_handler() {
+	// Nonce check
+	check_admin_referer( 'add-new-project', 'nonce' );
+
 	$data = $_REQUEST['data'];
 
-	if ( ! wp_verify_nonce( $data['nonce'], 'add-new-project' ) ) {
-		echo 'bad nonce';
-		die;
-	}
 	$args = array(
 		'post_title' => $data['project_name'],
 		'project_description' => $data['project_description']
@@ -28,13 +27,11 @@ add_action( 'wp_ajax_cp_modify_project_users', 'cp_modify_project_users_handler'
 function cp_modify_project_users_handler() {
 	global $wpdb, $cp;
 
+	// Nonce check
+	check_admin_referer( 'modify-project-users', 'nonce' );
+
 	$data = $_REQUEST['data'];
 	extract( $data );
-
-	if ( ! wp_verify_nonce( $nonce, 'modify_project_users' ) ) {
-		echo 'bad nonce';
-		die;
-	}
 
 	$wpdb->query(
 		$wpdb->prepare(
@@ -56,12 +53,12 @@ add_action( 'wp_ajax_cp_add_new_task', 'cp_add_new_task_handler' );
 function cp_add_new_task_handler() {
 	global $wpdb, $cp;
 
+	// Nonce check
+	check_admin_referer( 'add-new-task', 'nonce' );
+
 	$data = $_REQUEST['data'];
 	extract( $data );
-	if ( ! wp_verify_nonce( $nonce, 'add_new_task' ) ) {
-		echo 'bad nonce';
-		die;
-	}
+
 	cp_insert_task( $data );
 
 	$permalink = cp_get_project_tasks_permalink( $project_id );
@@ -77,11 +74,10 @@ function cp_delete_task_handler() {
 
 	$data = $_REQUEST['data'];
 	extract( $data );
-	// todo fix nonce
-	// if ( ! wp_verify_nonce( $nonce, 'add_new_task' ) ) {
-	// 	echo 'bad nonce';
-	// 	die;
-	// }
+
+	// Nonce check
+	check_admin_referer( 'delete-task_' . $task_id, 'nonce' );
+
 	$task = get_post( $task_id );
 
 	// If we're deleting a task list, move all tasks related
@@ -112,14 +108,12 @@ add_action( 'wp_ajax_cp_add_new_task_list', 'cp_add_new_task_list_handler' );
 function cp_add_new_task_list_handler() {
 	global $wpdb, $cp;
 
+	// Nonce check
+	check_admin_referer( 'add-new-task-list', 'nonce' );
+
 	$data = $_REQUEST['data'];
 	extract( $data );
 
-	// todo: fix nonces
-	// if ( ! wp_verify_nonce( $nonce, 'add_new_task' ) ) {
-	// 	echo 'bad nonce';
-	// 	die;
-	// }
 	cp_insert_task_list( $data );
 
 	$permalink = cp_get_project_tasks_permalink( $project_id );
@@ -132,6 +126,9 @@ add_action( 'wp_ajax_cp_edit_task', 'cp_edit_task_handler' );
 
 function cp_edit_task_handler() {
 	global $wpdb, $cp;
+
+	// Nonce check
+	check_admin_referer( 'edit-task', 'nonce' );
 
 	$data = $_REQUEST['data'];
 	extract( $data );
@@ -148,9 +145,12 @@ add_action( 'wp_ajax_cp_attach_new_file', 'cp_attach_new_file_handler' );
 function cp_attach_new_file_handler() {
 	global $wpdb, $cp;
 
+	// Nonce check
+	check_admin_referer( 'cp_add_new_file', 'nonce' );
+
 	$data = $_REQUEST['data'];
 	extract( $data );
-	// todo fix nonce
+
 	$attachment = get_post( $attachment_id );
 
 	wp_insert_attachment( $attachment, '', $project_id );
@@ -163,8 +163,12 @@ add_action( 'wp_ajax_cp_save_task_list_order', 'cp_save_task_list_order' );
 function cp_save_task_list_order() {
 	global $wpdb, $cp;
 
+	// Nonce check
+	check_admin_referer( 'save-task-list-order', 'nonce' );
+
 	$data = $_REQUEST['data'];
 	extract( $data );
+
 	foreach ( $items as $item ) {
 		$post = get_post( $item['ID'] );
 		wp_update_post( $item );
@@ -181,6 +185,10 @@ add_action( 'wp_ajax_cp_update_task_status', 'cp_update_task_status_handler' );
 function cp_update_task_status_handler() {
 	$data = $_REQUEST['data'];
 	extract( $data );
+
+	// Nonce check
+	check_admin_referer( 'item-complete-status-change_' . $task_id, 'nonce' );
+
 	$task_status = $data['task_status'];
 	cp_update_task_status( $task_id, $task_status );
 	wp_send_json_success();
@@ -189,6 +197,9 @@ function cp_update_task_status_handler() {
 add_action( 'wp_ajax_cp_add_comment_to_task', 'cp_add_comment_to_task_handler' );
 
 function cp_add_comment_to_task_handler() {
+	// Nonce check
+	check_admin_referer( 'add-task-comment', 'nonce' );
+
 	$data = $_REQUEST['data'];
 	extract( $data );
 	cp_insert_comment_on_task(
@@ -207,6 +218,10 @@ add_action( 'wp_ajax_cp_delete_comment', 'cp_delete_comment_handler' );
 function cp_delete_comment_handler() {
 	$data = $_REQUEST['data'];
 	extract( $data );
+
+	// Nonce check
+	check_admin_referer( 'delete-task-comment_' . $comment_id, 'nonce' );
+
 	wp_delete_comment( $comment_id, true );
 	wp_send_json_success();
 }
@@ -214,6 +229,9 @@ function cp_delete_comment_handler() {
 add_action( 'wp_ajax_cp_edit_project', 'cp_edit_project_handler' );
 
 function cp_edit_project_handler() {
+	// Nonce check
+	check_admin_referer( 'edit-project', 'nonce' );
+
 	$data = $_REQUEST['data'];
 	extract( $data );
 	wp_update_post( $data );
@@ -224,8 +242,12 @@ function cp_edit_project_handler() {
 add_action( 'wp_ajax_cp_delete_project', 'cp_delete_project_handler' );
 
 function cp_delete_project_handler() {
+	// Nonce check
+	check_admin_referer( 'delete-project', 'nonce' );
+
 	$data = $_REQUEST['data'];
 	extract( $data );
+
 	wp_delete_post( $ID, true );
 	$permalink = CP_DASHBOARD;
 	wp_send_json_success( array( 'redirect' => $permalink ) );
@@ -234,8 +256,12 @@ function cp_delete_project_handler() {
 add_action( 'wp_ajax_cp_set_user_preferences_for_displaying_completed_tasks', 'cp_set_user_preferences_for_displaying_completed_tasks_handler' );
 
 function cp_set_user_preferences_for_displaying_completed_tasks_handler() {
+	// Nonce check
+	check_admin_referer( 'toggle-user-preference-view-completed-task', 'nonce' );
+
 	$data = $_REQUEST['data'];
 	extract( $data );
+
 	$current_user = wp_get_current_user();
 	update_user_option( $current_user->ID, 'display_completed_tasks', $display_completed_tasks );
 	wp_send_json_success();

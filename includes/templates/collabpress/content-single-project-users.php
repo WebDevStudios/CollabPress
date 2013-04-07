@@ -17,7 +17,7 @@
 	<div style='display:none'>
 		<div id='inline_content' style='padding:10px; background:#fff;'>
 		<h2><?php _e( 'Modify Users in Project', 'collabpress' ); ?></h2>
-		<input type="hidden" id="modify_project_users_nonce" value="<?php echo wp_create_nonce( 'modify_project_users' ); ?>">
+		<input type="hidden" id="modify_project_users_nonce" value="<?php echo wp_create_nonce( 'modify-project-users' ); ?>">
 		<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>">
 			<p>
 				<input type="button" name="CheckAll" class="check-all-users-button" value="<?php _e( 'Check All', 'collabpress' ); ?>" />
@@ -67,13 +67,13 @@
 				data.users.push( $(el).val() );
 			}
 		});
-		data.nonce = $('#modify_project_users_nonce').val();
 		$('#inline_content .spinner').show();
 		$.post(
 			ajaxurl,
 			{
 				action: 'cp_modify_project_users',
-				data: data
+				data: data,
+				nonce: jQuery('#modify_project_users_nonce').val()
 			}, function( response ) {
 				$('#inline_content .spinner').hide();
 				window.location = response.data.redirect;

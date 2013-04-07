@@ -4,6 +4,7 @@
 	<div class="tasks">
 		<h3>Tasks</h3>
 		<div class="toggle-view-completed-tasks">Toggle view completed tasks</div>
+		<input type="hidden" id="toggle_user_preference_view_completed_tasks_nonce" value="<?php echo wp_create_nonce( 'toggle-user-preference-view-completed-task' ); ?>">
 		<?php cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() ); ?>
 		<?php if ( cp_check_permissions( 'settings_user_role' ) ) { ?>
 		<div>
@@ -19,6 +20,8 @@
 	<div id='edit_project_inline_content' style='padding:10px; background:#fff;'>
 		<form id="edit-project-form">
 			<h2>Edit Project</h2>
+			<input type="hidden" id="cp_edit_project_nonce" value="<?php echo wp_create_nonce( 'edit-project' ); ?>">
+			<input type="hidden" id="cp_delete_project_nonce" value="<?php echo wp_create_nonce( 'delete-project' ); ?>">
 			<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>" />
 			<table class="form-table">
 				<tbody>
@@ -42,7 +45,8 @@
 	</div>
 	<div id='add_new_task_inline_content' style='padding:10px; background:#fff;'>
 		<h2>Add Task</h2>
-		<input type="hidden" id="add_new_task_nonce" value="<?php echo wp_create_nonce( 'add_new_task' ); ?>">
+		<input type="hidden" id="save_task_list_order_nonce" value="<?php echo wp_create_nonce( 'save-task-list-order' ); ?>">
+		<input type="hidden" id="add_new_task_nonce" value="<?php echo wp_create_nonce( 'add-new-task' ); ?>">
 		<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>">
 		<table class="form-table">
 			<tbody>
@@ -104,7 +108,7 @@
 	</div>
 	<div id='add_new_task_list_inline_content' style='padding:10px; background:#fff;'>
 		<h2>Add Task List</h2>
-		<input type="hidden" id="add_new_task_nonce" value="<?php echo wp_create_nonce( 'add_new_task' ); ?>">
+		<input type="hidden" id="add_new_task_list_nonce" value="<?php echo wp_create_nonce( 'add-new-task-list' ); ?>">
 		<input type="hidden" id="cp-project-task-list-id" value="<?php echo cp_get_project_id() ?>">
 		<table class="form-table">
 			<tbody>
@@ -152,7 +156,8 @@
 			ajaxurl,
 			{
 				action: 'cp_edit_project',
-				data: data
+				data: data,
+				nonce: jQuery( '#cp_edit_project_nonce' ).val()
 			}, function( response ) {
 				if ( response.data.redirect )
 					window.location = response.data.redirect;
@@ -171,9 +176,9 @@
 			ajaxurl,
 			{
 				action: 'cp_delete_project',
-				data: data
+				data: data,
+				nonce: jQuery( '#cp_delete_project_nonce' ).val()
 			}, function( response ) {
-				console.log( response );
 				if ( response.data.redirect )
 					window.location = response.data.redirect;
 			}
@@ -197,6 +202,7 @@
 			ajaxurl,
 			{
 				action: 'cp_set_user_preferences_for_displaying_completed_tasks',
+				nonce: jQuery( '#toggle_user_preference_view_completed_tasks_nonce' ).val(),
 				data: {
 					display_completed_tasks: display_completed_tasks
 				}
@@ -229,17 +235,19 @@
 			return;
 
 		var task_el = $(this);
-
+		var task_id = task_el.data( 'id' );
 		var data = {
-			task_id: task_el.data( 'id' )
+			task_id: task_id
 		};
+		var nonce = jQuery( '#delete_task_nonce_' + task_id ).val();
 
 		// todo: add nonce
 		$.post(
 			ajaxurl,
 			{
 				action: 'cp_delete_task',
-				data: data
+				data: data,
+				nonce: nonce
 			},
 			function( response ) {
 				task_el.parents('.menu-item').hide();
@@ -266,7 +274,8 @@
 			ajaxurl,
 			{
 				action: 'cp_add_new_task',
-				data: data
+				data: data,
+				nonce: $('#add_new_task_nonce').val()
 			}, function( response ) {
 				$('#add_new_task_inline_content .spinner').hide();
 				window.location = response.data.redirect;
@@ -291,7 +300,8 @@
 			ajaxurl,
 			{
 				action: 'cp_add_new_task_list',
-				data: data
+				data: data,
+				nonce: jQuery( '#add_new_task_list_nonce' ).val()
 			}, function( response ) {
 				$('#add_new_task_list_inline_content .spinner').hide();
 				window.location = response.data.redirect;
@@ -301,15 +311,18 @@
 
 	// Handle checkbox change for a task
 	$('.menu-item input.item-completed').change( function(event) {
+		var task_id = $(this)
+			.parents( '.menu-item-bar')
+			.siblings('.menu-item-settings')
+			.children('.menu-item-data-db-id')
+			.val();
 		var data = {
-			task_id: $(this)
-				.parents( '.menu-item-bar')
-				.siblings('.menu-item-settings')
-				.children('.menu-item-data-db-id')
-				.val(),
+			task_id: task_id,
 			task_status: ( $(this).is(':checked') ? 'complete' : 'open' ),
 			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 		};
+		var nonce = jQuery( '#item_complete_status_change_nonce_' + task_id ).val();
+
 		if ( $(this).is(':checked') )
 			$(this).parents( '.menu-item' ).addClass( 'complete' );
 		else
@@ -319,8 +332,9 @@
 			ajaxurl,
 			{
 				action: 'cp_update_task_status',
+				nonce: nonce,
 				data: data
-			}, function( response ) {}
+			}, function( response ) { }
 		);
 	});
 })(jQuery);

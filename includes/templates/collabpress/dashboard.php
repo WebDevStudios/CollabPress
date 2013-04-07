@@ -25,7 +25,7 @@
 		<div style='display:none'>
 			<div id='inline_content' style='padding:10px; background:#fff;'>
 			<h2><?php _e( 'Add Project', 'collabpress' ); ?></h2>
-			<input type="hidden" id="add-project-nonce" value="<?php echo wp_create_nonce( 'add-new-project' ); ?>">
+			<input type="hidden" id="add_project_nonce" value="<?php echo wp_create_nonce( 'add-new-project' ); ?>">
 				<table class="form-table">
 					<tbody>
 						<tr valign="top">
@@ -104,13 +104,13 @@
 				data.users.push( $(el).val() );
 			}
 		});
-		data.nonce = $('#add-project-nonce').val();
 		$('#inline_content .spinner').show();
 		$.post(
 			ajaxurl,
 			{
 				action: 'cp_add_project',
-				data: data
+				data: data,
+				nonce: jQuery( '#add_project_nonce' ).val()
 			}, function( response ) {
 				$('#inline_content .spinner').hide();
 				window.location = response.data.redirect;

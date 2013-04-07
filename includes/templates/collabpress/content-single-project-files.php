@@ -18,7 +18,7 @@
 	<div style='display:none'>
 		<div id='inline_content' style='padding:10px; background:#fff;'>
 			<h2>Add File</h2>
-			<input type="hidden" id="add_new_task_nonce" value="<?php echo wp_create_nonce( 'add_new_task' ); ?>">
+			<input type="hidden" id="cp_add_new_file_nonce" value="<?php echo wp_create_nonce( 'cp_add_new_file' ); ?>">
 			<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>">
 			<table class="form-table">
 				<tbody>
@@ -111,9 +111,10 @@ var file_frame;
  				ajaxurl,
  				{
  					action: 'cp_attach_new_file',
+ 					nonce: jQuery( '#cp_add_new_file_nonce' ).val(),
  					data: {
  						project_id: <?php echo cp_get_project_id(); ?>,
- 						attachment_id: attachment.id,
+ 						attachment_id: attachment.id
  					}
 				},
 				function( response ) {
