@@ -1114,7 +1114,7 @@ function cp_insert_comment_on_task( $args = array() ) {
 	}
 
 	// Add Activity
-	cp_add_activity(__('added', 'collabpress'), __('comment', 'collabpress'), $args['user_id'], $args['comment_post_ID'] );
+	cp_add_activity( __('commented', 'collabpress'), __('task', 'collabpress'), $args['user_id'], $args['comment_post_ID'] );
 
 }
 

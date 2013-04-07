@@ -79,22 +79,8 @@ add_action( 'cp_project_deleted', 'bp_cp_tn_project_deleted' );
 
 /**
  * Hooks the BP activity poster.
- *
- * This method, where a runtime-created function is hooked to bp_actions, is a hack workaround for
- * the fact that the group extension won't otherwise load early enough to catch the activity post.
- *
- * @package CollabPress
- * @since 1.2
- *
- * @param str $action 'updated', 'created', etc
- * @param str $type 'project', 'task-list', or 'task'
- * @param int $author The author ID
- * @param int $cp_post_id The ID of the CP post
  */
-function cp_bp_post_activity( $action, $type, $author, $cp_post_id ) {
-	add_action( 'bp_actions', create_function( '', "cp_bp_post_activity_do( '". $action. "', '" . $type . "', '" . $author . "', '" . $cp_post_id . "' );" ) );
-}
-add_action( 'cp_add_activity', 'cp_bp_post_activity', 10, 4 );
+add_action( 'cp_add_activity', 'cp_bp_post_activity_do', 10, 4 );
 
 /**
  * Posts a BP activity item
@@ -160,6 +146,11 @@ function cp_bp_post_activity_do( $action, $type, $author, $cp_post_id ) {
 				case 'completed' :
 					$bp_activity_add_args['type']   = 'cp_task_completed';
 					$bp_activity_add_args['action'] = sprintf( __( '%1$s completed the task "%2$s"', 'collabpress' ), bp_core_get_userlink( $author ), '<a href="' . $task_link . '">' . $task_name . '</a>' );
+					break;
+
+				case 'commented' :
+					$bp_activity_add_args['type']   = 'cp_task_commented';
+					$bp_activity_add_args['action'] = sprintf( __( '%1$s commented on the task "%2$s"', 'collabpress' ), bp_core_get_userlink( $author ), '<a href="' . $task_link . '">' . $task_name . '</a>' );
 					break;
 			}
 			break;
