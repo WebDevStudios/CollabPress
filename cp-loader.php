@@ -26,7 +26,7 @@ License: GPLv2
 */
 
 // CollabPress Define(s)
-define( 'CP_VERSION', '1.3-dev' );
+define( 'CP_VERSION', '1.3-RC1' );
 
 if ( ! defined( 'CP_BASENAME' ) ) {
 	define( 'CP_BASENAME', plugin_basename(__FILE__) );
