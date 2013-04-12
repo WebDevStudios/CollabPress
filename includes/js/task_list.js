@@ -578,10 +578,15 @@ var cpTaskList;
 				prevBottom = (prev.length) ? prev.offset().top + prev.height() : 0;
 				nextThreshold = (next.length) ? next.offset().top + next.height() / 3 : 0;
 				minDepth = (next.length) ? next.menuItemDepth() : 0;
+
+				var currentItemType = $( '#' + transport.context.id ).children( '.menu-item-settings').children('.menu-item-data-type').val();
+
 				if( prev.length ) {
-					if ( prev.getItemData()["menu-item-type"] == 'cp-tasks' ) {
+					if ( currentItemType == 'cp-task-lists' ) {
+						maxDepth = 0;
+					} else if ( prev.getItemData()["menu-item-type"] == 'cp-tasks' ) {
 						maxDepth = prev.menuItemDepth();
-					}else {
+					} else {
 						maxDepth = ( (depth = prev.menuItemDepth() + 1) > api.options.globalMaxDepth ) ? api.options.globalMaxDepth : depth;
 					}
 
