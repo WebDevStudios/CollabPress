@@ -7,7 +7,6 @@
 		<a class="edit-project" href="#edit_project_inline_content">Edit Project</a>
 	</div>
 	<div class="left-col" style="width: 50%; float: left;">
-		<h3>Recent Activity</h3>
 		<h3>Users</h3>
 		<div class="users">
 		<?php foreach ( cp_get_project_users() as $user ) {
