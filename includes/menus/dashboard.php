@@ -66,6 +66,9 @@ add_action( 'init', 'cp_setup_cp_global', 5 );
  */
 function cp_setup_cp_global() {
 	global $cp, $wpdb;
+	// If we're not on a CollabPress page, bail.
+	if ( ! is_collabpress_page() )
+		return;
 
 	$cp = new StdClass;
 
@@ -94,6 +97,9 @@ function cp_setup_cp_global() {
 			}
 		}
 	}
+
+	if ( empty( $cp->project ) && empty( $cp->project ) && empty( $cp->project ) )
+		return;
 
 	// Set the view if it's not declared in the query string.
 	// We'll use it later for choosing the template to be loaded.

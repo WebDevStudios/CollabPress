@@ -117,7 +117,8 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 			// Don't do this work unless we're on a CP page
 			if ( bp_is_current_action( $this->slug ) ) {
 				// Tell CollabPress we're on a CP page
-				add_filter( 'on_collabpress_page', '__return_true' );
+
+				add_filter( 'is_collabpress_page', '__return_true' );
 
 				// Set up the current item
 				$this->set_current_item();
@@ -127,6 +128,9 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 
 				// A less-than-ideal way to let the main CPBP class know we're done
 				do_action( 'cp_bp_setup_item' );
+
+				// Legacy permalink redirection
+				add_filter( 'bp_get_canonical_url', array( $this, 'filter_canonical_url' ), 10, 2 );
 			}
 
 			// Get the settings for create and edit/delete roles
@@ -142,6 +146,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 
 			// Ensure that the proper users show up on the user list dropdown
 			add_filter( 'cp_task_user_list_html', array( &$this, 'user_list_html' ), 10, 2 );
+
 		}
 
 		// Automatically provision group members to each group project
@@ -932,6 +937,35 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	}
 
 	/**
+	 * Filter the canonical BP URL.
+	 * If any pre-1.3-style CollabPress task links exist, redirect them here.
+	 *
+	 * @package CollabPress
+	 * @subpackage CP BP
+	 * @since 1.3
+	 *
+	 * @return array An array of project objects
+	 */
+	function filter_canonical_url( $canonical_url, $args ) {
+		global $cp;
+
+		if ( is_null( $cp ) )
+			return $canonical_url;
+		// If there's something wrong
+		if ( property_exists( $cp, 'task' ) && is_null( $cp->task ) ) {
+
+			if ( bp_action_variable( 2 ) ) {
+				// redirect old permalinks for tasks e.g. /project-name/task-list-name/task-name/ to /project-name/task-name/
+				$canonical_url = bp_get_group_permalink( groups_get_current_group() ) . cp_bp_get_group_collabpress_slug() . '/' . bp_action_variable( 0 ) . '/' . bp_action_variable( 2 ) . '/';
+			} else {
+				// redirect old permalinks for task lists e.g. /project-name/task-list-name/ to /project-name/
+				$canonical_url = bp_get_group_permalink( groups_get_current_group() ) . cp_bp_get_group_collabpress_slug() . '/' . bp_action_variable( 0 ) . '/';
+			}
+		}
+		return $canonical_url;
+	}
+
+	/**
 	 * Get this group's projects
 	 *
 	 * @package CollabPress
@@ -1001,6 +1035,22 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 }
 
 endif;
+
+function cp_bp_get_group_collabpress_slug() {
+	$cp_options = cp_get_options();
+ 	$admins_can_customize = 'allow' == $cp_options['bp']['groups_admins_can_customize'];
+ 	if ( $admins_can_customize ) {
+		// Pull up the group settings to see if there is a custom
+		// slug defined. Otherwise fall back on site settings
+		$group_settings = groups_get_groupmeta( bp_get_current_group_id(), 'collabpress' );
+		$slug = !empty( $group_settings['tab_slug'] ) ? $group_settings['tab_slug'] : $cp_options['bp']['groups_default_tab_slug'];
+	} else {
+		// If customization is not allowed, the slug will be the
+		// same through all groups
+		$slug = $cp_options['bp']['groups_default_tab_slug'];
+	}
+	return $slug;
+}
 
 /**
  * If a project is associated with a group, this function will catch its parent_item args

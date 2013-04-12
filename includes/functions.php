@@ -103,11 +103,23 @@ function cp_add_activity( $action = NULL, $type = NULL, $author = NULL, $ID = NU
 	// Author
 	if ( $author )
 		update_post_meta( $activity_id, '_cp-activity-author', $author );
-	// ID
+	// ID of the related CollabPress item
 	if ( $ID )
 		update_post_meta( $activity_id, '_cp-activity-ID', $ID );
 
+
 	do_action( 'cp_add_activity', $action, $type, $author, $ID, $activity_id );
+}
+
+/**
+ * Given any CollabPress item (task list, task), get the related project.
+ */
+function cp_get_project_for_item( $item_id ) {
+	$item = get_post( $item_id );
+	if ( $item->post_type == 'cp-tasks' ) {
+		$item_parent = get_post( $item->post_parent );
+		var_dump( $item_parent );
+	}
 }
 
 /**
@@ -701,17 +713,17 @@ function is_collabpress_page( $slug = '' ) {
 	// If the page is not set
 	if (
 		( empty( $_REQUEST['page'] ) || $_REQUEST['page'] != 'collabpress-dashboard' )
-	  	&&
-	  	(
-	  		( ! empty( $post->post_content ) && strpos( $post->post_content, '[collabpress]' ) === FALSE )
-	  		|| empty( $post->post_content )
-  		)
+		&&
+		(
+			( ! empty( $post->post_content ) && strpos( $post->post_content, '[collabpress]' ) === FALSE )
+			|| empty( $post->post_content )
+		)
 	   )
-		return apply_filters( 'on_collabpress_page', false );
+		return apply_filters( 'is_collabpress_page', false );
 
 	// Default, if we're just checking that we're on a CollabPress page
 	if ( ! $slug )
-		return apply_filters( 'on_collabpress_page', false );
+		return apply_filters( 'is_collabpress_page', false );
 
 	if ( ! empty( $_REQUEST['project'] ) ) {
 		if ( ! empty( $_REQUEST['view'] ) ) {
@@ -751,7 +763,7 @@ function is_collabpress_page( $slug = '' ) {
 	if ( ! isset( $return ) )
 		$return = false;
 
-	return apply_filters( 'on_collabpress_page', $return );
+	return apply_filters( 'is_collabpress_page', $return );
 }
 
 function cp_get_the_task_priority() {
