@@ -131,6 +131,9 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 
 				// Legacy permalink redirection
 				add_filter( 'bp_get_canonical_url', array( $this, 'filter_canonical_url' ), 10, 2 );
+
+				// Setup $cp global
+				add_action( 'cp_global_setup', array( $this, 'setup_cp_global' ) );
 			}
 
 			// Get the settings for create and edit/delete roles
@@ -337,16 +340,6 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		if ( bp_is_current_action( $this->slug ) ) {
 			$this->current_item['project'] = bp_action_variable( 0 );
 			$this->current_item['task'] = bp_action_variable( 1 );
-
-			// Setup $cp global values for current items
-			if ( $this->current_item['project'] ) {
-				$project_id = get_page_by_path( $this->current_item['project'], OBJECT, 'cp-projects' );
-				$cp->project = get_post( $project_id );
-			}
-			if ( $this->current_item['task'] ) {
-				$task_id = get_page_by_path( $this->current_item['task'], OBJECT, 'cp-tasks' );
-				$cp->task = get_post( $task_id );
-			}
 		}
 
 		foreach ( $this->current_item as $key => $value ) {
@@ -356,7 +349,24 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		// Put in the global object for abstraction
 		cp_bp()->current_item = $this->current_item;
 	}
-
+	/**
+	 * After the $cp global has been initialized, reset some vars for BP integration
+	 *
+	 * @package CollabPress
+	 * @since 1.3
+	 */
+	function setup_cp_global() {
+		global $cp;
+		// Setup $cp global values for current items
+		if ( $this->current_item['project'] ) {
+			$project_id = get_page_by_path( $this->current_item['project'], OBJECT, 'cp-projects' );
+			$cp->project = get_post( $project_id );
+		}
+		if ( $this->current_item['task'] ) {
+			$task_id = get_page_by_path( $this->current_item['task'], OBJECT, 'cp-tasks' );
+			$cp->task = get_post( $task_id );
+		}
+	}
 	/**
 	 * Strip all query args off of URL parts
 	 *

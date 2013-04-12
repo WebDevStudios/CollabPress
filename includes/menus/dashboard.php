@@ -59,13 +59,14 @@ function cp_add_admin_menu_item() {
 	$cp_settings_page_hook = add_submenu_page( COLLABPRESS_DASHBOARD_PAGE, __( 'CollabPress Settings', 'collabpress' ), __( 'Settings', 'collabpress' ), $cp_settings_user_role, 'collabpress-settings', 'cp_settings_page' );
 }
 
-add_action( 'init', 'cp_setup_cp_global', 5 );
+add_action( 'wp', 'cp_setup_cp_global' );
 
 /**
  * Setup the $cp PHP global
  */
 function cp_setup_cp_global() {
 	global $cp, $wpdb;
+
 	// If we're not on a CollabPress page, bail.
 	if ( ! is_collabpress_page() )
 		return;
@@ -79,7 +80,6 @@ function cp_setup_cp_global() {
 		'cp_page'        => false,
 		'view'           => false,
 	);
-
 	// Parse query string variables and set CollabPress global appropriately
 	foreach ( $defaults as $key => $value ) {
 		if ( ! empty( $_REQUEST[$key] ) ) {
@@ -98,9 +98,6 @@ function cp_setup_cp_global() {
 		}
 	}
 
-	if ( empty( $cp->project ) && empty( $cp->project ) && empty( $cp->project ) )
-		return;
-
 	// Set the view if it's not declared in the query string.
 	// We'll use it later for choosing the template to be loaded.
 	if ( empty( $cp->view ) ) {
@@ -112,9 +109,12 @@ function cp_setup_cp_global() {
 			$cp->view = 'dashboard';
 		}
 	}
-	// echo '<PRE>';var_dump( $cp ); die;
+
+	// Set custom table names
 	$cp->tables = new stdClass;
 	$cp->tables->project_users = $wpdb->prefix . 'cp_project_users';
+
+	do_action( 'cp_global_setup' );
 }
 
 /**

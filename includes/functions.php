@@ -682,23 +682,28 @@ function cp_limit_length( $strtolimit=null, $limit=50 ) {
 
 require_once( CP_PLUGIN_DIR . 'includes/template-tags.php' );
 
-add_action( 'wp_enqueue_scripts', 'cp_maybe_enqueue_style' );
-add_action( 'admin_enqueue_scripts', 'cp_maybe_enqueue_style' );
+add_action( 'wp', 'cp_maybe_enqueue_styles_and_scripts' );
 
+function cp_maybe_enqueue_styles_and_scripts() {
+	if ( is_collabpress_page() )
+		cp_enqueue_styles_and_scripts();
+}
 
-function cp_maybe_enqueue_style() {
-	if ( is_collabpress_page() ) {
-		wp_enqueue_style( 'collabpress-new', CP_PLUGIN_URL . 'includes/css/new.css' );
-		wp_enqueue_style( 'collabpress-fonts', 'http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,300,400,700' );
-		wp_enqueue_style( 'cp_admin', CP_PLUGIN_URL . 'includes/css/admin.css' );
+/**
+ * Bootstrapper for CollabPress styles and scripts.
+ *
+ */
+function cp_enqueue_styles_and_scripts() {
+	wp_enqueue_style( 'collabpress-new', CP_PLUGIN_URL . 'includes/css/new.css' );
+	wp_enqueue_style( 'collabpress-fonts', 'http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,300,400,700' );
+	wp_enqueue_style( 'cp_admin', CP_PLUGIN_URL . 'includes/css/admin.css' );
 
-		wp_enqueue_style( 'colorbox-css', CP_PLUGIN_URL . 'includes/css/colorbox.css' );
-		wp_enqueue_script( 'colorbox', CP_PLUGIN_URL . 'includes/js/jquery.colorbox-min.js', array( 'jquery') );
+	wp_enqueue_style( 'colorbox-css', CP_PLUGIN_URL . 'includes/css/colorbox.css' );
+	wp_enqueue_script( 'colorbox', CP_PLUGIN_URL . 'includes/js/jquery.colorbox-min.js', array( 'jquery') );
 
-		wp_enqueue_script( 'cp-task-list', CP_PLUGIN_URL . 'includes/js/task_list.js', array( 'jquery', 'jquery-ui-sortable' ) );
+	wp_enqueue_script( 'cp-task-list', CP_PLUGIN_URL . 'includes/js/task_list.js', array( 'jquery', 'jquery-ui-sortable' ) );
 
-		wp_enqueue_style( 'jquery-ui', CP_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css' );
-	}
+	wp_enqueue_style( 'jquery-ui', CP_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css' );
 
 }
 
@@ -709,7 +714,6 @@ function cp_maybe_enqueue_style() {
  */
 function is_collabpress_page( $slug = '' ) {
 	global $post;
-
 	// If the page is not set
 	if (
 		( empty( $_REQUEST['page'] ) || $_REQUEST['page'] != 'collabpress-dashboard' )
@@ -723,7 +727,7 @@ function is_collabpress_page( $slug = '' ) {
 
 	// Default, if we're just checking that we're on a CollabPress page
 	if ( ! $slug )
-		return apply_filters( 'is_collabpress_page', false );
+		return apply_filters( 'is_collabpress_page', true );
 
 	if ( ! empty( $_REQUEST['project'] ) ) {
 		if ( ! empty( $_REQUEST['view'] ) ) {
