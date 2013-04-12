@@ -944,7 +944,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @subpackage CP BP
 	 * @since 1.3
 	 *
-	 * @return array An array of project objects
+	 * @return string A canonical URL.
 	 */
 	function filter_canonical_url( $canonical_url, $args ) {
 		global $cp;
