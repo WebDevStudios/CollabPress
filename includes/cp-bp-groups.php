@@ -116,6 +116,9 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 
 			// Don't do this work unless we're on a CP page
 			if ( bp_is_current_action( $this->slug ) ) {
+				// Tell CollabPress we're on a CP page
+				add_filter( 'on_collabpress_page', '__return_true' );
+
 				// Set up the current item
 				$this->set_current_item();
 

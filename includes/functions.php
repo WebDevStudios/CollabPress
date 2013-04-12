@@ -699,60 +699,59 @@ function is_collabpress_page( $slug = '' ) {
 	global $post;
 
 	// If the page is not set
-	if ( (
-		empty( $_REQUEST['page'] )
-	  	||
-	  	( ! empty( $_REQUEST['page'] )
-	  		&& $_REQUEST['page'] != 'collabpress-dashboard' )
-	  	)
+	if (
+		( empty( $_REQUEST['page'] ) || $_REQUEST['page'] != 'collabpress-dashboard' )
 	  	&&
 	  	(
-	  		! empty( $post->post_content )
-	  		&&
-	  		strpos( $post->post_content, '[collabpress]' ) === FALSE
+	  		( ! empty( $post->post_content ) && strpos( $post->post_content, '[collabpress]' ) === FALSE )
+	  		|| empty( $post->post_content )
   		)
 	   )
-		return false;
+		return apply_filters( 'on_collabpress_page', false );
 
 	// Default, if we're just checking that we're on a CollabPress page
 	if ( ! $slug )
-		return true;
+		return apply_filters( 'on_collabpress_page', false );
 
 	if ( ! empty( $_REQUEST['project'] ) ) {
 		if ( ! empty( $_REQUEST['view'] ) ) {
 			if ( $slug == 'project-calendar'
 			  && $_REQUEST['view'] == 'calendar' )
-				return true;
+				$return = true;
 			if ( $slug == 'project-tasks'
 			  && $_REQUEST['view'] == 'tasks' )
-				return true;
+				$return = true;
 			if ( $slug == 'project-files'
 			  && $_REQUEST['view'] == 'files' )
-				return true;
+				$return = true;
 			if ( $slug == 'project-users'
 			  && $_REQUEST['view'] == 'users' )
-				return true;
+				$return = true;
 		} else {
 			if ( ! empty( $_REQUEST['task'] ) ) {
 				if ( $slug == 'task' )
-					return true;
+					$return = true;
 			} else {
 				if ( $slug == 'project-overview' )
-					return true;
+					$return = true;
 			}
 		}
 	} else {
 		if ( ! empty( $_REQUEST['view'] ) ) {
 			if ( $slug == 'calendar' && $_REQUEST['view'] == 'calendar' )
-				return true;
+				$return = true;
 			if ( $slug == 'activity' && $_REQUEST['view'] == 'activity' )
-				return true;
+				$return = true;
 		} else {
 			if ( $slug == 'dashboard' )
-				return true;
+				$return = true;
 		}
 	}
-	return false;
+
+	if ( ! isset( $return ) )
+		$return = false;
+
+	return apply_filters( 'on_collabpress_page', $return );
 }
 
 function cp_get_the_task_priority() {
