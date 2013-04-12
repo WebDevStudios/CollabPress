@@ -252,7 +252,7 @@ msgstr "Acitivity Log je zrušené"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:232
 msgid "Activity"
-msgstr "Činnosť"
+msgstr "النشاط"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:255
 msgid "View Calendar"
@@ -264,7 +264,7 @@ msgstr "Zobrazenie kalendára"
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:195
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:330
 msgid "edit"
-msgstr "upraviť"
+msgstr "حرر"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:284
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:659
@@ -275,7 +275,7 @@ msgstr "upraviť"
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:251
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:330
 msgid "delete"
-msgstr "odstrániť"
+msgstr "حذف "
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:292
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1226
@@ -343,7 +343,7 @@ msgstr "أرسل "
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1033
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:272
 msgid "Current Tasks"
-msgstr "Aktuálne úlohy"
+msgstr "المهام الحالية"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:659
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:330
@@ -367,7 +367,7 @@ msgstr "Žiadne úlohy..."
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:678
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:347
 msgid "Completed Tasks"
-msgstr "Dokončené úlohy"
+msgstr "اكتملت المهام"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:724
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:410
@@ -379,12 +379,12 @@ msgstr "Žiadne úlohy dokončené..."
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:861
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:898
 msgid "Name: "
-msgstr "meno: "
+msgstr ": الإسم "
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:820
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:233
 msgid "Tasks Lists"
-msgstr "Zoznamy úloh"
+msgstr "قوائم المهام"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:837
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:251
@@ -402,7 +402,7 @@ msgstr ""
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:843
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:257
 msgid "No Task Lists..."
-msgstr "Žiadne zoznamy úloh..."
+msgstr "لا يوجد أي قوائم مهام"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:953
 msgid ""
@@ -418,7 +418,7 @@ msgstr ""
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:964
 msgid "No comments..."
-msgstr "Žiadne komentáre..."
+msgstr "لا يوجد اي تعليق ..."
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:976
 msgid "Leave a Comment: "
@@ -459,15 +459,15 @@ msgstr "الأربعاء"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
 msgid "Thursday"
-msgstr "Štvrtok"
+msgstr "الخميس"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
 msgid "Friday"
-msgstr "Piatok"
+msgstr "الجمعة"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
 msgid "Saturday"
-msgstr "Sobota"
+msgstr "السبت"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1197
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:127
