@@ -1,0 +1,862 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: CollabPress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-30 14:35+0100\n"
+"PO-Revision-Date: 2013-04-13 20:15+0300\n"
+"Last-Translator: @muneera_salah <muneera.salah@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.5\n"
+"Language: Arabic - العربية\n"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:61
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:180
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:222
+msgid "Projects"
+msgstr "مشاريع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:62
+msgid "Custom Post Type for CollabPress Projects"
+msgstr " CollabPress منشور مخصص لنوع من مشاريع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:71
+msgid "Task Lists"
+msgstr "قوائم المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:72
+msgid "Custom Post Type for CollabPress Task Lists"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:81
+msgid "Tasks"
+msgstr "المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:82
+msgid "Custom Post Type for CollabPress Tasks"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:91
+msgid "Meta Data"
+msgstr "البيانات الوصفية"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:92
+msgid "Custom Post Type for CollabPress Meta Data"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-core.php:25
+msgid "View Dashboard"
+msgstr "عرض لوحة التحكم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-core.php:37
+msgid "CollabPress - Recent Activity"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:17
+msgid "Display CollabPress overview stats"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:19
+msgid "CollabPress: Overview Widget"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:24
+msgid "CollabPress Overview"
+msgstr "استعراض المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:33
+msgid "Title"
+msgstr "العنوان"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:34
+msgid "Show Project Count"
+msgstr "عرض عدد المشاريع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:35
+msgid "Show Task List Count"
+msgstr " عرض عدد قوائم المهام "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:36
+msgid "Show Task Count"
+msgstr "عرض عدد المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:37
+msgid "Show User Count"
+msgstr "عرض عدد المستخدمين"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:73
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:350
+msgid "Project"
+msgstr "مشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:80
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:355
+msgid "Task List"
+msgstr "قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:87
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:360
+msgid "Task"
+msgstr "مهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:93
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:364
+msgid "User"
+msgstr "المستخدم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:71
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "CollabPress"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "Please Report Bugs"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+msgid "Follow us on Twitter: "
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "Scott"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "Brad"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+msgid "Chris"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "WDS"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:24
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:44
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:67
+msgid "Back"
+msgstr "الرجوع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:32
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:52
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:79
+msgid "Edit"
+msgstr "تحرير"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:75
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:103
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:71
+msgid "CollabPress Dashboard"
+msgstr "عرض لوحة التحكم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:79
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:284
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1218
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:195
+msgid ""
+"WARNING: This will delete the selected project, including ALL task lists and "
+"tasks in the project.\\n\\nChoose [Cancel] to Stop, [OK] to delete.\\n"
+msgstr ""
+"تنبيه: هذا سيتم حذف المشاريع المحددة . و ما بداخلها من مهام و قوائم المهام "
+"\\n\\nاختر [إلغاء] للتوقف ، [ موافق ] للحذف \\n ."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:79
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:52
+msgid "Delete"
+msgstr "حذف"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:95
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:221
+msgid "Calendar"
+msgstr "تقويم "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:99
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:295
+msgid "View All Projects"
+msgstr "عرض كل المشاريع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:131
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:137
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:146
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:150
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:172
+msgid "Powered by "
+msgstr "بدعم من"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:172
+msgid "CollabPress.org"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:185
+msgid "Project Added"
+msgstr "تمت إضافة المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:189
+msgid "Project Updated"
+msgstr "تم تحديث المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:193
+msgid "Project Deleted"
+msgstr "تم حذف المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:197
+msgid "Task List Added"
+msgstr "تم إضافة قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:201
+msgid "Task List Updated"
+msgstr "تم تحديث قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:205
+msgid "Task List Deleted"
+msgstr "تم حذف قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:209
+msgid "Task Added"
+msgstr "تمت إضافة المهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:213
+msgid "Task Updated"
+msgstr "تم تحديث المهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:217
+msgid "Task Deleted"
+msgstr "تم حذف المهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:221
+msgid "Comment Added"
+msgstr "تم إضافة التعليق"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:225
+msgid "Acitivity Log Has Been Cleared"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:232
+msgid "Activity"
+msgstr "النشاط"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:255
+msgid "View Calendar"
+msgstr "عرض التقويم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:284
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:659
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1218
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:195
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:330
+msgid "edit"
+msgstr "تحرير"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:284
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:659
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:837
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:953
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1218
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:195
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:251
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:330
+msgid "delete"
+msgstr "حذف"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:292
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1226
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:209
+msgid "No Projects..."
+msgstr "لا يوجد أي مشروع ..."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:337
+msgid "View All Users"
+msgstr "عرض كل المستخدمين"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:374
+msgid "Click to Upload"
+msgstr "انقر للتحميل"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:398
+msgid "No file attachments..."
+msgstr " ... لا يوجد أي ملف مرفق "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:462
+msgid "No Activities..."
+msgstr " ... لا توجد أية نشاطات "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:529
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:578
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:754
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:789
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:865
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:902
+msgid "Description: "
+msgstr "الوصف :"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:538
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:587
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:655
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:710
+msgid "Due: "
+msgstr "   : تنفذ بتاريخ "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:542
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:591
+msgid "Assigned to: "
+msgstr " المسؤول عنها  :"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:552
+msgid "Notify via Email? "
+msgstr "إخطار عبر البريد الإلكتروني؟"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:558
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:604
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:765
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:800
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:876
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:913
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:980
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:109
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:112
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:115
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:118
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:121
+msgid "Submit"
+msgstr "أرسل"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:620
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1033
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:272
+msgid "Current Tasks"
+msgstr "المهام الحالية"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:659
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:330
+msgid ""
+"WARNING: This will delete the selected task.\\n\\nChoose [Cancel] to Stop, "
+"[OK] to delete.\\n"
+msgstr ""
+"تنبيه: هذا سيتم حذف المهمة المحددة . \\n\\nاختر [إلغاء] للتوقف ، [ موافق ] "
+"للحذف \\n ."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:670
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1051
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:339
+msgid "No Tasks..."
+msgstr "لا توجد أية مهام ..."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:678
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:347
+msgid "Completed Tasks"
+msgstr "استكملت المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:724
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:410
+msgid "No Tasks Completed..."
+msgstr " ... لا توجد مهمة مكتملة "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:750
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:785
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:861
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:898
+msgid "Name: "
+msgstr ":الإسم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:820
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:233
+msgid "Tasks Lists"
+msgstr "قوائم المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:837
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:251
+msgid ""
+"WARNING: This will delete the selected task list and all tasks in the list."
+"\\n\\nChoose [Cancel] to Stop, [OK] to delete.\\n"
+msgstr ""
+"تنبيه : سيتم حذف قائمة المهام المحددة و ما بداخلها من مهام .  \\n\\nاختر "
+"[إلغاء] للتوقف ، [ موافق ] للحذف \\n ."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:843
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:257
+msgid "No Task Lists..."
+msgstr " لا توجد قوائم المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:953
+msgid ""
+"WARNING: This will delete the selected comment.\\n\\nChoose [Cancel] to "
+"Stop, [OK] to delete.\\n"
+msgstr ""
+"تنبيه : سيتم حذف التعليقات المحددة .  \\n\\nاختر [إلغاء] للتوقف ، [ موافق ] "
+"للحذف \\n ."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:964
+msgid "No comments..."
+msgstr "لا يوجد أي تعليق"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:976
+msgid "Leave a Comment: "
+msgstr ": اترك تعليق"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:978
+msgid "Notify via Email?"
+msgstr "إخطار عبر البريد الإلكتروني؟"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1000
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:228
+msgid "Recent Activity"
+msgstr "النشاطات الحديثة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1030
+msgid "No Recent Activity..."
+msgstr " لا توجد أي النشاط حديث"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1048
+msgid " - View"
+msgstr "عرض -"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Sunday"
+msgstr "الأحد"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Monday"
+msgstr "الأثنين"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Tuesday"
+msgstr "الثلاثاء"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Wednesday"
+msgstr "الأربعاء"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Thursday"
+msgstr "الخميس"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Friday"
+msgstr "الجمعة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Saturday"
+msgstr "السبت"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1197
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:127
+msgid "All Projects"
+msgstr "كل المشاريع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:326
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:401
+msgid "Assigned to:"
+msgstr "المسؤول عنها :"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:326
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:401
+msgid " Due: "
+msgstr "   : تنفذ بتاريخ"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:78
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:7
+msgid "CollabPress Settings"
+msgstr "CollabPress  إعدادت"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:78
+msgid "Settings"
+msgstr "الإعدادت"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:83
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:7
+msgid "CollabPress Help"
+msgstr " CollabPress مساعدة "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:83
+msgid "Help"
+msgstr "مساعدة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:88
+msgid "Debug"
+msgstr "Debug"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:223
+msgid "Users"
+msgstr "المستخدمين"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:224
+msgid "Overview"
+msgstr "استعراض المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:229
+msgid "Add New Project"
+msgstr "أضف مشروع جديد"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:230
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:241
+msgid "Edit Project"
+msgstr "تحرير المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:236
+msgid "Add New Task List"
+msgstr " إضافة قائمة المهام جديدة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:237
+msgid "Edit Task List"
+msgstr "تحرير قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:238
+msgid "Project Overview"
+msgstr "استعراض المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:240
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:251
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:259
+msgid "Files"
+msgstr "ملفات"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:247
+msgid "Add New Task"
+msgstr "إضافة مهمة جديدة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:248
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:257
+msgid "Edit Task"
+msgstr "مهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:249
+msgid "Task List Overview"
+msgstr "عرض قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:263
+msgid "Credits"
+msgstr "الائتمانات"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:343
+msgid "Cheatin&#8217; uh?"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:10
+msgid "Title: "
+msgstr "العنوان:"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:12
+msgid "ID: "
+msgstr "رقم المعرف"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:14
+msgid "Author: "
+msgstr "المؤلف :"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:16
+msgid "Created: "
+msgstr "المنشىء:"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:16
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:18
+msgid "at"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:18
+msgid "Modified: "
+msgstr "تم تعديله :"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:24
+msgid "Custom Fields: collabpress"
+msgstr "حقول المخصصة: collabpress"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:30
+msgid "name: "
+msgstr ":الإسم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:31
+msgid "value"
+msgstr "القيمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:42
+msgid "No results..."
+msgstr "لا توجد نتائج .."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:50
+msgid "CollabPress Debug"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:108
+msgid "Delete All CollabPress Data: "
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:111
+msgid "Delete CollabPress Projects: "
+msgstr ": CollabPress حذف مشاريع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:114
+msgid "Delete CollabPress Task Lists: "
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:117
+msgid "Delete CollabPress Tasks: "
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:120
+msgid "Delete CollabPress Meta Data: "
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:143
+msgid "All Task Lists"
+msgstr "كل قوائم المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:175
+msgid "All Meta"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "Follow us on Twitter:"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:8
+msgid "Shortcode Legend"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:9
+msgid ""
+"Add full CollabPress support to the front-end of WordPress.  View/edit/"
+"delete all projects, task-lists, tasks, and comments."
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:10
+msgid "Set user role"
+msgstr "تعيين دور المستخدم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:10
+msgid "for front-end [collabpress] shortcode support"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:11
+msgid "Support and Info"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:12
+msgid "Visit the"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:12
+msgid "CollabPress Support Forum"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:12
+msgid "Follow on Twitter"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:12
+msgid "Subscribe via Email"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:13
+msgid "Donate"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:14
+msgid "Please donate to the development of CollabPress:"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:18
+msgid "PayPal - The safer, easier way to pay online!"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:22
+msgid "Latest CollabPress News"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:28
+msgid "CollabPress News"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:57
+msgid "General"
+msgstr "عام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:60
+msgid "Dashboard Meta Box"
+msgstr "لوحة التحكم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:63
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:73
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:153
+msgid "Disabled"
+msgstr "تعطيل"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:64
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:72
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:154
+msgid "Enabled"
+msgstr "تمكين"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:69
+msgid "Email Notifications"
+msgstr "تنبيهات البريد الإلكتروني"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:78
+msgid "Recent Activites Per Page"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:95
+msgid "Number of Users to Display"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:107
+msgid "Permissions"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:110
+msgid "Minimum User Role for Access"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:113
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:125
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:138
+msgid "Administrator"
+msgstr "المدير"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:114
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:126
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:139
+msgid "Editor"
+msgstr "تحرير"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:115
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:127
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:140
+msgid "Author"
+msgstr "المؤلف"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:116
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:128
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:141
+msgid "Contributor"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:117
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:129
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:142
+msgid "Subscriber"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:122
+msgid ""
+"Minimum User Role to change Settings, Edit/Delete data, Enable/View Debug, "
+"etc"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:134
+msgid "Minimum User Role to view [collabpress] shortcode front-end"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:137
+msgid "Anyone"
+msgstr "أي شخص"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:147
+msgid "Advanced"
+msgstr "متقدم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:150
+msgid "Debug Mode"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:159
+msgid "Save Settings"
+msgstr "حفظ الإعدادت"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:166
+msgid "Optimize"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:174
+msgid "Clear Activity Log"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:175
+msgid "Delete Log"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:175
+msgid ""
+"WARNING: This will delete ALL activity logs.  Once logs have been deleted "
+"they can NOT be restored.\\n\\nChoose [Cancel] to Stop, [OK] to delete logs."
+"\\n"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:40
+msgid "New comment on task "
+msgstr "تعليق جديد على المهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:42
+msgid "There is a new comment on your task from "
+msgstr "هناك تعليق جديد على مهمتك من"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:43
+msgid "Comment:"
+msgstr " : تعليق "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:51
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:18
+msgid "added"
+msgstr "تمت الإضافة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:51
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:68
+msgid "comment"
+msgstr "تعليق"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:68
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:98
+msgid "deleted"
+msgstr "تم الحذف"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:18
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:40
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:98
+msgid "project"
+msgstr "مشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:40
+msgid "updated"
+msgstr "تم التحديث"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task-list.php:23
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task-list.php:45
+msgid "task list"
+msgstr "قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:38
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:78
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:101
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:109
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:129
+msgid "task"
+msgstr "مهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:48
+msgid "New task assigned to you: "
+msgstr " : مهمة جديدة مسندة لك "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:50
+msgid "There is a new task assigned to you:"
+msgstr ": هناك مهمة جديدة مسندة لك"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:101
+msgid "completed"
+msgstr "منجز "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:109
+msgid "opened"
+msgstr "مفتوح"
