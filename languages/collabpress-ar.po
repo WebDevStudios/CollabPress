@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: CollabPress\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2011-05-30 14:35+0100\n"
-"PO-Revision-Date: 2013-04-13 17:49+0300\n"
+"PO-Revision-Date: 2013-04-13 20:15+0300\n"
 "Last-Translator: @muneera_salah <muneera.salah@gmail.com>\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -42,7 +42,7 @@ msgstr ""
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:91
 msgid "Meta Data"
-msgstr ""
+msgstr "البيانات الوصفية"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:92
 msgid "Custom Post Type for CollabPress Meta Data"
@@ -78,7 +78,7 @@ msgstr "عرض عدد المشاريع"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:35
 msgid "Show Task List Count"
-msgstr "قائمة المهام"
+msgstr " عرض عدد قوائم المهام "
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:36
 msgid "Show Task Count"
@@ -179,7 +179,7 @@ msgstr "حذف"
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:95
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:221
 msgid "Calendar"
-msgstr "التقويم"
+msgstr "تقويم "
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:99
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:295
@@ -251,7 +251,7 @@ msgstr "النشاط"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:255
 msgid "View Calendar"
-msgstr "التقويم"
+msgstr "عرض التقويم"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:284
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:659
@@ -308,12 +308,12 @@ msgstr "الوصف :"
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:655
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:710
 msgid "Due: "
-msgstr ""
+msgstr "   : تنفذ بتاريخ "
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:542
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:591
 msgid "Assigned to: "
-msgstr ":المسؤول عنها"
+msgstr " المسؤول عنها  :"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:552
 msgid "Notify via Email? "
@@ -353,7 +353,7 @@ msgstr ""
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1051
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:339
 msgid "No Tasks..."
-msgstr "المهام"
+msgstr "لا توجد أية مهام ..."
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:678
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:347
@@ -405,7 +405,7 @@ msgstr "لا يوجد أي تعليق"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:976
 msgid "Leave a Comment: "
-msgstr " : اترك التعليق"
+msgstr ": اترك تعليق"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:978
 msgid "Notify via Email?"
@@ -460,12 +460,12 @@ msgstr "كل المشاريع"
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:326
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:401
 msgid "Assigned to:"
-msgstr ":المسؤول عنها "
+msgstr "المسؤول عنها :"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:326
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:401
 msgid " Due: "
-msgstr ""
+msgstr "   : تنفذ بتاريخ"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:78
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:7
@@ -634,7 +634,7 @@ msgstr ""
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:10
 msgid "Set user role"
-msgstr ""
+msgstr "تعيين دور المستخدم"
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:10
 msgid "for front-end [collabpress] shortcode support"
