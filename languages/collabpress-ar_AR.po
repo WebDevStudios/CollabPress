@@ -1,1473 +1,862 @@
-# Copyright (C) 2012 
-# This file is distributed under the same license as the  package.
 msgid ""
 msgstr ""
-"Project-Id-Version: buddypress-links\n"
-"Report-Msgid-Bugs-To: http://wordpress.org/tag/buddypress-links\n"
-"POT-Creation-Date: 2012-10-19 18:39:25+00:00\n"
+"Project-Id-Version: CollabPress\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-05-30 14:35+0100\n"
+"PO-Revision-Date: 2013-04-13 17:49+0300\n"
+"Last-Translator: @muneera_salah <muneera.salah@gmail.com>\n"
+"Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"PO-Revision-Date: 2013-04-13 02:31+0300\n"
-"Last-Translator: @muneera_salah <muneera.salah@gmail.com>\n"
-"Language-Team: \n"
-"X-Generator: Poedit 1.5.5\n"
 "X-Poedit-KeywordsList: __;_e\n"
 "X-Poedit-Basepath: .\n"
+"X-Generator: Poedit 1.5.5\n"
+"Language: Arabic - العربية\n"
 
-#: bp-links-admin.php:27 themes/bp-links-admin/index.php:19
-msgid "BuddyPress Links"
-msgstr "BuddyPress روابط"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:61
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:180
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:222
+msgid "Projects"
+msgstr "مشاريع"
 
-#: bp-links-admin.php:27
-msgid "BP Links"
-msgstr "BP روابط"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:62
+msgid "Custom Post Type for CollabPress Projects"
+msgstr " CollabPress منشور مخصص لنوع من مشاريع"
 
-#: bp-links-admin.php:28
-msgid "General Info"
-msgstr "معلومات عامه"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:71
+msgid "Task Lists"
+msgstr "قوائم المهام"
 
-#: bp-links-admin.php:29 themes/bp-links-admin/settings.php:17
-msgid "Edit Settings"
-msgstr "تحرير الإعدادات"
-
-#: bp-links-admin.php:30 themes/bp-links-admin/category-list.php:18
-msgid "Edit Categories"
-msgstr "تحرير التصنيفات"
-
-#: bp-links-admin.php:31 themes/bp-links-admin/link-manager.php:17
-msgid "Manage Links"
-msgstr "إدارة الروابط"
-
-#: bp-links-admin.php:73
-msgid "There were errors when deleting links."
-msgstr " . توجد هناك أخطاء عند حذفك لهذا الرابط"
-
-#: bp-links-admin.php:73 bp-links-admin.php:125 bp-links-admin.php:179
-#: bp-links-admin.php:186 bp-links-admin.php:191 bp-links-admin.php:205
-#: bp-links-admin.php:218 bp-links-admin.php:223 bp-links-admin.php:239
-#: bp-links-core.php:721 bp-links-core.php:752 bp-links-core.php:768
-#: bp-links-core.php:1018 bp-links-embed.php:156 bp-links-embed.php:160
-msgid "Please try again."
-msgstr " الرجاء أعد المحاولة ."
-
-#: bp-links-admin.php:76
-msgid "Links deleted successfully"
-msgstr "تم حذف الرابط بنجاح"
-
-#: bp-links-admin.php:94
-msgid ""
-"You do not have sufficient permissions to edit link categories for this blog."
-msgstr " .لم يكن هناك صلاحيات كافيه لتعديل تصنيفات الرابط لهذه المدونة "
-
-#: bp-links-admin.php:122
-msgid "Categories deleted successfully"
-msgstr "التصنيفات حذفت بنجاح"
-
-#: bp-links-admin.php:125
-msgid "There were errors when deleting categories."
-msgstr "هناك أخطاء عند حذف التصنيفات"
-
-#: bp-links-admin.php:129
-msgid "Unable to delete a category because it is assigned to one or more links"
-msgstr "غير قادر على حذف التصنيف لسبب تعيينه على واحد  أو أكثر من الروابط"
-
-#: bp-links-admin.php:179
-msgid "Link category slug from this name already exists."
-msgstr "الإسم لرابط التصنيف موجود بالفعل مسبقا"
-
-#: bp-links-admin.php:186
-msgid "Link category name must be %1$d to %2$d characters in length."
-msgstr "اسم رابط التصنيف يجب أن يكون %1$d إلى %2d عدداَ من الحروف "
-
-#: bp-links-admin.php:191
-msgid "Link category name is required."
-msgstr "مطلوب رابط اسم التصنيف"
-
-#: bp-links-admin.php:205
-msgid "Link category description must be %1$d to %2$d characters in length."
-msgstr "وصف رابط التنصيف يجب أن يكون %1$d إلى %2$d عدد من الحروف "
-
-#: bp-links-admin.php:218
-msgid "Link category priority must be a number from %1$d to %2$d."
-msgstr ""
-
-#: bp-links-admin.php:223
-msgid "Link category priority is required."
-msgstr "مطلوب رابط التصنيف ذو الأولويه"
-
-#: bp-links-admin.php:232
-msgid "Link category saved!"
-msgstr " ! تم حفظ رابط التصنيف"
-
-#: bp-links-admin.php:233
-msgid "Return to list"
-msgstr "الرجوع إلى القائمة"
-
-#: bp-links-admin.php:234
-msgid "or"
-msgstr "أو"
-
-#: bp-links-admin.php:235
-msgid "Create new category"
-msgstr "إنشاء تصنيف جديد"
-
-#: bp-links-admin.php:239
-msgid "There were errors when saving the link category."
-msgstr "يوجد هناك أخطاء عند حفظ رابط التصنيف"
-
-#: bp-links-admin.php:268
-msgid "Edit Category"
-msgstr "حرر التصنيف"
-
-#: bp-links-admin.php:269
-msgid "Update Category"
-msgstr "حدّث التصنيف"
-
-#: bp-links-admin.php:273 themes/bp-links-admin/category-list.php:111
-msgid "New Category"
-msgstr "تصنيف جديد"
-
-#: bp-links-admin.php:274
-msgid "Add Category"
-msgstr "إضافة تصنيف"
-
-#: bp-links-ajax.php:27
-msgid "Vote recorded."
-msgstr "تصويت مسجل"
-
-#: bp-links-ajax.php:29
-msgid "You have already voted."
-msgstr "لقد قمت بالتصويت مسبقا"
-
-#: bp-links-ajax.php:32
-msgid "There was a problem recording your vote. Please try again."
-msgstr "يوجد هناك مشكله في تسجيل صوتك . من فضلك أعد المحاوله مره آخرى ."
-
-#: bp-links-ajax.php:37
-msgid "You must be logged in to vote!"
-msgstr " يجب عليك أن تسجل دخولك من أجل التصويت!"
-
-#: bp-links-ajax.php:87
-msgid "Auto-fill not available for this URL."
-msgstr ""
-
-#: bp-links-ajax.php:106
-msgid "Invalid request"
-msgstr "طلب غير صحيح"
-
-#: bp-links-core.php:13 bp-links-core.php:14 bp-links-core.php:15
-#: bp-links-core.php:16 bp-links-core.php:17
-msgid "Every %1$d minutes"
-msgstr " "
-
-#: bp-links-core.php:326 bp-links-core.php:404 bp-links-core.php:471
-#: bp-links-core.php:501 bp-links-templatetags.php:1451
-#: bp-links-widgets.php:13 themes/bp-links-admin/category-list.php:70
-msgid "Links"
-msgstr "الروابط"
-
-#: bp-links-core.php:346 bp-links-core.php:363 bp-links-dtheme.php:73
-#: themes/bp-links-default/index.php:21
-msgid "My Links"
-msgstr "روابطي"
-
-#: bp-links-core.php:367 bp-links-core.php:487 bp-links-dtheme.php:119
-msgid "Create"
-msgstr "إنشاء"
-
-#: bp-links-core.php:418
-msgid "Home"
-msgstr "الرئيسية"
-
-#: bp-links-core.php:434
-msgid "Admin"
-msgstr "الإدارة"
-
-#: bp-links-core.php:479
-msgid "List"
-msgstr "قوائم"
-
-#: bp-links-core.php:535
-msgid "Admin Options"
-msgstr "خيارات المشرف"
-
-#: bp-links-core.php:538 bp-links-templatetags.php:763
-#: themes/bp-links-default/single/forms/delete.php:5
-#: themes/bp-links-default/single/forms/delete.php:16
-msgid "Delete Link"
-msgstr "حذف الرابط"
-
-#: bp-links-core.php:549
-msgid "Random Link"
-msgstr "رابط عشوائي"
-
-#: bp-links-core.php:712
-msgid "Link details were successfully updated."
-msgstr "تم تحديث تفاصيل الرابط بنجاح."
-
-#: bp-links-core.php:721
-msgid "There was an error updating link details."
-msgstr "يوجد هناك خطأ عند تحديث تفاصيل الرابط"
-
-#: bp-links-core.php:750
-msgid "Your avatar was deleted successfully!"
-msgstr "تم حذف الصوره الرمزيه بنجاح !"
-
-#: bp-links-core.php:752
-msgid "There was a problem deleting that avatar"
-msgstr "يوجد هناك مشكله عند حذف الصوره الرمزيه"
-
-#: bp-links-core.php:766
-msgid "The link avatar was uploaded successfully!"
-msgstr "تم تحميل رابط الصوره الرمزيه بنجاح! "
-
-#: bp-links-core.php:768 bp-links-embed.php:156
-msgid "There was an error saving link avatar."
-msgstr "هناك خطأ عند حفظ الصوره الرمزيه ."
-
-#: bp-links-core.php:829
-msgid "The link was deleted successfully"
-msgstr "تم حذف الرابط بنجاح"
-
-#: bp-links-core.php:832
-msgid "There was an error deleting the link, please try again."
-msgstr "يوجد هناك خطأ عند حذف  الرابط . من فضلك  أعد المحاوله مره آخرى ."
-
-#: bp-links-core.php:849
-msgid "Please fill in all of the required fields"
-msgstr "يرجى تعبئه جميع الحقول المطلوبه"
-
-#: bp-links-core.php:869
-msgid ""
-"Link URL must be %1$d characters or less, please make corrections and re-"
-"submit."
-msgstr ""
-
-#: bp-links-core.php:872
-msgid "The URL you entered is not valid."
-msgstr "عنوان الرابط الذي أدخلته غير صحيح ."
-
-#: bp-links-core.php:889
-msgid ""
-"Link Name must be %1$d characters or less, please make corrections and re-"
-"submit."
-msgstr ""
-
-#: bp-links-core.php:906
-msgid ""
-"Link Description must be %1$d characters or less, please make corrections "
-"and re-submit."
-msgstr ""
-
-#: bp-links-core.php:1003
-msgid "%1$s created the link %2$s"
-msgstr ""
-
-#: bp-links-core.php:1018
-msgid "There was an error saving link details."
-msgstr "هناك خطأ عند حفظ تفاصيل الرابط ."
-
-#: bp-links-core.php:1106
-msgid "Created a link"
-msgstr "تم إنشاء الرابط"
-
-#: bp-links-core.php:1107
-msgid "Voted on a link"
-msgstr "صوت على الرابط"
-
-#: bp-links-core.php:1108
-msgid "Commented on a link"
-msgstr "علّق على الرابط"
-
-#: bp-links-core.php:1164
-msgid "Link Example Event"
-msgstr ""
-
-#: bp-links-core.php:1164
-msgid "%d number of example events happened for the link \"%s\""
-msgstr ""
-
-#: bp-links-core.php:1167
-msgid "%1$s triggered a notification for the link \"%2$s\""
-msgstr ""
-
-#: bp-links-core.php:1531 bp-links-templatetags.php:759
-#: themes/bp-links-default/single/forms/avatar.php:5
-msgid "Link Avatar"
-msgstr "رابط الصورة الرمزية"
-
-#: bp-links-core.php:1662
-msgid "%s posted a comment on the link %s:"
-msgstr ""
-
-#: bp-links-core.php:1748
-msgid "up"
-msgstr "أعلى"
-
-#: bp-links-core.php:1748
-msgid "down"
-msgstr "أسفل"
-
-#: bp-links-core.php:1751
-msgid "%1$s voted %2$s the link %3$s"
-msgstr ""
-
-#: bp-links-dtheme.php:72
-msgid "The activity of links I created."
-msgstr ""
-
-#: bp-links-dtheme.php:86
-msgid "Show Link Created"
-msgstr "عرض الروابط المنشاة"
-
-#: bp-links-dtheme.php:87
-msgid "Show Link Comments"
-msgstr "عرض الروابط التي لديها تعليق التعليق"
-
-#: bp-links-dtheme.php:88
-msgid "Show Link Votes"
-msgstr "مشاهدة الروابط التي لديها التصويت"
-
-#: bp-links-dtheme.php:109
-msgid "Search anything..."
-msgstr "البحث عن أي شيء ..."
-
-#: bp-links-dtheme.php:110
-msgid "Search"
-msgstr "بحث"
-
-#: bp-links-dtheme.php:120
-msgid "Start Over"
-msgstr "البدء من جديد"
-
-#: bp-links-dtheme.php:126
-msgid "Order By:"
-msgstr "ترتيب على حسب:"
-
-#: bp-links-dtheme.php:136
-msgid "Category:"
-msgstr "التصنيف:"
-
-#: bp-links-dtheme.php:138 bp-links-templatetags.php:1407
-msgid "All"
-msgstr ";g"
-
-#: bp-links-embed-classes.php:349 bp-links-embed-classes.php:1019
-msgid "Downloading content details from %1$s failed."
-msgstr ""
-
-#: bp-links-embed-classes.php:349
-#: themes/bp-links-default/single/forms/details.php:25
-msgid "URL"
-msgstr "رابط URL"
-
-#: bp-links-embed-classes.php:1009
-msgid "The URL you entered is not a valid %1$s link."
-msgstr ""
-
-#: bp-links-embed-classes.php:1014
-msgid "The code you entered is not valid %1$s embedding code."
-msgstr ""
-
-#: bp-links-embed-services.php:122
-msgid "Web Page"
-msgstr "صفحة الإنترنت"
-
-#: bp-links-embed-services.php:412
-msgid "PicApp"
-msgstr ""
-
-#: bp-links-embed-services.php:665
-msgid "Fotoglif"
-msgstr ""
-
-#: bp-links-embed-services.php:1002
-msgid "YouTube"
-msgstr "يويتوب"
-
-#: bp-links-embed-services.php:1226
-msgid "Flickr"
-msgstr "فليكر"
-
-#: bp-links-embed-services.php:1451
-msgid "MetaCafe"
-msgstr ""
-
-#: bp-links-embed.php:109
-msgid "Upload Failed! Error was:"
-msgstr "فشل التحميل ! هناك خطأ :"
-
-#: bp-links-embed.php:160
-msgid "Downloading image from remote website failed."
-msgstr "تحميل الصور من موقع عن بعد فشلت ."
-
-#: bp-links-embed.php:164
-msgid "The embedding code you entered was not recognized."
-msgstr "لم يتم التعرف على رمز التضمين الذي أدخلته."
-
-#: bp-links-embed.php:230
-msgid "Clear"
-msgstr "\tأزال"
-
-#: bp-links-embed.php:231
-msgid "Fetch Page Details"
-msgstr "جلب تفاصيل الصفحة"
-
-#: bp-links-embed.php:338
-msgid "Rich Media Detected:"
-msgstr "الكشف عن الوسائط المتعددة التفاعلية:"
-
-#: bp-links-embed.php:339
-msgid "Edit Name and Description"
-msgstr "تعديل الأسم والوصف"
-
-#: bp-links-embed.php:352
-msgid "Thumbs"
-msgstr "صورة مصغرة"
-
-#: bp-links-embed.php:354
-msgid "No Thumbnail"
-msgstr "لا توجد صورة مصغرة"
-
-#: bp-links-notifications.php:19
-msgid "%s commented on your link \"%s\""
-msgstr ""
-
-#: bp-links-notifications.php:21
-msgid ""
-"%s commented on your link \"%s\":\n"
-"\n"
-"\"%s\"\n"
-"\n"
-"To view and respond to the message, log in and visit: %s\n"
-"\n"
-"---------------------\n"
-msgstr ""
-
-#: bp-links-notifications.php:31 bp-links-notifications.php:82
-msgid "To disable these notifications please log in and go to: %s"
-msgstr ""
-
-#: bp-links-notifications.php:70
-msgid "%s mentioned you in the link \"%s\""
-msgstr ""
-
-#: bp-links-notifications.php:72
-msgid ""
-"%s mentioned you in the link \"%s\":\n"
-"\n"
-"\"%s\"\n"
-"\n"
-"To view and respond to the message, log in and visit: %s\n"
-"\n"
-"---------------------\n"
-msgstr ""
-
-#: bp-links-settings.php:15
-msgid "Global Settings"
-msgstr ""
-
-#: bp-links-settings.php:21
-msgid "List Avatar Size"
-msgstr ""
-
-#: bp-links-settings.php:22
-msgid "Set the default avatar size for link lists."
-msgstr ""
-
-#: bp-links-settings.php:39
-msgid "Link to local page?"
-msgstr ""
-
-#: bp-links-settings.php:40
-msgid ""
-"The default behavior is to link the title link to the local link page when a "
-"link is clicked. Set this to No to send them directly to the external url."
-msgstr ""
-
-#: bp-links-settings.php:54
-msgid "Content Settings"
-msgstr ""
-
-#: bp-links-settings.php:60
-msgid "Max. URL Characters"
-msgstr ""
-
-#: bp-links-settings.php:61
-msgid ""
-"Set this to the maximum number of characters allowed for a link URL. (Must "
-"be 255 or lower)"
-msgstr ""
-
-#: bp-links-settings.php:67
-msgid "Max. Name Characters"
-msgstr ""
-
-#: bp-links-settings.php:68
-msgid ""
-"Set this to the maximum number of characters allowed for a link name/title. "
-"(Must be 255 or lower)"
-msgstr ""
-
-#: bp-links-settings.php:74
-msgid "Max. Description Characters"
-msgstr ""
-
-#: bp-links-settings.php:75
-msgid ""
-"Set this to the maximum number of characters allowed for a link description."
-msgstr ""
-
-#: bp-links-settings.php:81
-msgid "Is description required?"
-msgstr ""
-
-#: bp-links-settings.php:82
-msgid ""
-"By default, every link must have a description. Set this to No to allow "
-"empty descriptions."
-msgstr ""
-
-#: bp-links-settings.php:92
-msgid "Category Input Type"
-msgstr ""
-
-#: bp-links-settings.php:93
-msgid ""
-"The default behavior is to use radio buttons to display categories on the "
-"create form. Set this to Select to use a select box instead."
-msgstr ""
-
-#: bp-links-settings.php:107
-msgid "Voting Settings"
-msgstr ""
-
-#: bp-links-settings.php:113
-msgid "Can members change their vote?"
-msgstr ""
-
-#: bp-links-settings.php:114
-msgid ""
-"The default behavior is to allow members to change their vote. Set this to "
-"No to prevent vote changing."
-msgstr ""
-
-#: bp-links-settings.php:124
-msgid "Record voting activity?"
-msgstr ""
-
-#: bp-links-settings.php:125
-msgid ""
-"The default behavior is to record voting activity the first time a member "
-"votes on a link. Set this to No to disable voting activity recording."
-msgstr ""
-
-#: bp-links-settings.php:139
-msgid "Profile Settings"
-msgstr ""
-
-#: bp-links-settings.php:145 bp-links-settings.php:188
-msgid "Nav Position"
-msgstr ""
-
-#: bp-links-settings.php:146
-msgid ""
-"Enter a number to set the position of the Links tab in the profile main "
-"navigation."
-msgstr ""
-
-#: bp-links-settings.php:152
-msgid "Activity Nav Position"
-msgstr ""
-
-#: bp-links-settings.php:153
-msgid ""
-"Enter a number to set the position of the Links tab in the profile activity "
-"navigation."
-msgstr ""
-
-#: bp-links-settings.php:159 bp-links-settings.php:196
-msgid "Max. Activity History"
-msgstr ""
-
-#: bp-links-settings.php:160
-msgid ""
-"Limitations of the activity API require that we pass all link ids that we "
-"want to display activity for if we are limiting results to links owned by a "
-"single user. This settings allows you to override the default number of "
-"links that have recent entries in the activity stream which are passed to "
-"the activity API."
-msgstr ""
-
-#: bp-links-settings.php:170
-msgid "Groups Settings"
-msgstr ""
-
-#: bp-links-settings.php:176
-msgid "Groups integration"
-msgstr ""
-
-#: bp-links-settings.php:177
-msgid ""
-"Integration with the groups component is On by default. Set this to Off to "
-"disable all integration with groups."
-msgstr ""
-
-#: bp-links-settings.php:189
-msgid ""
-"Enter a number to set the position of the Links tab in the groups navigation."
-msgstr ""
-
-#: bp-links-settings.php:197
-msgid ""
-"This setting is identical to Profile Max Activity history, except it applies "
-"to links that have been shared with a single group."
-msgstr ""
-
-#: bp-links-strings.php:7
-msgid "A Group"
-msgstr "المجموعة"
-
-#: bp-links-strings.php:8
-msgid "All Group Links"
-msgstr "كل روابط المجموعة"
-
-#: bp-links-strings.php:9
-msgid "Cancel"
-msgstr "إلغاء"
-
-#: bp-links-strings.php:10
-msgid "Create Group Link"
-msgstr "إنشاء رابط للمجموعة"
-
-#: bp-links-strings.php:11
-msgid "Failed to re-enable sharing this link with the %s group."
-msgstr ""
-
-#: bp-links-strings.php:12
-msgid "Loading sharing options has failed."
-msgstr ""
-
-#: bp-links-strings.php:13
-msgid "My Group Links"
-msgstr ""
-
-#: bp-links-strings.php:14
-msgid "Please Choose"
-msgstr ""
-
-#: bp-links-strings.php:15
-msgid "Remove from Group"
-msgstr ""
-
-#: bp-links-strings.php:16
-msgid "Remove from Profile"
-msgstr ""
-
-#: bp-links-strings.php:17
-msgid "Removing this link from your profile has failed."
-msgstr ""
-
-#: bp-links-strings.php:18
-msgid "Removing this link from this group has failed."
-msgstr ""
-
-#: bp-links-strings.php:19
-msgid "Select a group:"
-msgstr ""
-
-#: bp-links-strings.php:20
-msgid "Share"
-msgstr ""
-
-#: bp-links-strings.php:21
-msgid "Share Now"
-msgstr ""
-
-#: bp-links-strings.php:22
-msgid "Share this link in:"
-msgstr ""
-
-#: bp-links-strings.php:23
-msgid "Sharing a link with yourself is not allowed."
-msgstr ""
-
-#: bp-links-strings.php:24
-msgid "Sharing this link has failed."
-msgstr ""
-
-#: bp-links-strings.php:25
-msgid "Sharing this link in your profile has failed."
-msgstr ""
-
-#: bp-links-strings.php:26
-msgid "Sharing this link with the %s group has failed."
-msgstr ""
-
-#: bp-links-strings.php:27
-msgid "Sharing this link with the %s group was re-enabled."
-msgstr ""
-
-#: bp-links-strings.php:28
-msgid "Sharing with a group has failed."
-msgstr ""
-
-#: bp-links-strings.php:29
-msgid "This link has already been shared in your profile."
-msgstr ""
-
-#: bp-links-strings.php:30
-msgid "This link has been shared in your profile."
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:72
+msgid "Custom Post Type for CollabPress Task Lists"
 msgstr ""
 
-#: bp-links-strings.php:31
-msgid "This link has already been shared with the %s group."
-msgstr ""
-
-#: bp-links-strings.php:32
-msgid "This link has been removed from this group."
-msgstr ""
-
-#: bp-links-strings.php:33
-msgid "This link has been removed from your profile."
-msgstr ""
-
-#: bp-links-strings.php:34
-msgid "This link has been shared with the %s group."
-msgstr ""
-
-#: bp-links-strings.php:35
-msgid ""
-"This link was previously removed from the %s group by an admin or moderator."
-msgstr ""
-
-#: bp-links-strings.php:36
-msgid "You are not a member of the %s group."
-msgstr ""
-
-#: bp-links-strings.php:37
-msgid "You must be logged in to remove links."
-msgstr ""
-
-#: bp-links-strings.php:38
-msgid "You must be logged in to share links."
-msgstr ""
-
-#: bp-links-templatetags.php:385
-msgid "Public Link"
-msgstr ""
-
-#: bp-links-templatetags.php:387
-msgid "Friends Only Link"
-msgstr ""
-
-#: bp-links-templatetags.php:389
-msgid "Hidden Link"
-msgstr "رابط مخفي"
-
-#: bp-links-templatetags.php:391
-msgid "Link"
-msgstr "رابط"
-
-#: bp-links-templatetags.php:496
-msgid "not yet active"
-msgstr ""
-
-#: bp-links-templatetags.php:594
-msgid "%s vote"
-msgstr ""
-
-#: bp-links-templatetags.php:596 bp-links-widgets.php:133
-msgid "%s votes"
-msgstr ""
-
-#: bp-links-templatetags.php:715
-msgid "Viewing link %1$d to %2$d (of %3$d links)"
-msgstr ""
-
-#: bp-links-templatetags.php:752
-msgid "Edit Details"
-msgstr ""
-
-#: bp-links-templatetags.php:774
-msgid "This is a hidden link. Only the user who owns it can view it."
-msgstr ""
-
-#: bp-links-templatetags.php:776
-msgid "This is a friends only link. Only the owner's friends can view it."
-msgstr ""
-
-#: bp-links-templatetags.php:778
-msgid "You do not have permission to access this link."
-msgstr ""
-
-#: bp-links-templatetags.php:1262
-msgid "Viewing category %1$d to %2$d (of %3$d categories)"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:81
+msgid "Tasks"
+msgstr "المهام"
 
-#: bp-links-templatetags.php:1452
-msgid "Yes"
-msgstr "نعم"
-
-#: bp-links-templatetags.php:1453
-msgid "No"
-msgstr "لا"
-
-#: bp-links-templatetags.php:1457
-msgid "A member posts a comment on a link you created"
-msgstr ""
-
-#: bp-links-templatetags.php:1499 bp-links-widgets.php:36
-msgid "Votes"
-msgstr ""
-
-#: bp-links-templatetags.php:1606
-msgid "External Link"
-msgstr ""
-
-#: bp-links-templatetags.php:1641
-msgid "more..."
-msgstr ""
-
-#: bp-links-templatetags.php:1675
-msgid "Comments"
-msgstr ""
-
-#: bp-links-templatetags.php:1682 bp-links-widgets.php:127
-msgid "created %s"
-msgstr ""
-
-#: bp-links-templatetags.php:1690 themes/bp-links-admin/link-manager.php:74
-msgid "Last Active"
-msgstr ""
-
-#: bp-links-templatetags.php:1691
-msgid "Most Popular"
-msgstr ""
-
-#: bp-links-templatetags.php:1692
-msgid "Newly Created"
-msgstr ""
-
-#: bp-links-templatetags.php:1693
-msgid "Most Votes"
-msgstr ""
-
-#: bp-links-templatetags.php:1694
-msgid "Highest Rated"
-msgstr ""
-
-#: bp-links-widgets.php:13
-msgid "Your BuddyPress Links"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:82
+msgid "Custom Post Type for CollabPress Tasks"
 msgstr ""
 
-#: bp-links-widgets.php:34
-msgid "Newest"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:91
+msgid "Meta Data"
 msgstr ""
 
-#: bp-links-widgets.php:35
-msgid "Active"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/admin_init.php:92
+msgid "Custom Post Type for CollabPress Meta Data"
 msgstr ""
 
-#: bp-links-widgets.php:37
-msgid "Rating"
-msgstr ""
-
-#: bp-links-widgets.php:38
-msgid "Popular"
-msgstr "مشهور"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-core.php:25
+msgid "View Dashboard"
+msgstr "عرض لوحة التحكم"
 
-#: bp-links-widgets.php:50 bp-links-widgets.php:131
-msgid "%+d rating"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-core.php:37
+msgid "CollabPress - Recent Activity"
 msgstr ""
 
-#: bp-links-widgets.php:62
-msgid "There are no links to display."
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:17
+msgid "Display CollabPress overview stats"
 msgstr ""
 
-#: bp-links-widgets.php:83
-msgid "Max links to show:"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:19
+msgid "CollabPress: Overview Widget"
 msgstr ""
 
-#: bp-links-widgets.php:148
-msgid "No links matched the current filter."
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:24
+msgid "CollabPress Overview"
+msgstr "استعراض المشروع"
 
-#: feeds/bp-links-feed.php:22
-msgid "Most Recent Links"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:33
+msgid "Title"
+msgstr "العنوان"
 
-#: feeds/bp-links-feed.php:26
-msgid "Most Recent Links Feed"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:34
+msgid "Show Project Count"
+msgstr "عرض عدد المشاريع"
 
-#: feeds/bp-links-link-feed.php:21
-msgid "Link Activity"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:35
+msgid "Show Task List Count"
+msgstr "قائمة المهام"
 
-#: feeds/bp-links-link-feed.php:24
-msgid "%s - Link Activity Feed"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:36
+msgid "Show Task Count"
+msgstr "عرض عدد المهام"
 
-#: feeds/bp-links-link-feed.php:43 feeds/bp-links-mylinks-feed.php:42
-msgid "Comments: %s"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:37
+msgid "Show User Count"
+msgstr "عرض عدد المستخدمين"
 
-#: feeds/bp-links-mylinks-feed.php:21 feeds/bp-links-mylinks-feed.php:24
-msgid "My Links - Public Activity"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:73
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:350
+msgid "Project"
+msgstr "مشروع"
 
-#: lib/wp-settings-framework.php:282
-msgid "Save Changes"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:80
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:355
+msgid "Task List"
+msgstr "قائمة المهام"
 
-#: themes/bp-links-admin/category-edit.php:31
-msgid "Link Category Name"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:87
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:360
+msgid "Task"
+msgstr "مهمة"
 
-#: themes/bp-links-admin/category-edit.php:35
-msgid "Description (optional)"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/cp-widgets.php:93
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:364
+msgid "User"
+msgstr "المستخدم"
 
-#: themes/bp-links-admin/category-edit.php:39
-msgid "Priority (optional)"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:71
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "CollabPress"
 msgstr ""
 
-#: themes/bp-links-admin/category-edit.php:40
-msgid "to"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "Please Report Bugs"
 msgstr ""
 
-#: themes/bp-links-admin/category-list.php:24
-msgid "Search Categories"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+msgid "Follow us on Twitter: "
 msgstr ""
 
-#: themes/bp-links-admin/category-list.php:35
-#: themes/bp-links-admin/link-manager.php:34
-msgid "Delete"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "Scott"
 msgstr ""
 
-#: themes/bp-links-admin/category-list.php:35
-#: themes/bp-links-admin/link-manager.php:34
-msgid "Are you sure?"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "Brad"
 msgstr ""
 
-#: themes/bp-links-admin/category-list.php:44
-msgid "Categories matching:"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+msgid "Chris"
 msgstr ""
 
-#: themes/bp-links-admin/category-list.php:58
-#: themes/bp-links-default/single/forms/details.php:34
-msgid "Name"
-msgstr "الإسم"
-
-#: themes/bp-links-admin/category-list.php:61
-#: themes/bp-links-default/single/forms/details.php:38
-msgid "Description"
-msgstr "الوصف"
-
-#: themes/bp-links-admin/category-list.php:64
-msgid "Slug"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/footer.php:2
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "WDS"
 msgstr ""
 
-#: themes/bp-links-admin/category-list.php:67
-msgid "Priority"
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:24
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:44
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:67
+msgid "Back"
+msgstr "الرجوع"
 
-#: themes/bp-links-admin/category-list.php:89
-#: themes/bp-links-admin/link-manager.php:98
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:32
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:52
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:79
 msgid "Edit"
-msgstr "حرر"
+msgstr "تحرير"
 
-#: themes/bp-links-admin/category-list.php:99
-msgid "No categories found."
-msgstr ""
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:75
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:103
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:71
+msgid "CollabPress Dashboard"
+msgstr "عرض لوحة التحكم"
 
-#: themes/bp-links-admin/index.php:21
-msgid "Thank you for installing BuddyPress Links!"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:27
-msgid "Version Information"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:33
-msgid "Base:"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:37
-msgid "Pro Extension:"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:41
-msgid "Purchase"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:48
-msgid "Additional Activation Steps:"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:51
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:79
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:284
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1218
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:195
 msgid ""
-"These additional steps are required to get this plugin working after the "
-"first activation."
+"WARNING: This will delete the selected project, including ALL task lists and "
+"tasks in the project.\\n\\nChoose [Cancel] to Stop, [OK] to delete.\\n"
+msgstr ""
+"تنبيه: هذا سيتم حذف المشاريع المحددة . و ما بداخلها من مهام و قوائم المهام "
+"\\n\\nاختر [إلغاء] للتوقف ، [ موافق ] للحذف \\n ."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:79
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:52
+msgid "Delete"
+msgstr "حذف"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:95
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:221
+msgid "Calendar"
+msgstr "التقويم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:99
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:295
+msgid "View All Projects"
+msgstr "عرض كل المشاريع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:131
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:137
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:146
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:150
+msgid "Dashboard"
+msgstr "لوحة التحكم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:172
+msgid "Powered by "
+msgstr "بدعم من"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:172
+msgid "CollabPress.org"
 msgstr ""
 
-#: themes/bp-links-admin/index.php:55
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:185
+msgid "Project Added"
+msgstr "تمت إضافة المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:189
+msgid "Project Updated"
+msgstr "تم تحديث المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:193
+msgid "Project Deleted"
+msgstr "تم حذف المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:197
+msgid "Task List Added"
+msgstr "تم إضافة قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:201
+msgid "Task List Updated"
+msgstr "تم تحديث قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:205
+msgid "Task List Deleted"
+msgstr "تم حذف قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:209
+msgid "Task Added"
+msgstr "تمت إضافة المهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:213
+msgid "Task Updated"
+msgstr "تم تحديث المهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:217
+msgid "Task Deleted"
+msgstr "تم حذف المهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:221
+msgid "Comment Added"
+msgstr "تم إضافة التعليق"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:225
+msgid "Acitivity Log Has Been Cleared"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:232
+msgid "Activity"
+msgstr "النشاط"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:255
+msgid "View Calendar"
+msgstr "التقويم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:284
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:659
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1218
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:195
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:330
+msgid "edit"
+msgstr "تحرير"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:284
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:659
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:837
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:953
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1218
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:195
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:251
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:330
+msgid "delete"
+msgstr "حذف"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:292
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1226
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:209
+msgid "No Projects..."
+msgstr "لا يوجد أي مشروع ..."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:337
+msgid "View All Users"
+msgstr "عرض كل المستخدمين"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:374
+msgid "Click to Upload"
+msgstr "انقر للتحميل"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:398
+msgid "No file attachments..."
+msgstr " ... لا يوجد أي ملف مرفق "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:462
+msgid "No Activities..."
+msgstr " ... لا توجد أية نشاطات "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:529
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:578
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:754
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:789
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:865
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:902
+msgid "Description: "
+msgstr "الوصف :"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:538
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:587
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:655
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:710
+msgid "Due: "
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:542
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:591
+msgid "Assigned to: "
+msgstr ":المسؤول عنها"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:552
+msgid "Notify via Email? "
+msgstr "إخطار عبر البريد الإلكتروني؟"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:558
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:604
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:765
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:800
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:876
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:913
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:980
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:109
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:112
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:115
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:118
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:121
+msgid "Submit"
+msgstr "أرسل"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:620
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1033
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:272
+msgid "Current Tasks"
+msgstr "المهام الحالية"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:659
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:330
 msgid ""
-"Click on <strong>Settings</strong> under the <strong>Dashboard</strong> menu."
+"WARNING: This will delete the selected task.\\n\\nChoose [Cancel] to Stop, "
+"[OK] to delete.\\n"
 msgstr ""
+"تنبيه: هذا سيتم حذف المهمة المحددة . \\n\\nاختر [إلغاء] للتوقف ، [ موافق ] "
+"للحذف \\n ."
 
-#: themes/bp-links-admin/index.php:56
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:670
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1051
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:339
+msgid "No Tasks..."
+msgstr "المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:678
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:347
+msgid "Completed Tasks"
+msgstr "استكملت المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:724
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:410
+msgid "No Tasks Completed..."
+msgstr " ... لا توجد مهمة مكتملة "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:750
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:785
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:861
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:898
+msgid "Name: "
+msgstr ":الإسم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:820
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:233
+msgid "Tasks Lists"
+msgstr "قوائم المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:837
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:251
 msgid ""
-"Click on <strong>BuddyPress</strong> under the <strong>Settings</strong> "
-"menu."
+"WARNING: This will delete the selected task list and all tasks in the list."
+"\\n\\nChoose [Cancel] to Stop, [OK] to delete.\\n"
 msgstr ""
+"تنبيه : سيتم حذف قائمة المهام المحددة و ما بداخلها من مهام .  \\n\\nاختر "
+"[إلغاء] للتوقف ، [ موافق ] للحذف \\n ."
 
-#: themes/bp-links-admin/index.php:57
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:843
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:257
+msgid "No Task Lists..."
+msgstr " لا توجد قوائم المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:953
 msgid ""
-"Click the <strong>Pages</strong> tab on the <strong>BuddyPress</strong> "
-"settings screen."
+"WARNING: This will delete the selected comment.\\n\\nChoose [Cancel] to "
+"Stop, [OK] to delete.\\n"
+msgstr ""
+"تنبيه : سيتم حذف التعليقات المحددة .  \\n\\nاختر [إلغاء] للتوقف ، [ موافق ] "
+"للحذف \\n ."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:964
+msgid "No comments..."
+msgstr "لا يوجد أي تعليق"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:976
+msgid "Leave a Comment: "
+msgstr " : اترك التعليق"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:978
+msgid "Notify via Email?"
+msgstr "إخطار عبر البريد الإلكتروني؟"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1000
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:228
+msgid "Recent Activity"
+msgstr "النشاطات الحديثة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1030
+msgid "No Recent Activity..."
+msgstr " لا توجد أي النشاط حديث"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1048
+msgid " - View"
+msgstr "عرض -"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Sunday"
+msgstr "الأحد"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Monday"
+msgstr "الأثنين"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Tuesday"
+msgstr "الثلاثاء"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Wednesday"
+msgstr "الأربعاء"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Thursday"
+msgstr "الخميس"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Friday"
+msgstr "الجمعة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1104
+msgid "Saturday"
+msgstr "السبت"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1197
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:127
+msgid "All Projects"
+msgstr "كل المشاريع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:326
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:401
+msgid "Assigned to:"
+msgstr ":المسؤول عنها "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:326
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:401
+msgid " Due: "
 msgstr ""
 
-#: themes/bp-links-admin/index.php:58
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:78
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:7
+msgid "CollabPress Settings"
+msgstr "CollabPress  إعدادت"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:78
+msgid "Settings"
+msgstr "الإعدادت"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:83
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:7
+msgid "CollabPress Help"
+msgstr " CollabPress مساعدة "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:83
+msgid "Help"
+msgstr "مساعدة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:88
+msgid "Debug"
+msgstr "Debug"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:223
+msgid "Users"
+msgstr "المستخدمين"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:224
+msgid "Overview"
+msgstr "استعراض المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:229
+msgid "Add New Project"
+msgstr "أضف مشروع جديد"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:230
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:241
+msgid "Edit Project"
+msgstr "تحرير المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:236
+msgid "Add New Task List"
+msgstr " إضافة قائمة المهام جديدة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:237
+msgid "Edit Task List"
+msgstr "تحرير قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:238
+msgid "Project Overview"
+msgstr "استعراض المشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:240
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:251
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:259
+msgid "Files"
+msgstr "ملفات"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:247
+msgid "Add New Task"
+msgstr "إضافة مهمة جديدة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:248
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:257
+msgid "Edit Task"
+msgstr "مهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:249
+msgid "Task List Overview"
+msgstr "عرض قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:263
+msgid "Credits"
+msgstr "الائتمانات"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/dashboard.php:343
+msgid "Cheatin&#8217; uh?"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:10
+msgid "Title: "
+msgstr "العنوان:"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:12
+msgid "ID: "
+msgstr "رقم المعرف"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:14
+msgid "Author: "
+msgstr "المؤلف :"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:16
+msgid "Created: "
+msgstr "المنشىء:"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:16
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:18
+msgid "at"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:18
+msgid "Modified: "
+msgstr "تم تعديله :"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:24
+msgid "Custom Fields: collabpress"
+msgstr "حقول المخصصة: collabpress"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:30
+msgid "name: "
+msgstr ":الإسم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:31
+msgid "value"
+msgstr "القيمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:42
+msgid "No results..."
+msgstr "لا توجد نتائج .."
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:50
+msgid "CollabPress Debug"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:108
+msgid "Delete All CollabPress Data: "
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:111
+msgid "Delete CollabPress Projects: "
+msgstr ": CollabPress حذف مشاريع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:114
+msgid "Delete CollabPress Task Lists: "
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:117
+msgid "Delete CollabPress Tasks: "
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:120
+msgid "Delete CollabPress Meta Data: "
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:143
+msgid "All Task Lists"
+msgstr "كل قوائم المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/debug.php:175
+msgid "All Meta"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/footer.php:2
+msgid "Follow us on Twitter:"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:8
+msgid "Shortcode Legend"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:9
 msgid ""
-"Under directories, assign a page to the <strong>Links</strong> component by "
-"selecting an existing page, or creating a new one."
+"Add full CollabPress support to the front-end of WordPress.  View/edit/"
+"delete all projects, task-lists, tasks, and comments."
 msgstr ""
 
-#: themes/bp-links-admin/index.php:59
-msgid "Click the <strong>Save</strong> button."
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:10
+msgid "Set user role"
 msgstr ""
 
-#: themes/bp-links-admin/index.php:60
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:10
+msgid "for front-end [collabpress] shortcode support"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:11
+msgid "Support and Info"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:12
+msgid "Visit the"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:12
+msgid "CollabPress Support Forum"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:12
+msgid "Follow on Twitter"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:12
+msgid "Subscribe via Email"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:13
+msgid "Donate"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:14
+msgid "Please donate to the development of CollabPress:"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:18
+msgid "PayPal - The safer, easier way to pay online!"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:22
+msgid "Latest CollabPress News"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/help.php:28
+msgid "CollabPress News"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:57
+msgid "General"
+msgstr "عام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:60
+msgid "Dashboard Meta Box"
+msgstr "لوحة التحكم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:63
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:73
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:153
+msgid "Disabled"
+msgstr "تعطيل"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:64
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:72
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:154
+msgid "Enabled"
+msgstr "تمكين"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:69
+msgid "Email Notifications"
+msgstr "تنبيهات البريد الإلكتروني"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:78
+msgid "Recent Activites Per Page"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:95
+msgid "Number of Users to Display"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:107
+msgid "Permissions"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:110
+msgid "Minimum User Role for Access"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:113
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:125
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:138
+msgid "Administrator"
+msgstr "المدير"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:114
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:126
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:139
+msgid "Editor"
+msgstr "تحرير"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:115
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:127
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:140
+msgid "Author"
+msgstr "المؤلف"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:116
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:128
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:141
+msgid "Contributor"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:117
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:129
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:142
+msgid "Subscriber"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:122
 msgid ""
-"The <strong>Links</strong> item in your site navigation should now load the "
-"links component!"
+"Minimum User Role to change Settings, Edit/Delete data, Enable/View Debug, "
+"etc"
 msgstr ""
 
-#: themes/bp-links-admin/index.php:68
-msgid "Support"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:134
+msgid "Minimum User Role to view [collabpress] shortcode front-end"
 msgstr ""
 
-#: themes/bp-links-admin/index.php:70
-msgid "There are two levels of support:"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:137
+msgid "Anyone"
+msgstr "أي شخص"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:147
+msgid "Advanced"
+msgstr "متقدم"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:150
+msgid "Debug Mode"
 msgstr ""
 
-#: themes/bp-links-admin/index.php:73
-msgid "For support on the community version, head over to this plugin's"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:159
+msgid "Save Settings"
+msgstr "حفظ الإعدادت"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:166
+msgid "Optimize"
 msgstr ""
 
-#: themes/bp-links-admin/index.php:73
-msgid "official group"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:174
+msgid "Clear Activity Log"
 msgstr ""
 
-#: themes/bp-links-admin/index.php:73
-msgid "on BuddyPress.org"
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:175
+msgid "Delete Log"
 msgstr ""
 
-#: themes/bp-links-admin/index.php:74
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/settings.php:175
 msgid ""
-"For premium support on the community and pro versions, head over to the "
-"Press Crew"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:74
-msgid "premium plugin forums"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:77
-msgid "Pro Extension"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:79
-msgid "The pro extension, available for purchase in the"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:80
-msgid "Press Crew Shop"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:81
-msgid "adds the following additional features:"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:83
-msgid "Additional Rich Media Support"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:85
-msgid "Dailymotion"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:86
-msgid "Vimeo"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:88
-msgid "Member Links Sharing"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:90
-msgid "Share other member's links on their profile."
-msgstr ""
-
-#: themes/bp-links-admin/index.php:91
-msgid "Share any link with a group they are a member of."
-msgstr ""
-
-#: themes/bp-links-admin/index.php:93
-msgid "Groups Integration"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:95
-msgid ""
-"Group members can add a link to any group they are a member of, directly "
-"from the group."
-msgstr ""
-
-#: themes/bp-links-admin/index.php:96
-msgid "Fully integrated with the group activity stream."
-msgstr ""
-
-#: themes/bp-links-admin/index.php:97
-msgid ""
-"Each group has their own links mini-directory which lists only that group's "
-"links."
-msgstr ""
-
-#: themes/bp-links-admin/index.php:98
-msgid "Separate tabs for listing all group links, or just my group links."
-msgstr ""
-
-#: themes/bp-links-admin/index.php:99
-msgid "The same powerful category and order filtering is available."
-msgstr ""
-
-#: themes/bp-links-admin/index.php:100
-msgid "Group administrators can remove group links, with prejudice."
-msgstr ""
-
-#: themes/bp-links-admin/index.php:103
-msgid "Developer Extras"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:105
-msgid "Trac Revision Log"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:106
-msgid "Trac Browser"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:109
-msgid "About the Author:"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:111
-msgid "Marshall Sorenson's Blog"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:112
-msgid "MrMaz on BuddyPress.org"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:115
-msgid "Credits:"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:118
-msgid "Logo Elements:"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:119
-msgid "&quot;Share&quot; symbol by The Noun Project, from"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:119
-msgid "The Noun Project"
-msgstr ""
-
-#: themes/bp-links-admin/index.php:119
-msgid "collection."
-msgstr ""
-
-#: themes/bp-links-admin/link-manager.php:21
-#: themes/bp-links-admin/link-manager.php:23
-msgid "Search Links"
-msgstr ""
-
-#: themes/bp-links-admin/link-manager.php:43
-msgid "Links matching:"
-msgstr ""
-
-#: themes/bp-links-admin/link-manager.php:59
-#: themes/bp-links-default/single/forms/details.php:10
-msgid "Details"
-msgstr ""
-
-#: themes/bp-links-admin/link-manager.php:62
-#: themes/bp-links-default/single/forms/details.php:14
-msgid "Category"
-msgstr ""
-
-#: themes/bp-links-admin/link-manager.php:65
-msgid "Type"
-msgstr ""
-
-#: themes/bp-links-admin/link-manager.php:68
-msgid "Owner"
-msgstr ""
-
-#: themes/bp-links-admin/link-manager.php:71
-msgid "Created"
-msgstr ""
-
-#: themes/bp-links-admin/link-manager.php:108
-msgid "No links found."
-msgstr ""
-
-#: themes/bp-links-admin/settings.php:23
-msgid "Setting applies to pro extension only"
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:4
-msgid "Show Some Gratitude"
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:6
-msgid ""
-"The ongoing development of this plugin is 100% financed by YOUR donations "
-"and purchases."
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:10
-msgid "Upgrade to the Pro Extension."
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:11
-msgid ""
-"Get powerful groups integration, link re-sharing, Dailymotion and Vimeo "
-"support and more!"
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:14
-msgid "Make a small (or large) donation."
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:15
-msgid "Keep your karma clean, and the ramen noodles flowing!"
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:21
-msgid "Make BuddyPress Rock!"
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:23
-msgid ""
-"PressCrew creates themes and plugins built for BuddyPress from the ground up."
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:27
-msgid "Balance Theme"
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:28
-msgid "The ONLY theme with native support for BuddyPress Links."
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:31
-msgid "Group-O-Matic"
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:32
-msgid "FREE plugin for dramatically boosting group memberships."
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:38
-msgid "Stalk, err... Follow Us"
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:40
-msgid "If you need to know everything we do, the second it happens."
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:47
-msgid "Subscribe to our Newsletter"
-msgstr ""
-
-#: themes/bp-links-admin/sidebar.php:49
-msgid ""
-"We'll send you the occasional newsletter telling you about our new themes "
-"and plugins."
-msgstr ""
-
-#: themes/bp-links-default/activity/post-form.php:12
-msgid "Comment on this link, %s?"
-msgstr ""
-
-#: themes/bp-links-default/activity/post-form.php:23
-msgid "Post Update"
-msgstr ""
-
-#: themes/bp-links-default/create.php:6 themes/bp-links-default/index.php:8
-msgid "Create a Link"
-msgstr ""
-
-#: themes/bp-links-default/create.php:6 themes/bp-links-default/index.php:8
-msgid "Links Directory"
-msgstr ""
-
-#: themes/bp-links-default/index.php:18
-msgid "All Links"
-msgstr ""
-
-#: themes/bp-links-default/index.php:33
-#: themes/bp-links-default/single/activity.php:3
-msgid "RSS"
-msgstr ""
-
-#: themes/bp-links-default/links-loop.php:41
-msgid "There were no links found."
-msgstr ""
-
-#: themes/bp-links-default/single/activity.php:9
-msgid "No Filter"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/avatar.php:12
-msgid "Delete Avatar"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/avatar.php:21
-msgid ""
-"Upload an image to use as an avatar for this link. The image will be shown "
-"on the main link page, and in search results."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/avatar.php:25
-msgid "Upload Image"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/avatar.php:32
-msgid "OR"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/avatar.php:35
-msgid "Paste Image Embed Code (%1$s and %2$s are supported)"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/avatar.php:39
-msgid "Embed Image"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/avatar.php:48
-msgid "Crop Avatar"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/avatar.php:50
-msgid "Avatar to crop"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/avatar.php:53
-msgid "Avatar preview"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/avatar.php:56
-msgid "Crop Image"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/delete.php:10
-msgid ""
-"WARNING: Deleting this link will completely remove ALL content associated "
-"with it. There is no way back, please be careful with this option."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/delete.php:13
-msgid "I understand the consequences of deleting this link."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:51
-msgid "Edit Avatar Options"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:57
-msgid "Current"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:67
-msgid "Customize"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:69
-msgid ""
-"After saving this link you will be directed to a page where you can "
-"customize the avatar."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:80
-msgid "Edit Advanced Settings"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:84
-msgid "Privacy Options"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:88
-msgid "This is a public link"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:91
-msgid "Any site member can see this link, and comment on it."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:92
-msgid "This link will be listed in the links directory and in search results."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:93
-msgid "Link content and activity will be visible to any site member."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:99
-msgid "This is a friends-only link"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:102
-msgid ""
-"Only users who are in your friends list can see the link and comment on it."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:103
-#: themes/bp-links-default/single/forms/details.php:114
-msgid ""
-"This link will NOT be listed in the links directory or in search results."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:104
-msgid "Link content and activity will only be visible to your friends."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:110
-msgid "This is a hidden link"
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:113
-msgid "Only you can see the link."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:115
-msgid "Link content and activity will only be visible to you."
-msgstr ""
-
-#: themes/bp-links-default/single/forms/details.php:126
-msgid "Save Link"
-msgstr "حفظ الرابط"
-
-#: themes/bp-links-default/single/link-header.php:7
-msgid "Link Owner"
-msgstr ""
-
-#: themes/bp-links-default/single/link-header.php:26
-msgid "active %s"
-msgstr ""
+"WARNING: This will delete ALL activity logs.  Once logs have been deleted "
+"they can NOT be restored.\\n\\nChoose [Cancel] to Stop, [OK] to delete logs."
+"\\n"
+msgstr ""
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:40
+msgid "New comment on task "
+msgstr "تعليق جديد على المهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:42
+msgid "There is a new comment on your task from "
+msgstr "هناك تعليق جديد على مهمتك من"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:43
+msgid "Comment:"
+msgstr " : تعليق "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:51
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:18
+msgid "added"
+msgstr "تمت الإضافة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:51
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:68
+msgid "comment"
+msgstr "تعليق"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/comment.php:68
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:98
+msgid "deleted"
+msgstr "تم الحذف"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:18
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:40
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:98
+msgid "project"
+msgstr "مشروع"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/project.php:40
+msgid "updated"
+msgstr "تم التحديث"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task-list.php:23
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task-list.php:45
+msgid "task list"
+msgstr "قائمة المهام"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:38
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:78
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:101
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:109
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:129
+msgid "task"
+msgstr "مهمة"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:48
+msgid "New task assigned to you: "
+msgstr " : مهمة جديدة مسندة لك "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:50
+msgid "There is a new task assigned to you:"
+msgstr ": هناك مهمة جديدة مسندة لك"
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:101
+msgid "completed"
+msgstr "منجز "
+
+#: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/menus/isset/task.php:109
+msgid "opened"
+msgstr "مفتوح"
