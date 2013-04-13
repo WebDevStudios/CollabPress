@@ -60,6 +60,7 @@ function cp_add_admin_menu_item() {
 }
 
 add_action( 'wp', 'cp_setup_cp_global' );
+add_action( 'admin_init', 'cp_setup_cp_global' );
 
 /**
  * Setup the $cp PHP global

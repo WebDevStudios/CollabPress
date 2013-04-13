@@ -683,6 +683,7 @@ function cp_limit_length( $strtolimit=null, $limit=50 ) {
 require_once( CP_PLUGIN_DIR . 'includes/template-tags.php' );
 
 add_action( 'wp', 'cp_maybe_enqueue_styles_and_scripts' );
+add_action( 'init', 'cp_maybe_enqueue_styles_and_scripts' );
 
 function cp_maybe_enqueue_styles_and_scripts() {
 	if ( is_collabpress_page() )
