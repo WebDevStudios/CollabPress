@@ -68,6 +68,8 @@ add_action( 'admin_init', 'cp_setup_cp_global' );
 function cp_setup_cp_global() {
 	global $cp, $wpdb;
 
+	$cp = new StdClass;
+
 	// Set custom table names
 	$cp->tables = new stdClass;
 	$cp->tables->project_users = $wpdb->prefix . 'cp_project_users';
@@ -75,8 +77,6 @@ function cp_setup_cp_global() {
 	// If we're not on a CollabPress page, bail.
 	if ( ! is_collabpress_page() )
 		return;
-
-	$cp = new StdClass;
 
 	// Set up the default keys
 	$defaults = array(
