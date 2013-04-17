@@ -365,7 +365,7 @@ function cp_project_links() {
 	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>">Dashboard</a>
 	<a class="<?php echo ( is_collabpress_page( 'project-overview' ) ? 'current' : '' ); ?>" href="<?php cp_project_permalink(); ?>">Project Overview</a>
 	<a class="<?php echo ( is_collabpress_page( 'project-calendar' ) ? 'current' : '' ); ?>" href="<?php cp_project_calendar_permalink(); ?>">Calendar</a>
-	<a class="<?php echo ( is_collabpress_page( 'project-tasks' ) ? 'current' : '' ); ?>" href="<?php cp_project_tasks_permalink(); ?>">Tasks</a>
+	<a class="<?php echo ( is_collabpress_page( 'project-tasks' ) || is_collabpress_page( 'task' ) ? 'current' : '' ); ?>" href="<?php cp_project_tasks_permalink(); ?>">Tasks</a>
 	<a class="<?php echo ( is_collabpress_page( 'project-files' ) ? 'current' : '' ); ?>" href="<?php cp_project_files_permalink(); ?>">Files</a>
 	<a class="<?php echo ( is_collabpress_page( 'project-users' ) ? 'current' : '' ); ?>" href="<?php cp_project_users_permalink(); ?>">Users</a><?php
 }

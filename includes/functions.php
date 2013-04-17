@@ -714,6 +714,7 @@ function cp_enqueue_styles_and_scripts() {
  * If a slug is included, check if we're on a specific CollabPress page.
  */
 function is_collabpress_page( $slug = '' ) {
+
 	global $post;
 	// If the page is not set
 	if (
@@ -729,7 +730,7 @@ function is_collabpress_page( $slug = '' ) {
 	// Default, if we're just checking that we're on a CollabPress page
 	if ( ! $slug )
 		return apply_filters( 'is_collabpress_page', true );
-
+	$return = false;
 	if ( ! empty( $_REQUEST['project'] ) ) {
 		if ( ! empty( $_REQUEST['view'] ) ) {
 			if ( $slug == 'project-calendar'
@@ -745,14 +746,12 @@ function is_collabpress_page( $slug = '' ) {
 			  && $_REQUEST['view'] == 'users' )
 				$return = true;
 		} else {
-			if ( ! empty( $_REQUEST['task'] ) ) {
-				if ( $slug == 'task' )
-					$return = true;
-			} else {
-				if ( $slug == 'project-overview' )
-					$return = true;
-			}
+			if ( $slug == 'project-overview' )
+				$return = true;
 		}
+	} else if ( ! empty( $_REQUEST['task'] ) ) {
+		if ( $slug == 'task' )
+			$return = true;
 	} else {
 		if ( ! empty( $_REQUEST['view'] ) ) {
 			if ( $slug == 'calendar' && $_REQUEST['view'] == 'calendar' )
@@ -767,7 +766,6 @@ function is_collabpress_page( $slug = '' ) {
 
 	if ( ! isset( $return ) )
 		$return = false;
-
 	return apply_filters( 'is_collabpress_page', $return );
 }
 
