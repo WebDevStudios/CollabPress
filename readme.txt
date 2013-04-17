@@ -1,10 +1,10 @@
 === CollabPress ===
 Contributors: scottbasgaard, williamsba1, cochran, boonebgorges, ericlewis
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
-Tags: task, management, basecamp, to do, projects, lists, team, planning, tracking, reporting, shortcode, widget, multisite, buddypress
-Requires at least: 3.0
+Tags: project management, task, management, basecamp, to do, lists, team, planning, tracking, reporting, shortcode, widget, multisite, buddypress
+Requires at least: 3.5
 Tested up to: 3.5.1
-Stable tag: 1.2.4
+Stable tag: 1.3
 
 Project management and task tracking software for WordPress
 
@@ -40,6 +40,13 @@ CollabPress is an Open Source project. If you are a developer, make sure to chec
 6. BuddyPress Group integration
 
 == Changelog ==
+
+= 1.3 =
+* Complete user interface overhaul
+* Themes can now override any CollabPress template
+* Calendar overview of all projects, displaying tasks of projects the logged-in user has access to
+* File uploads use new WordPress media manager
+* Added Arabic translation [props Muneerah-Salah]
 
 = 1.2.4 =
 * Hardened security for all projects, task lists, and tasks
@@ -132,6 +139,16 @@ CollabPress is an Open Source project. If you are a developer, make sure to chec
 * First beta release
 
 == Upgrade Notice ==
+
+= 1.3 =
+* New user interface
+* Calendar overview of all projects, displaying tasks of projects the logged-in user has access to
+* File uploads use new WordPress media manager
+
+= 1.2.4 =
+* Hardened security for all projects, task lists, and tasks
+* Added new task and comment email filters for subject and body
+* Added Slovak translation [props Branco](http://webhostinggeeks.com/user-reviews/)
 
 = 1.2.3 =
 * Removed remaining Google Hosted jQuery
