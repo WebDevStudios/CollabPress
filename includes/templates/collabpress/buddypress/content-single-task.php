@@ -133,11 +133,13 @@
 				task_due_date: $('#cp-task-due-date').val(),
 				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>'
 			};
+			var nonce = $( '#edit_task_nonce' ).val();
 			$.post(
 				ajaxurl,
 				{
 					action: 'cp_edit_task',
-					data: data
+					data: data,
+					nonce: nonce
 				}, function( response ) {
 					if ( response.data.redirect )
 						window.location = response.data.redirect;
@@ -167,33 +169,32 @@
 			);
 			return false;
 		});
-	});
+			// On comment delete click send AJAX request
+		$('.delete-comment-link').click( function() {
 
-	// On comment delete click send AJAX request
-	$('.delete-comment-link').click( function() {
+			if ( window.confirm( '<?php _e( 'Are you sure you want to delete this comment?', 'collabpress' ); ?>' ) ) {
+				var that = this;
 
-		if ( window.confirm( '<?php _e( 'Are you sure you want to delete this comment?', 'collabpress' ); ?>' ) ) {
-			var that = this;
+				var comment_id = $(this).data('comment-id'),
+					data = {
+						comment_id: comment_id,
+						collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>'
+					},
+					nonce = jQuery( '#delete_comment_nonce_' + comment_id ).val();
 
-			var comment_id = $(this).data('comment-id'),
-				data = {
-					comment_id: comment_id,
-					collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>'
-				},
-				nonce = jQuery( '#delete_comment_nonce_' + comment_id ).val();
-
-			$.post(
-				ajaxurl,
-				{
-					action: 'cp_delete_comment',
-					data: data,
-					nonce: nonce
-				}, function( response ) {
-					if ( response.success )
-						jQuery(that).parents('.cp_task_comment').hide();
-				}
-			);
-		}
+				$.post(
+					ajaxurl,
+					{
+						action: 'cp_delete_comment',
+						data: data,
+						nonce: nonce
+					}, function( response ) {
+						if ( response.success )
+							jQuery(that).parents('.cp_task_comment').hide();
+					}
+				);
+			}
+		});
 	});
 })(jQuery);
 </script>
