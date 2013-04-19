@@ -93,8 +93,13 @@
 		);
 	});
 	$('.submit').click(function() {
+		var project_name = $('#cp-project').val();
+		if ( ! project_name ) {
+			alert( '<?php _e( 'Please enter a name for this project.', 'collabpress' ); ?>' );
+			return;
+		}
 		var data = {
-			project_name: $('#cp-project').val(),
+			project_name: project_name,
 			project_description: $('#cp-project-description').val(),
 			users: [],
 			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
