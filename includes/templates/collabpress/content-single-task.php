@@ -6,6 +6,7 @@
 		<?php cp_project_title(); ?>
 		<?php $task_status = cp_get_task_status( cp_get_the_task_ID() ); ?>
 		<?php $title_class = $task_status; ?>
+		<input type="hidden" id="item-complete-status-change-nonce_<?php echo cp_get_task_id(); ?>" value="<?php echo wp_create_nonce( 'item-complete-status-change_' . cp_get_task_id() ) ?>" />
 		<h1 id="task-title" class="<?php echo $title_class; ?>"><input id="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>><?php echo cp_get_task_title(); ?></h1>
 		<a class="edit-task" href="#edit_task_inline_content">Edit</a><BR>
 		<?php if ( $due_date = cp_get_the_task_due_date() ) {
@@ -97,11 +98,14 @@
 
 		// Handle checkbox change for a task
 		$('#item-completed').change( function(event) {
+			var task_id = $('#cp-task-id').val();
 			var data = {
-				task_id: $('#cp-task-id').val(),
+				task_id: task_id,
 				task_status: ( $(this).is(':checked') ? 'complete' : 'open' ),
 				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 			};
+			var nonce = jQuery( '#item-complete-status-change-nonce_' + task_id ).val();
+
 			if ( $(this).is(':checked') )
 				$('#task-title').css('text-decoration', 'line-through' );
 			else
@@ -110,7 +114,8 @@
 				ajaxurl,
 				{
 					action: 'cp_update_task_status',
-					data: data
+					data: data,
+					nonce: nonce
 				}, function( response ) { }
 			);
 		});
@@ -168,33 +173,33 @@
 			);
 			return false;
 		});
-	});
 
-	// On comment delete click send AJAX request
-	$('.delete-comment-link').click( function() {
+		// On comment delete click send AJAX request
+		$('.delete-comment-link').click( function() {
 
-		if ( window.confirm( '<?php _e( 'Are you sure you want to delete this comment?', 'collabpress' ); ?>' ) ) {
-			var that = this;
+			if ( window.confirm( '<?php _e( 'Are you sure you want to delete this comment?', 'collabpress' ); ?>' ) ) {
+				var that = this;
 
-			var comment_id = $(this).data('comment-id'),
-				data = {
-					comment_id: comment_id,
-					collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>'
-				},
-				nonce = jQuery( '#delete_comment_nonce_' + comment_id ).val();
+				var comment_id = $(this).data('comment-id'),
+					data = {
+						comment_id: comment_id,
+						collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>'
+					},
+					nonce = jQuery( '#delete_comment_nonce_' + comment_id ).val();
 
-			$.post(
-				ajaxurl,
-				{
-					action: 'cp_delete_comment',
-					data: data,
-					nonce: nonce
-				}, function( response ) {
-					if ( response.success )
-						jQuery(that).parents('.cp_task_comment').hide();
-				}
-			);
-		}
+				$.post(
+					ajaxurl,
+					{
+						action: 'cp_delete_comment',
+						data: data,
+						nonce: nonce
+					}, function( response ) {
+						if ( response.success )
+							jQuery(that).parents('.cp_task_comment').hide();
+					}
+				);
+			}
+		});
 	});
 })(jQuery);
 </script>
