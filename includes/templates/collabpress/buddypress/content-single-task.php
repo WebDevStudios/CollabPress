@@ -3,6 +3,7 @@
 		<?php $task_status = cp_get_task_status( cp_get_the_task_ID() ); ?>
 		<?php $title_class = $task_status; ?>
 		<h1 id="task-title" class="<?php echo $title_class; ?>"><input id="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>><?php echo cp_get_task_title(); ?></h1>
+		<input type="hidden" id="item-complete-status-change-nonce_<?php echo cp_get_task_id(); ?>" value="<?php echo wp_create_nonce( 'item-complete-status-change_' . cp_get_task_id() ) ?>" />
 		<a class="edit-task" href="#edit_task_inline_content">Edit</a><BR>
 		<?php if ( $due_date = cp_get_the_task_due_date() ) {
 			echo '<div>Due date: ' . $due_date . '</div>';
@@ -90,20 +91,25 @@
 
 		// Handle checkbox change for a task
 		$('#item-completed').change( function(event) {
+			var task_id = $('#cp-task-id').val();
 			var data = {
-				task_id: $('#cp-task-id').val(),
+				task_id: task_id,
 				task_status: ( $(this).is(':checked') ? 'complete' : 'open' ),
 				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 			};
+			var nonce = jQuery( '#item-complete-status-change-nonce_' + task_id ).val();
+
 			if ( $(this).is(':checked') )
 				$('#task-title').css('text-decoration', 'line-through' );
 			else
 				$('#task-title').css('text-decoration', 'none' );
+
 			$.post(
 				ajaxurl,
 				{
 					action: 'cp_update_task_status',
-					data: data
+					data: data,
+					nonce: nonce
 				}, function( response ) { }
 			);
 		});

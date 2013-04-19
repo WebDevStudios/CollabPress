@@ -321,7 +321,7 @@
 			task_status: ( $(this).is(':checked') ? 'complete' : 'open' ),
 			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 		};
-		var nonce = jQuery( '#item_complete_status_change_nonce_' + task_id ).val();
+		var nonce = jQuery( '#item-complete-status-change-nonce_' + task_id ).val();
 
 		if ( $(this).is(':checked') )
 			$(this).parents( '.menu-item' ).addClass( 'complete' );
