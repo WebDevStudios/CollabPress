@@ -5,7 +5,7 @@
 	</div>
 	<?php echo cp_project_title(); ?>
 	<div class="files">
-		<h3>Files</h3>
+		<h3><?php _e( 'Files', 'collabpress' ); ?></h3>
 		<?php if ( cp_has_files() ) : ?>
 			<?php while( cp_files() ) : cp_the_file(); ?>
 				<div class="collabpress-task">
@@ -13,11 +13,11 @@
 				</div>
 			<?php endwhile; ?>
 		<?php endif; ?>
-		<a href="#inline_content" class="add-new-task">Upload file</a>
+		<a href="#inline_content" class="add-new-task"><?php _e( 'Upload file', 'collabpress' ); ?></a>
 	</div>
 	<div style='display:none'>
 		<div id='inline_content' style='padding:10px; background:#fff;'>
-			<h2>Add File</h2>
+			<h2><?php _e( 'Add File', 'collabpress' ); ?></h2>
 			<input type="hidden" id="cp_add_new_file_nonce" value="<?php echo wp_create_nonce( 'cp_add_new_file' ); ?>">
 			<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>">
 			<table class="form-table">

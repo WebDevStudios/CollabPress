@@ -4,14 +4,14 @@
 		<?php cp_project_links(); ?>
 	</div>
 	<?php echo cp_project_title(); ?>
-		<h3>Users</h3>
+		<h3><?php _e( 'Users', 'collabpress' ); ?></h3>
 		<div class="users">
 			<?php foreach ( cp_get_project_users() as $user ) {
 				echo get_avatar( $user->ID );
 			} ?>
 		</div>
 		<?php if ( cp_check_permissions( 'settings_user_role' ) ) { ?>
-		<a href="#inline_content" class="modify-users-link">Modify users</a>
+		<a href="#inline_content" class="modify-users-link"><?php _e( 'Modify users', 'collabpress' ); ?></a>
 		<?php } ?>
 </div>
 	<div style='display:none'>

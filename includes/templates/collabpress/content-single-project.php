@@ -4,19 +4,19 @@
 	</div>
 	<?php cp_project_title(); ?>
 	<div>
-		<a class="edit-project" href="#edit_project_inline_content">Edit Project</a>
+		<a class="edit-project" href="#edit_project_inline_content"><?php _e( 'Edit Project', 'collabpress' ); ?></a>
 	</div>
 	<div class="left-col" style="width: 50%; float: left;">
-		<h3>Users</h3>
+		<h3><?php _e( 'Users', 'collabpress' ); ?></h3>
 		<div class="users">
 		<?php foreach ( cp_get_project_users() as $user ) {
 			echo get_avatar( $user->ID );
 		} ?>
 		</div>
-		<a class="view-all-link" href="<?php cp_project_users_permalink(); ?>">View all users</a>
+		<a class="view-all-link" href="<?php cp_project_users_permalink(); ?>"><?php _e( 'View all users', 'collabpress' ); ?></a>
 	</div>
 	<div class="right-col" style="width: 50%; float: right;">
-		<h3>Tasks</h3>
+		<h3><?php _e( 'Tasks', 'collabpress' ); ?></h3>
 		<div class="tasks">
 		<?php if ( cp_has_tasks() ) : ?>
 			<?php while( cp_tasks() ) : cp_the_task(); ?>
@@ -26,8 +26,8 @@
 			<?php endwhile; ?>
 		<?php endif; ?>
 		</div>
-		<a class="view-all-link" href="<?php cp_project_tasks_permalink(); ?>"> View all tasks</a>
-		<h3>Files</h3>
+		<a class="view-all-link" href="<?php cp_project_tasks_permalink(); ?>"><?php _e( 'View all tasks', 'collabpress' ); ?></a>
+		<h3><?php _e( 'Files', 'collabpress' ); ?></h3>
 		<div class="files">
 		<?php if ( cp_has_files() ) : ?>
 			<?php while( cp_files() ) : cp_the_file(); ?>
@@ -37,7 +37,7 @@
 			<?php endwhile; ?>
 		<?php endif; ?>
 		</div>
-		<a class="view-all-link" href="<?php cp_project_files_permalink(); ?>">View all files</a>
+		<a class="view-all-link" href="<?php cp_project_files_permalink(); ?>"><?php _e( 'View all files', 'collabpress' ); ?></a>
 	</div>
 	<div style="clear:both"></div>
 
@@ -45,7 +45,7 @@
 <div style='display:none'>
 	<div id='edit_project_inline_content' style='padding:10px; background:#fff;'>
 		<form id="edit-project-form">
-			<h2>Edit Project</h2>
+			<h2><?php _e( 'Edit Project', 'collabpress' ); ?></h2>
 			<input type="hidden" id="cp_edit_project_nonce" value="<?php echo wp_create_nonce( 'edit-project' ); ?>">
 			<input type="hidden" id="cp_delete_project_nonce" value="<?php echo wp_create_nonce( 'delete-project' ); ?>">
 			<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>" />

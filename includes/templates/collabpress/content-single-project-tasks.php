@@ -4,23 +4,23 @@
 	</div>
 	<?php echo cp_project_title(); ?>
 	<div class="tasks">
-		<h3>Tasks</h3>
-		<div class="toggle-view-completed-tasks">Toggle view completed tasks</div>
+		<h3><?php _e( 'Tasks', 'collabpress' ); ?></h3>
+		<div class="toggle-view-completed-tasks"><?php _e( 'Toggle view completed tasks', 'collabpress' ); ?></div>
 		<input type="hidden" id="toggle_user_preference_view_completed_tasks_nonce" value="<?php echo wp_create_nonce( 'toggle-user-preference-view-completed-task' ); ?>">
 		<?php cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() ); ?>
 		<?php if ( cp_check_permissions( 'settings_user_role' ) ) { ?>
 		<div>
-			<a href="#add_new_task_inline_content" class="add-new-task">+ Add new task</a>
+			<a href="#add_new_task_inline_content" class="add-new-task">+ <?php _e( 'Add new task', 'collabpress' ); ?></a>
 		</div>
 		<div>
-			<a href="#add_new_task_list_inline_content" class="add-new-task-list">+ Add new task list</a>
+			<a href="#add_new_task_list_inline_content" class="add-new-task-list">+ <?php _e( 'Add new task list', 'collabpress' ); ?></a>
 		</div>
 		<?php } ?>
 	</div>
 </div>
 	<div style='display:none'>
 		<div id='add_new_task_inline_content' style='padding:10px; background:#fff;'>
-			<h2>Add Task</h2>
+			<h2><?php _e( 'Add Task', 'collabpress' ); ?></h2>
 			<input type="hidden" id="save_task_list_order_nonce" value="<?php echo wp_create_nonce( 'save-task-list-order' ); ?>">
 			<input type="hidden" id="add_new_task_nonce" value="<?php echo wp_create_nonce( 'add-new-task' ); ?>">
 			<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>">
@@ -58,12 +58,12 @@
 						<th scope="row"><label for="cp-task-priority"><?php _e('Priority: ', 'collabpress') ?></label></th>
 						<td>
 							<select name="cp-task-priority" id="cp-task-priority">
-								<option value="Urgent">Urgent</option>
-								<option value="High">High</option>
-								<option value="Normal">Normal</option>
-								<option value="Low">Low</option>
-								<option value="Very Low">Very Low</option>
-								<option value="None" selected="selected">None</option>
+								<option value="Urgent"><?php _e( 'Urgent', 'collabpress' ); ?></option>
+								<option value="High"><?php _e( 'High', 'collabpress' ); ?></option>
+								<option value="Normal"><?php _e( 'Normal', 'collabpress' ); ?></option>
+								<option value="Low"><?php _e( 'Low', 'collabpress' ); ?></option>
+								<option value="Very Low"><?php _e( 'Very Low', 'collabpress' ); ?></option>
+								<option value="None" selected="selected"><?php _e( 'None', 'collabpress' ); ?></option>
 							</select>
 						</td>
 					</tr>
@@ -83,7 +83,7 @@
 			</p>
 		</div>
 		<div id='add_new_task_list_inline_content' style='padding:10px; background:#fff;'>
-			<h2>Add Task List</h2>
+			<h2><?php _e( 'Add Task List', 'collabpress' ); ?></h2>
 			<input type="hidden" id="add_new_task_list_nonce" value="<?php echo wp_create_nonce( 'add-new-task-list' ); ?>">
 			<input type="hidden" id="cp-project-task-list-id" value="<?php echo cp_get_project_id() ?>">
 			<table class="form-table">
@@ -160,7 +160,7 @@
 
 	// Delete task handler
 	$('.delete-task').click(function(i, el) {
-		var confirm_delete = confirm('Are you sure you want to delete this task?');
+		var confirm_delete = confirm( '<?php _e( 'Are you sure you want to delete this task?', 'collabpress' ); ?>' );
 
 		if ( ! confirm_delete )
 			return;

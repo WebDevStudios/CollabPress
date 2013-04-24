@@ -5,7 +5,7 @@
 	</div>
 	<div class="clear"></div>
 	<div class="activity">
-		<h3>Activity</h3>
+		<h3><?php _e( 'Activity', 'collabpress' ); ?></h3>
 		<?php
 		// Get Current User
 		global $current_user, $cp;
