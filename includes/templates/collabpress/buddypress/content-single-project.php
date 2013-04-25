@@ -1,5 +1,6 @@
 <div class="collabpress">
 	<?php cp_project_title(); ?>
+	<p><?php echo cp_get_project_description( cp_get_project_id() ); ?></p>
 	<a class="edit-project" href="#edit_project_inline_content">Edit Project</a>
 	<div class="tasks">
 		<h3>Tasks</h3>
@@ -26,11 +27,15 @@
 			<table class="form-table">
 				<tbody>
 					<tr valign="top">
-						<th scope="row"><?php _e( 'Project Title: ', 'collabpress' ) ?></th>
+						<th scope="row"><label for="cp-project"><?php _e( 'Name: ', 'collabpress' ) ?></label></th>
+						<td><p><input type="text" class="regular-text" id="cp-project-title" name="cp-project-title" value="<?php echo cp_get_the_project_title(); ?>" /></p></td>
+					</tr>
+					<tr valign="top">
+						<th scope="row"><?php _e( 'Description: ', 'collabpress' ) ?></th>
 						<td><fieldset><legend class="screen-reader-text"><span></span></legend>
-							<p><label for="cp-task"></label></p>
+							<p><label for="cp-project-description"></label></p>
 							<p>
-								<textarea class="large-text code" id="cp-project-title" cols="30" rows="10" name="cp-project-title"><?php echo cp_get_the_project_title(); ?></textarea>
+								<textarea class="large-text code" id="cp-project-description" cols="30" rows="10" name="cp-project-description"><?php echo cp_get_project_description( cp_get_project_id() ); ?></textarea>
 							</p>
 						</fieldset></td>
 					</tr>
@@ -150,6 +155,7 @@
 		var data = {
 			ID: $('#cp-project-id').val(),
 			post_title: $('#cp-project-title').val(),
+			project_description: $('#cp-project-description').val(),
 			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>'
 		};
 		$.post(
@@ -241,7 +247,6 @@
 		};
 		var nonce = jQuery( '#delete_task_nonce_' + task_id ).val();
 
-		// todo: add nonce
 		$.post(
 			ajaxurl,
 			{

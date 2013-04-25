@@ -796,12 +796,7 @@ function cp_insert_project( $args ) {
 
 	$project_id = wp_insert_post( $args );
 
-	// Project description
-	update_post_meta(
-		$project_id,
-		'_cp-project-description',
-		esc_html( $project_description )
-	);
+	cp_set_project_description( $project_description );
 
 	// Project users
 	update_post_meta(
@@ -829,6 +824,14 @@ function cp_insert_project( $args ) {
 	do_action( 'cp_project_added', $project_id );
 
 	return $project_id;
+}
+
+function cp_set_project_description( $project_id, $description ) {
+	update_post_meta( $project_id, '_cp-project-description', esc_html( $description ) );
+}
+
+function cp_get_project_description( $project_id ) {
+	return get_post_meta( $project_id, '_cp-project-description', true );
 }
 
 function cp_add_user_to_project( $project_id, $user_id ) {

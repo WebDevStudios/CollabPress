@@ -235,6 +235,7 @@ function cp_edit_project_handler() {
 	$data = $_REQUEST['data'];
 	extract( $data );
 	wp_update_post( $data );
+	cp_set_project_description( $ID, $project_description );
 	$permalink = cp_get_project_permalink( $ID );
 	wp_send_json_success( array( 'redirect' => $permalink ) );
 }
