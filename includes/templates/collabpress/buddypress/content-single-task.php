@@ -19,7 +19,7 @@
 	<div style='display:none'>
 		<div id='edit_task_inline_content' style='padding:10px; background:#fff;'>
 			<form id="edit-task-form">
-				<h2>Edit Task</h2>
+				<h2><?php _e( 'Edit Task', 'collabpress' ); ?></h2>
 				<input type="hidden" id="edit_task_nonce" value="<?php echo wp_create_nonce( 'edit-task' ); ?>" />
 				<input type="hidden" id="cp-project-id" value="<?php echo cp_get_project_id() ?>" />
 				<input type="hidden" id="cp-task-id" value="<?php echo cp_get_task_id() ?>" />
@@ -57,12 +57,12 @@
 							<th scope="row"><label for="cp-task-priority"><?php _e('Priority: ', 'collabpress') ?></label></th>
 							<td>
 								<select name="cp-task-priority" id="cp-task-priority">
-									<option <?php selected(cp_get_the_task_priority(), 'Urgent' ); ?> value="Urgent">Urgent</option>
-									<option <?php selected(cp_get_the_task_priority(), 'High' ); ?> value="High">High</option>
-									<option <?php selected(cp_get_the_task_priority(), 'Normal' ); ?> value="Normal">Normal</option>
-									<option <?php selected(cp_get_the_task_priority(), 'Low' ); ?> value="Low">Low</option>
-									<option <?php selected(cp_get_the_task_priority(), 'Very Low' ); ?> value="Very Low">Very Low</option>
-									<option <?php selected(cp_get_the_task_priority(), 'None' ); ?> value="None" selected="selected">None</option>
+									<option <?php selected(cp_get_the_task_priority(), 'Urgent' ); ?> value="Urgent"><?php _e( 'Urgent', 'collabpress' ); ?></option>
+									<option <?php selected(cp_get_the_task_priority(), 'High' ); ?> value="High"><?php _e( 'High', 'collabpress' ); ?></option>
+									<option <?php selected(cp_get_the_task_priority(), 'Normal' ); ?> value="Normal"><?php _e( 'Normal', 'collabpress' ); ?></option>
+									<option <?php selected(cp_get_the_task_priority(), 'Low' ); ?> value="Low"><?php _e( 'Low', 'collabpress' ); ?></option>
+									<option <?php selected(cp_get_the_task_priority(), 'Very Low' ); ?> value="Very Low"><?php _e( 'Very Low', 'collabpress' ); ?></option>
+									<option <?php selected(cp_get_the_task_priority(), 'None' ); ?> value="None" selected="selected"><?php _e( 'None', 'collabpress' ); ?></option>
 								</select>
 							</td>
 						</tr>

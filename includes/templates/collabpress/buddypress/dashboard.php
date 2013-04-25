@@ -16,7 +16,7 @@
 		<div class="collabpress-project new">
 			<a href="#inline_content" class="add-new-project">
 				<div class="plus-sign">+</div>
-				<h2>Add new project</h2>
+				<h2><?php _e( 'Add new project', 'collabpress' ); ?></h2>
 			</a>
 		</div>
 		<?php } ?>
