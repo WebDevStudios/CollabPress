@@ -72,15 +72,6 @@
 								</select>
 							</td>
 						</tr>
-						<tr valign="top">
-							<th scope="row"><label for="cp-task-due"><?php _e('Notify via Email? ', 'collabpress') ?></label></th>
-							<?php
-							//check if email option is enabled
-							$options = get_option('cp_options');
-							$checked = ( $options['email_notifications'] == 'enabled' ) ? 'checked="checked"' : null;
-							?>
-							<td align="left"><p><input name="notify" id="notify" type="checkbox" <?php echo $checked; ?> /></p></td>
-						</tr>
 					</tbody>
 				</table>
 				<p class="submit">
@@ -135,7 +126,6 @@
 				post_title: $('#cp-task').val(),
 				task_assigned_to: $('#cp-task-assign').val(),
 				priority: $('#cp-task-priority').val(),
-				send_email_notification: $('#notify').is(':checked'),
 				task_due_date: $('#cp-task-due-date').val(),
 				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>'
 			};
