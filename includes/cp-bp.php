@@ -65,6 +65,7 @@ class CP_BP_Integration extends BP_Component {
 		add_action( 'cp_after_advanced_settings', array( &$this, 'render_settings' ) );
 
 		// Todo: this MUST check to see whether we're in a BP context!!
+		add_filter( 'cp_calendar_permalink', array( $this, 'filter_cp_calendar_permalink' ), 10, 4 );
 		add_filter( 'post_type_link', array( &$this, 'filter_permalinks' ), 10, 4 );
 		add_filter( 'cp_task_list_link', array( &$this, 'filter_item_link' ), 10, 3 );
 		add_filter( 'cp_task_link', array( &$this, 'filter_item_link' ), 10, 3 );
@@ -232,6 +233,16 @@ class CP_BP_Integration extends BP_Component {
 		return $link;
 	}
 
+	function filter_cp_calendar_permalink( $link, $project, $year, $month ) {
+		global $cp;
+		if ( !bp_current_component() || is_admin() || is_network_admin() )
+			return $link;
+		$link = add_query_arg( array(
+			'year' => $year,
+			'month' => $month,
+			), bp_get_group_permalink( groups_get_current_group() ) . 'calendar' );
+		return $link;
+	}
 	function filter_item_link( $link, $post_id, $parent_id = false ) {
 		if ( !bp_current_component() || is_admin() || is_network_admin() )
 			return $link;

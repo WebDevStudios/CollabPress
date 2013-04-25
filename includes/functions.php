@@ -222,13 +222,8 @@ function cp_draw_calendar( $args = array() ) {
 
 	echo '<div id="cp-calendar-wrap">';
 
-	if ( ! $month && ! isset( $_GET['day'] ) ) :
-		$month = date('n');
-		$year = date('Y');
-	else :
-		$month = absint($_GET['month']);
-		$year = absint($_GET['year']);
-	endif;
+	$month = ( ! empty( $_GET['month'] ) ) ? absint($_GET['month']) : $month = date( 'n' );
+	$year = ( ! empty( $_GET['year'] ) ) ? absint($_GET['year']) : $year = date( 'Y' );
 
 	$monthName= date("F",mktime(0,0,0,$month,1,2000));
 	echo '<h3 style="clear:both; text-align: center">'.$monthName.' - '.$year.'</h3>';
@@ -345,7 +340,7 @@ function cp_draw_calendar( $args = array() ) {
 				$task_status = get_post_meta( get_the_ID(), '_cp-task-status', true );
 
 				if ($task_status == 'open') :
-					$calendar .= '<p><a href="'.cp_get_task_permalink( get_the_ID() ).'">'.get_avatar($task_user_id, 32).' '.get_the_title().'</a></p>';
+					$calendar .= '<p><a href="' . get_permalink( get_the_ID() ) .'">' . get_avatar( $task_user_id, 32 ) . ' ' . get_the_title() . '</a></p>';
 				endif;
 
 		    endwhile;
@@ -410,7 +405,7 @@ function cp_get_calendar_permalink( $args = array() ) {
 	if ( $year )
 		$link = add_query_arg( array( 'year' => $year ), $link );
 
-	return $link;
+	return apply_filters( 'cp_calendar_permalink', $link, $project, $year, $month );
 }
 
 	function cp_calendar_permalink( $args = array() ) {

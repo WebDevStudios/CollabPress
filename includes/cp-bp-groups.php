@@ -903,18 +903,6 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	 * @return array $args The modified args
 	 */
 	function calendar_filter_task_query( $args ) {
-		$meta_query = array();
-
-		// Set up the due date meta query (translated from the default args)
-		$due_date_meta = array(
-			'key'	  => $args['meta_key'],
-			'value'	  => $args['meta_value'],
-			'compare' => '='
-		);
-
-		// Unset the old-style meta_key and meta_value args - we don't need them anymore
-		unset( $args['meta_key'] );
-		unset( $args['meta_value'] );
 
 		// Now we need to limit by projects. First, query for the group's projects.
 		$group_projects = $this->get_group_projects();
@@ -941,7 +929,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		);
 
 		// Finally, put the meta queries into a single array, and put them into $args
-		$args['meta_query'] = array( $due_date_meta, $projects_meta );
+		$args['meta_query'][] = $projects_meta;
 
 		return $args;
 	}
