@@ -796,7 +796,7 @@ function cp_insert_project( $args ) {
 
 	$project_id = wp_insert_post( $args );
 
-	cp_set_project_description( $project_description );
+	cp_set_project_description( $project_id, $project_description );
 
 	// Project users
 	update_post_meta(
