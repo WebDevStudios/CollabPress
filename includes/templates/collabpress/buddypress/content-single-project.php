@@ -265,7 +265,7 @@
 			task_due_date: $('#cp-task-due-date').val(),
 			task_assigned_to: $('#cp-task-assign').val(),
 			task_priority: $('#cp-task-priority').val(),
-			send_email_notification: $('#notify').val(),
+			send_email_notification: ( $('#notify').is(':checked') ) ? 1 : 0,
 			collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
 		};
 		data.nonce = $('#add_new_task_nonce').val();

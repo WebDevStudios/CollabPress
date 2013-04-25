@@ -938,8 +938,8 @@ function cp_insert_task( $args = array() ) {
 		'task_list' => 0,
 		'send_email_notification' => true
 	);
-	$args = wp_parse_args( $args, $defaults );
 
+	$args = wp_parse_args( $args, $defaults );
 	extract( $args );
 	$task_id = wp_insert_post( $args );
 
@@ -986,10 +986,10 @@ function cp_insert_task( $args = array() ) {
 
 	do_action( 'cp_task_added', $task_id );
 
-	//check if email notification is checked, and a user is assigned to a project
+	// check if email notification is checked, and a user is assigned to a project
 	if( $send_email_notification && $task_assigned_to ) {
 
-	    //send email
+	    // send email
 	    $task_author_data = get_userdata( $task_assigned_to );
 	    $author_email = $task_author_data->user_email;
 
