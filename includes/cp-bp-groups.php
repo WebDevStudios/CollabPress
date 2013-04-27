@@ -1083,7 +1083,7 @@ function cp_bp_filter_group_parent_item( $args, $item ) {
 		} else {
 			// If customization is not allowed, the slug will be the
 			// same through all groups
-			$slug = $cp_settings['bp']['groups_default_tab_slug'];
+			$slug = $cp_options['bp']['groups_default_tab_slug'];
 		}
 
 		if ( bp_get_current_group_id() == $term->name ) {
