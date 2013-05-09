@@ -96,6 +96,10 @@ add_action( 'cp_add_activity', 'cp_bp_post_activity_do', 10, 4 );
 function cp_bp_post_activity_do( $action, $type, $author, $cp_post_id ) {
 	global $bp;
 
+	// Bail if the Activity component is inactive
+	if ( ! bp_is_active( 'activity' ) )
+		return;
+
 	// This hyphen is getting stripped somewhere
 	if ( 'task list' == $type )
 		$type = 'task-list';
