@@ -362,19 +362,19 @@ function cp_project_links() {
 	global $cp;
 
 	?>
-	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>">Dashboard</a>
-	<a class="<?php echo ( is_collabpress_page( 'project-overview' ) ? 'current' : '' ); ?>" href="<?php cp_project_permalink(); ?>">Project Overview</a>
-	<a class="<?php echo ( is_collabpress_page( 'project-calendar' ) ? 'current' : '' ); ?>" href="<?php cp_project_calendar_permalink(); ?>">Calendar</a>
-	<a class="<?php echo ( is_collabpress_page( 'project-tasks' ) || is_collabpress_page( 'task' ) ? 'current' : '' ); ?>" href="<?php cp_project_tasks_permalink(); ?>">Tasks</a>
-	<a class="<?php echo ( is_collabpress_page( 'project-files' ) ? 'current' : '' ); ?>" href="<?php cp_project_files_permalink(); ?>">Files</a>
-	<a class="<?php echo ( is_collabpress_page( 'project-users' ) ? 'current' : '' ); ?>" href="<?php cp_project_users_permalink(); ?>">Users</a><?php
+	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>"><?php _e( 'Dashboard', 'collabpress' ); ?></a>
+	<a class="<?php echo ( is_collabpress_page( 'project-overview' ) ? 'current' : '' ); ?>" href="<?php cp_project_permalink(); ?>"><?php _e( 'Project Overview', 'collabpress' ); ?></a>
+	<a class="<?php echo ( is_collabpress_page( 'project-calendar' ) ? 'current' : '' ); ?>" href="<?php cp_project_calendar_permalink(); ?>"><?php _e( 'Calendar', 'collabpress' ); ?></a>
+	<a class="<?php echo ( is_collabpress_page( 'project-tasks' ) || is_collabpress_page( 'task' ) ? 'current' : '' ); ?>" href="<?php cp_project_tasks_permalink(); ?>"><?php _e( 'Tasks', 'collabpress' ); ?></a>
+	<a class="<?php echo ( is_collabpress_page( 'project-files' ) ? 'current' : '' ); ?>" href="<?php cp_project_files_permalink(); ?>"><?php _e( 'Files', 'collabpress' ); ?></a>
+	<a class="<?php echo ( is_collabpress_page( 'project-users' ) ? 'current' : '' ); ?>" href="<?php cp_project_users_permalink(); ?>"><?php _e( 'Users', 'collabpress' ); ?></a><?php
 }
 
 function cp_overall_links() {
 	?>
-	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>">Dashboard</a>
-	<a class="<?php echo ( is_collabpress_page( 'activity' ) ? 'current' : '' ); ?>" href="<?php cp_activity_permalink(); ?>">Activity</a>
-	<a class="<?php echo ( is_collabpress_page( 'calendar' ) ? 'current' : '' ); ?>" href="<?php cp_calendar_permalink(); ?>">Calendar</a><?php
+	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>"><?php _e( 'Dashboard', 'collabpress' ); ?></a>
+	<a class="<?php echo ( is_collabpress_page( 'activity' ) ? 'current' : '' ); ?>" href="<?php cp_activity_permalink(); ?>"><?php _e( 'Activity', 'collabpress' ); ?></a>
+	<a class="<?php echo ( is_collabpress_page( 'calendar' ) ? 'current' : '' ); ?>" href="<?php cp_calendar_permalink(); ?>"><?php _e( 'Calendar', 'collabpress' ); ?></a><?php
 }
 
 function cp_permalink() {
