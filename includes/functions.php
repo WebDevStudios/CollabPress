@@ -1354,7 +1354,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 				<li id="menu-item-<?php echo $task->ID; ?>" class="menu-item menu-item-depth-1 <?php echo $task_status; ?>">
 					<dl class="menu-item-bar">
 						<dt class="menu-item-handle">
-							<input type="hidden" id="item_complete_status_change_nonce_<?php echo $task->ID; ?>" value="<?php echo wp_create_nonce( 'item-complete-status-change_' . $task->ID ) ?>" />
+							<input type="hidden" id="item-complete-status-change-nonce_<?php echo $task->ID; ?>" value="<?php echo wp_create_nonce( 'item-complete-status-change_' . $task->ID ) ?>" />
 							<input class="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>>
 							<span class="item-title"><a href="<?php echo get_permalink( $task->ID ); ?>"><?php echo esc_html( $title ); ?></a><span>
 							<span class="item-controls">
