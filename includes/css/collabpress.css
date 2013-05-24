@@ -182,12 +182,11 @@ margin: 9px 0 0;
 	font-weight: bold;
 }
 
-.collabpress .project-title h3 {
+.collabpress .project-breadcrumb h3 {
 	display: inline-block;
-	margin: 0;
 }
 
-.collabpress .project-title a.edit-project-link {
+.collabpress .project-breadcrumb a.edit-project-link {
 	font-size: 90%;
 	padding-left: 5px;
 }

@@ -6,11 +6,11 @@
 
 	</div>
 
-	<div class="project-title">
-		<h3><?php cp_project_title(); ?></h3>
+	<div class="project-breadcrumb">
+		<h3 class="project-title"><?php cp_project_title(); ?></h3>
+		<h3>&nbsp;»&nbsp;<?php _e( 'Tasks', 'collabress' ); ?></h3>
 	</div>
 	<div class="tasks">
-		<h3><?php _e( 'Tasks', 'collabpress' ); ?></h3>
 		<div class="toggle-view-completed-tasks"><?php _e( 'Toggle view completed tasks', 'collabpress' ); ?></div>
 		<input type="hidden" id="toggle_user_preference_view_completed_tasks_nonce" value="<?php echo wp_create_nonce( 'toggle-user-preference-view-completed-task' ); ?>">
 		<?php cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() ); ?>

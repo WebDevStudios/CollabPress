@@ -6,8 +6,8 @@
 
 	</div>
 
-	<div class="project-title">
-		<h3><?php cp_project_title(); ?></h3>
+	<div class="project-breadcrumb">
+		<h3 class="project-title"><?php cp_project_title(); ?></h3>
 		<a class="edit-project-link" href="#edit_project_inline_content"><?php _e( 'Edit Project', 'collabpress' ); ?></a>
 	</div>
 	<div class="project-description">

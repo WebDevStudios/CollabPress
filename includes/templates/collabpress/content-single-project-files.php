@@ -6,11 +6,11 @@
 
 	</div>
 
-	<div class="project-title">
-		<h3><?php cp_project_title(); ?></h3>
+	<div class="project-breadcrumb">
+		<h3 class="project-title"><?php cp_project_title(); ?></h3>
+		<h3>&nbsp;»&nbsp;<?php _e( 'Files', 'collabress' ); ?></h3>
 	</div>
 	<div class="files">
-		<h3><?php _e( 'Files', 'collabpress' ); ?></h3>
 		<?php if ( cp_has_files() ) : ?>
 			<?php while( cp_files() ) : cp_the_file(); ?>
 				<div class="collabpress-task">

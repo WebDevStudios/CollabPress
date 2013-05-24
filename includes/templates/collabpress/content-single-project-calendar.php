@@ -6,11 +6,11 @@
 
 	</div>
 
-	<div class="project-title">
-		<h3><?php cp_project_title(); ?></h3>
+	<div class="project-breadcrumb">
+		<h3 class="project-title"><?php cp_project_title(); ?></h3>
+		<h3>&nbsp;»&nbsp;<?php _e( 'Calendar', 'collabress' ); ?></h3>
 	</div>
 	<div class="calendar">
-		<h3><?php _e( 'Calendar', 'collabress' ); ?></h3>
 		<?php
 		global $cp;
 		$month = ! empty( $_REQUEST['month'] ) ? $_REQUEST['month'] : NULL;

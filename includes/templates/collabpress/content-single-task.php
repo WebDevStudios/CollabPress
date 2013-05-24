@@ -8,8 +8,8 @@
 
 		</div>
 
-		<div class="project-title">
-			<h3><?php cp_project_title(); ?></h3>
+		<div class="project-breadcrumb">
+			<h3 class="project-title"><?php cp_project_title(); ?></h3>
 		</div>
 
 		<?php $task_status = cp_get_task_status( cp_get_the_task_ID() ); ?>

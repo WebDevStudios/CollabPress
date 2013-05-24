@@ -6,10 +6,10 @@
 
 	</div>
 
-	<div class="project-title">
-		<h3><?php cp_project_title(); ?></h3>
+	<div class="project-breadcrumb">
+		<h3 class="project-title"><?php cp_project_title(); ?></h3>
+		<h3>&nbsp;»&nbsp;<?php _e( 'Users', 'collabress' ); ?></h3>
 	</div>
-		<h3><?php _e( 'Users', 'collabpress' ); ?></h3>
 		<div class="users">
 			<?php foreach ( cp_get_project_users() as $user ) {
 				echo get_avatar( $user->ID );
