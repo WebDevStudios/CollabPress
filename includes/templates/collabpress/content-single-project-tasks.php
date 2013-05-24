@@ -7,21 +7,19 @@
 	</div>
 
 	<div class="project-breadcrumb">
+
 		<h3 class="project-title"><?php cp_project_title(); ?></h3>
 		<h3>&nbsp;»&nbsp;<?php _e( 'Tasks', 'collabress' ); ?></h3>
+
 	</div>
+
 	<div class="tasks">
-		<div class="toggle-view-completed-tasks"><?php _e( 'Toggle view completed tasks', 'collabpress' ); ?></div>
 		<input type="hidden" id="toggle_user_preference_view_completed_tasks_nonce" value="<?php echo wp_create_nonce( 'toggle-user-preference-view-completed-task' ); ?>">
 		<?php cp_output_project_nested_task_lists_and_tasks_html_for_sort( cp_get_project_id() ); ?>
-		<?php if ( cp_check_permissions( 'settings_user_role' ) ) { ?>
-		<div>
-			<a href="#add_new_task_inline_content" class="add-new-task">+ <?php _e( 'Add new task', 'collabpress' ); ?></a>
-		</div>
-		<div>
-			<a href="#add_new_task_list_inline_content" class="add-new-task-list">+ <?php _e( 'Add new task list', 'collabpress' ); ?></a>
-		</div>
-		<?php } ?>
+		<input type="button" value="<?php _e( 'Add task', 'collabpress' ); ?>" class="add-new-task">
+		<input type="button" value="<?php _e( 'Add task list', 'collabpress' ); ?>" class="add-new-task-list">
+		<?php $show_completed_tasks = ( get_user_option( 'display_completed_tasks' ) ) ? get_user_option( 'display_completed_tasks' ) : true; ?>
+		<input type="button" value="<?php if ( $show_completed_tasks == 'true' ) _e( 'Hide completed tasks', 'collabpress' ); else _e( 'Show completed tasks', 'collabpress' ); ?>" id="toggle-view-completed-tasks">
 	</div>
 </div>
 <div style='display:none'>
@@ -127,13 +125,17 @@
 	if ( ! display_completed_tasks )
 		$('.menu-item.complete').hide();
 
-	$('.toggle-view-completed-tasks').click( function() {
-		display_completed_tasks = display_completed_tasks ? false : true; // Flip display completed tasks setting
-		if ( display_completed_tasks )
+	$('#toggle-view-completed-tasks').click( function() {
+		display_completed_tasks = display_completed_tasks ? false : true; // flip the "show completed tasks" setting
+		if ( display_completed_tasks ) {
 			$('.menu-item.complete').show( 250 );
-		else
+			$( '#toggle-view-completed-tasks' ).attr( 'value', '<?php _e( 'Hide completed tasks', 'collabpress' ) ?>' );
+		} else {
 			$('.menu-item.complete').hide( 250 );
+			$( '#toggle-view-completed-tasks' ).attr( 'value', '<?php _e( 'Show completed tasks', 'collabpress' ) ?>' );
+		}
 
+		// save the user's preference in a user setting for the future
 		$.post(
 			ajaxurl,
 			{
@@ -143,15 +145,24 @@
 					display_completed_tasks: display_completed_tasks
 				}
 			},
-			function( response ) { }
+			function( response ) {}
 		);
 	});
 
 	$(document).ready(function() {
 		jQuery('#cp-task-due-date').datepicker( {dateFormat: 'm/d/yy'} ); // init the datepicker
 		// Init colorbox for New Task and New Task list modals
-		$('.add-new-task, .add-new-task-list').colorbox(
+		$('.add-new-task').colorbox(
 			{
+				href: '#add_new_task_inline_content',
+				inline: true,
+				width: '50%'
+			}
+		);
+		// Init colorbox for New Task and New Task list modals
+		$('.add-new-task-list').colorbox(
+			{
+				href: '#add_new_task_list_inline_content',
 				inline: true,
 				width: '50%'
 			}
