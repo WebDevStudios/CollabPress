@@ -6,10 +6,12 @@
 
 	</div>
 
-	<?php cp_project_title(); ?>
-	<p><?php echo cp_get_project_description( cp_get_project_id() ); ?></p>
-	<div>
-		<a class="edit-project" href="#edit_project_inline_content"><?php _e( 'Edit Project', 'collabpress' ); ?></a>
+	<div class="project-title">
+		<h3><?php cp_project_title(); ?></h3>
+		<a class="edit-project-link" href="#edit_project_inline_content"><?php _e( 'Edit Project', 'collabpress' ); ?></a>
+	</div>
+	<div class="project-description">
+		<?php echo cp_get_project_description( cp_get_project_id() ); ?>
 	</div>
 	<div class="left-col" style="width: 50%; float: left;">
 		<h3><?php _e( 'Users', 'collabpress' ); ?></h3>
@@ -82,7 +84,7 @@
 <script>
 (function($) {
 // Init colorbox on edit task modal
-	$('.edit-project').colorbox(
+	$('.edit-project-link').colorbox(
 		{
 			inline: true,
 			width: '50%'

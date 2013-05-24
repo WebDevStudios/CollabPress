@@ -75,9 +75,13 @@ function cp_the_project() {
 }
 
 function cp_project_title() {
-	global $cp;
-	echo '<h2>' . $cp->project->post_title . '</h2>';
+	echo cp_get_project_title();
 }
+
+	function cp_get_project_title() {
+		global $cp;
+		return $cp->project->post_title;
+	}
 
 function cp_get_the_project_title() {
 	global $cp;

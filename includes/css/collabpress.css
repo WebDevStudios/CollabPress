@@ -40,16 +40,6 @@
 	font-weight: bold;
 }
 
-.collabpress a,.collabpress a:visited {
-	color: black;
-	text-decoration: none;
-}
-
-.collabpress a:hover {
-	color: black;
-	text-decoration: underline;
-}
-
 .collabpress .collabpress-project a {
 	color: white;
 	text-decoration: none;
@@ -160,6 +150,10 @@ margin: 9px 0 0;
 	cursor: pointer;
 }
 
+.collabpress div.tabbed-list {
+	overflow: hidden;
+}
+
 .collabpress div.tabbed-list ul {
 	margin: 0;
 	padding: 0;
@@ -186,4 +180,14 @@ margin: 9px 0 0;
 	color: #555;
 	opacity: .8;
 	font-weight: bold;
+}
+
+.collabpress .project-title h3 {
+	display: inline-block;
+	margin: 0;
+}
+
+.collabpress .project-title a.edit-project-link {
+	font-size: 90%;
+	padding-left: 5px;
 }

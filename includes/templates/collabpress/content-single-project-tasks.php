@@ -1,8 +1,15 @@
 <div class="collabpress">
-	<div class="project-links" style="float: right;">
+
+	<div class="tabbed-list">
+
 		<?php cp_project_links(); ?>
+
 	</div>
-	<?php echo cp_project_title(); ?>
+
+	<div class="project-title">
+		<h3><?php cp_project_title(); ?></h3>
+		<a class="edit-project-link" href="#edit_project_inline_content"><?php _e( 'Edit Project', 'collabpress' ); ?></a>
+	</div>
 	<div class="tasks">
 		<h3><?php _e( 'Tasks', 'collabpress' ); ?></h3>
 		<div class="toggle-view-completed-tasks"><?php _e( 'Toggle view completed tasks', 'collabpress' ); ?></div>

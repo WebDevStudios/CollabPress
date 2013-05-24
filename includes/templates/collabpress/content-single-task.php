@@ -1,9 +1,18 @@
 <div class="collabpress">
+
 	<div class="collabpress-task">
-		<div class="project-links" style="float: right;">
+
+		<div class="tabbed-list">
+
 			<?php cp_project_links(); ?>
+
 		</div>
-		<?php cp_project_title(); ?>
+
+		<div class="project-title">
+			<h3><?php cp_project_title(); ?></h3>
+			<a class="edit-project-link" href="#edit_project_inline_content"><?php _e( 'Edit Project', 'collabpress' ); ?></a>
+		</div>
+
 		<?php $task_status = cp_get_task_status( cp_get_the_task_ID() ); ?>
 		<?php $title_class = $task_status; ?>
 		<input type="hidden" id="item-complete-status-change-nonce_<?php echo cp_get_task_id(); ?>" value="<?php echo wp_create_nonce( 'item-complete-status-change_' . cp_get_task_id() ) ?>" />
