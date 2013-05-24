@@ -6,7 +6,9 @@
 
 	</div>
 
-	<?php echo cp_project_title(); ?>
+	<div class="project-title">
+		<h3><?php cp_project_title(); ?></h3>
+	</div>
 	<div class="files">
 		<h3><?php _e( 'Files', 'collabpress' ); ?></h3>
 		<?php if ( cp_has_files() ) : ?>
