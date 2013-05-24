@@ -690,7 +690,7 @@ function cp_maybe_enqueue_styles_and_scripts() {
  *
  */
 function cp_enqueue_styles_and_scripts() {
-	wp_enqueue_style( 'collabpress-new', CP_PLUGIN_URL . 'includes/css/new.css' );
+	wp_enqueue_style( 'collabpress-new', CP_PLUGIN_URL . 'includes/css/collabpress.css' );
 	wp_enqueue_style( 'collabpress-fonts', 'http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,300,400,700' );
 	wp_enqueue_style( 'cp_admin', CP_PLUGIN_URL . 'includes/css/admin.css' );
 
