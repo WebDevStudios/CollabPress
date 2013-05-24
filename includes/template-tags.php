@@ -370,11 +370,24 @@ function cp_project_links() {
 	<a class="<?php echo ( is_collabpress_page( 'project-users' ) ? 'current' : '' ); ?>" href="<?php cp_project_users_permalink(); ?>"><?php _e( 'Users', 'collabpress' ); ?></a><?php
 }
 
-function cp_overall_links() {
-	?>
-	<a class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>" href="<?php cp_permalink(); ?>"><?php _e( 'Dashboard', 'collabpress' ); ?></a>
-	<a class="<?php echo ( is_collabpress_page( 'activity' ) ? 'current' : '' ); ?>" href="<?php cp_activity_permalink(); ?>"><?php _e( 'Activity', 'collabpress' ); ?></a>
-	<a class="<?php echo ( is_collabpress_page( 'calendar' ) ? 'current' : '' ); ?>" href="<?php cp_calendar_permalink(); ?>"><?php _e( 'Calendar', 'collabpress' ); ?></a><?php
+function cp_project_wide_nav() {
+	?><ul>
+		<li class="<?php echo ( is_collabpress_page( 'dashboard' ) ? 'current' : '' ); ?>">
+			<a href="<?php cp_permalink(); ?>">
+				<?php _e( 'Dashboard', 'collabpress' ); ?>
+			</a>
+		</li>
+		<li class="<?php echo ( is_collabpress_page( 'activity' ) ? 'current' : '' ); ?>" >
+			<a href="<?php cp_activity_permalink(); ?>">
+				<?php _e( 'Activity', 'collabpress' ); ?>
+			</a>
+		</li>
+		<li class="<?php echo ( is_collabpress_page( 'calendar' ) ? 'current' : '' ); ?>">
+			<a href="<?php cp_calendar_permalink(); ?>">
+				<?php _e( 'Calendar', 'collabpress' ); ?>
+			</a>
+		</li>
+	</ul><?php
 }
 
 function cp_permalink() {

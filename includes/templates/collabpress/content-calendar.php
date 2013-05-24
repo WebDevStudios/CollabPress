@@ -1,6 +1,9 @@
 <div class="collabpress">
-	<div class="overall-links" style="float: right">
-		<?php cp_overall_links(); ?>
+
+	<div class="project-wide-nav">
+
+		<?php cp_project_wide_nav(); ?>
+
 	</div>
 	<div class="clear"></div>
 	<div class="calendar">
