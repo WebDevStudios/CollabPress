@@ -14,37 +14,37 @@
 		<?php echo cp_get_project_description( cp_get_project_id() ); ?>
 	</div>
 	<div class="left-col" style="width: 50%; float: left;">
-		<h5><?php _e( 'Users', 'collabpress' ); ?></h5>
-		<div class="users">
-		<?php foreach ( cp_get_project_users() as $user ) {
-			echo get_avatar( $user->ID );
-		} ?>
+		<div class="collabpress-dashboard-widget">
+			<h5><?php _e( 'Users', 'collabpress' ); ?></h5>
+			<?php foreach ( cp_get_project_users() as $user ) {
+				echo get_avatar( $user->ID );
+			} ?>
+			<a class="view-all-link" href="<?php cp_project_users_permalink(); ?>"><?php _e( 'View all users', 'collabpress' ); ?></a>
 		</div>
-		<a class="view-all-link" href="<?php cp_project_users_permalink(); ?>"><?php _e( 'View all users', 'collabpress' ); ?></a>
 	</div>
 	<div class="right-col" style="width: 50%; float: right;">
-		<h5><?php _e( 'Tasks', 'collabpress' ); ?></h5>
-		<div class="tasks">
-		<?php if ( cp_has_tasks() ) : ?>
-			<?php while( cp_tasks() ) : cp_the_task(); ?>
-				<div class="collabpress-task">
-					<a href="<?php the_permalink() ?>"><?php the_title() ?></a>
-				</div>
-			<?php endwhile; ?>
-		<?php endif; ?>
+		<div class="collabpress-dashboard-widget">
+			<h5><?php _e( 'Tasks', 'collabpress' ); ?></h5>
+			<?php if ( cp_has_tasks() ) : ?>
+				<?php while( cp_tasks() ) : cp_the_task(); ?>
+					<div class="collabpress-task">
+						<a href="<?php the_permalink() ?>"><?php the_title() ?></a>
+					</div>
+				<?php endwhile; ?>
+			<?php endif; ?>
+			<a class="view-all-link" href="<?php cp_project_tasks_permalink(); ?>"><?php _e( 'View all tasks', 'collabpress' ); ?></a>
 		</div>
-		<a class="view-all-link" href="<?php cp_project_tasks_permalink(); ?>"><?php _e( 'View all tasks', 'collabpress' ); ?></a>
-		<h5><?php _e( 'Files', 'collabpress' ); ?></h5>
-		<div class="files">
-		<?php if ( cp_has_files() ) : ?>
-			<?php while( cp_files() ) : cp_the_file(); ?>
-				<div class="collabpress-task">
-					<a href="<?php echo wp_get_attachment_url( get_the_ID() ); ?>"><?php the_title(); ?></a>
-				</div>
-			<?php endwhile; ?>
-		<?php endif; ?>
+		<div class="collabpress-dashboard-widget">
+			<h5><?php _e( 'Files', 'collabpress' ); ?></h5>
+			<?php if ( cp_has_files() ) : ?>
+				<?php while( cp_files() ) : cp_the_file(); ?>
+					<div class="collabpress-task">
+						<a href="<?php echo wp_get_attachment_url( get_the_ID() ); ?>"><?php the_title(); ?></a>
+					</div>
+				<?php endwhile; ?>
+			<?php endif; ?>
+			<a class="view-all-link" href="<?php cp_project_files_permalink(); ?>"><?php _e( 'View all files', 'collabpress' ); ?></a>
 		</div>
-		<a class="view-all-link" href="<?php cp_project_files_permalink(); ?>"><?php _e( 'View all files', 'collabpress' ); ?></a>
 	</div>
 	<div style="clear:both"></div>
 

@@ -97,7 +97,6 @@
 
 a.view-all-link {
 	display: block;
-	font-weight: bold;
 	margin-top: 10px;
 }
 
@@ -189,4 +188,12 @@ margin: 9px 0 0;
 .collabpress .project-breadcrumb a.edit-project-link {
 	font-size: 90%;
 	padding-left: 5px;
+}
+
+.collabpress h5 {
+	margin: 0;
+}
+
+.collabpress-dashboard-widget {
+	margin-bottom: 30px;
 }
