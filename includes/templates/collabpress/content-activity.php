@@ -1,8 +1,8 @@
 <div class="collabpress">
 
-	<div class="project-wide-nav">
+	<div class="tabbed-list">
 
-		<?php cp_project_wide_nav(); ?>
+		<?php cp_overview_nav(); ?>
 
 	</div>
 	<div class="clear"></div>

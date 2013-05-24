@@ -1,8 +1,11 @@
-<?php global $cp; ?>
 <div class="collabpress">
-	<div class="project-links" style="float: right;">
+
+	<div class="tabbed-list">
+
 		<?php cp_project_links(); ?>
+
 	</div>
+
 	<?php echo cp_project_title(); ?>
 	<div class="files">
 		<h3><?php _e( 'Files', 'collabpress' ); ?></h3>

@@ -160,24 +160,28 @@ margin: 9px 0 0;
 	cursor: pointer;
 }
 
-.collabpress div.project-wide-nav {
-	float: right;
+.collabpress div.tabbed-list ul {
+	margin: 0;
+	padding: 0;
 }
-.collabpress div.project-wide-nav ul li {
+
+.collabpress div.tabbed-list ul li {
 	float: left;
 	margin: 0;
 	list-style: none;
 }
-.collabpress div.project-wide-nav ul li.current {
+
+.collabpress div.tabbed-list ul li.current {
 	background-color:
 }
-.collabpress div.project-wide-nav ul li a {
+
+.collabpress div.tabbed-list ul li a {
 	display: block;
 	padding: 5px 10px;
 	text-decoration: none;
 }
 
-.collabpress div.project-wide-nav ul li.current a {
+.collabpress div.tabbed-list ul li.current a {
 	background-color: #eee;
 	color: #555;
 	opacity: .8;

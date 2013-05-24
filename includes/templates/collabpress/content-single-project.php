@@ -1,7 +1,11 @@
 <div class="collabpress">
-	<div class="project-links" style="float: right;">
+
+	<div class="tabbed-list">
+
 		<?php cp_project_links(); ?>
+
 	</div>
+
 	<?php cp_project_title(); ?>
 	<p><?php echo cp_get_project_description( cp_get_project_id() ); ?></p>
 	<div>
