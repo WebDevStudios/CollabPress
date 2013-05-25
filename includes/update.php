@@ -37,6 +37,25 @@ function cp_update() {
 
 		}
 
+		// 1.4 specific upgrades
+		if ( version_compare( $installed_version, '1.4-dev', '<' ) ) {
+
+			// Change task due date storage format from m/d/yy to mysql formatted date
+			$tasks = get_posts( array( 'post_type' => 'cp-tasks', 'posts_per_page' => -1 ) );
+			foreach ( $tasks as $task ) {
+				$due_date = cp_get_task_due_date_mysql( $task->ID );
+				$unix_timestamp = strtotime( $due_date );
+				$formatted_date  = gmdate( 'Y-m-d H:i:s', ( $unix_timestamp ) );
+				cp_update_task( array( 'ID' => $task->ID, 'task_due_date' => $formatted_date ) );
+			}
+
+			$cp_options = get_option( 'cp_options' );
+			if ( empty( $cp_options['date_format'] ) ) {
+				$cp_options['date_format'] = 'F j, Y';
+				update_option( 'cp_options', $cp_options );
+			}
+		}
+
 		update_option( 'CP_VERSION', COLLABPRESS_VERSION );
 	}
 }

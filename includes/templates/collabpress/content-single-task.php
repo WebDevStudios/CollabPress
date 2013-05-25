@@ -50,7 +50,12 @@
 						</tr>
 						<tr valign="top">
 							<th scope="row"><label for="cp-task-due"><?php _e('Due: ', 'collabpress') ?></label></th>
-							<td><p><input name="cp-task-due" class="cp-task-due-date" id="cp-task-due-date" class="regular-text" type="text" value=<?php echo cp_get_the_task_due_date(); ?> /></p></td>
+							<td>
+								<p>
+									<input name="cp-task-due" class="cp-task-due-date" id="cp-task-due-date" class="regular-text" type="text" value=<?php echo cp_get_the_task_due_date(); ?> />
+									<input id="cp-task-due-date-formatted" type="hidden" value="<?php echo str_replace( ' 00:00:00', '', cp_get_task_due_date_mysql( cp_get_task_id() ) ); ?>" />
+								</p>
+							</td>
 						</tr>
 						<tr valign="top">
 							<th scope="row"><label for="cp-task-assign"><?php _e('Assigned to: ', 'collabpress') ?></label></th>
@@ -93,7 +98,13 @@
 <script>
 (function($) {
 	$(document).ready(function() {
-		jQuery('#cp-task-due-date').datepicker( {dateFormat: 'm/d/yy'} ); // init the datepicker
+		jQuery('#cp-task-due-date').datepicker( {
+
+				altFormat: 'yy-mm-dd',
+				altField: '#cp-task-due-date-formatted',
+				dateFormat: '<?php echo cp_translate_date_format_for_js_datepicker() ?>'
+			})
+			.datepicker( 'setDate', '<?php echo cp_get_task_due_date( cp_get_task_id() ) ?>' ); // init the datepicker
 
 		// Handle checkbox change for a task
 		$('#item-completed').change( function(event) {
@@ -134,7 +145,7 @@
 				post_title: $('#cp-task').val(),
 				task_assigned_to: $('#cp-task-assign').val(),
 				priority: $('#cp-task-priority').val(),
-				task_due_date: $('#cp-task-due-date').val(),
+				task_due_date: $('#cp-task-due-date').val() + ' 00:00:00',
 				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>'
 			};
 			$.post(

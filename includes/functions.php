@@ -304,8 +304,8 @@ function cp_draw_calendar( $args = array() ) {
 		$calendar .= '<td class="calendar-day">';
 			/* add in the day number */
 			$calendar .= '<div class="day-number">'.$list_day.'</div>';
-			$formatDate = $month.'/'.$list_day.'/'.$year;
-
+			$formatDate = $year . '-' . str_pad( $month, 2, 0, STR_PAD_LEFT ) . '-' .
+				str_pad( $list_day, 2, 0, STR_PAD_LEFT ) . ' 00:00:00';
 			// Get Task Lists
 			$tasks_args = apply_filters(
 				'cp_calendar_tasks_args',
@@ -487,6 +487,13 @@ function cp_get_the_task_due_date() {
 }
 
 function cp_get_task_due_date( $task_id ) {
+	$due_date_mysql = cp_get_task_due_date_mysql( $task_id );
+	$unix_timestamp = strtotime( $due_date_mysql );
+	$cp_options = get_option( 'cp_options' );
+	return date( $cp_options['date_format'], $unix_timestamp );
+}
+
+function cp_get_task_due_date_mysql( $task_id ) {
 	return get_post_meta( $task_id, '_cp-task-due', true );
 }
 
@@ -1384,4 +1391,18 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 	echo $result;
 }
 
-?>
+function cp_translate_date_format_for_js_datepicker() {
+	$cp_options = get_option( 'cp_options' );
+	$date_format = $cp_options['date_format'];
+
+	// clear out format characters that don't exist in the datepicker format dictionary
+	$js_datepicker_format = preg_replace( '/[a-ce-iko-wA-CEG-LN-WXZ]/', '', $date_format );
+
+	// replace character from PHP date format to the datepicker's format
+	$js_datepicker_format = preg_replace(
+		array( '/j/', '/d/', '/z/', '/z/', '/D/', '/l/', '/n/', '/m/', '/M/', '/F/', '/y/', '/Y/' ),
+		array( 'd', 'dd', 'o', 'oo', 'D', 'DD', 'm', 'mm', 'M', 'MM', 'y', 'yy', ),
+		$date_format
+	);
+	return $js_datepicker_format;
+}
