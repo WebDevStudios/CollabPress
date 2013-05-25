@@ -4,10 +4,10 @@
  * PHP Contstant Declarations
  *
  * @package CollabPress
- * @since 1.3.2
+ * @since 1.4
  */
 
-define( 'COLLABPRESS_VERSION', '1.3.1.1' );
+define( 'COLLABPRESS_VERSION', '1.4-dev' );
 
 if ( defined( 'CP_BASENAME' ) )
 	define( 'COLLABPRESS_BASENAME', CP_BASENAME );
