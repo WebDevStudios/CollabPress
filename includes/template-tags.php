@@ -113,7 +113,7 @@ function cp_get_project_tasks_permalink( $project_id = 0 ) {
 		global $cp;
 		$project_id = $cp->project->ID;
 	}
-	return add_query_arg( array( 'project' => $project_id, 'view' => 'tasks' ), CP_DASHBOARD );
+	return add_query_arg( array( 'project' => $project_id, 'view' => 'tasks' ), COLLABPRESS_DASHBOARD );
 }
 
 	function cp_project_tasks_permalink( $project_id = 0 ) {
@@ -125,7 +125,7 @@ function cp_get_project_calendar_permalink( $project_id = 0 ) {
 		global $cp;
 		$project_id = $cp->project->ID;
 	}
-	return add_query_arg( array( 'project' => $project_id, 'view' => 'calendar' ), CP_DASHBOARD );
+	return add_query_arg( array( 'project' => $project_id, 'view' => 'calendar' ), COLLABPRESS_DASHBOARD );
 }
 
 	function cp_project_calendar_permalink( $project_id = 0 ) {
@@ -137,7 +137,7 @@ function cp_get_project_files_permalink( $project_id = 0 ) {
 		global $cp;
 		$project_id = $cp->project->ID;
 	}
-	return add_query_arg( array( 'project' => $project_id, 'view' => 'files' ), CP_DASHBOARD );
+	return add_query_arg( array( 'project' => $project_id, 'view' => 'files' ), COLLABPRESS_DASHBOARD );
 }
 
 	function cp_project_files_permalink( $project_id = 0 ) {
@@ -149,7 +149,7 @@ function cp_get_project_users_permalink( $project_id = 0 ) {
 		global $cp;
 		$project_id = $cp->project->ID;
 	}
-	return add_query_arg( array( 'project' => $project_id, 'view' => 'users' ), CP_DASHBOARD );
+	return add_query_arg( array( 'project' => $project_id, 'view' => 'users' ), COLLABPRESS_DASHBOARD );
 }
 
 	function cp_project_users_permalink( $project_id = 0 ) {
@@ -353,7 +353,7 @@ function cp_task_permalink() {
 			'project' => $cp->project->ID,
 			'task' => $post->ID,
 			),
-		CP_DASHBOARD
+		COLLABPRESS_DASHBOARD
 	);
 	echo $permalink;
 }
@@ -418,7 +418,7 @@ function cp_overview_nav() {
 }
 
 function cp_permalink() {
-	echo CP_DASHBOARD;
+	echo COLLABPRESS_DASHBOARD;
 }
 function cp_get_sidebar() {
 	?>

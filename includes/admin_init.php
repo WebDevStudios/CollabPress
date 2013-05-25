@@ -64,10 +64,10 @@ add_action( 'init', 'cp_frontend_init' );
 function cp_frontend_init() {
 	if ( !is_admin() ) :
 		// Register Styles
-		wp_register_style('cp_jquery-ui', CP_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css');
+		wp_register_style('cp_jquery-ui', COLLABPRESS_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css');
 
 		// Register Scripts
-		wp_register_script('cp_frontend', CP_PLUGIN_URL . 'includes/js/frontend.js', array('jquery'));
+		wp_register_script('cp_frontend', COLLABPRESS_PLUGIN_URL . 'includes/js/frontend.js', array('jquery'));
 	endif;
 }
 
@@ -103,7 +103,7 @@ function collabpress_frontend_scripts() {
 
 /**
  * CollabPress Init
- * 
+ *
  * Register Custom Post Types
  */
 add_action( 'init', 'collabpress_init', 5 );
@@ -240,7 +240,7 @@ function cp_recent_activity($data = NULL) {
 		    ?>
 
 		    <div class="cp-activity-row <?php echo $row ?>">
-			    <a class="cp-activity-author" title="<?php $activityUser->display_name ?>" href="<?php echo CP_DASHBOARD; ?>&user=<?php echo $activityUser->ID ?>"><?php echo get_avatar($activityUser->ID, 32) ?></a>
+			    <a class="cp-activity-author" title="<?php $activityUser->display_name ?>" href="<?php echo COLLABPRESS_DASHBOARD; ?>&user=<?php echo $activityUser->ID ?>"><?php echo get_avatar($activityUser->ID, 32) ?></a>
 			    <div class="cp-activity-wrap">
 			    <p class="cp-activity-description"><?php echo $activityUser->display_name . ' ' . $activityAction . ' ' . __('a', 'collabpress') . ' '. $activityType ?>: <a href="<?php echo cp_get_url( $activityID, $activityType ); ?>"><?php echo get_the_title( $activityID ); ?></a></p>
 			    </div>
@@ -259,7 +259,7 @@ function cp_recent_activity($data = NULL) {
 	if ( $activities_query->max_num_pages > 1 ) {
 		echo '<p class="cp_pagination">';
 	    for ( $i = 1; $i <= $activities_query->max_num_pages; $i++ ) {
-	        echo '<a href="'.CP_DASHBOARD.'&paged='.$i.'" '.(($paged == $i) ? 'class="active"' : '' ).'>'.$i.'</a> ';
+	        echo '<a href="'.COLLABPRESS_DASHBOARD.'&paged='.$i.'" '.(($paged == $i) ? 'class="active"' : '' ).'>'.$i.'</a> ';
 	    }
 	    echo '</p>';
 	} ?>

@@ -26,7 +26,7 @@ License: GPLv2
 */
 
 // PHP Constant Declarations
-require_once( 'includes/constants.php' );
+require_once( 'constants.php' );
 
 // Before CollabPress
 do_action( 'cp_before_collabpress' );
@@ -43,7 +43,7 @@ if ( ! empty( $_REQUEST['data']['collabpress_ajax_request_origin'] ) ) {
 	$cp_dashboard = ( $_REQUEST['data']['collabpress_ajax_request_origin'] == 'admin' ) ? 'admin.php?page=collabpress-dashboard' : '?' .$cp_qs_add. 'cp=front';
 }
 
-define( 'CP_DASHBOARD', $cp_dashboard );
+define( 'COLLABPRESS_DASHBOARD', $cp_dashboard );
 
 // CollabPress Core
 require_once( 'includes/cp-core.php' );

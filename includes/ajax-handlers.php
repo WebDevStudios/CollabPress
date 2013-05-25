@@ -250,7 +250,7 @@ function cp_delete_project_handler() {
 	extract( $data );
 
 	wp_delete_post( $ID, true );
-	$permalink = CP_DASHBOARD;
+	$permalink = COLLABPRESS_DASHBOARD;
 	wp_send_json_success( array( 'redirect' => $permalink ) );
 }
 

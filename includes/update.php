@@ -3,9 +3,9 @@ add_action( 'init', 'cp_update' );
 
 function cp_update() {
 	global $wpdb;
-	$installed_version = get_option( 'cp_version' );
+	$installed_version = get_option( 'COLLABPRESS_VERSION' );
 
-	if ( $installed_version != CP_VERSION ) {
+	if ( $installed_version != COLLABPRESS_VERSION ) {
 		// 1.3 specific upgrades
 		if ( version_compare( $installed_version, '1.3-dev', '<' ) ) {
 			$tablename = $wpdb->prefix . 'cp_project_users';
@@ -37,6 +37,6 @@ function cp_update() {
 
 		}
 
-		update_option( 'cp_version', CP_VERSION );
+		update_option( 'COLLABPRESS_VERSION', COLLABPRESS_VERSION );
 	}
 }

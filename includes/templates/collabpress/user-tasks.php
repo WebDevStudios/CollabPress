@@ -2,12 +2,12 @@
 
 // Set up the pagination and sortable columns helpers
 if ( !class_exists( 'BBG_CPT_Pag' ) )
-	require_once( CP_PLUGIN_DIR . 'includes/tools/boones-pagination/boones-pagination.php' );
+	require_once( COLLABPRESS_PLUGIN_DIR . 'includes/tools/boones-pagination/boones-pagination.php' );
 
 $pagination = new BBG_CPT_Pag;
 
 if ( !class_exists( 'BBG_CPT_Sort' ) )
-	require_once( CP_PLUGIN_DIR . 'includes/tools/boones-sortable-columns/boones-sortable-columns.php' );
+	require_once( COLLABPRESS_PLUGIN_DIR . 'includes/tools/boones-sortable-columns/boones-sortable-columns.php' );
 
 $cols = array(
 	array(

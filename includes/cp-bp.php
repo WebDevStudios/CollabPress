@@ -38,7 +38,7 @@ class CP_BP_Integration extends BP_Component {
 		parent::start(
 			'collabpress',
 			__( 'CollabPress', 'collabpress' ),
-			CP_PLUGIN_DIR
+			COLLABPRESS_PLUGIN_DIR
 		);
 
 		// Register ourselves as an active BP component
@@ -53,11 +53,11 @@ class CP_BP_Integration extends BP_Component {
 		add_action( 'cp_bp_setup_item', array( &$this, 'do_cp_query' ), 5 );
 
 		// Load the notification framework
-		require_once( CP_PLUGIN_DIR . 'includes/cp-bp-notifications.php' );
+		require_once( COLLABPRESS_PLUGIN_DIR . 'includes/cp-bp-notifications.php' );
 
 		// Load the Groups integration, if active
 		if ( bp_is_active( 'groups' ) ) {
-			require_once( CP_PLUGIN_DIR . 'includes/cp-bp-groups.php' );
+			require_once( COLLABPRESS_PLUGIN_DIR . 'includes/cp-bp-groups.php' );
 			bp_register_group_extension( 'CP_BP_Group_Extension' );
 		}
 
@@ -145,12 +145,12 @@ class CP_BP_Integration extends BP_Component {
 			// For versions of BP <1.7, there's no built-in support
 			// for custom templates (sorry, theme authors - didn't
 			// want to add the overhead for a legacy system)
-			include( apply_filters( 'cp_bp_legacy_user_template', CP_PLUGIN_DIR . '/includes/templates/' . $template . '.php' ) );
+			include( apply_filters( 'cp_bp_legacy_user_template', COLLABPRESS_PLUGIN_DIR . '/includes/templates/' . $template . '.php' ) );
 		}
 	}
 
 	public function add_cp_to_template_stack( $stack ) {
-		$stack[] = CP_PLUGIN_DIR . '/includes/templates/';
+		$stack[] = COLLABPRESS_PLUGIN_DIR . '/includes/templates/';
 		return $stack;
 	}
 
@@ -408,7 +408,7 @@ class CP_BP_Integration extends BP_Component {
 
 	public function enqueue_styles() {
 		if ( bp_is_user() && bp_is_current_component( 'collabpress' ) ) {
-			wp_enqueue_style( 'cp-bp', CP_PLUGIN_URL . 'includes/css/bp.css' );
+			wp_enqueue_style( 'cp-bp', COLLABPRESS_PLUGIN_URL . 'includes/css/bp.css' );
 		}
 	}
 }

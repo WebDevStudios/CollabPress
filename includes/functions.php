@@ -148,9 +148,9 @@ function cp_task_comments() {
 			$row = ($comment_key % 2) ?  'odd' : 'even';
 		?>
 			<div class="cp_task_comment <?php echo $row ?>">
-				<a class="avatar" title="<?php echo $comm->comment_author ?>" href="<?php echo CP_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo get_avatar($comm->user_id, 64) ?></a>
+				<a class="avatar" title="<?php echo $comm->comment_author ?>" href="<?php echo COLLABPRESS_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo get_avatar($comm->user_id, 64) ?></a>
 				<div class="cp_task_comment_content">
-					<p class="cp_comment_author"><a title="<?php echo $comm->comment_author ?>" href="<?php echo CP_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo $comm->comment_author ?></a>
+					<p class="cp_comment_author"><a title="<?php echo $comm->comment_author ?>" href="<?php echo COLLABPRESS_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo $comm->comment_author ?></a>
 					<input type="hidden" id="delete_comment_nonce_<?php echo $comm->comment_ID ?>" value="<?php echo wp_create_nonce( 'delete-task-comment_' . $comm->comment_ID ); ?>" />
 					<?php
 					if ( $current_user->ID == $comm->user_id || current_user_can( 'manage_options' ) )
@@ -393,7 +393,7 @@ function cp_get_calendar_permalink( $args = array() ) {
 
 	extract( $args );
 
-	$link = CP_DASHBOARD;
+	$link = COLLABPRESS_DASHBOARD;
 	$link = add_query_arg( array( 'view' => 'calendar' ), $link );
 
 	if ( $project )
@@ -413,7 +413,7 @@ function cp_get_calendar_permalink( $args = array() ) {
 	}
 
 function cp_get_activity_permalink() {
-	$link = CP_DASHBOARD;
+	$link = COLLABPRESS_DASHBOARD;
 	$link = add_query_arg( array( 'view' => 'activity' ), $link );
 
 	return $link;
@@ -494,12 +494,12 @@ function cp_get_task_due_date( $task_id ) {
 function cp_get_url( $ID = NULL, $type = NULL ) {
     if ( $type == 'task' || $type == 'comment' ) :
 		$cp_project_id = get_post_meta( $ID, '_cp-project-id', true );
-		$cp_url = CP_DASHBOARD .'&project=' .$cp_project_id .'&task=' .absint( $ID );
+		$cp_url = COLLABPRESS_DASHBOARD .'&project=' .$cp_project_id .'&task=' .absint( $ID );
 	elseif( $type =="task list" ) :
 		$cp_project_id = get_post_meta( $ID, '_cp-project-id', true );
-		$cp_url = CP_DASHBOARD .'&project=' .$cp_project_id .'&task-list=' .absint( $ID );
+		$cp_url = COLLABPRESS_DASHBOARD .'&project=' .$cp_project_id .'&task-list=' .absint( $ID );
     elseif ( $type == 'project' ) :
-		$cp_url = CP_DASHBOARD.'&project=' .absint( $ID );
+		$cp_url = COLLABPRESS_DASHBOARD.'&project=' .absint( $ID );
     endif;
 
     // Constructs a custom filter for each type. Annoying, but this is how the CP-BP filters work
@@ -675,7 +675,7 @@ function cp_limit_length( $strtolimit=null, $limit=50 ) {
 	return $strtolimit;
 }
 
-require_once( CP_PLUGIN_DIR . 'includes/template-tags.php' );
+require_once( COLLABPRESS_PLUGIN_DIR . 'includes/template-tags.php' );
 
 add_action( 'wp', 'cp_maybe_enqueue_styles_and_scripts' );
 add_action( 'init', 'cp_maybe_enqueue_styles_and_scripts' );
@@ -690,16 +690,16 @@ function cp_maybe_enqueue_styles_and_scripts() {
  *
  */
 function cp_enqueue_styles_and_scripts() {
-	wp_enqueue_style( 'collabpress-new', CP_PLUGIN_URL . 'includes/css/collabpress.css' );
+	wp_enqueue_style( 'collabpress-new', COLLABPRESS_PLUGIN_URL . 'includes/css/collabpress.css' );
 	wp_enqueue_style( 'collabpress-fonts', 'http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,300,400,700' );
-	wp_enqueue_style( 'cp_admin', CP_PLUGIN_URL . 'includes/css/admin.css' );
+	wp_enqueue_style( 'cp_admin', COLLABPRESS_PLUGIN_URL . 'includes/css/admin.css' );
 
-	wp_enqueue_style( 'colorbox-css', CP_PLUGIN_URL . 'includes/css/colorbox.css' );
-	wp_enqueue_script( 'colorbox', CP_PLUGIN_URL . 'includes/js/jquery.colorbox-min.js', array( 'jquery') );
+	wp_enqueue_style( 'colorbox-css', COLLABPRESS_PLUGIN_URL . 'includes/css/colorbox.css' );
+	wp_enqueue_script( 'colorbox', COLLABPRESS_PLUGIN_URL . 'includes/js/jquery.colorbox-min.js', array( 'jquery') );
 
-	wp_enqueue_script( 'cp-task-list', CP_PLUGIN_URL . 'includes/js/task_list.js', array( 'jquery', 'jquery-ui-sortable' ) );
+	wp_enqueue_script( 'cp-task-list', COLLABPRESS_PLUGIN_URL . 'includes/js/task_list.js', array( 'jquery', 'jquery-ui-sortable' ) );
 
-	wp_enqueue_style( 'jquery-ui', CP_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css' );
+	wp_enqueue_style( 'jquery-ui', COLLABPRESS_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css' );
 
 }
 
@@ -1164,7 +1164,7 @@ function cp_insert_comment_on_task( $args = array() ) {
  *
  */
 function cp_get_permalink( $args = array() ) {
-	return apply_filters( 'cp_permalink', add_query_arg( $args, CP_DASHBOARD ), $args );
+	return apply_filters( 'cp_permalink', add_query_arg( $args, COLLABPRESS_DASHBOARD ), $args );
 }
 
 add_filter( 'post_type_link', 'cp_filter_permalinks', 10, 4 );

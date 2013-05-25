@@ -7,39 +7,39 @@ do_action( 'cp_core' );
 register_activation_hook( __FILE__, 'cp_install' );
 
 // AJAX handlers
-require_once( CP_PLUGIN_DIR . 'includes/ajax-handlers.php' );
+require_once( COLLABPRESS_PLUGIN_DIR . 'includes/ajax-handlers.php' );
 
 // CollabPress Admin Init Functions
-require_once( CP_PLUGIN_DIR . 'includes/admin_init.php' );
+require_once( COLLABPRESS_PLUGIN_DIR . 'includes/admin_init.php' );
 do_action( 'cp_after_admin_init' );
 
 // CollabPress Functions
-require_once( CP_PLUGIN_DIR . 'includes/functions.php' );
+require_once( COLLABPRESS_PLUGIN_DIR . 'includes/functions.php' );
 do_action( 'cp_after_functions' );
 
 // Administration Menus
-require_once( CP_PLUGIN_DIR . 'includes/menus.php' );
+require_once( COLLABPRESS_PLUGIN_DIR . 'includes/menus.php' );
 do_action( 'cp_after_menus' );
 
 // CollabPress Update
-require_once( CP_PLUGIN_DIR . 'includes/update.php' );
+require_once( COLLABPRESS_PLUGIN_DIR . 'includes/update.php' );
 
 // CollabPress shortcode support
-require_once( CP_PLUGIN_DIR . 'includes/shortcode.php' );
+require_once( COLLABPRESS_PLUGIN_DIR . 'includes/shortcode.php' );
 do_action( 'cp_after_shortcode' );
 
 // CollabPress widgets
-require_once( CP_PLUGIN_DIR . 'includes/cp-widgets.php' );
+require_once( COLLABPRESS_PLUGIN_DIR . 'includes/cp-widgets.php' );
 do_action( 'cp_after_widgets' );
 
 // Load BuddyPress integration, if BP is enabled
 add_action( 'bp_init', 'cp_load_bp_functions' );
 
 // Add "View CollabPress Dashboard" link on plugins page
-add_filter( 'plugin_action_links_' . CP_BASENAME, 'cp_filter_plugin_actions' );
+add_filter( 'plugin_action_links_' . COLLABPRESS_BASENAME, 'cp_filter_plugin_actions' );
 
 function cp_filter_plugin_actions( $links ) {
-	$settings_link = '<a href="'.CP_DASHBOARD.'">'.__('View Dashboard', 'collabpress').'</a>';
+	$settings_link = '<a href="'.COLLABPRESS_DASHBOARD.'">'.__('View Dashboard', 'collabpress').'</a>';
 	array_unshift ( $links, $settings_link );
 	return $links;
 }
@@ -98,7 +98,7 @@ function cp_load_bp_functions() {
 	}
 
 	// Still here? Load BP functionality
-	require_once( CP_PLUGIN_DIR . 'includes/cp-bp.php' );
+	require_once( COLLABPRESS_PLUGIN_DIR . 'includes/cp-bp.php' );
 }
 
 // PressTrends Tracking

@@ -39,7 +39,7 @@
 
 				    if ( $activity_user ) : ?>
 				    <div class="cp-activity-row <?php echo $row_class ?>">
-					    <a class="cp-activity-author" title="<?php $activity_user->display_name ?>" href="<?php echo CP_DASHBOARD; ?>&user=<?php echo $activity_user->ID ?>"><?php echo get_avatar($activity_user->ID, 32) ?></a>
+					    <a class="cp-activity-author" title="<?php $activity_user->display_name ?>" href="<?php echo COLLABPRESS_DASHBOARD; ?>&user=<?php echo $activity_user->ID ?>"><?php echo get_avatar($activity_user->ID, 32) ?></a>
 					    <div class="cp-activity-wrap">
 					    <p class="cp-activity-description"><?php echo $activity_user->display_name . ' ' . $activity_action . ' ' . __('a', 'collabpress') . ' '. $activity_type ?>: <a href="<?php echo cp_get_url( $activity_id, $activity_type ); ?>"><?php echo get_the_title( $activity_id ); ?></a></p>
 					    </div>
@@ -55,7 +55,7 @@
 		if ( $cp->activities->max_num_pages > 1 ) {
 			echo '<p class="cp_pagination">';
 		    for ( $i = 1; $i <= $cp->activities->max_num_pages; $i++ ) {
-		        echo '<a href="' . CP_DASHBOARD . '&view=activity&activity_page=' . $i . '" '.( ( $paged == $i ) ? 'class="active"' : '' ) . '>' . $i . '</a> ';
+		        echo '<a href="' . COLLABPRESS_DASHBOARD . '&view=activity&activity_page=' . $i . '" '.( ( $paged == $i ) ? 'class="active"' : '' ) . '>' . $i . '</a> ';
 		    }
 		    echo '</p>';
 		} ?>

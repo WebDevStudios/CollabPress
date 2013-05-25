@@ -10,12 +10,12 @@
 
 // Set up the pagination and sortable columns helpers
 if ( !class_exists( 'BBG_CPT_Pag' ) )
-	require_once( CP_PLUGIN_DIR . 'includes/tools/boones-pagination/boones-pagination.php' );
+	require_once( COLLABPRESS_PLUGIN_DIR . 'includes/tools/boones-pagination/boones-pagination.php' );
 
 $pagination = new BBG_CPT_Pag;
 
 if ( !class_exists( 'BBG_CPT_Sort' ) )
-	require_once( CP_PLUGIN_DIR . 'includes/tools/boones-sortable-columns/boones-sortable-columns.php' );
+	require_once( COLLABPRESS_PLUGIN_DIR . 'includes/tools/boones-sortable-columns/boones-sortable-columns.php' );
 
 $cols = array(
 	array(
@@ -107,11 +107,11 @@ $pagination->setup_query( $cp_bp_projects );
 
 <hr />
 
-<?php if ( cp_check_permissions( 'settings_user_role' ) ) : ?>	
+<?php if ( cp_check_permissions( 'settings_user_role' ) ) : ?>
 	<div class="cp-meta-box cp-new-project hide-on-load">
 		<div title="Click to toggle" class="handlediv"><br></div>
 		<h4 class="hndle"><span><?php _e( 'New Project', 'collabpress' ) ?></span></h4>
-	
+
 		<div class="inside">
 			<?php cp_add_project() ?>
 		</div>

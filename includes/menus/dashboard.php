@@ -50,7 +50,7 @@ function cp_add_admin_menu_item() {
 		$cp_user_role,
 		COLLABPRESS_DASHBOARD_PAGE,
 		'cp_admin_menu_page_load',
-		CP_PLUGIN_URL .'includes/images/collabpress-menu-icon.png'
+		COLLABPRESS_PLUGIN_URL .'includes/images/collabpress-menu-icon.png'
 	);
 
 	//load settings user role
@@ -150,7 +150,7 @@ function cp_admin_menu_page_load() {
 function cp_load_template( $template ) {
 	if ( ! $located_template = locate_template( $template ) ) {
 		// If no template is found, load the one from the plugin
-		$located_template = CP_PLUGIN_DIR . 'includes/templates/' . $template;
+		$located_template = COLLABPRESS_PLUGIN_DIR . 'includes/templates/' . $template;
 	}
 	require( $located_template );
 }

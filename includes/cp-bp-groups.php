@@ -1000,7 +1000,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 		// Styles should be loaded on the groups tab, or on the group admin subtab, or on
 		// the calendar page
 		if ( bp_is_current_action( $this->slug ) || in_array( $this->slug, (array)bp_action_variables() ) || bp_is_current_action( 'calendar' ) ) {
-			wp_enqueue_style( 'cp-bp', CP_PLUGIN_URL . 'includes/css/bp.css' );
+			wp_enqueue_style( 'cp-bp', COLLABPRESS_PLUGIN_URL . 'includes/css/bp.css' );
 		}
 	}
 
@@ -1014,7 +1014,7 @@ class CP_BP_Group_Extension extends BP_Group_Extension {
 	function enqueue_scripts() {
 		// Scripts should be loaded on the groups tab, or on the group admin subtab
 		if ( bp_is_current_action( $this->slug ) || in_array( $this->slug, (array)bp_action_variables() ) || bp_is_current_action( 'calendar' ) ) {
-			wp_enqueue_script( 'cp-bp', CP_PLUGIN_URL . 'includes/js/bp.js', array( 'jquery' ) );
+			wp_enqueue_script( 'cp-bp', COLLABPRESS_PLUGIN_URL . 'includes/js/bp.js', array( 'jquery' ) );
 
 			// collabpress_dashboard_page::cp_admin_scripts();
 		}
