@@ -1,5 +1,5 @@
 <p class="cp_about">
-	<a target="_blank" href="http://collabpress.org"><?php _e('CollabPress', 'collabpress'); ?></a> v<?php echo CP_VERSION; ?> -
+	<a target="_blank" href="http://collabpress.org"><?php _e('CollabPress', 'collabpress'); ?></a> v<?php echo COLLABPRESS_VERSION; ?> -
 	<a href="http://wordpress.org/support/plugin/collabpress" target="_blank"><?php _e('Please Report Bugs', 'collabpress'); ?></a> &middot;
 	<?php _e( 'Get involved', 'collabpress' ); ?>:
 	<a href="https://github.com/WebDevStudios/CollabPress" target="_blank">Github</a>  &middot;
