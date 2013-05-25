@@ -55,8 +55,9 @@ if ( cp_check_permissions( 'settings_user_role' ) ) {
 			//load presstrends
             $cp_presstrends = ( isset( $options['presstrends'] ) ) ? $options['presstrends'] : 'no';
 
-            // Date format
-            $date_format = ( isset( $options['date_format'] ) ) ? $options['date_format'] : 'MM/DD/YYYY';
+            // Output pate format
+            $date_format = ( isset( $options['date_format'] ) ) ? $options['date_format'] : 'F j, Y';
+
 
 			?>
 			<table class="form-table">
@@ -111,12 +112,36 @@ if ( cp_check_permissions( 'settings_user_role' ) ) {
 					</td>
 				</tr>
 				<tr>
-					<th scope="row"><label for="date_format"><?php _e( 'Date format', 'collabpress' ); ?></label></th>
+					<th scope="row"><label for="cp_options[date_format]"><?php _e( 'Date format', 'collabpress' ); ?></label></th>
 					<td>
-						<select name="cp_options[date_format]">
-				            <option value="MM/DD/YYYY" <?php selected( 'MM/DD/YYYY', $date_format ); ?>>MM/DD/YYYY</option>
-                            <option value="DD/MM/YYYY" <?php selected( 'DD/MM/YYYY', $date_format ); ?>>DD/MM/YYYY</option>
-						</select>
+						<?php
+						$date_formats = array_unique( apply_filters( 'date_formats', array(
+							__('F j, Y'),
+							'Y/m/d',
+							'm/d/Y',
+							'd/m/Y',
+						) ) );
+
+						$custom = true;
+
+						foreach ( $date_formats as $format ) {
+							echo "\t<label title='" . esc_attr($format) . "'><input type='radio' name='cp_options[date_format]' value='" . esc_attr($format) . "'";
+							if ( $date_format === $format ) { // checked() uses "==" rather than "==="
+								echo " checked='checked'";
+								$custom = false;
+							}
+							echo ' /> <span>' . date_i18n( $format ) . "</span></label><br />\n";
+						}
+
+						echo '	<label><input type="radio" name="cp_options[date_format]" id="date_format_custom_radio" value="\c\u\s\t\o\m"';
+						checked( $custom );
+						echo '/> ' . __('Custom:') . ' </label><input type="text" name="cp_options[date_format]" value="';
+						if ( $date_format == '\c\u\s\t\o\m' )
+							echo esc_attr( $date_format );
+						echo '" class="small-text" /> <span class="example"> ' . date_i18n( $date_format ) . "</span> <span class='spinner'></span>\n";
+
+						echo "\t<p>" . __('<a href="http://codex.wordpress.org/Formatting_Date_and_Time">Documentation on date and time formatting</a>.') . "</p>\n";
+						?>
 					</td>
 				</tr>
 				<tr>
