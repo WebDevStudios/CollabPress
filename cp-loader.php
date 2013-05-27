@@ -3,7 +3,7 @@
 Plugin Name: CollabPress
 Plugin URI: http://collabpress.org/
 Description: A Project Management Plugin for WordPress
-Version: 1.3.1.1
+Version: 1.4-dev
 Author: WebDevStudios.com
 Author URI: http://webdevstudios.com/
 License: GPLv2
