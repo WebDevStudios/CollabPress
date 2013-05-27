@@ -998,11 +998,11 @@ function cp_insert_task( $args = array() ) {
 	    $task_author_data = get_userdata( $task_assigned_to );
 	    $author_email = $task_author_data->user_email;
 
-	    $subject = sprintf( __('You have been assigned the task %d.', 'collabpress'),
+	    $subject = sprintf( __('You have been assigned the task %s.', 'collabpress'),
 	    	esc_attr( get_the_title( $task_id ) )
 	    );
 
-	    $message = sprintf( __('You have been assigned the task %d.', 'collabpress'),
+	    $message = sprintf( __('You have been assigned the task %s.', 'collabpress'),
 	    	esc_attr( get_the_title( $task_id ) )
 	    );
 
