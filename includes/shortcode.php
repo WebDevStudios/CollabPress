@@ -16,10 +16,10 @@ function cp_project_short( $atts ) {
             cp_admin_menu_page_load();
         }
         else {
-            echo 'You do not have access to this project.';
+            _e( 'You do not have access to this project.', 'collabpress' );
         }
 	} else {
-		echo 'You must be logged in to view this page.';
+		_e( 'You must be logged in to view this page.', 'collabpress' );
 	}
 }
 
