@@ -834,7 +834,10 @@ function cp_insert_project( $args ) {
 }
 
 function cp_set_project_description( $project_id, $description ) {
-	update_post_meta( $project_id, '_cp-project-description', esc_html( $description ) );
+	if ( current_user_can( 'unfiltered_html' ) == false )
+		$description = wp_filter_kses( $description );
+
+	update_post_meta( $project_id, '_cp-project-description', $description );
 }
 
 function cp_get_project_description( $project_id ) {
