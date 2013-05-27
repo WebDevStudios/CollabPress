@@ -11,17 +11,16 @@ function cp_project_short( $atts ) {
     ), $atts ) );
 
     //verify user has permission to view shortcode
-    if ( cp_check_permissions( 'shortcode_user_role' ) ) {
-    	cp_admin_menu_page_load();
-    } else {
-    	if ( is_user_logged_in() ) {
-    		echo 'You do not have access to this project.';
-    	} else {
-    		echo 'You must be logged in to view this page.';
-    	}
-
-    }
-
+	if ( is_user_logged_in() ) {
+        if ( cp_check_permissions( 'shortcode_user_role' ) ) {
+            cp_admin_menu_page_load();
+        }
+        else {
+            echo 'You do not have access to this project.';
+        }
+	} else {
+		echo 'You must be logged in to view this page.';
+	}
 }
 
 // Checks to see if the current post/page is using
