@@ -178,7 +178,7 @@ class CP_BP_Integration extends BP_Component {
 		$cp_options = get_option( 'cp_options' );
 
 		// Check if debug mode is enabled
-		$cp_debug_mode = ( $cp_options['debug_mode'] == 'enabled' ) ? true : false;
+		$cp_debug_mode = ( isset( $cp_options['debug_mode'] ) && $cp_options['debug_mode'] == 'enabled' ) ? true : false;
 
 		// Groups. Todo: abstract this to the groups class
 		register_taxonomy( 'cp-bp-group', 'cp-projects', array(
