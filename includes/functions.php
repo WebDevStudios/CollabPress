@@ -171,13 +171,14 @@ function cp_task_comments() {
 
 	//check if email option is enabled
 	$options = get_option('cp_options');
+	$email_notifications = isset( $options['email_notifications'] ) && 'enabled' === $options['email_notifications'];
 
 	echo '<form id="task-comment-form" action="'.cp_clean_querystring().'" method="post">';
 		wp_nonce_field( 'add-task-comment', 'add_task_comment_nonce' );
 		?>
 		<p><label for="cp-comment-content"><?php _e('Leave a Comment: ', 'collabpress') ?></label></p>
 		<p><textarea class="large-text code" id="cp-comment-content" cols="30" rows="10" name="cp-comment-content"></textarea></p>
-		<p><?php _e('Notify via Email?', 'collabpress'); ?> <input type="checkbox" name="notify" <?php checked( $options['email_notifications'], 'enabled' ); ?> /></p>
+		<p><?php _e('Notify via Email?', 'collabpress'); ?> <input type="checkbox" name="notify" <?php checked( $email_notifications ); ?> /></p>
 		<?php
 		echo '<p class="submit"><input class="button-primary" type="submit" name="cp-add-comment" value="'.__( 'Submit', 'collabpress' ).'"/></p>';
 
