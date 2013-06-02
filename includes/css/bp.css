@@ -84,10 +84,6 @@ body.collabpress .currently-viewing {
 	cursor: pointer;
 }
 
-.cp-meta-box:hover .handlediv {
-	background: url("../images/arrows.png") no-repeat scroll 6px 7px transparent;
-}
-
 .cp-meta-box .inside {
 	border-top: 2px solid #ddd;
 	padding: 10px 15px;
