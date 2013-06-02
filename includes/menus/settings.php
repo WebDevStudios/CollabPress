@@ -232,7 +232,6 @@ if ( cp_check_permissions( 'settings_user_role' ) ) {
 				</tr>
 			</table>
 		</form>
-		<?php include "settings-addons.php";?>
 	</div>
 
 	<?php cp_footer(); ?>
