@@ -28,7 +28,6 @@ function cp_project_short( $atts ) {
 add_action('the_posts', 'cp_using_shortcode');
 
 function cp_using_shortcode($posts) {
-
     if ( empty($posts) )
         return $posts;
 
@@ -41,11 +40,7 @@ function cp_using_shortcode($posts) {
         }
 
     if ($foundsc = true) {
-    $css_src = COLLABPRESS_PLUGIN_URL . 'includes/css/front.css';
     $js_src = COLLABPRESS_PLUGIN_URL . 'includes/js/frontend.js';
-
-    wp_register_style('cp_frontend_css', $css_src );
-    wp_enqueue_style('cp_frontend_css');
 
     wp_register_script('cp_frontend_js', $js_src );
 	wp_enqueue_script('jquery');
