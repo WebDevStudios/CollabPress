@@ -686,6 +686,7 @@ function cp_limit_length( $strtolimit=null, $limit=50 ) {
 require_once( COLLABPRESS_PLUGIN_DIR . 'includes/template-tags.php' );
 
 add_action( 'wp', 'cp_enqueue_styles_and_scripts' );
+add_action( 'admin_init', 'cp_enqueue_styles_and_scripts' );
 
 /**
  * Load CollabPress styles and scripts.
