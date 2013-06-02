@@ -53,27 +53,6 @@ function cp_admin_init() {
 
 }
 
-// Print Scripts
-add_action( 'wp_print_scripts', 'collabpress_frontend_scripts' );
-function collabpress_frontend_scripts() {
-	?>
-	<script language="JavaScript">
-
-	function checkAll(field)
-	{
-	for (i = 0; i < field.length; i++)
-		field[i].checked = true ;
-	}
-
-	function uncheckAll(field)
-	{
-	for (i = 0; i < field.length; i++)
-		field[i].checked = false ;
-	}
-	</script>
-<?php
-}
-
 /**
  * Dismiss a CP warning admin notice
  *
