@@ -77,13 +77,6 @@ body.collabpress .currently-viewing {
 	cursor: pointer;
 }
 
-.cp-new-project h4,
-.cp-add-task-list h4,
-.cp-add-task h4 {
-	background: #f1f1f1 url(../images/add_16.png) no-repeat 8px 6px;
-	padding-left: 30px;
-}
-
 .cp-meta-box .handlediv {
 	width: 27px;
 	height: 30px;
