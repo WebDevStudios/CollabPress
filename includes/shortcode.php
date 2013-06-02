@@ -22,30 +22,3 @@ function cp_project_short( $atts ) {
 		_e( 'You must be logged in to view this page.', 'collabpress' );
 	}
 }
-
-// Checks to see if the current post/page is using
-// CollabPress shortcode - if so adds front end css
-add_action('the_posts', 'cp_using_shortcode');
-
-function cp_using_shortcode($posts) {
-    if ( empty($posts) )
-        return $posts;
-
-    $foundsc = false;
-
-    foreach ($posts as $post) {
-        if ( stripos($post->post_content, '[collabpress') )
-            $foundsc = true;
-            break;
-        }
-
-    if ($foundsc = true) {
-    $js_src = COLLABPRESS_PLUGIN_URL . 'includes/js/frontend.js';
-
-    wp_register_script('cp_frontend_js', $js_src );
-	wp_enqueue_script('jquery');
-    wp_enqueue_script('cp_frontend_js');
-	}
-
-    return $posts;
-}
