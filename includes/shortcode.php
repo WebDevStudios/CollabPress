@@ -1,14 +1,11 @@
 <?php
 
-//create [collabpress $id ] shortcode
-//calls cp_sc_projects( $id)
-//$id = project ID (option) : if not set all projects listed
-add_shortcode( 'collabpress', 'cp_project_short' );
+add_shortcode( 'collabpress', 'cp_project_shortcode' );
 
-function cp_project_short( $atts ) {
-    extract( shortcode_atts( array(
-        "id"    =>  null
-    ), $atts ) );
+/**
+ * CollabPress shortcode handler
+ */
+function cp_project_shortcode() {
 
     //verify user has permission to view shortcode
 	if ( is_user_logged_in() ) {
