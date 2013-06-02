@@ -98,6 +98,16 @@ function collabpress_register_custom_post_types() {
 
 }
 
+
+add_action( 'plugins_loaded', 'cp_load_plugin_textdomain' );
+
+/**
+ * Load plugin textdomain for translation files.
+ */
+function cp_load_plugin_textdomain() {
+	load_plugin_textdomain( 'collabpress', false, basename( dirname( dirname( __FILE__ ) ) ) . '/languages' );
+}
+
 // Add "View CollabPress Dashboard" link on plugins page
 add_filter( 'plugin_action_links_' . COLLABPRESS_BASENAME, 'cp_filter_plugin_actions' );
 

@@ -53,12 +53,6 @@ function cp_admin_init() {
 
 }
 
-// Add Translation
-add_action( 'init', 'cp_translation' );
-function cp_translation() {
-	load_plugin_textdomain( 'collabpress', false, basename( dirname( dirname( __FILE__ ) ) ) . '/languages' );
-}
-
 // Print Scripts
 add_action( 'wp_print_scripts', 'collabpress_frontend_scripts' );
 function collabpress_frontend_scripts() {
