@@ -32,11 +32,6 @@ require_once( COLLABPRESS_PLUGIN_DIR . 'includes/shortcode.php' );
 
 do_action( 'cp_after_shortcode' );
 
-// CollabPress widgets
-require_once( COLLABPRESS_PLUGIN_DIR . 'includes/cp-widgets.php' );
-
-do_action( 'cp_after_widgets' );
-
 add_action( 'init', 'collabpress_register_custom_post_types', 5 );
 
 /**
