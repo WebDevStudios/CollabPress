@@ -38,6 +38,67 @@ add_action( 'bp_init', 'cp_load_bp_functions' );
 // Add "View CollabPress Dashboard" link on plugins page
 add_filter( 'plugin_action_links_' . COLLABPRESS_BASENAME, 'cp_filter_plugin_actions' );
 
+add_action( 'init', 'collabpress_register_custom_post_types', 5 );
+
+/**
+ * CollabPress Init
+ *
+ * Register Custom Post Types
+ */
+function collabpress_register_custom_post_types() {
+
+	// Load plugin options
+	$cp_options = get_option( 'cp_options' );
+
+	// Check if debug mode is enabled
+	$cp_debug_mode = ( isset( $cp_options['debug_mode'] ) && $cp_options['debug_mode'] == 'enabled' ) ? true : false;
+
+	// Register Custom Post Types
+	register_post_type(
+		'cp-projects',
+		array(
+			'label' => __( 'Projects', 'collabpress' ),
+			'description' => __( 'Custom Post Type for CollabPress Projects', 'collabpress' ),
+			'public' => $cp_debug_mode,
+			'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+			'exclude_from_search' => true,
+	) );
+
+	register_post_type(
+		'cp-task-lists',
+		array(
+			'label' => __('Task Lists', 'collabpress'),
+			'description' => __('Custom Post Type for CollabPress Task Lists', 'collabpress'),
+			'public' => $cp_debug_mode,
+			'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+			'exclude_from_search' => true,
+	) );
+
+	register_post_type(
+		'cp-tasks',
+		array(
+			'label' => __('Tasks', 'collabpress'),
+			'description' => __('Custom Post Type for CollabPress Tasks', 'collabpress'),
+			'public' => $cp_debug_mode,
+			'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+			'exclude_from_search' => true,
+	) );
+
+	register_post_type(
+		'cp-meta-data',
+		array(
+			'label' => __('Meta Data', 'collabpress'),
+			'description' => __('Custom Post Type for CollabPress Meta Data', 'collabpress' ),
+			'public' => $cp_debug_mode,
+			'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
+			'exclude_from_search' => true,
+	) );
+
+	// Let other plugins (and the BuddyPress compatibility module) know that we've registered
+	do_action( 'cp_registered_post_types' );
+
+}
+
 function cp_filter_plugin_actions( $links ) {
 	$settings_link = '<a href="'.COLLABPRESS_DASHBOARD.'">'.__('View Dashboard', 'collabpress').'</a>';
 	array_unshift ( $links, $settings_link );

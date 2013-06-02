@@ -81,68 +81,6 @@ function collabpress_frontend_scripts() {
 }
 
 /**
- * CollabPress Init
- *
- * Register Custom Post Types
- */
-add_action( 'init', 'collabpress_init', 5 );
-function collabpress_init() {
-
-	// Load plugin options
-	$cp_options = get_option( 'cp_options' );
-
-	// Check if debug mode is enabled
-	$cp_debug_mode = ( isset( $cp_options['debug_mode'] ) && $cp_options['debug_mode'] == 'enabled' ) ? true : false;
-
-	// Register Custom Post Types
-
-	// Projects
-	$args_projects = array(
-		'label' => __( 'Projects', 'collabpress' ),
-		'description' => __( 'Custom Post Type for CollabPress Projects', 'collabpress' ),
-		'public' => $cp_debug_mode,
-		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
-		'exclude_from_search' => true
-	);
-	// Register Projects Custom Post Type
-	register_post_type( 'cp-projects', $args_projects );
-
-	// Task Lists
-	$args_task_lists = array('label' => __('Task Lists', 'collabpress'),
-		'description' => __('Custom Post Type for CollabPress Task Lists', 'collabpress'),
-		'public' => $cp_debug_mode,
-		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
-		'exclude_from_search' => true
-		);
-	// Register Task List Custom Post Type
-	register_post_type( 'cp-task-lists', $args_task_lists );
-
-	// Tasks
-	$args_tasks = array('label' => __('Tasks', 'collabpress'),
-		'description' => __('Custom Post Type for CollabPress Tasks', 'collabpress'),
-		'public' => $cp_debug_mode,
-		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
-		'exclude_from_search' => true
-		);
-	// Register Tasks Custom Post Type
-	register_post_type( 'cp-tasks', $args_tasks );
-
-	// Meta Data
-	$args_tasks = array('label' => __('Meta Data', 'collabpress'),
-		'description' => __('Custom Post Type for CollabPress Meta Data', 'collabpress' ),
-		'public' => $cp_debug_mode,
-		'supports' => array( 'title', 'author', 'thumbnail', 'comments', 'custom-fields' ),
-		'exclude_from_search' => true
-	);
-	// Register CollabPress Meta Data
-	register_post_type( 'cp-meta-data', $args_tasks );
-
-	// Let other plugins (and the BuddyPress compatibility module) know that we've registered
-	do_action( 'cp_registered_post_types' );
-
-}
-
-/**
  * Dismiss a CP warning admin notice
  *
  * @since 1.3
