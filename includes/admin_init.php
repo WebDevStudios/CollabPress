@@ -59,27 +59,9 @@ function cp_translation() {
 	load_plugin_textdomain( 'collabpress', false, basename( dirname( dirname( __FILE__ ) ) ) . '/languages' );
 }
 
-// Frontend Init
-add_action( 'init', 'cp_frontend_init' );
-function cp_frontend_init() {
-	if ( !is_admin() ) :
-		// Register Styles
-		wp_register_style('cp_jquery-ui', COLLABPRESS_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css');
-	endif;
-}
-
-// Print Styles
-add_action( 'wp_print_styles', 'collabpress_frontend_styles' );
-function collabpress_frontend_styles() {
-	wp_enqueue_style('cp_jquery-ui');
-}
-
 // Print Scripts
 add_action( 'wp_print_scripts', 'collabpress_frontend_scripts' );
 function collabpress_frontend_scripts() {
-	wp_enqueue_script('jquery-ui');
-	wp_enqueue_script('jquery-ui-datepicker');
-	wp_enqueue_script('cp_frontend');
 	?>
 	<script language="JavaScript">
 

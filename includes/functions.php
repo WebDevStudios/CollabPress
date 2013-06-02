@@ -685,19 +685,20 @@ function cp_limit_length( $strtolimit=null, $limit=50 ) {
 
 require_once( COLLABPRESS_PLUGIN_DIR . 'includes/template-tags.php' );
 
-add_action( 'wp', 'cp_maybe_enqueue_styles_and_scripts' );
-add_action( 'init', 'cp_maybe_enqueue_styles_and_scripts' );
-
-function cp_maybe_enqueue_styles_and_scripts() {
-	if ( is_collabpress_page() )
-		cp_enqueue_styles_and_scripts();
-}
+add_action( 'wp', 'cp_enqueue_styles_and_scripts' );
 
 /**
- * Bootstrapper for CollabPress styles and scripts.
+ * Load CollabPress styles and scripts.
  *
  */
 function cp_enqueue_styles_and_scripts() {
+	if ( ! is_collabpress_page() )
+		return;
+
+	wp_enqueue_script( 'jquery-ui' );
+	wp_enqueue_script( 'jquery-ui-datepicker' );
+	wp_enqueue_style( 'cp_jquery-ui',
+	                  COLLABPRESS_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css' );
 	wp_enqueue_style( 'collabpress-new', COLLABPRESS_PLUGIN_URL . 'includes/css/collabpress.css' );
 	wp_enqueue_style( 'collabpress-fonts', 'http://fonts.googleapis.com/css?family=Roboto+Condensed:300italic,400italic,700italic,300,400,700' );
 	wp_enqueue_style( 'cp_admin', COLLABPRESS_PLUGIN_URL . 'includes/css/admin.css' );
