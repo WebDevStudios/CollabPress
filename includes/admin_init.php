@@ -65,9 +65,6 @@ function cp_frontend_init() {
 	if ( !is_admin() ) :
 		// Register Styles
 		wp_register_style('cp_jquery-ui', COLLABPRESS_PLUGIN_URL . 'includes/css/jquery-ui/jquery-ui-1.8.16.custom.css');
-
-		// Register Scripts
-		wp_register_script('cp_frontend', COLLABPRESS_PLUGIN_URL . 'includes/js/frontend.js', array('jquery'));
 	endif;
 }
 
