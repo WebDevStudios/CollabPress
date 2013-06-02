@@ -41,9 +41,9 @@ add_filter( 'plugin_action_links_' . COLLABPRESS_BASENAME, 'cp_filter_plugin_act
 add_action( 'init', 'collabpress_register_custom_post_types', 5 );
 
 /**
- * CollabPress Init
+ * Register CollabPress custom post types
  *
- * Register Custom Post Types
+ *
  */
 function collabpress_register_custom_post_types() {
 
