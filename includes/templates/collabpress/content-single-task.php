@@ -15,17 +15,18 @@
 		<?php $task_status = cp_get_task_status( cp_get_the_task_ID() ); ?>
 		<?php $title_class = $task_status; ?>
 		<input type="hidden" id="item-complete-status-change-nonce_<?php echo cp_get_task_id(); ?>" value="<?php echo wp_create_nonce( 'item-complete-status-change_' . cp_get_task_id() ) ?>" />
-		<h1 id="task-title" class="<?php echo $title_class; ?>"><input id="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>><?php echo cp_get_task_title(); ?></h1>
+		<h3 id="task-title" class="<?php echo $title_class; ?>"><input id="item-completed" type="checkbox" <?php checked( 'complete', $task_status ); ?>><?php echo cp_get_task_title(); ?></h1>
 		<a class="edit-task" href="#edit_task_inline_content">Edit</a><BR>
 		<?php if ( $due_date = cp_get_the_task_due_date() ) {
-			echo '<div>Due date: ' . $due_date . '</div>';
+			echo '<div>' . __( 'Due date: ', 'collabpress' ) . $due_date . '</div>';
 		} ?>
-		<?php if ( $priority = cp_get_the_task_priority() ) {
-			echo '<div>Priority: ' . $priority . '</div>';
+		<?php if ( ( $priority = cp_get_the_task_priority() ) != 'None' ) {
+			echo '<div>' . __( 'Priority: ', 'collabpress' ) . $priority . '</div>';
 		} ?>
-		<?php
-		$user_assigned = cp_get_user_assigned_to_task();
-		echo '<div>Assigned to: ' . get_avatar( $user_assigned->ID ) . '</div>'; ?>
+		<div>
+			<div class="avatar"><?php echo get_avatar( cp_get_user_assigned_to_task()->ID ); ?></div>
+			<div class="assigned-to-metadata"><?php  _e( 'Assigned to: ', 'collabpress' ); echo cp_get_user_assigned_to_task()->display_name ?></div>
+		</div>
 		<div style="clear:both"></div>
 		<?php cp_task_comments(); ?>
 	</div>
