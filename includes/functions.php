@@ -150,7 +150,12 @@ function cp_task_comments() {
 			<div class="cp_task_comment <?php echo $row ?>">
 				<a class="avatar" title="<?php echo $comm->comment_author ?>" href="<?php echo COLLABPRESS_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo get_avatar($comm->user_id, 64) ?></a>
 				<div class="cp_task_comment_content">
-					<p class="cp_comment_author"><a title="<?php echo $comm->comment_author ?>" href="<?php echo COLLABPRESS_DASHBOARD; ?>&user=<?php echo $comm->user_id ?>"><?php echo $comm->comment_author ?></a>
+					<p class="cp_comment_author">
+						<?php printf(
+								__( '%1$s said on %2$s', 'collabpress' ),
+								'<a title="' . $comm->comment_author . '" href="' . COLLABPRESS_DASHBOARD . '&user=' . $comm->user_id . '">' . $comm->comment_author . '</a>',
+								'<span class="cp_comment_date">' . get_comment_date( get_option( 'date_format' ), $comm->comment_ID . '</span>' )
+						); ?>
 					<input type="hidden" id="delete_comment_nonce_<?php echo $comm->comment_ID ?>" value="<?php echo wp_create_nonce( 'delete-task-comment_' . $comm->comment_ID ); ?>" />
 					<?php
 					if ( $current_user->ID == $comm->user_id || current_user_can( 'manage_options' ) )
