@@ -163,11 +163,16 @@
 
 		// On comment form submit send AJAX request
 		$('.collabpress #task-comment-form').submit(function() {
+			if ( jQuery("#wp-cp-comment-content-wrap").hasClass("tmce-active") ) {
+				var comment_content = tinyMCE.activeEditor.getContent();
+			} else {
+				var comment_content = jQuery('#cp-comment-content').val();
+			}
 			var data = {
 				task_id: $('#cp-task-id').val(),
 				user_id: <?php echo wp_get_current_user()->ID; ?>,
 				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>',
-				comment_content: $('#cp-comment-content').val()
+				comment_content: comment_content
 			};
 			$.post(
 				ajaxurl,

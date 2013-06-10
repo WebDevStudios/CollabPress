@@ -182,7 +182,7 @@ function cp_task_comments() {
 		wp_nonce_field( 'add-task-comment', 'add_task_comment_nonce' );
 		?>
 		<p><label for="cp-comment-content"><?php _e('Leave a Comment: ', 'collabpress') ?></label></p>
-		<p><textarea class="large-text code" id="cp-comment-content" cols="30" rows="10" name="cp-comment-content"></textarea></p>
+		<?php wp_editor( '', 'cp-comment-content' ); ?>
 		<p><?php _e('Notify via Email?', 'collabpress'); ?> <input type="checkbox" name="notify" <?php checked( $email_notifications ); ?> /></p>
 		<?php
 		echo '<p class="submit"><input class="button-primary" type="submit" name="cp-add-comment" value="'.__( 'Submit', 'collabpress' ).'"/></p>';
@@ -1514,4 +1514,12 @@ function cp_recent_activity($data = NULL) {
 	</style>
 
 	<?php echo '</div>';
+}
+
+
+add_action( 'init', 'cp_filters_init' );
+
+function cp_filters_init() {
+	if ( current_user_can( 'unfiltered_html' ) )
+		add_filter( 'cp_comment_content', 'wp_kses_post' );
 }
