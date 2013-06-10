@@ -181,7 +181,7 @@ a.view-all-link {
 	display: inline-block;
 }
 
-.collabpress .project-breadcrumb a.edit-project-link {
+.collabpress .project-breadcrumb a.edit-project-link, .collabpress .project-breadcrumb a.edit-task-link {
 	font-size: 90%;
 	padding-left: 5px;
 }
@@ -345,4 +345,12 @@ td.calendar-day, td.calendar-day-np {
 /* Footer */
 .cp_about {
 	text-align: center;
+}
+
+#task-title {
+	display: inline-block;
+}
+
+#task-title #item-completed {
+	margin-right: 3px;
 }
