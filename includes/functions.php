@@ -1126,7 +1126,7 @@ function cp_insert_comment_on_task( $args = array() ) {
 	if ( isset( $cp->task->ID ) )
 		$defaults['comment_post_ID'] = $cp->task->ID;
 	if ( isset( $_POST['cp-comment-content'] ) )
-	 	$defaults['comment_content'] = nl2br( esc_html( $_POST['cp-comment-content'] ) );
+	 	$defaults['comment_content'] = wp_kses_post( $_POST['cp-comment-content'] );
 
 	$args = wp_parse_args( $args, $defaults );
 

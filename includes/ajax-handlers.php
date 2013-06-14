@@ -205,7 +205,7 @@ function cp_add_comment_to_task_handler() {
 	cp_insert_comment_on_task(
 		array(
 			'comment_post_ID' => $task_id,
-			'comment_content' => apply_filters( 'cp_comment_content', $comment_content )
+			'comment_content' => apply_filters( 'cp_comment_content', wp_kses_post( $comment_content ) )
 		)
 	);
 
