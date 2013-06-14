@@ -7,15 +7,15 @@ if ( isset( $_POST['cp-add-project'] ) && isset($_POST['cp-project']) ) {
 	check_admin_referer( 'cp-add-project' );
 
 	$add_project = array(
-					'post_title' => sanitize_text_field( $_POST['cp-project'] ),
-					'post_status' => 'publish',
-					'post_type' => 'cp-projects'
-					);
+		'post_title' => sanitize_text_field( $_POST['cp-project'] ),
+		'post_status' => 'publish',
+		'post_type' => 'cp-projects'
+	);
+	
 	$project_id = wp_insert_post( $add_project );
 	
 	update_post_meta( $project_id, '_cp-project-description', esc_html($_POST['cp-project-description']) );
 
-	);
 	cp_insert_project( $args );
 	
 }
