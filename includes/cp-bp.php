@@ -80,7 +80,7 @@ class CP_BP_Integration extends BP_Component {
 	 *
 	 * @since 1.3
 	 */
-	public function setup_globals() {
+	public function setup_globals( $args = array() ) {
 		$globals = array(
 			'slug'                  => 'collabpress',
 			'root_slug'             => 'collabpress',
@@ -94,7 +94,7 @@ class CP_BP_Integration extends BP_Component {
 	 *
 	 * @since 1.3
 	 */
-	function setup_nav() {
+	function setup_nav( $main_nav = array(), $sub_nav = array() ) {
 		// Add 'Example' to the main navigation
 		$main_nav = array(
 			'name'                    => __( 'Projects', 'collabpress' ),
