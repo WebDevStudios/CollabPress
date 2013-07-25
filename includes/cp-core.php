@@ -3,9 +3,6 @@
 // Core
 do_action( 'cp_core' );
 
-// CollabPress install hook
-register_activation_hook( __FILE__, 'cp_install' );
-
 // AJAX handlers
 require_once( COLLABPRESS_PLUGIN_DIR . 'includes/ajax-handlers.php' );
 

@@ -48,6 +48,9 @@ define( 'COLLABPRESS_DASHBOARD', $cp_dashboard );
 // CollabPress Core
 require_once( 'includes/cp-core.php' );
 
+// activation hook
+register_activation_hook( __FILE__, 'cp_activation' );
+
 /**
  * Returns the query string of CollabPress values
  * e.g. task=3&task-list=4

@@ -1,6 +1,36 @@
 <?php
+/**
+ * Update and Install scripts
+ */
+
+/**
+ * Sets CollabPress default options upon activation
+ *
+ * @since 1.4
+ */
+function cp_activation() {
+	$cp_defaults = array(
+		'dashboard_meta_box' => 'enabled',
+		'email_notifications' => 'disabled',
+		'num_recent_activity' => '4',
+		'user_role' => 'manage_options',
+		'settings_user_role' => 'manage_options',
+		'shortcode_user_role' => 'all',
+		'num_users_display' => '10',
+		'debug_mode' => 'disabled',
+		'date_format' => 'F j, Y',
+	);
+
+	update_option( 'cp_options', $cp_defaults );
+}
+
 add_action( 'init', 'cp_update' );
 
+/**
+ * Update scripts for specific versions
+ *
+ * @since 1.3
+ */
 function cp_update() {
 	global $wpdb;
 	$installed_version = get_option( 'CP_VERSION' );
@@ -49,7 +79,9 @@ function cp_update() {
 				cp_update_task( array( 'ID' => $task->ID, 'task_due_date' => $formatted_date ) );
 			}
 
-			$cp_options = get_option( 'cp_options' );
+			// 1.4 introduces the date format option, which we need to add
+			// a default to in the cp_options.
+			$cp_options = cp_get_options();
 			if ( empty( $cp_options['date_format'] ) ) {
 				$cp_options['date_format'] = 'F j, Y';
 				update_option( 'cp_options', $cp_options );
