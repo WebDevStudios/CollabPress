@@ -39,7 +39,7 @@ add_action( 'init', 'collabpress_register_custom_post_types', 5 );
 function collabpress_register_custom_post_types() {
 
 	// Load plugin options
-	$cp_options = get_option( 'cp_options' );
+	$cp_options = cp_get_options();
 
 	// Check if debug mode is enabled
 	$cp_debug_mode = ( isset( $cp_options['debug_mode'] ) && $cp_options['debug_mode'] == 'enabled' ) ? true : false;
@@ -114,7 +114,7 @@ add_action( 'wp_dashboard_setup', 'cp_wp_add_dashboard_widgets' );
 function cp_wp_add_dashboard_widgets() {
 
     //check if dashboard widget is enabled
-    $options = get_option('cp_options');
+    $options = cp_get_option();
     if ( isset( $options['dashboard_meta_box'] ) && $options['dashboard_meta_box'] == 'enabled' ) {
 	wp_add_dashboard_widget('cp_wp_dashboard_widget', __('CollabPress - Recent Activity', 'collabpress'), 'cp_wp_dashboard_widget_function');
     }

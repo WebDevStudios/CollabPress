@@ -17,7 +17,7 @@
 		$paged = ( ! empty( $_GET['activity_page'] ) ) ? esc_html( $_GET['activity_page'] ) : 1;
 
 		// Load plugin options
-		$cp_options = get_option( 'cp_options' );
+		$cp_options = cp_get_option();
 
 		$activities_args = array( 'paged' => $paged );
 

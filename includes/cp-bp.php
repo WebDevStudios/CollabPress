@@ -175,7 +175,7 @@ class CP_BP_Integration extends BP_Component {
 	 */
 	function register_taxonomies() {
 		// Load plugin options
-		$cp_options = get_option( 'cp_options' );
+		$cp_options = cp_get_options();
 
 		// Check if debug mode is enabled
 		$cp_debug_mode = ( isset( $cp_options['debug_mode'] ) && $cp_options['debug_mode'] == 'enabled' ) ? true : false;
