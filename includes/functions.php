@@ -112,17 +112,6 @@ function cp_add_activity( $action = NULL, $type = NULL, $author = NULL, $ID = NU
 }
 
 /**
- * Given any CollabPress item (task list, task), get the related project.
- */
-function cp_get_project_for_item( $item_id ) {
-	$item = get_post( $item_id );
-	if ( $item->post_type == 'cp-tasks' ) {
-		$item_parent = get_post( $item->post_parent );
-		var_dump( $item_parent );
-	}
-}
-
-/**
  * Outputs all comments on displayed task.
  */
 function cp_task_comments() {
