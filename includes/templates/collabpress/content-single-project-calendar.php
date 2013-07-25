@@ -15,6 +15,7 @@
 		global $cp;
 		$month = ! empty( $_REQUEST['month'] ) ? $_REQUEST['month'] : NULL;
 		$year = ! empty($_REQUEST['year'] ) ? $_REQUEST['year'] : NULL;
+
 		cp_draw_calendar( array( 'project' => $cp->project->ID,
 			'month' => $month,
 			'year' => $year )

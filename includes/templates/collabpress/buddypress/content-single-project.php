@@ -99,7 +99,7 @@
 				<tr valign="top">
 					<th scope="row"><label for="cp-task-due"><?php _e('Notify via Email? ', 'collabpress') ?></label></th>
 					<?php
-					$options = get_option('cp_options');
+					$options = cp_get_options();
 					$checked = ( $options['email_notifications'] == 'enabled' ) ? 'checked="checked"' : null;
 					?>
 					<td align="left"><p><input name="notify" id="notify" type="checkbox" <?php echo $checked; ?> /></p></td>

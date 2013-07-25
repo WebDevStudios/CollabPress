@@ -143,7 +143,7 @@ function cp_task_comments() {
 						<?php printf(
 								__( '%1$s said on %2$s', 'collabpress' ),
 								'<a title="' . $comm->comment_author . '" href="' . COLLABPRESS_DASHBOARD . '&user=' . $comm->user_id . '">' . $comm->comment_author . '</a>',
-								'<span class="cp_comment_date">' . get_comment_date( get_option( 'date_format' ), $comm->comment_ID . '</span>' )
+								'<span class="cp_comment_date">' . get_comment_date( cp_get_date_format(), $comm->comment_ID . '</span>' )
 						); ?>
 					<input type="hidden" id="delete_comment_nonce_<?php echo $comm->comment_ID ?>" value="<?php echo wp_create_nonce( 'delete-task-comment_' . $comm->comment_ID ); ?>" />
 					<?php
@@ -484,8 +484,8 @@ function cp_get_the_task_due_date() {
 function cp_get_task_due_date( $task_id ) {
 	$due_date_mysql = cp_get_task_due_date_mysql( $task_id );
 	$unix_timestamp = strtotime( $due_date_mysql );
-	$cp_options = get_option( 'cp_options' );
-	return date( $cp_options['date_format'], $unix_timestamp );
+	$cp_options = cp_get_options();
+	return date( cp_get_date_format(), $unix_timestamp );
 }
 
 function cp_get_task_due_date_mysql( $task_id ) {
@@ -1391,9 +1391,30 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 	echo $result;
 }
 
-function cp_translate_date_format_for_js_datepicker() {
+/**
+ * Get the CollabPress setting for date format
+ *
+ * @uses cp_get_options()
+ * @since 1.4
+ */
+function cp_get_date_format() {
 	$cp_options = cp_get_options();
-	$date_format = $cp_options['date_format'];
+	if ( $cp_options['date_format'] == '\c\u\s\t\o\m' )
+		$date_format = $cp_options['date_format_custom'];
+	else
+		$date_format = $cp_options['date_format'];
+	return $date_format;
+}
+
+/**
+ * Translate the CollabPress setting for date format
+ * into the format required by jQuery datepicker.
+ *
+ * @uses cp_get_date_format()
+ * @since 1.4
+ */
+function cp_translate_date_format_for_js_datepicker() {
+	$date_format = cp_get_date_format();
 
 	// clear out format characters that don't exist in the datepicker format dictionary
 	$js_datepicker_format = preg_replace( '/[a-ce-iko-wA-CEG-LN-WXZ]/', '', $date_format );

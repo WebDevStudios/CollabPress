@@ -13,7 +13,7 @@ if ( cp_check_permissions( 'settings_user_role' ) ) {
 			<form method="post" action="options.php">
 
 			<?php settings_fields('cp_options_group'); ?>
-			<?php $options = get_option('cp_options'); ?>
+			<?php $options = cp_get_options(); ?>
 
 			<?php
 			//clear activity log
@@ -37,27 +37,15 @@ if ( cp_check_permissions( 'settings_user_role' ) ) {
 
 			endif;
 
-			//load option values
+			// Load option values into local PHP variables
 			$cp_rss_feed_num = ( isset( $options['num_recent_activity'] ) ) ? absint( $options['num_recent_activity'] ) : 4;
-
-			//load option values
 			$num_users_display = ( isset( $options['num_users_display'] ) ) ? absint( $options['num_users_display'] ) : 10;
-
-			//load minimum user role
 			$cp_user_role = ( isset( $options['user_role'] ) ) ? esc_attr( $options['user_role'] ) : 'manage_options';
-
-			//load settings user role
 			$cp_settings_user_role = ( isset( $options['settings_user_role'] ) ) ? esc_attr( $options['settings_user_role'] ) : 'manage_options';
-
-			//load shortcode user role
 			$cp_shortcode_user_role = ( isset( $options['shortcode_user_role'] ) ) ? esc_attr( $options['shortcode_user_role'] ) : '';
-
-			//load presstrends
             $cp_presstrends = ( isset( $options['presstrends'] ) ) ? $options['presstrends'] : 'no';
-
-            // Output pate format
             $date_format = ( isset( $options['date_format'] ) ) ? $options['date_format'] : 'F j, Y';
-
+            $date_format_custom = ( isset( $options['date_format_custom'] ) ) ? $options['date_format_custom'] : '';
 
 			?>
 			<table class="form-table">
@@ -135,9 +123,9 @@ if ( cp_check_permissions( 'settings_user_role' ) ) {
 
 						echo '	<label><input type="radio" name="cp_options[date_format]" id="date_format_custom_radio" value="\c\u\s\t\o\m"';
 						checked( $custom );
-						echo '/> ' . __('Custom:') . ' </label><input type="text" name="cp_options[date_format]" value="';
+						echo '/> ' . __('Custom:') . ' </label><input type="text" name="cp_options[date_format_custom]" value="';
 						if ( $date_format == '\c\u\s\t\o\m' )
-							echo esc_attr( $date_format );
+							echo esc_attr( $date_format_custom );
 						echo '" class="small-text" /> <span class="example"> ' . date_i18n( $date_format ) . "</span> <span class='spinner'></span>\n";
 
 						echo "\t<p>" . __('<a href="http://codex.wordpress.org/Formatting_Date_and_Time">Documentation on date and time formatting</a>.') . "</p>\n";

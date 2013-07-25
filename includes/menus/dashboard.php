@@ -38,7 +38,7 @@ define('COLLABPRESS_DASHBOARD_PAGE', 'collabpress-dashboard');
 add_action( 'admin_menu', 'cp_add_admin_menu_item' );
 
 function cp_add_admin_menu_item() {
-	$cp_options = get_option( 'cp_options' );
+	$cp_options = cp_get_options();
 	$cp_user_role = ( isset( $cp_options['user_role'] ) ) ? esc_attr( $cp_options['user_role'] ) : 'manage_options';
 
 	add_menu_page(
