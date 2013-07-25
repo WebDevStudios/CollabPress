@@ -65,7 +65,7 @@
 			                        <?php
 									$user_list = '<select name="cp-task-assign" id="cp-task-assign">';
 									foreach ( cp_get_project_users() as $wp_user )
-										$user_list .= '<option ' . selected( $user_assigned->ID, $wp_user->ID, false ) . ' value="' . $wp_user->ID . '">' . $wp_user->user_login . '</option>';
+										$user_list .= '<option ' . selected( cp_get_user_assigned_to_task()->ID, $wp_user->ID, false ) . ' value="' . $wp_user->ID . '">' . $wp_user->user_login . '</option>';
 									$user_list .= '</select>';
 	                				$user_list = apply_filters( 'cp_task_user_list_html', $user_list, false );
 	                				echo $user_list;
@@ -146,7 +146,7 @@
 				post_title: $('#cp-task').val(),
 				task_assigned_to: $('#cp-task-assign').val(),
 				priority: $('#cp-task-priority').val(),
-				task_due_date: $('#cp-task-due-date').val() + ' 00:00:00',
+				task_due_date: $('#cp-task-due-date-formatted').val() + ' 00:00:00',
 				collabpress_ajax_request_origin: '<?php echo ( is_admin() ? 'admin' : 'frontend' ); ?>'
 			};
 			$.post(
