@@ -4,7 +4,7 @@
 function cp_send_email( $to, $subject, $message ) {
 
     // Load plugin options
-    $cp_options = cp_get_option();
+    $cp_options = cp_get_options();
 
     // Check if email notifications are enabled - default to enabled
     $cp_email_notify = ( $cp_options['email_notifications'] == 'disabled' ) ? false : true;
@@ -175,7 +175,7 @@ function cp_task_comments() {
 	echo '</div>';
 
 	//check if email option is enabled
-	$cp_options = cp_get_option();
+	$cp_options = cp_get_options();
 	$email_notifications = isset( $options['email_notifications'] ) && 'enabled' === $options['email_notifications'];
 
 	echo '<form id="task-comment-form" action="'.cp_clean_querystring().'" method="post">';
@@ -1403,7 +1403,7 @@ function cp_output_project_nested_task_lists_and_tasks_html_for_sort( $project_i
 }
 
 function cp_translate_date_format_for_js_datepicker() {
-	$cp_options = cp_get_option();
+	$cp_options = cp_get_options();
 	$date_format = $cp_options['date_format'];
 
 	// clear out format characters that don't exist in the datepicker format dictionary
@@ -1429,7 +1429,7 @@ function cp_recent_activity($data = NULL) {
 	$paged = (isset($_GET['paged'])) ? esc_html($_GET['paged']) : 1;
 
 	// Load plugin options
-	$cp_options = cp_get_option();
+	$cp_options = cp_get_options();
 
 	// Check number of recent items to display
 	$cp_num_recent = ( isset( $cp_options['num_recent_activity'] ) ) ? absint( $cp_options['num_recent_activity'] ) : 4;

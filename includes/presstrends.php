@@ -62,7 +62,7 @@
 	}
 
 // PressTrends WordPress Action
-$cp_options = cp_get_option();
+$cp_options = cp_get_options();
 $cp_presstrends = ( ! empty ( $cp_options['presstrends'] ) && $cp_options['presstrends'] == 'no' ) ? true : false;
 if ( $cp_presstrends )
 	add_action('admin_init', 'presstrends_CollabPress_plugin');

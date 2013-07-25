@@ -114,7 +114,7 @@ add_action( 'wp_dashboard_setup', 'cp_wp_add_dashboard_widgets' );
 function cp_wp_add_dashboard_widgets() {
 
     //check if dashboard widget is enabled
-    $options = cp_get_option();
+    $options = cp_get_options();
     if ( isset( $options['dashboard_meta_box'] ) && $options['dashboard_meta_box'] == 'enabled' ) {
 	wp_add_dashboard_widget('cp_wp_dashboard_widget', __('CollabPress - Recent Activity', 'collabpress'), 'cp_wp_dashboard_widget_function');
     }
