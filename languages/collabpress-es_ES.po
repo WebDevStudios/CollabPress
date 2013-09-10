@@ -288,7 +288,7 @@ msgstr "eliminar"
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:1226
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/shortcode.php:209
 msgid "No Projects..."
-msgstr "Ho Hay Proyectos..."
+msgstr "No Hay Proyectos..."
 
 #: /Users/scottbasgaard/Sites/collabpress/wp-content/plugins/collabpress/includes/functions.php:337
 msgid "View All Users"
