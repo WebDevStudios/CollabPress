@@ -121,7 +121,9 @@ function cp_wp_add_dashboard_widgets() {
 
 }
 function cp_wp_dashboard_widget_function() {
+	if ( function_exists('cp_recent_activity') ) { 
 	cp_recent_activity();
+	}
 }
 
 // Load BuddyPress integration, if BP is enabled
