@@ -8,7 +8,7 @@
 
 	<div class="project-breadcrumb">
 		<h3 class="project-title"><?php cp_project_title(); ?></h3>
-		<h3>&nbsp;»&nbsp;<?php _e( 'Calendar', 'collabress' ); ?></h3>
+		<h3>&nbsp;»&nbsp;<?php _e( 'Calendar', 'collabpress' ); ?></h3>
 	</div>
 	<div class="calendar">
 		<?php
