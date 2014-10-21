@@ -1,0 +1,1201 @@
+# Copyright (C) 2013 
+# This file is distributed under the same license as the  package.
+msgid ""
+msgstr ""
+"Project-Id-Version: CollabPress in French\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/collabpress\n"
+"POT-Creation-Date: 2013-05-01 12:28:51+00:00\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"PO-Revision-Date: 2014-10-16 22:55+0100\n"
+"Last-Translator: Philippe Bourdenet <philippe@bourde.net>\n"
+"Language-Team: Philippe Bourdenet <philippe@bourde.net>\n"
+"X-Generator: Poedit 1.5.4\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: French\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: includes/admin_init.php:122 includes/cp-bp.php:100
+#: includes/functions.php:654 includes/functions.php:655
+msgid "Projects"
+msgstr "Projets"
+
+#: includes/admin_init.php:123
+msgid "Custom Post Type for CollabPress Projects"
+msgstr ""
+
+#: includes/admin_init.php:132
+msgid "Task Lists"
+msgstr "Liste des tâches"
+
+#: includes/admin_init.php:133
+msgid "Custom Post Type for CollabPress Task Lists"
+msgstr ""
+
+#: includes/admin_init.php:142
+#: includes/templates/collabpress/buddypress/content-single-project.php:6
+#: includes/templates/collabpress/content-single-project-tasks.php:7
+#: includes/templates/collabpress/content-single-project.php:20
+msgid "Tasks"
+msgstr "Tâches"
+
+#: includes/admin_init.php:143
+msgid "Custom Post Type for CollabPress Tasks"
+msgstr ""
+
+#: includes/admin_init.php:152
+msgid "Meta Data"
+msgstr "Métadonnées"
+
+#: includes/admin_init.php:153
+msgid "Custom Post Type for CollabPress Meta Data"
+msgstr ""
+
+#: includes/cp-bp-groups.php:469
+msgid "Save Changes"
+msgstr "Enregistrer les modifications"
+
+#: includes/cp-bp-groups.php:494
+msgid "There was an error saving, please try again"
+msgstr "Une erreur s'est produites lors de l'enregistrement, essayez à nouveau"
+
+#: includes/cp-bp-groups.php:496
+msgid "Settings saved successfully"
+msgstr "Modifications enregistrées avec succès"
+
+#: includes/cp-bp-groups.php:547
+msgid "CollabPress Projects"
+msgstr "Projets CollabPress"
+
+#: includes/cp-bp-groups.php:553
+msgid "Enable a Collabpress tab for this group"
+msgstr "Activer l'onglet CollabPress  pour ce groupe"
+
+#: includes/cp-bp-groups.php:569
+msgid "Tab name"
+msgstr "Nom"
+
+#: includes/cp-bp-groups.php:577
+msgid "Tab slug"
+msgstr ""
+
+#: includes/cp-bp-groups.php:601
+msgid "Who in this group can edit and delete existing items?"
+msgstr "Qui dans ce groupe peur editer et supprimer des items ?"
+
+#: includes/cp-bp-groups.php:605
+msgid "Any group member"
+msgstr "N'importe quel membre du groupe"
+
+#: includes/cp-bp-groups.php:606
+msgid "Admin, moderators, and owners only"
+msgstr "Adinistrateur, modérateurs et propriétaires seulement"
+
+#: includes/cp-bp-groups.php:614
+msgid "Project Calendar Tab"
+msgstr "Onglet calendrier"
+
+#: includes/cp-bp-groups.php:676
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: includes/cp-bp-groups.php:814
+#: includes/templates/collabpress/content-calendar.php:7
+#: includes/templates/collabpress/content-single-project-calendar.php:8
+msgid "Calendar"
+msgstr "Calendrier"
+
+#: includes/cp-bp-groups.php:847
+msgid "Show tasks from: "
+msgstr "Voir les tâches en provenance de :"
+
+#: includes/cp-bp-groups.php:849
+msgid "Go"
+msgstr "Go"
+
+#: includes/cp-bp-groups.php:878
+msgid "All Group Projects"
+msgstr "Tous les projets du groupe"
+
+#: includes/cp-bp-notifications.php:20
+msgid "Task added!"
+msgstr "Tâche ajoutée !"
+
+#: includes/cp-bp-notifications.php:25
+msgid "Task edited!"
+msgstr "Tâche éditée !"
+
+#: includes/cp-bp-notifications.php:30
+msgid "Task completed!"
+msgstr "Tâche remplie !"
+
+#: includes/cp-bp-notifications.php:35
+msgid "Task reopened!"
+msgstr "Tâche réouverte !"
+
+#: includes/cp-bp-notifications.php:40
+msgid "Task deleted!"
+msgstr "Tâche supprimée !"
+
+#: includes/cp-bp-notifications.php:46
+msgid "Task list added!"
+msgstr "Liste de tâches ajoutée !"
+
+#: includes/cp-bp-notifications.php:51
+msgid "Task list edited!"
+msgstr "Liste de tâches éditée !"
+
+#: includes/cp-bp-notifications.php:56
+msgid "Task list deleted!"
+msgstr "Liste de tâches supprimée !"
+
+#: includes/cp-bp-notifications.php:62
+msgid "Project added!"
+msgstr "Projet ajouté !"
+
+#: includes/cp-bp-notifications.php:67
+msgid "Project edited!"
+msgstr "Projet édité !"
+
+#: includes/cp-bp-notifications.php:72
+msgid "Project deleted!"
+msgstr "Projet supprimé !"
+
+#: includes/cp-bp-notifications.php:123
+msgid "%1$s updated the task \"%2$s\""
+msgstr "%1$s a mis à jour la tâche \"%2$s\""
+
+#: includes/cp-bp-notifications.php:128
+msgid "%1$s reopened the task \"%2$s\""
+msgstr "%1$s a réouvert la tâche \"%2$s\""
+
+#: includes/cp-bp-notifications.php:133
+msgid "%1$s deleted the task \"%2$s\""
+msgstr "%1$s a supprimé la tâche \"%2$s\""
+
+#: includes/cp-bp-notifications.php:138
+msgid "%1$s edited the task \"%2$s\""
+msgstr "%1$s a édité la tâche \"%2$s\""
+
+#: includes/cp-bp-notifications.php:143
+msgid "%1$s added the task \"%2$s\""
+msgstr "%1$s a ajouté la tâche \"%2$s\""
+
+#: includes/cp-bp-notifications.php:148
+msgid "%1$s completed the task \"%2$s\""
+msgstr "%1$s a compléta la tâche \"%2$s\""
+
+#: includes/cp-bp-notifications.php:153
+msgid "%1$s commented on the task \"%2$s\""
+msgstr "%1$s a fait un commentaire sur la tâche \"%2$s\""
+
+#: includes/cp-bp-notifications.php:168
+msgid "%1$s deleted the task list \"%2$s\""
+msgstr "%1$s a supprimé la liste de tâches \"%2$s\""
+
+#: includes/cp-bp-notifications.php:173
+msgid "%1$s edited the task list \"%2$s\""
+msgstr "%1$s a édité la liste de tâches \"%2$s\""
+
+#: includes/cp-bp-notifications.php:178
+msgid "%1$s added the task list \"%2$s\""
+msgstr "%1$s a ajouté la liste de tâches \"%2$s\""
+
+#: includes/cp-bp-notifications.php:193
+msgid "%1$s deleted the project \"%2$s\""
+msgstr "%1$s a supprimé le projet \"%2$s\""
+
+#: includes/cp-bp-notifications.php:198
+msgid "%1$s edited the project \"%2$s\""
+msgstr "%1$s a édité le projet \"%2$s\""
+
+#: includes/cp-bp-notifications.php:203
+msgid "%1$s added the project \"%2$s\""
+msgstr "%1$s a ajouté le projet \"%2$s\""
+
+#: includes/cp-bp-notifications.php:214
+msgid " in the group %s"
+msgstr "dans le groupe %s"
+
+#: includes/cp-bp.php:40 includes/footer.php:2 includes/footer.php:9
+#: includes/menus/dashboard.php:49 includes/menus/footer.php:2
+msgid "CollabPress"
+msgstr "CollabPress"
+
+#: includes/cp-bp.php:112
+msgid "My Tasks"
+msgstr "Mes tâches"
+
+#: includes/cp-bp.php:112
+msgid "%s&#8217s Tasks"
+msgstr "%s&#8217s Tâches"
+
+#: includes/cp-bp.php:352
+msgid "BuddyPress"
+msgstr "BuddyPress"
+
+#: includes/cp-bp.php:357
+msgid "Groups tab"
+msgstr ""
+
+#: includes/cp-bp.php:361 includes/menus/settings.php:66
+#: includes/menus/settings.php:76 includes/menus/settings.php:156
+msgid "Disabled"
+msgstr "Inactivé"
+
+#: includes/cp-bp.php:362 includes/menus/settings.php:67
+#: includes/menus/settings.php:75 includes/menus/settings.php:157
+msgid "Enabled"
+msgstr "Activé"
+
+#: includes/cp-bp.php:368
+msgid "Allow group admins to disable tab"
+msgstr "Autorise le groupe d'administrateurs à désactiver l'onglet"
+
+#: includes/cp-bp.php:372 includes/cp-bp.php:383
+msgid "Allow"
+msgstr "Autorise"
+
+#: includes/cp-bp.php:373 includes/cp-bp.php:384
+msgid "Don't allow"
+msgstr "N'autorise pas"
+
+#: includes/cp-bp.php:379
+msgid "Allow group admins to customize tab name and slug"
+msgstr ""
+
+#: includes/cp-bp.php:390
+msgid "Default group tab name"
+msgstr ""
+
+#: includes/cp-bp.php:398
+msgid "Default group tab slug"
+msgstr ""
+
+#: includes/cp-core.php:42
+msgid "View Dashboard"
+msgstr "Voir le tableau de bord"
+
+#: includes/cp-core.php:54
+msgid "CollabPress - Recent Activity"
+msgstr "CollabPress - Activité récente"
+
+#: includes/cp-core.php:74
+msgid ""
+"CollabPress BuddyPress integration requires the BP Groups component to be "
+"activated. Not using BP Groups? No problem - you&#8217ll still be able to "
+"use CollabPress on the Dashboard."
+msgstr ""
+"L'intégration de BuddyPress nécessite les composants BP Groups pour être "
+"activée dans CollabPress. Vous n'utilisez pas BP Groups ? Pas de problème ; "
+"voous pouvez tout de même continuer d'utiliser CollabPress dans le tableau "
+"de bord."
+
+#: includes/cp-core.php:77
+msgid ""
+"CollabPress BuddyPress integration requires v1.5+ of BuddyPress to work. "
+"Download a copy from <a href=\"http://buddypress.org\">buddypress.org</a>. "
+"Not ready to upgrade to BuddyPress 1.5? No problem. You can continue to use "
+"CollabPress - you just won&#8217t get any BuddyPress integration yet."
+msgstr ""
+"L'intégration de BuddyPress nécessite une version 1.5 ou supérieure pour "
+"fonctionner avec CollabPress. Téléchargez-en une copie sur <a href=\"http://"
+"buddypress.org\">buddypress.org</a>. Pas prêt à faire le saut vers "
+"BuddyPress 1.5 ? Vous pouvez continuer à utiliser CollbPress - vous n'aurez "
+"tout simplement pas l'intégration de BuddyPress."
+
+#: includes/cp-core.php:91
+msgid "Dismiss this message."
+msgstr "Ne pas valider ce message"
+
+#: includes/cp-widgets.php:17
+msgid "Display CollabPress overview stats"
+msgstr "Afficher les statistiques globales de CollabPress"
+
+#: includes/cp-widgets.php:19
+msgid "CollabPress: Overview Widget"
+msgstr "Widget de vue d'ensemble de CollabPress"
+
+#: includes/cp-widgets.php:24
+msgid "CollabPress Overview"
+msgstr "Vue d'ensemble de CollabPress"
+
+#: includes/cp-widgets.php:33
+msgid "Title"
+msgstr "Titre"
+
+#: includes/cp-widgets.php:34
+msgid "Show Project Count"
+msgstr "Voir le nombre de projets"
+
+#: includes/cp-widgets.php:35
+msgid "Show Task List Count"
+msgstr "Voir le nombre de liste de tâches"
+
+#: includes/cp-widgets.php:36
+msgid "Show Task Count"
+msgstr "Voir le nombre de tâches"
+
+#: includes/cp-widgets.php:37
+msgid "Show User Count"
+msgstr "Voir le nombre de contributions de l'utilisateur"
+
+#: includes/cp-widgets.php:74
+msgid "<span class=\"overview-count\">%d</span> Project"
+msgid_plural "<span class=\"overview-count\">%d</span> Projects"
+msgstr[0] "<span class=\"overview-count\">%d</span> Projet"
+msgstr[1] "<span class=\"overview-count\">%d</span> Projets"
+
+#: includes/cp-widgets.php:83
+msgid "<span class=\"overview-count\">%d</span> Task List"
+msgid_plural "<span class=\"overview-count\">%d</span> Task Lists"
+msgstr[0] "<span class=\"overview-count\">%d</span>  Liste de tâches"
+msgstr[1] "<span class=\"overview-count\">%d</span> Listes de tâches"
+
+#: includes/cp-widgets.php:92 includes/cp-widgets.php:100
+msgid "<span class=\"overview-count\">%d</span> Task"
+msgid_plural "<span class=\"overview-count\">%d</span> Tasks"
+msgstr[0] "<span class=\"overview-count\">%d</span> Tâche"
+msgstr[1] "<span class=\"overview-count\">%d</span> Tâches"
+
+#: includes/footer.php:3 includes/menus/footer.php:2
+msgid "Please Report Bugs"
+msgstr "Merci de signaler un bug"
+
+#: includes/footer.php:4
+msgid "Get involved"
+msgstr "Contribuez"
+
+#: includes/footer.php:8
+msgid "Follow us on Twitter: "
+msgstr "Suivez-nous sur Twitter :"
+
+#: includes/footer.php:10 includes/menus/footer.php:2
+msgid "Scott"
+msgstr "Scott"
+
+#: includes/footer.php:11 includes/menus/footer.php:2
+msgid "Brad"
+msgstr "Brad"
+
+#: includes/footer.php:12
+msgid "Chris"
+msgstr "Chris"
+
+#: includes/footer.php:13
+msgid "Eric"
+msgstr "Eric"
+
+#: includes/footer.php:14
+msgid "Boone"
+msgstr "Boone"
+
+#: includes/footer.php:15 includes/menus/footer.php:2
+msgid "WDS"
+msgstr "WDS"
+
+#: includes/functions.php:39
+msgid "Project Added"
+msgstr "Projet ajouté"
+
+#: includes/functions.php:43
+msgid "Project Updated"
+msgstr "Projet mis à jour"
+
+#: includes/functions.php:47
+msgid "Project Deleted"
+msgstr "Projet effacé"
+
+#: includes/functions.php:51
+msgid "Task List Added"
+msgstr "Liste de tâches ajoutée"
+
+#: includes/functions.php:55
+msgid "Task List Updated"
+msgstr "Liste de tâches mise à jour"
+
+#: includes/functions.php:59
+msgid "Task List Deleted"
+msgstr "Liste de tâches effacée"
+
+#: includes/functions.php:63
+msgid "Task Added"
+msgstr "Tâche ajoutée"
+
+#: includes/functions.php:67
+msgid "Task Updated"
+msgstr "Tâche mies à jour"
+
+#: includes/functions.php:71
+msgid "Task Deleted"
+msgstr "Tâche supprimée"
+
+#: includes/functions.php:75
+msgid "Comment Added"
+msgstr "Commentaire ajouté"
+
+#: includes/functions.php:79
+msgid "Acitivity Log Has Been Cleared"
+msgstr "Les logs d'activité ont été purgés"
+
+#: includes/functions.php:89
+#: includes/templates/collabpress/content-activity.php:8
+msgid "Activity"
+msgstr "Activité"
+
+#: includes/functions.php:157
+msgid "delete"
+msgstr "effacer"
+
+#: includes/functions.php:167
+msgid "No comments..."
+msgstr "Pas de commentaires..."
+
+#: includes/functions.php:178
+msgid "Leave a Comment: "
+msgstr "Laisser un commentaire :"
+
+#: includes/functions.php:180
+msgid "Notify via Email?"
+msgstr "Faut-il le notifier par e-mail ?"
+
+#: includes/functions.php:182 includes/menus/debug.php:109
+#: includes/menus/debug.php:112 includes/menus/debug.php:115
+#: includes/menus/debug.php:118 includes/menus/debug.php:121
+#: includes/templates/collabpress/buddypress/content-single-project.php:45
+#: includes/templates/collabpress/buddypress/content-single-project.php:110
+#: includes/templates/collabpress/buddypress/content-single-project.php:139
+#: includes/templates/collabpress/buddypress/content-single-task.php:72
+#: includes/templates/collabpress/buddypress/dashboard.php:72
+#: includes/templates/collabpress/content-single-project-files.php:73
+#: includes/templates/collabpress/content-single-project-tasks.php:81
+#: includes/templates/collabpress/content-single-project-tasks.php:110
+#: includes/templates/collabpress/content-single-project-users.php:42
+#: includes/templates/collabpress/content-single-project.php:71
+#: includes/templates/collabpress/content-single-task.php:78
+#: includes/templates/collabpress/dashboard.php:73
+msgid "Submit"
+msgstr "Envoyer"
+
+#: includes/functions.php:272
+msgid "Sunday"
+msgstr "Dimanche"
+
+#: includes/functions.php:273
+msgid "Monday"
+msgstr "Lundi"
+
+#: includes/functions.php:274
+msgid "Tuesday"
+msgstr "Mardi"
+
+#: includes/functions.php:275
+msgid "Wednesday"
+msgstr "Mercredi"
+
+#: includes/functions.php:276
+msgid "Thursday"
+msgstr "Jeudi"
+
+#: includes/functions.php:277
+msgid "Friday"
+msgstr "Vendredi"
+
+#: includes/functions.php:278
+msgid "Saturday"
+msgstr "Samedi"
+
+#: includes/functions.php:812 includes/functions.php:979
+#: includes/functions.php:1050 includes/menus/isset/comment.php:59
+#: includes/menus/isset/task-list.php:24 includes/menus/isset/task.php:69
+msgid "added"
+msgstr "Ajouté"
+
+#: includes/functions.php:813 includes/menus/isset/project.php:46
+#: includes/menus/isset/project.php:106
+msgid "project"
+msgstr "projet"
+
+#: includes/functions.php:980 includes/functions.php:1158
+#: includes/menus/isset/task.php:69 includes/menus/isset/task.php:113
+#: includes/menus/isset/task.php:139 includes/menus/isset/task.php:149
+#: includes/menus/isset/task.php:172
+msgid "task"
+msgstr "tâche"
+
+#: includes/functions.php:994 includes/functions.php:998
+msgid "You have been assigned the task %d."
+msgstr "On vous a confié la tâche %d."
+
+#: includes/functions.php:1051 includes/menus/isset/task-list.php:24
+#: includes/menus/isset/task-list.php:49
+msgid "task list"
+msgstr "liste de tâches"
+
+#: includes/functions.php:1140 includes/menus/isset/comment.php:43
+#: includes/menus/isset/comment.php:46
+msgid "New comment on task "
+msgstr "Nouveau commentaire sur la tâche"
+
+#: includes/functions.php:1145
+msgid "There is a new comment on the task %s from %s"
+msgstr "Il y a un nouveau commentaire sur la tâche  %s émis par %s"
+
+#: includes/functions.php:1151 includes/menus/isset/comment.php:50
+msgid "Comment:"
+msgstr "Commentaire :"
+
+#: includes/functions.php:1158
+msgid "commented"
+msgstr "commenté"
+
+#: includes/functions.php:1286
+msgid "Next, add your first task in this project."
+msgstr "A présent, ajouter votre premier commentaire sur ce projet."
+
+#: includes/menus/dashboard.php:48
+msgid "CollabPress Dashboard"
+msgstr "Tableau de bord de CollabPress"
+
+#: includes/menus/dashboard.php:59 includes/menus/settings.php:7
+msgid "CollabPress Settings"
+msgstr "Paramètres de CollabPress"
+
+#: includes/menus/dashboard.php:59
+msgid "Settings"
+msgstr "Paramètres"
+
+#: includes/menus/debug.php:10
+#: includes/templates/collabpress/buddypress/content-single-project.php:121
+#: includes/templates/collabpress/content-single-project-tasks.php:92
+msgid "Title: "
+msgstr "Titre :"
+
+#: includes/menus/debug.php:12
+msgid "ID: "
+msgstr "ID :"
+
+#: includes/menus/debug.php:14
+msgid "Author: "
+msgstr "Auteur :"
+
+#: includes/menus/debug.php:16
+msgid "Created: "
+msgstr "Créé :"
+
+#: includes/menus/debug.php:16 includes/menus/debug.php:18
+msgid "at"
+msgstr "à"
+
+#: includes/menus/debug.php:18
+msgid "Modified: "
+msgstr "Modifié :"
+
+#: includes/menus/debug.php:30
+msgid "name: "
+msgstr "nom :"
+
+#: includes/menus/debug.php:31
+msgid "value"
+msgstr "valeur"
+
+#: includes/menus/debug.php:42
+msgid "No results..."
+msgstr "Pas de résultats..."
+
+#: includes/menus/debug.php:50
+msgid "CollabPress Debug"
+msgstr "Débogage"
+
+#: includes/menus/debug.php:52
+msgid "Delete"
+msgstr "Effacer"
+
+#: includes/menus/debug.php:108
+msgid "Delete All CollabPress Data: "
+msgstr "Supprimer toutes les données de CollabPress"
+
+#: includes/menus/debug.php:111
+msgid "Delete CollabPress Projects: "
+msgstr "Supprimer les projets CollabPress :"
+
+#: includes/menus/debug.php:114
+msgid "Delete CollabPress Task Lists: "
+msgstr "Supprimer la liste de tâches de CollabPress"
+
+#: includes/menus/debug.php:117
+msgid "Delete CollabPress Tasks: "
+msgstr "Supprimer les tâches de CollabPress"
+
+#: includes/menus/debug.php:120
+msgid "Delete CollabPress Meta Data: "
+msgstr "Supprimer les métadonnées de CollabPress"
+
+#: includes/menus/debug.php:127
+msgid "All Projects"
+msgstr "Tous les projets"
+
+#: includes/menus/debug.php:143
+msgid "All Task Lists"
+msgstr "Toutes les listes de tâches"
+
+#: includes/menus/debug.php:175
+msgid "All Meta"
+msgstr "Toutes les métadonnées"
+
+#: includes/menus/footer.php:2
+msgid "Follow us on Twitter:"
+msgstr "Suivez-nous sur Twitter :"
+
+#: includes/menus/help.php:7
+msgid "CollabPress Help"
+msgstr "Aide sur CollabPress"
+
+#: includes/menus/help.php:9
+msgid "Shortcode Legend"
+msgstr "Légende des codes abrégés"
+
+#: includes/menus/help.php:10
+msgid ""
+"Add full CollabPress support to the front-end of WordPress.  View/edit/"
+"delete all projects, task-lists, tasks, and comments."
+msgstr ""
+"Ajouter toute l'aide de CollabPress sur le front-office du site. Voir/éditer/"
+"supprimer tous les projets, liste de tâches, tâches et commentaires."
+
+#: includes/menus/help.php:11
+msgid "Set user role"
+msgstr "Définir un rôle pour l'utilisateur"
+
+#: includes/menus/help.php:11
+msgid "for front-end [collabpress] shortcode support"
+msgstr "pour le support de [collabpress] sur le front-office"
+
+#: includes/menus/help.php:13
+msgid "Support and Info"
+msgstr "Support et information"
+
+#: includes/menus/help.php:14
+msgid "Visit the"
+msgstr "Visitez le"
+
+#: includes/menus/help.php:14
+msgid "CollabPress Support Forum"
+msgstr "Forum du support de CollabPress"
+
+#: includes/menus/help.php:14
+msgid "CollabPress on Twitter"
+msgstr "CollabPress sur Twitter"
+
+#: includes/menus/help.php:16
+msgid "Get Involed"
+msgstr "Contribuez"
+
+#: includes/menus/help.php:19
+msgid "FAQ"
+msgstr "FAQ"
+
+#: includes/menus/help.php:20
+msgid "Q: Why isn&apos;t CollabPress working with BuddyPress?"
+msgstr "Q : Pourquoi CollabPress ne marche pas avec BuddyPress ?"
+
+#: includes/menus/help.php:21
+msgid ""
+"A: CollabPress requires BuddyPress v1.5 or higher to work.  You can download "
+"a copy on the <a href=\"http://buddypress.org/blog/\" target=\"_blank"
+"\">BuddyPress site</a>"
+msgstr ""
+"A : CollabPress a besoin des versions 1.5 et supérieures de BuddyPress pour "
+"fonctionner. Vous pouvez en télécharger une copie à partir du <a href="
+"\"http://buddypress.org/blog/\" target=\"_blank\">site de BuddyPress</a>"
+
+#: includes/menus/help.php:22
+msgid "Q: How can I get involved with CollabPress development?"
+msgstr "Q : Comment puis-je m'investir dnas le développement de CollabPress ?"
+
+#: includes/menus/help.php:23
+msgid ""
+"A: Visit CollabPress on <a href=\"https://github.com/WebDevStudios/"
+"CollabPress\" target=\"_blank\">Github</a> to track active development.  You "
+"can also get involved on the <a href=\"http://make.collabpress.org/\" target="
+"\"_blank\">Make Blog</a>."
+msgstr ""
+"R : Visitez la section CollabPress sur <a href=\"https://github.com/"
+"WebDevStudios/CollabPress\" target=\"_blank\">Github</a> pour repérer les "
+"développements actifs. Vous pouvez aussi vous manifester sur le  <a href="
+"\"http://make.collabpress.org/\" target=\"_blank\">journal de bord</a>."
+
+#: includes/menus/help.php:26
+msgid "Donate"
+msgstr "Parrainez"
+
+#: includes/menus/help.php:27
+msgid "Please donate to the development of CollabPress:"
+msgstr "Merci d'encourager le développement de CollabPress avec un don :"
+
+#: includes/menus/help.php:31
+msgid "PayPal - The safer, easier way to pay online!"
+msgstr "PayPal, le moyen le plus simple et le plus sûr pour payer en ligne !"
+
+#: includes/menus/isset/comment.php:45 includes/menus/isset/comment.php:49
+msgid "There is a new comment on your task from "
+msgstr "Il y a un nouveau commentaire sur vôtre tâche émis par"
+
+#: includes/menus/isset/comment.php:59 includes/menus/isset/comment.php:76
+msgid "comment"
+msgstr "commentaire"
+
+#: includes/menus/isset/comment.php:76 includes/menus/isset/project.php:106
+#: includes/menus/isset/task.php:172
+msgid "deleted"
+msgstr "supprimé(e)"
+
+#: includes/menus/isset/project.php:46 includes/menus/isset/task-list.php:49
+#: includes/menus/isset/task.php:113
+msgid "updated"
+msgstr "Mis(e) à jour"
+
+#: includes/menus/isset/task.php:80
+msgid "New task assigned to you: "
+msgstr "Nouvelle tâche confiée :"
+
+#: includes/menus/isset/task.php:82
+msgid "There is a new task assigned to you:"
+msgstr "Une nouvelle têche vous a été confiée"
+
+#: includes/menus/isset/task.php:139
+msgid "completed"
+msgstr "Complet"
+
+#: includes/menus/isset/task.php:149
+msgid "opened"
+msgstr "Ouvert"
+
+#: includes/menus/settings-addons.php:17
+msgid "Premium Addons"
+msgstr "Extensions comprises dans le contrat Premium"
+
+#: includes/menus/settings.php:60
+msgid "General"
+msgstr "Général"
+
+#: includes/menus/settings.php:63
+msgid "Dashboard Meta Box"
+msgstr "Meta box du tableau de bord"
+
+#: includes/menus/settings.php:72
+msgid "Email Notifications"
+msgstr "Envoyer un e-mail"
+
+#: includes/menus/settings.php:81
+msgid "Recent Activites Per Page"
+msgstr "Activité récente par page"
+
+#: includes/menus/settings.php:98
+msgid "Number of Users to Display"
+msgstr "Nombre d'utilisateurs autorisés à voir"
+
+#: includes/menus/settings.php:110
+msgid "Permissions"
+msgstr "Permissions"
+
+#: includes/menus/settings.php:113
+msgid "Minimum User Role for Access"
+msgstr "Rôle minimum autorisé pour l'accès"
+
+#: includes/menus/settings.php:116 includes/menus/settings.php:128
+#: includes/menus/settings.php:141
+msgid "Administrator"
+msgstr "Administrateur"
+
+#: includes/menus/settings.php:117 includes/menus/settings.php:129
+#: includes/menus/settings.php:142
+msgid "Editor"
+msgstr "Editeur"
+
+#: includes/menus/settings.php:118 includes/menus/settings.php:130
+#: includes/menus/settings.php:143
+msgid "Author"
+msgstr "Auteur"
+
+#: includes/menus/settings.php:119 includes/menus/settings.php:131
+#: includes/menus/settings.php:144
+msgid "Contributor"
+msgstr "Contributeur"
+
+#: includes/menus/settings.php:120 includes/menus/settings.php:132
+#: includes/menus/settings.php:145
+msgid "Subscriber"
+msgstr "Utilisateur authentifié"
+
+#: includes/menus/settings.php:125
+msgid ""
+"Minimum User Role to change Settings, Edit/Delete data, Enable/View Debug, "
+"etc"
+msgstr ""
+"Rôle minimal requis pour modifier les paramètres, editer/supprimer les "
+"données, activer/désactiver le mode debug, etc."
+
+#: includes/menus/settings.php:137
+msgid "Minimum User Role to view [collabpress] shortcode front-end"
+msgstr ""
+"Rôle minimal requis pour voir la liste abrégée de [collabpress] sur le front-"
+"office"
+
+#: includes/menus/settings.php:140
+msgid "Anyone"
+msgstr "N'importe qui"
+
+#: includes/menus/settings.php:150
+msgid "Advanced"
+msgstr "Avancé"
+
+#: includes/menus/settings.php:153
+msgid "Debug Mode"
+msgstr "Mode debug"
+
+#: includes/menus/settings.php:162
+msgid "Opt-out of PressTrends Tracking"
+msgstr "Opt-out of PressTrends Tracking"
+
+#: includes/menus/settings.php:165
+msgid "No"
+msgstr "Non"
+
+#: includes/menus/settings.php:166
+msgid "Yes"
+msgstr "Oui"
+
+#: includes/menus/settings.php:174
+msgid "Save Settings"
+msgstr "Enregistrer les paramètres"
+
+#: includes/menus/settings.php:181
+msgid "Optimize"
+msgstr "Optimiser"
+
+#: includes/menus/settings.php:189
+msgid "Clear Activity Log"
+msgstr "Vider les traces d'activité"
+
+#: includes/menus/settings.php:190
+msgid "Delete Log"
+msgstr "Supprimer les traces"
+
+#: includes/menus/settings.php:190
+msgid ""
+"WARNING: This will delete ALL activity logs.  Once logs have been deleted "
+"they can NOT be restored.\\n\\nChoose [Cancel] to Stop, [OK] to delete logs."
+"\\n"
+msgstr ""
+"ATTENTION : cela va purger TOUS les fichiers de logs. Une fois supprimés, "
+"ils NE PEUVENT être restaurés.\\n\\nChoisir [Annuler] pour interrompre cette "
+"action, [OK] pour purger les logs.\\n"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:4
+#: includes/templates/collabpress/content-single-project.php:8
+#: includes/templates/collabpress/content-single-project.php:49
+#: includes/templates/collabpress/project.php:47
+msgid "Edit Project"
+msgstr "Editer le projet"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:7
+#: includes/templates/collabpress/content-single-project-tasks.php:8
+msgid "Toggle view completed tasks"
+msgstr "Basculer en vue \"Toutes tâches\""
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:12
+#: includes/templates/collabpress/content-single-project-tasks.php:13
+msgid "Add new task"
+msgstr "Ajouter une tâche"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:15
+#: includes/templates/collabpress/content-single-project-tasks.php:16
+msgid "Add new task list"
+msgstr "Ajouter une liste de tâches"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:30
+#: includes/templates/collabpress/buddypress/dashboard.php:31
+#: includes/templates/collabpress/content-single-project.php:56
+#: includes/templates/collabpress/dashboard.php:32
+msgid "Name: "
+msgstr "Nom :"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:34
+#: includes/templates/collabpress/buddypress/content-single-project.php:59
+#: includes/templates/collabpress/buddypress/content-single-project.php:129
+#: includes/templates/collabpress/buddypress/content-single-task.php:29
+#: includes/templates/collabpress/buddypress/dashboard.php:35
+#: includes/templates/collabpress/content-single-project-files.php:26
+#: includes/templates/collabpress/content-single-project-tasks.php:30
+#: includes/templates/collabpress/content-single-project-tasks.php:100
+#: includes/templates/collabpress/content-single-project.php:60
+#: includes/templates/collabpress/content-single-task.php:35
+#: includes/templates/collabpress/dashboard.php:36
+msgid "Description: "
+msgstr "Description :"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:46
+#: includes/templates/collabpress/content-single-project.php:72
+msgid "Delete Project"
+msgstr "Supprimer le projet"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:52
+#: includes/templates/collabpress/content-single-project-tasks.php:23
+#: includes/templates/collabpress/task-list.php:14
+msgid "Add Task"
+msgstr "Ajouter une tâche"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:68
+#: includes/templates/collabpress/buddypress/content-single-task.php:38
+#: includes/templates/collabpress/content-single-project-files.php:35
+#: includes/templates/collabpress/content-single-project-tasks.php:39
+#: includes/templates/collabpress/content-single-task.php:44
+msgid "Due: "
+msgstr "Délais"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:72
+#: includes/templates/collabpress/buddypress/content-single-task.php:42
+#: includes/templates/collabpress/content-single-project-files.php:39
+#: includes/templates/collabpress/content-single-project-tasks.php:43
+#: includes/templates/collabpress/content-single-task.php:48
+msgid "Assigned to: "
+msgstr "Confiée à"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:87
+#: includes/templates/collabpress/buddypress/content-single-task.php:57
+#: includes/templates/collabpress/content-single-project-files.php:54
+#: includes/templates/collabpress/content-single-project-tasks.php:58
+#: includes/templates/collabpress/content-single-task.php:63
+msgid "Priority: "
+msgstr "Priorité :"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:90
+#: includes/templates/collabpress/buddypress/content-single-task.php:60
+#: includes/templates/collabpress/content-single-project-tasks.php:61
+#: includes/templates/collabpress/content-single-task.php:66
+msgid "Urgent"
+msgstr "Urgent"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:91
+#: includes/templates/collabpress/buddypress/content-single-task.php:61
+#: includes/templates/collabpress/content-single-project-tasks.php:62
+#: includes/templates/collabpress/content-single-task.php:67
+msgid "High"
+msgstr "Elevé"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:92
+#: includes/templates/collabpress/buddypress/content-single-task.php:62
+#: includes/templates/collabpress/content-single-project-tasks.php:63
+#: includes/templates/collabpress/content-single-task.php:68
+msgid "Normal"
+msgstr "Normal"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:93
+#: includes/templates/collabpress/buddypress/content-single-task.php:63
+#: includes/templates/collabpress/content-single-project-tasks.php:64
+#: includes/templates/collabpress/content-single-task.php:69
+msgid "Low"
+msgstr "Lent"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:94
+#: includes/templates/collabpress/buddypress/content-single-task.php:64
+#: includes/templates/collabpress/content-single-project-tasks.php:65
+#: includes/templates/collabpress/content-single-task.php:70
+msgid "Very Low"
+msgstr "Très lent"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:95
+#: includes/templates/collabpress/buddypress/content-single-task.php:65
+#: includes/templates/collabpress/content-single-project-tasks.php:66
+#: includes/templates/collabpress/content-single-task.php:71
+msgid "None"
+msgstr "Aucun(e)"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:100
+#: includes/templates/collabpress/content-single-project-files.php:67
+#: includes/templates/collabpress/content-single-project-tasks.php:71
+msgid "Notify via Email? "
+msgstr "Faut-il le notifier par e-mail ?"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:115
+#: includes/templates/collabpress/content-single-project-tasks.php:86
+#: includes/templates/collabpress/project.php:14
+msgid "Add Task List"
+msgstr "Ajouter une liste de tâches"
+
+#: includes/templates/collabpress/buddypress/content-single-project.php:175
+#: includes/templates/collabpress/content-single-project.php:109
+msgid "Are you sure you want to delete this project?"
+msgstr "Etes-vous sûr(e) de vouloir supprimer ce projet ?"
+
+#: includes/templates/collabpress/buddypress/content-single-task.php:22
+#: includes/templates/collabpress/content-single-task.php:28
+#: includes/templates/collabpress/task.php:13
+msgid "Edit Task"
+msgstr "Editer la tâche"
+
+#: includes/templates/collabpress/buddypress/content-single-task.php:166
+#: includes/templates/collabpress/content-single-task.php:170
+msgid "Are you sure you want to delete this comment?"
+msgstr "Etes-vous sûr(e) de vouloir supprimer ce commentaire ?"
+
+#: includes/templates/collabpress/buddypress/dashboard.php:19
+#: includes/templates/collabpress/dashboard.php:20
+msgid "Add new project"
+msgstr "Ajouter un nouveau projet"
+
+#: includes/templates/collabpress/buddypress/dashboard.php:26
+#: includes/templates/collabpress/dashboard.php:27
+msgid "Add Project"
+msgstr "Ajouter un projet"
+
+#: includes/templates/collabpress/buddypress/dashboard.php:46
+#: includes/templates/collabpress/dashboard.php:47
+msgid "Users: "
+msgstr "Utilisateurs :"
+
+#: includes/templates/collabpress/buddypress/dashboard.php:49
+#: includes/templates/collabpress/content-single-project-users.php:23
+#: includes/templates/collabpress/dashboard.php:50
+msgid "Check All"
+msgstr "Tout sélectionner"
+
+#: includes/templates/collabpress/buddypress/dashboard.php:50
+#: includes/templates/collabpress/content-single-project-users.php:24
+#: includes/templates/collabpress/dashboard.php:51
+msgid "Uncheck All"
+msgstr "Tout déselectionner"
+
+#: includes/templates/collabpress/buddypress/dashboard.php:99
+#: includes/templates/collabpress/dashboard.php:98
+msgid "Please enter a name for this project."
+msgstr "Merci de saisir un nom de projet."
+
+#: includes/templates/collabpress/content-activity.php:42
+msgid "a"
+msgstr "un(e)"
+
+#: includes/templates/collabpress/content-activity.php:49
+msgid "No Activities..."
+msgstr "Pas d'activité..."
+
+#: includes/templates/collabpress/content-single-project-files.php:8
+#: includes/templates/collabpress/content-single-project.php:31
+msgid "Files"
+msgstr "Fichiers"
+
+#: includes/templates/collabpress/content-single-project-files.php:16
+msgid "Upload file"
+msgstr "Charger un fichier"
+
+#: includes/templates/collabpress/content-single-project-files.php:20
+msgid "Add File"
+msgstr "Ajouter un fichier"
+
+#: includes/templates/collabpress/content-single-project-tasks.php:162
+msgid "Are you sure you want to delete this task?"
+msgstr "Etes-vous sûr(e) de vouloir supprimer cette tâche ?"
+
+#: includes/templates/collabpress/content-single-project-users.php:7
+#: includes/templates/collabpress/content-single-project.php:11
+msgid "Users"
+msgstr "Utilisateurs"
+
+#: includes/templates/collabpress/content-single-project-users.php:14
+msgid "Modify users"
+msgstr "Modifier les utilisateurs"
+
+#: includes/templates/collabpress/content-single-project-users.php:19
+msgid "Modify Users in Project"
+msgstr "Modifier les utilisateurs du projet"
+
+#: includes/templates/collabpress/content-single-project.php:17
+msgid "View all users"
+msgstr "Voir tous les utilisateurs"
+
+#: includes/templates/collabpress/content-single-project.php:30
+msgid "View all tasks"
+msgstr "Voir toutes les taches"
+
+#: includes/templates/collabpress/content-single-project.php:41
+msgid "View all files"
+msgstr "Voir tous les fichiers"
+
+#: includes/templates/collabpress/project.php:8
+msgid "Project: <em>%s</em>"
+msgstr "Projet : <em>%s</em>"
+
+#: includes/templates/collabpress/project.php:23
+msgid "Project Overview"
+msgstr "Vue snoptique du projet"
+
+#: includes/templates/collabpress/projects-loop.php:23
+msgid "Project Name"
+msgstr "Nom du projet"
+
+#: includes/templates/collabpress/projects-loop.php:28
+msgid "Project Creator"
+msgstr "Initiateur du projet"
+
+#: includes/templates/collabpress/projects-loop.php:32
+msgid "Date Created"
+msgstr "Date de création"
+
+#: includes/templates/collabpress/projects-loop.php:104
+#: includes/templates/collabpress/user-tasks.php:109
+msgid "There are no projects for this view."
+msgstr "Il n'y a pas de projet dans cette vue"
+
+#: includes/templates/collabpress/projects-loop.php:113
+msgid "New Project"
+msgstr "Nouveau projet"
+
+#: includes/templates/collabpress/task-list.php:8
+msgid "Task List: <em>%s</em>"
+msgstr "Liste des tâches : <em>%s</em>"
+
+#: includes/templates/collabpress/task-list.php:23
+msgid "Edit Task List"
+msgstr "Editer la liste des tâches"
+
+#: includes/templates/collabpress/task-list.php:33
+msgid "Task List Overview"
+msgstr "Panorama des tâches"
+
+#: includes/templates/collabpress/task.php:8
+msgid "Task: <em>%s</em>"
+msgstr "Tâche : <em>%s</em>"
+
+#: includes/templates/collabpress/task.php:20
+msgid "Task Comments"
+msgstr "Commentaires sur la tâche"
+
+#: includes/templates/collabpress/user-tasks.php:15
+msgid "Task"
+msgstr "Tâche"
+
+#: includes/templates/collabpress/user-tasks.php:19
+msgid "Project"
+msgstr "Projet"
+
+#: includes/templates/collabpress/user-tasks.php:24
+msgid "Status"
+msgstr "Statut"
+
+#: includes/templates/collabpress/user-tasks.php:28
+msgid "Due Date"
+msgstr "Date de retour"
+
+#: includes/tools/boones-pagination/boones-pagination.php:206
+msgid "Viewing %1$d - %2$d of a total of %3$d"
+msgstr "Voir %1$d - %2$d sur un total de %3$d"
+
+#: includes/tools/boones-pagination/boones-pagination.php:227
+msgid "&laquo;"
+msgstr "&laquo;"
+
+#: includes/tools/boones-pagination/boones-pagination.php:228
+msgid "&raquo;"
+msgstr "&raquo;"
