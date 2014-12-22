@@ -179,6 +179,23 @@ function cp_task_comments() {
 	echo '</form>';
 }
 
+function cp_get_projects_for_user( $user_id ) {
+	global $cp, $wpdb;
+	$projects = $wpdb->get_col(
+		$wpdb->prepare(
+			"SELECT project_id
+			FROM {$cp->tables->project_users}
+			WHERE user_id = %d",
+			$user_id
+		)
+	);
+	return $projects;
+}
+
+function cp_get_projects_for_current_user() {
+	$current_user = wp_get_current_user();
+	return cp_get_projects_for_user( $current_user->ID );
+}
 // CollabPress Calendar
 function cp_draw_calendar( $args = array() ) {
 	global $cp;
@@ -192,7 +209,11 @@ function cp_draw_calendar( $args = array() ) {
 	$args = wp_parse_args( $args, $defaults );
 	extract( $args );
 
-	//TODO: If no project was given, only show projects user has access to
+	// If no project was given, only show projects
+	// user has access to
+	if ( ! $project ) {
+		$project = cp_get_projects_for_current_user();
+	}
 
 	echo '<div id="cp-calendar-wrap">';
 
