@@ -16,6 +16,11 @@ require_once( COLLABPRESS_PLUGIN_DIR . 'includes/functions.php' );
 
 do_action( 'cp_after_functions' );
 
+// CollabPress Content Action Functions
+require_once( COLLABPRESS_PLUGIN_DIR . 'includes/content-actions.php' );
+
+do_action( 'cp_after_content_action_functions' );
+
 // Administration Menus
 require_once( COLLABPRESS_PLUGIN_DIR . 'includes/menus.php' );
 
