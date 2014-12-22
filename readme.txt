@@ -2,9 +2,9 @@
 Contributors: scottbasgaard, williamsba1, cochran, boonebgorges, ericlewis
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=3084056
 Tags: task, management, basecamp, to do, projects, lists, team, planning, tracking, reporting, shortcode, widget, multisite, buddypress
-Requires at least: 3.0
-Tested up to: 3.5.1
-Stable tag: 1.2.4
+Requires at least: 3.8
+Tested up to: 4.1
+Stable tag: 2.0
 
 Project management and task tracking software for WordPress
 
