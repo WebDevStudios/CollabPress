@@ -44,6 +44,9 @@ function cp_modify_project_users_handler() {
 	foreach ( $users as $user_id )
 		cp_add_user_to_project( $project_id, $user_id );
 
+	//update project metadata user IDs
+	update_post_meta( $project_id, '_cp-project-users', $users );
+
 	$permalink = cp_get_project_users_permalink( $project_id );
 	wp_send_json_success( array( 'redirect' => $permalink ) );
 }
